@@ -1,5 +1,5 @@
 ESX = exports["es_extended"]:getSharedObject()
-local logger = require("modules.utility.shared.logger")
+-- local logger = require("modules.utility.shared.logger")
 
 local esxFramework = {}
 esxFramework.__index = esxFramework
@@ -48,12 +48,12 @@ function esxFramework:getPlayerStamina()
 end
 
 ESX.SecureNetEvent("esx:playerLoaded", function()
-    logger.info("[esxFramework] Player loaded. Toggling HUD on.")
+    -- logger.info("[esxFramework] Player loaded. Toggling HUD on.")
     interface:toggle(true)
 end)
 
 ESX.SecureNetEvent("esx:onPlayerLogout", function()
-    logger.info("[esxFramework] Player logged out. Toggling HUD off.")
+    -- logger.info("[esxFramework] Player logged out. Toggling HUD off.")
     interface:toggle(false)
 end)
 

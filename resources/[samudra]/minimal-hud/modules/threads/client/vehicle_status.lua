@@ -1,6 +1,6 @@
 local interface = require("modules.interface.client")
 local utility = require("modules.utility.shared.main")
-local logger = require("modules.utility.shared.logger")
+-- local logger = require("modules.utility.shared.logger")
 local functions = require("config.functions")
 local config = require("config.shared")
 
@@ -87,7 +87,7 @@ function VehicleStatusThread:start()
             elseif normalizedSpeedUnit == "mph" then
                 speed = math.floor(GetEntitySpeed(vehicle) * 2.236936) -- Convert m/s to MPH
             else
-                logger.error("Invalid speed unit in config. Expected 'kmh' or 'mph', but got:", config.speedUnit)
+                -- logger.error("Invalid speed unit in config. Expected 'kmh' or 'mph', but got:", config.speedUnit)
             end
 
             local rpm
@@ -117,12 +117,12 @@ function VehicleStatusThread:start()
         end
 
         if self.seatbelt then
-            logger.verbose("(vehicleStatusThread) seatbelt found, toggling to false")
+            -- logger.verbose("(vehicleStatusThread) seatbelt found, toggling to false")
             self.seatbelt:toggle(false)
         end
 
         playerStatusThread:setIsVehicleThreadRunning(false)
-        logger.verbose("(vehicleStatusThread) Vehicle status thread ended.")
+        -- logger.verbose("(vehicleStatusThread) Vehicle status thread ended.")
     end)
 end
 

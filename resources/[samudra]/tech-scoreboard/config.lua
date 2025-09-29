@@ -33,6 +33,11 @@ Config.Jobs = {
         color = 'FFF5D60B',
         icon = 'utensils'
     },
+    ['pemerintah'] = {
+        label = 'Pemerintah',
+        color = '#15FF00',
+        icon = 'building-ngo'
+    },
     ['unemployed'] = {
         label = 'Warga',
         color = '#6B7280',

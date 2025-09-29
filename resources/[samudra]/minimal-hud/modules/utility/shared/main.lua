@@ -1,5 +1,5 @@
 local utility = {}
-local logger = require("modules.utility.shared.logger")
+-- local logger = require("modules.utility.shared.logger")
 local config = require("config.shared")
 
 ---@param value number
@@ -81,7 +81,7 @@ utility.isFrameworkValid = function()
     local framework = config.framework and config.framework:lower() or nil
 
     if not framework then
-        logger.info("(utility:isFrameworkValid) No framework specified, defaulting to 'none'.")
+        -- logger.info("(utility:isFrameworkValid) No framework specified, defaulting to 'none'.")
         return false
     end
 
@@ -92,7 +92,7 @@ utility.isFrameworkValid = function()
         custom = true,
     }
 
-    logger.verbose("(utility:isFrameworkValid) Checking if framework is valid: ", validFrameworks[framework] ~= nil)
+    -- logger.verbose("(utility:isFrameworkValid) Checking if framework is valid: ", validFrameworks[framework] ~= nil)
     return validFrameworks[framework] ~= nil
 end
 
@@ -100,7 +100,7 @@ end
 utility.preventBigmapFromStayingActive = function()
     local timeout = 0
     while true do
-        logger.debug("(utility:preventBigmapFromStayingActive) Running, timeout: ", timeout)
+        -- logger.debug("(utility:preventBigmapFromStayingActive) Running, timeout: ", timeout)
 
         SetBigmapActive(false, false)
 
@@ -114,7 +114,7 @@ utility.preventBigmapFromStayingActive = function()
 end
 
 utility.setupMinimap = function()
-    logger.info("(utility:setupMinimap) Setting up minimap.")
+    -- logger.info("(utility:setupMinimap) Setting up minimap.")
     local defaultAspectRatio = 1920 / 1080
     local resolutionX, resolutionY = GetActiveScreenResolution()
     local aspectRatio = resolutionX / resolutionY

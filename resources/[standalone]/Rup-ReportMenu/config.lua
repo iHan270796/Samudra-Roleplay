@@ -29,8 +29,8 @@ Config.Cooldowns = {
 -- Discord Webhook
 Config.Discord = {
     Enabled = true, -- Set to true to enable Discord integration
-    Webhook = 'https://discord.com/api/webhooks/1379027995125354596/zZ8oGGTyoFFEJn9bfolsBPfAOsl_BOAswlfAanlvr-KnSXtrjIjJeAD127cWMqtPbr6v', -- Replace with your actual webhook URL
-    ImageUrl = 'https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/deanix.png', 
+    Webhook = 'https://discord.com/api/webhooks/1422330312242757744/OXchj1ZoRz-Kl2Zhw0OJ3HLgCZ3IVESt2NvGXIGcBzfzrIJFwd_oWoynUeAuvSd2X3Wh', -- Replace with your actual webhook URL
+    ImageUrl = 'https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/logo_samudra.png', 
     ReportEmbedColor = 16711680, -- Red
     CreateEmebedColor = 65280, -- Green
 }
