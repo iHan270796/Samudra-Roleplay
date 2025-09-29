@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interaction UI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@550&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .ui-wrapper {
+      background-color: #11111100;
+      box-shadow: 7px 7px 7px 7px #00000000;
+      position: absolute;
+      top: 38%;
+      left: 75%;
+      transform: translate(-50%, -50%) translateX(-20px);
+      opacity: 0;
+      z-index: 5;
+      display: block;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      pointer-events: none;
+    }
+
+    .ui-wrapper.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) translateX(0);
+      pointer-events: all;
+    }
+
+    .ui-container {
+      background: linear-gradient(135deg, rgba(0, 115, 255, 0.2), rgba(0, 85, 255, 0.915));
+      background-size: 400% 400%;
+      animation: wave 6s ease infinite;
+      border-radius: 0.3rem;
+      padding: 4px 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0);
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .top-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+.icon-box {
+  position: fixed;
+  top: 33.3%;
+  left: 65%;
+  transform: translateY(-50%);
+      background: linear-gradient(135deg, rgba(0, 115, 255, 0.2), rgba(0, 85, 255, 0.915));
+  width: 30px;
+  height: 30px;
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.1rem;
+  z-index: 1000;
+}
+
+#iconBox {
+  position: absolute;
+  left: 0;
+  transform: translate(-100%, -50%) translateX(-5px);
+  z-index: 6;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+
+
+#iconBox.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+
+    .label {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1.05rem;
+      white-space: nowrap;
+      flex: 1;
+    }
+
+.action-row {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end; 
+}
+
+.action-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: flex-end; 
+  flex-direction: row-reverse; 
+}
+
+    .action-label, .keybind {
+      background: linear-gradient(135deg, rgba(0, 115, 255, 0.2), rgba(0, 85, 255, 0.915));
+      background-size: 400% 400%;
+      animation: wave 6s ease infinite;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0);
+      border-radius: 0.4rem;
+      padding: 0.3rem 0.8rem;
+      color: #ffffff;
+      font-weight: 550;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+
+    .ray-line {
+      position: absolute;
+      height: 2px;
+      background:  rgb(160, 160, 160);
+      box-shadow:
+        0 0 4px rgba(160, 160, 160),
+        0 0 8px rgba(160, 160, 160),
+        0 0 12px rgba(160, 160, 160);
+      border-radius: 1px;
+      transform-origin: left center;
+      z-index: 2;
+      opacity: 0;
+      will-change: transform, width, left, top;
+    }
+
+.floating-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, rgba(160, 160, 160), rgba(160, 160, 160));
+  border-radius: 0.2rem; 
+  border: 2px  ; 
+  box-shadow:
+    0 0 4px rgba(160, 160, 160),
+    0 0 8px rgba(160, 160, 160);
+  transition: opacity 0.2s ease;
+  z-index: 4;
+  pointer-events: none;
+}
+
+    .floating-dot.show { opacity: 1; }
+    .floating-dot.visual { opacity: 0.45; }
+
+    @keyframes wave {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+
+</head>
+<body>
+  <div class="floating-dot" id="floatingDot"></div>
+  <div class="ray-line" id="rayLineSegment1"></div>
+<div class="ui-wrapper" id="uiWrapper">
+  <div class="icon-box" id="iconBox"><i class="fas fa-infinity" id="iconElement"></i></div> 
+  <div class="ui-container" id="uiContainer">
+    <div class="top-row">
+      <div class="label" id="labelText">Default Label</div>
+    </div>
+  </div>
+  <div class="action-row" id="actionRow"></div>
+</div>
+
+
+
+<script>
+let primaryDot = null;
+let rayVisible = false;
+let activeKeys = [];
+let dotsHidden = false;
+
+const ray = document.getElementById('rayLineSegment1');
+const icon = document.getElementById('iconBox');
+const uiContainer = document.getElementById('uiContainer');
+const uiWrapper = document.getElementById('uiWrapper');
+const actionRow = document.getElementById('actionRow');
+const soundOpen = new Audio('opening.mp3');
+const soundClose = new Audio('close.mp3');
+
+let rayActive = false;
+let lastRay = { x: 0, y: 0, length: 0, angle: 0 };
+let rayLerp = 0.5;
+
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
+function hideAllDots() {
+  document.querySelectorAll('.floating-dot').forEach(dot => dot.remove());
+  ray.style.opacity = '0';
+  primaryDot = null;
+  dotsHidden = true;
+}
+
+function updateRay() {
+  requestAnimationFrame(updateRay);
+
+  if (!primaryDot || !rayActive || !document.body.contains(primaryDot) || dotsHidden) {
+    if (rayVisible) {
+      ray.style.opacity = '0';
+      rayVisible = false;
+    }
+    return;
+  }
+
+  const dotRect = primaryDot.getBoundingClientRect();
+  const iconRect = icon.getBoundingClientRect();
+  const uiRect = uiContainer.getBoundingClientRect();
+
+  const x1 = dotRect.left + dotRect.width / 2;
+  const y1 = dotRect.top + dotRect.height / 2;
+  const x2 = iconRect.left + iconRect.width / 2;
+  const y2 = iconRect.top + iconRect.height / 2;
+
+  const dx = x2 - x1;
+  const dy = y2 - y1;
+  const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+  let clippedX = x2, clippedY = y2;
+  for (let t = 0; t <= 1; t += 0.01) {
+    const px = x1 + dx * t;
+    const py = y1 + dy * t;
+    if (px >= uiRect.left && px <= uiRect.right && py >= uiRect.top && py <= uiRect.bottom) {
+      clippedX = x1 + dx * (t - 0.01);
+      clippedY = y1 + dy * (t - 0.01);
+      break;
+    }
+  }
+
+  const length = Math.hypot(clippedX - x1, clippedY - y1);
+
+  lastRay.x = lerp(lastRay.x, x1, rayLerp);
+  lastRay.y = lerp(lastRay.y, y1, rayLerp);
+  lastRay.length = lerp(lastRay.length, length, rayLerp);
+  lastRay.angle = lerp(lastRay.angle, angle, rayLerp);
+
+  ray.style.left = `${lastRay.x}px`;
+  ray.style.top = `${lastRay.y}px`;
+  ray.style.width = `${lastRay.length}px`;
+  ray.style.transform = `rotate(${lastRay.angle}deg)`;
+
+  if (!rayVisible) {
+    ray.style.opacity = '1';
+    rayVisible = true;
+  }
+}
+
+requestAnimationFrame(updateRay);
+
+window.addEventListener('message', function (e) {
+  const data = e.data;
+
+  switch (data.action) {
+    case 'showUI':
+      icon.classList.add('show');
+      soundOpen.play();
+      uiWrapper.classList.add('show');
+      rayActive = true;
+      dotsHidden = false;
+      document.getElementById('labelText').textContent = data.label || 'Interact';
+      document.getElementById('iconElement').className = `fas ${data.icon || 'fa-infinity'}`;
+      actionRow.innerHTML = '';
+      activeKeys = [];
+      (data.options || []).forEach(opt => {
+        const row = document.createElement('div');
+        row.className = 'action-option';
+       row.innerHTML = `<span class="keybind">${opt.actionkey || 'E'}</span><span class="action-label">${opt.actionlabel || 'Action'}</span>`;
+        actionRow.appendChild(row);
+        activeKeys.push((opt.actionkey || 'E').toLowerCase());
+      });
+      break;
+
+    case 'hideUI':
+      icon.classList.remove('show');
+      soundClose.play();
+      uiWrapper.classList.remove('show');
+      ray.style.opacity = '0';
+      rayActive = false;
+      hideAllDots();
+      break;
+
+    case 'multiDots':
+      document.querySelectorAll('.floating-dot.visual').forEach(dot => dot.remove());
+      if (data.dots.length > 1 && !dotsHidden) {
+        data.dots.forEach(dot => {
+          const el = document.createElement('div');
+          el.className = 'floating-dot show visual';
+          el.style.left = `${dot.x}px`;
+          el.style.top = `${dot.y}px`;
+          document.body.appendChild(el);
+        });
+      }
+      break;
+
+    case 'rayDot':
+      if (dotsHidden) return;
+      const old = document.getElementById('primary-ray-dot');
+      if (old) old.remove();
+      const el = document.createElement('div');
+      el.className = 'floating-dot show';
+      el.id = 'primary-ray-dot';
+      el.style.left = `${data.dot.x}px`;
+      el.style.top = `${data.dot.y}px`;
+      document.body.appendChild(el);
+      primaryDot = el;
+      break;
+
+    case 'hideRayDot':
+    case 'hideAllDots':
+      hideAllDots();
+      break;
+  }
+});
+
+ function alignIconBoxVertically() {
+    const iconBox = document.getElementById('iconBox');
+    const label = document.getElementById('labelText');
+
+    if (!iconBox || !label) return;
+
+    const labelRect = label.getBoundingClientRect();
+    const wrapperRect = uiWrapper.getBoundingClientRect();
+
+
+    const labelCenterY = labelRect.top + (labelRect.height / 2);
+    const relativeTop = labelCenterY - wrapperRect.top;
+
+    iconBox.style.top = `${relativeTop}px`;
+  }
+
+
+  window.addEventListener('load', alignIconBoxVertically);
+  window.addEventListener('message', function (e) {
+    if (e.data.action === 'showUI') {
+      setTimeout(alignIconBoxVertically, 50); 
+    }
+  });
+</script>
+
+</body>
+</html>

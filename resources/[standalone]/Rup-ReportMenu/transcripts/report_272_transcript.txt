@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 272
+Title: orang
+Reporter: BFW - UZI DEGASCIAS
+Status: open
+Priority: medium
+Created: 1757316001000.0
+Deleted by: DNX | Brian
+Deleted at: 2025-09-09 13:13:24 UTC
+
+=== DESCRIPTION ===
+ini mati dari tadi ems ga ada respon gimana ini 
+
+
+=== MESSAGES ===
+No messages found.

@@ -1,0 +1,30 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 168
+Title: JOB POLICE ILANG 
+Reporter: Pedro
+Status: closed
+Priority: medium
+Created: 1754058289000.0
+Deleted by: mike
+Deleted at: 2025-08-02 09:52:49 UTC
+
+=== DESCRIPTION ===
+JOB POLICE ILANG 
+
+=== MESSAGES ===
+[2025-08-01 14:26:43] Pedro: bb apaan sir
+[2025-08-01 14:26:43] Pedro: bb apaan sir
+[2025-08-01 14:27:08] Pedro: tadi anggota saaya salah masukin ke penjara mlh saaya yg di msukin
+[2025-08-01 14:27:08] Pedro: tadi anggota saaya salah masukin ke penjara mlh saaya yg di msukin
+[2025-08-01 14:30:28] mike: penjara sir
+[2025-08-01 14:30:28] mike: penjara sir
+[2025-08-01 14:30:58] Pedro: iya tdi salaah msukin anggota saya
+[2025-08-01 14:30:58] Pedro: iya tdi salaah msukin anggota saya
+[2025-08-01 14:31:05] Pedro: mlah saya yg dmsukin
+[2025-08-01 14:31:05] Pedro: mlah saya yg dmsukin
+[2025-08-01 14:36:24] mike: oh ada kesalahan teknis ya lain kali lebih hati" ya sir
+[2025-08-01 14:36:24] mike: oh ada kesalahan teknis ya lain kali lebih hati" ya sir
+[2025-08-01 14:37:45] Pedro: trus job ny gmn nih sir?
+[2025-08-01 14:37:45] Pedro: trus job ny gmn nih sir?
+[2025-08-01 14:39:16] mike: coba /job sir
+[2025-08-01 14:39:16] mike: coba /job sir

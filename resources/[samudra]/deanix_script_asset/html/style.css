@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: transparent;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#warning-container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+}
+
+.warning {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1rem; 
+    color: white;
+    border: 1px solid rgb(0, 123, 255);
+    box-shadow: 0 0 10px rgba(0,0,0,0.3); 
+    opacity: 0;
+    animation: appearDisappear 2s ease-in-out infinite;
+    font-weight: 600;  
+    letter-spacing: 0; 
+}
+
+.warning.red {
+    background: rgba(200, 0, 0, 0.6);
+    box-shadow: 0 0 8px rgba(255,0,0,0.8);
+}
+
+.warning.blue {
+    background: rgba(0, 120, 200, 0.6);
+    box-shadow: 0 0 8px rgba(0,180,255,0.8);
+}
+
+.warning i {
+    font-size: 1.2rem; /* icon lebih kecil */
+}
+
+/* Animasi muncul, gede, kecil, hilang */
+@keyframes appearDisappear {
+    0%   { transform: scale(0.7); opacity: 0; }
+    25%  { transform: scale(1.1); opacity: 1; }
+    50%  { transform: scale(1.0); opacity: 0.9; }
+    75%  { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(0.7); opacity: 0; }
+}

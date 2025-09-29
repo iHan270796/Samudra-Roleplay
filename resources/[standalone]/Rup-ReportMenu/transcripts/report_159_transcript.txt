@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 159
+Title: kehilangan senjata saat membuka kantong
+Reporter: Desmondx
+Status: in_progress
+Priority: medium
+Created: 1753798393000.0
+Deleted by: DnX - Hatsu
+Deleted at: 2025-07-31 21:14:21 UTC
+
+=== DESCRIPTION ===
+kehilangan senjata saat membuka kantong
+
+=== MESSAGES ===
+[2025-07-29 14:13:39] DNX - Jors: Buka kantong hilang senjata gimana mase?

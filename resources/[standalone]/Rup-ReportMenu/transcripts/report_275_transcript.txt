@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 275
+Title: mobil ngeglitch dan terbang menabrak dinding pembatas jalan
+Reporter: Desmondx
+Status: open
+Priority: high
+Created: 1757398188000.0
+Deleted by: DNX | Brian
+Deleted at: 2025-09-09 13:13:36 UTC
+
+=== DESCRIPTION ===
+tolong hidupin saya ems
+
+=== MESSAGES ===
+[2025-09-09 06:10:03] SAGARA: otw

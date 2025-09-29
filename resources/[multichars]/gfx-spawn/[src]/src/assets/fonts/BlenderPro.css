@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'Blender Pro Book';
+    src: url('BlenderPro-BookItalic.woff2') format('woff2'),
+        url('BlenderPro-BookItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Blender Pro';
+    src: url('BlenderPro-MediumItalic.woff2') format('woff2'),
+        url('BlenderPro-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Blender Pro';
+    src: url('BlenderPro-ThinItalic.woff2') format('woff2'),
+        url('BlenderPro-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Blender Pro';
+    src: url('BlenderPro-Heavy.woff2') format('woff2'),
+        url('BlenderPro-Heavy.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Blender Pro';
+    src: url('BlenderPro-Medium.woff2') format('woff2'),
+        url('BlenderPro-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Blender Pro Book';
+    src: url('BlenderPro-Book.woff2') format('woff2'),
+        url('BlenderPro-Book.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Blender Pro';
+    src: url('BlenderPro-Bold.woff2') format('woff2'),
+        url('BlenderPro-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Blender Pro';
+    src: url('BlenderPro-BoldItalic.woff2') format('woff2'),
+        url('BlenderPro-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Blender Pro';
+    src: url('BlenderPro-Thin.woff2') format('woff2'),
+        url('BlenderPro-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+

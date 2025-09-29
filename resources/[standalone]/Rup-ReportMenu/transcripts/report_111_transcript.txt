@@ -1,0 +1,20 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 111
+Title: pingsan dan tidak ada ems menggunakan dokter lokal juga gabisa
+Reporter: andikafvahri
+Status: closed
+Priority: medium
+Created: 1752170421000.0
+Deleted by: Mr Kazu
+Deleted at: 2025-07-12 14:11:19 UTC
+
+=== DESCRIPTION ===
+saya pingsan diarea tol kiri dan saat ini masih pingsan dan tidak ada ems menggunakan dokter lokal juga gabisa
+
+=== MESSAGES ===
+[2025-07-11 08:01:52] DNX|PONCOL: dmn
+[2025-07-11 08:01:52] DNX|PONCOL: dmn
+[2025-07-11 08:02:13] DNX|PONCOL: pingsan dmn
+[2025-07-11 08:02:13] DNX|PONCOL: pingsan dmn
+[2025-07-11 08:02:23] DNX|PONCOL: bentar ya
+[2025-07-11 08:02:23] DNX|PONCOL: bentar ya

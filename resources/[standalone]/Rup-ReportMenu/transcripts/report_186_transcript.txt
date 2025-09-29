@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 186
+Title: tiket oplas Tidak bisa muncul menu
+Reporter: RifkyAdmiral
+Status: closed
+Priority: medium
+Created: 1754401761000.0
+Deleted by: BFW_Raze Alpha
+Deleted at: 2025-08-07 22:09:32 UTC
+
+=== DESCRIPTION ===
+Tiket oplas Sudah Saya Use Tapi tidak Ada Tampilan Menu
+
+=== MESSAGES ===
+No messages found.

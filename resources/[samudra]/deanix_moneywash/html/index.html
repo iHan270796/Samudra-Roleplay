@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Deanix Moneywash</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div id="app">
+    <div class="left-panel" id="leftPanel">
+      <div class="wash-list">
+        <h3>Daftar Cuci Uang</h3>
+        <button class="wash-item" data-item="markedbills" id="markedbillsButton">💵 Uang Merah</button>
+      </div>
+      <div class="wash-queue">
+        <h3>Antrian Cuci Uang</h3>
+        <ul id="washQueue"></ul>
+      </div>
+    </div>
+    <div class="right-panel" id="rightPanel" style="display: none;">
+      <div>
+        <h3 id="selectedItemName">Uang Merah</h3>
+        <p>1 Uang Merah = Rp 15000</p>
+        <img src="nui://ox_inventory/web/images/markedbills.png" style="width: 64px;"/>
+        <button id="continueButton">Lanjut Cuci Uang</button>
+      </div>
+      <div>
+        <h3>History Cuci Uang</h3>
+        <div class="history-container">
+          <ul id="washHistory"></ul>
+        </div>
+      </div>
+    </div>
+    <div class="center-panel" id="centerPanel" style="display: none;">
+      <div>
+        <h3>Cuci Uang</h3>
+        <img src="nui://ox_inventory/web/images/markedbills.png" style="width: 64px;"/>
+        <p>Jumlah: <span id="amountToWash">1</span></p>
+        <button id="decreaseAmount">-</button>
+        <button id="increaseAmount">+</button>
+        <button id="startWashButton">Cuci Uang</button>
+      </div>
+      <div>
+        <h3>Hasil Cash</h3>
+        <p id="cashResult">$0</p>
+        <button id="takeCashButton" style="display: none;">Ambil</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap');
+
+$theme-options: (
+    cyberpunk: (primary: #3AEE98,
+        font: 'Blender Pro',
+        font-size-large: 5vh,
+        font-size-medium: 3vh,
+        font-size-small: 2.25vh,
+    ),
+    neon: (primary: #3AE2EE,
+        font: 'Tilt Neon',
+        font-size-large: 5vh,
+        font-size-medium: 3vh,
+        font-size-small: 2.25vh,
+    ),
+    default: (primary: #B26535,
+        font: 'Blender Pro',
+        font-size-large: 5vh,
+        font-size-medium: 3vh,
+        font-size-small: 2.25vh,
+    )
+);
+
+@mixin apply-theme($theme) {
+    $primary-color: map-get(map-get($theme-options, $theme), primary);
+
+    color: $primary-color;
+
+    .title {
+        h1 {
+            // color: $primary-color;
+            font-size: map-get(map-get($theme-options, $theme), font-size-large);
+        }
+
+        .logo {
+            svg {
+                fill: $primary-color;
+            }
+        }
+    }
+
+    .option-list {
+        >.footer {
+            // color: $primary-color;
+            font-size: map-get(map-get($theme-options, $theme), font-size-small);
+
+            .key {
+                @if $theme =='default' {
+                    background-color: $primary-color;
+                    color: #000000;
+                }
+            }
+        }
+    }
+
+    .option {
+        // color: $primary-color;
+        font-size: map-get(map-get($theme-options, $theme), font-size-medium);
+
+        &.title {
+            font-size: map-get(map-get($theme-options, $theme), font-size-small);
+        }
+
+        &:hover {
+            @if $theme =='default' {
+                background-color: $primary-color;
+                color: #000000;
+            }
+        }
+    }
+
+    font-family: map-get(map-get($theme-options, $theme), font);
+
+    ::-webkit-scrollbar {
+        width: 1.75vh;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: $primary-color;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: #2E2E2E;
+    }
+}
+
+.bus-sign {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &.theme-cyberpunk {
+        @include apply-theme('cyberpunk');
+    }
+
+    &.theme-neon {
+        @include apply-theme('neon');
+    }
+
+    &.theme-default {
+        @include apply-theme('default');
+    }
+
+    .title {
+        .logo {
+            height: 5.5vh;
+            width: 5.5vh;
+            display: flex;
+
+            svg {
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        h1 {
+            font-weight: 400;
+        }
+    }
+
+    .option-list {
+        display: flex;
+        gap: 2vh;
+        flex-direction: column;
+        padding: 3vh 2vh 4.5vh;
+        width: 100%;
+
+        >.title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: uppercase;
+            padding-inline: 1vh;
+            gap: 2vh;
+        }
+
+        >.options {
+            display: flex;
+            flex-direction: column;
+            gap: 2vh;
+            flex-grow: 1;
+            overflow: auto;
+            padding-right: 2rem;
+
+            .name {
+                display: flex;
+                gap: 1vh;
+
+                .icon {
+                    width: 4vh;
+                    text-align: center;
+                }
+            }
+        }
+
+        >.footer {
+            padding-inline: 3vh;
+            display: flex;
+            gap: 1vh;
+            align-items: center;
+            justify-content: flex-end;
+
+            >.key {
+                position: relative;
+                display: flex;
+                align-items: center;
+                height: max-content;
+
+                svg {
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                }
+
+                span {
+                    padding: 0.5vh 2.8vh;
+                }
+            }
+        }
+    }
+
+    .option {
+        display: flex;
+        gap: 2vh;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2vh 3vh;
+        position: relative;
+        cursor: pointer;
+
+        svg {
+            opacity: 0;
+            position: absolute;
+            inset: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        &.selected,
+        &:hover {
+            svg {
+                opacity: 1;
+            }
+        }
+
+        &.title {
+            cursor: default;
+        }
+
+        .time {
+            white-space: nowrap;
+        }
+    }
+}

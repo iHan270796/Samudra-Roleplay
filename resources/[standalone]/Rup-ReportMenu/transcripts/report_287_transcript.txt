@@ -1,0 +1,22 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 287
+Title: gk bisa keluar penjara 
+Reporter: Windows
+Status: open
+Priority: medium
+Created: 1757498533000.0
+Deleted by: DNX | Brian
+Deleted at: 2025-09-11 02:30:04 UTC
+
+=== DESCRIPTION ===
+masa waktu udah habis ggak bisa keluar
+
+=== MESSAGES ===
+[2025-09-10 10:17:10] Windows: warlok nya sebelah mana
+[2025-09-10 10:17:10] Windows: warlok nya sebelah mana
+[2025-09-10 10:19:40] Windows: apa kah inventori kita di kembalikan lagi sir
+[2025-09-10 10:19:40] Windows: apa kah inventori kita di kembalikan lagi sir
+[2025-09-10 10:24:25] Windows: tolong mins
+[2025-09-10 10:24:25] Windows: tolong mins
+[2025-09-10 10:24:36] Windows: min tolong
+[2025-09-10 10:24:36] Windows: min tolong

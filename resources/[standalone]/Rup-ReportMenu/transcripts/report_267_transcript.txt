@@ -1,0 +1,17 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 267
+Title: bug
+Reporter: azrielalrifqy131
+Status: closed
+Priority: high
+Created: 1757245868000.0
+Deleted by: DNX x TS-SEAN
+Deleted at: 2025-09-07 18:55:24 UTC
+
+=== DESCRIPTION ===
+min ini aku bug di ruangan showroom luxury autos
+bisa tolong dikeluarkan ga dari ruangan ini?
+
+
+=== MESSAGES ===
+No messages found.

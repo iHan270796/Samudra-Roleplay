@@ -1,0 +1,429 @@
+@import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Caveat:wght@400..700&family=Golos+Text:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    font-family: Poppins;
+}
+
+::selection {
+    color: rgb(166, 255, 0);
+}
+
+.root {
+    display: none;
+}
+
+.aracmenu {
+    width: 33vh;
+    background-color: rgb(35, 35, 35);
+    border-radius: 2vh;
+    position: absolute;
+    top: 231px;
+    left: 300px;
+    padding: 5vh 1vh 1vh;
+    overflow: hidden;
+    border: 1.5px solid rgb(113, 113, 113);
+    box-shadow: black 0px 0px 20px 0px;
+}
+
+.renkmenu {
+    width: 36vh;
+    background-color: rgb(35, 35, 35);
+    border-radius: 2vh;
+    position: absolute;
+    top: 244px;
+    left: 1355px;
+    padding: 5vh 1vh 1vh;
+    overflow: hidden;
+    border: 1.5px solid rgb(113, 113, 113);
+    box-shadow: black 0px 0px 20px 0px;
+}
+
+.aracmenu-header {
+    width: 121%;
+    height: 3vh;
+    display: flex;
+    border-bottom: 1.5px solid rgb(113, 113, 113);
+    background-color: rgb(53, 53, 53);
+    position: absolute;
+    margin-left: -5vh;
+    margin-top: -5vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.renkmenu-header {
+    width: 121%;
+    height: 3vh;
+    display: flex;
+    border-bottom: 1.5px solid rgb(113, 113, 113);
+    background-color: rgb(53, 53, 53);
+    position: absolute;
+    margin-left: -5vh;
+    margin-top: -5vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-icon {
+    color: grey;
+}
+
+.header-close-icon {}
+
+.oyuncu-kategorisi {
+    width: 90%;
+    height: 7vh;
+    border-bottom: 1.5px solid rgb(113, 113, 113);
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+    padding-left: 3vh;
+    display: flex;
+    justify-content: center;
+}
+
+.kategori {
+    width: 90%;
+    height: 10vh;
+    border-bottom: 1.5px solid rgb(113, 113, 113);
+    margin-bottom: 2vh;
+    padding-left: 3vh;
+}
+
+.son-kategori {
+    width: 90%;
+    height: 11vh;
+    margin-bottom: 5vh;
+    padding-left: 3vh;
+}
+
+.steam-photo-class {
+    position: absolute;
+    left: 3vh;
+    margin-top: -1.4vh;
+}
+
+.steam-photo {
+    width: 7vh;
+    border-radius: 100px;
+}
+
+.usercard {
+    display: flex;
+    width: 69%;
+    height: 5vh;
+    background: rgb(55, 55, 55);
+    justify-content: flex-start;
+    padding-left: 5vh;
+    border-radius: 1.5vh;
+    align-items: center;
+    overflow: hidden;
+}
+
+.merhabaaq {
+    display: flex;
+    font-weight: 500;
+    font-size: 2vh;
+    margin-top: 0.5vh;
+}
+
+.username {
+    margin-left: 0.5vh;
+    color: rgb(107, 176, 255);
+    font-family: Caveat;
+    font-size: 3vh;
+    margin-top: -0.5vh;
+}
+
+.kategori-baslik {
+    font-weight: 500;
+}
+
+.input-class {}
+
+.input-icon-box {
+    width: 2.8vh;
+    height: 2.8vh;
+    background: rgb(53, 53, 53);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    position: absolute;
+    margin-top: 1.1vh;
+    margin-left: -0.3vh;
+}
+
+.input-icon {
+    color: rgb(134, 134, 134);
+    font-size: 1.5vh;
+}
+
+.input {
+    cursor: pointer;
+    background: rgb(28, 28, 28);
+    outline: none;
+    width: 81%;
+    font-family: "Roboto Mono";
+    height: 3.5vh;
+    border: 1px solid rgb(113, 113, 113);
+    border-radius: 1vh;
+    margin-left: -1vh;
+    margin-top: 0.5vh;
+    color: white;
+    caret-color: rgb(166, 255, 0);
+    padding-left: 4.2vh;
+    transition: all 0.5s ease 0s;
+}
+
+.upgrades-section {
+    margin-top: 2vh;
+    font-weight: 500;
+    margin-left: -1vh;
+    display: flex;
+    justify-content: center;
+}
+
+.upgrades-text {}
+
+.onaylaamk {
+    width: 100%;
+    height: 100%;
+    background: rgb(195, 255, 0);
+    color: black;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8vh 0px;
+    border-radius: 1.5vh;
+    cursor: pointer;
+    transition: all 0.2s ease 0s;
+    font-size: 2.5vh;
+}
+
+.onaylaamk:hover {
+    box-shadow: rgb(195, 255, 0) 0px 0px 20px -8px;
+    cursor: pointer;
+    transition: all 0.2s ease 0s;
+}
+
+.input:hover {
+    box-shadow: black 0px 0px 20px -5px;
+}
+
+.input:focus {
+    box-shadow: black 0px 0px 20px -5px;
+    border: 1px dashed rgb(166, 255, 0);
+    transition: all 0.5s ease 0s;
+}
+
+.checkbox-wrapper {
+    --checkbox-size: 2.5vh;
+    --checkbox-color: #c3ff00;
+    --checkbox-shadow: #c3ff005e;
+    --checkbox-border: #c3ff00;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    padding: 1vh;
+    margin-left: -3vh;
+}
+
+.checkbox-wrapper input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0px;
+    width: 0px;
+}
+
+.checkbox-wrapper .checkmark {
+    position: relative;
+    width: var(--checkbox-size);
+    height: var(--checkbox-size);
+    border: 2px solid var(--checkbox-border);
+    border-radius: 8px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.checkbox-wrapper .checkmark::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--checkbox-color);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s;
+    transform: scale(0) rotate(-45deg);
+}
+
+.checkbox-wrapper input:checked~.checkmark::before {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.checkbox-wrapper .checkmark svg {
+    width: 0px;
+    height: 0px;
+    color: rgb(26, 26, 26);
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s;
+    filter: drop-shadow(rgba(0, 0, 0, 0.5) 0px 0px 2px);
+}
+
+.checkbox-wrapper input:checked~.checkmark svg {
+    width: 18px;
+    height: 18px;
+    transform: rotate(360deg);
+}
+
+.checkbox-wrapper:hover .checkmark {
+    border-color: var(--checkbox-color);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--checkbox-shadow), 0 0 40px var(--checkbox-shadow), inset 0 0 10px var(--checkbox-shadow);
+}
+
+.checkbox-wrapper input:checked~.checkmark {
+    animation: 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0s 1 normal none running pulse;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px var(--checkbox-shadow);
+    }
+
+    50% {
+        transform: scale(0.9);
+        box-shadow: 0 0 30px var(--checkbox-shadow), 0 0 50px var(--checkbox-shadow);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px var(--checkbox-shadow);
+    }
+}
+
+.checkbox-wrapper .label {
+    margin-left: 1.5vh;
+    font-family: "Segoe UI", sans-serif;
+    color: var(--checkbox-color);
+    font-size: 1.8vh;
+    opacity: 0.9;
+    transition: all 0.3s ease 0s;
+}
+
+.checkbox-wrapper:hover .label {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.checkbox-wrapper::after,
+.checkbox-wrapper::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--checkbox-color);
+    opacity: 0;
+    transition: all 0.5s ease 0s;
+}
+
+.checkbox-wrapper::before {
+    left: -10px;
+    top: 50%;
+}
+
+.checkbox-wrapper::after {
+    right: -10px;
+    top: 50%;
+}
+
+.checkbox-wrapper:hover::before {
+    opacity: 1;
+    transform: translateX(-10px);
+    box-shadow: 0 0 10px var(--checkbox-color);
+}
+
+.checkbox-wrapper:hover::after {
+    opacity: 1;
+    transform: translateX(10px);
+    box-shadow: 0 0 10px var(--checkbox-color);
+}
+
+.cokuzunamk {
+    position: absolute;
+    width: 15vh;
+    height: 5vh;
+    background: linear-gradient(-90deg, rgb(55, 55, 55) 0%, rgba(255, 255, 255, 0) 30%);
+    margin-left: 5.8vh;
+    border-top-right-radius: 1.5vh;
+    border-bottom-right-radius: 1.5vh;
+}
+
+.renkler {
+    display: flex;
+    justify-content: center;
+}
+
+.kategorirenk {}
+
+.renk-baslik {
+    font-weight: 500;
+}
+
+.kapattus {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    place-content: center;
+    bottom: 5vh;
+    left: 83vh;
+    font-size: 2vh;
+}
+
+.esctusu {
+    color: black;
+    background-color: white;
+    border-radius: 7px;
+    padding: 0.2vh 0.7vh;
+    font-weight: 500;
+    box-shadow: rgb(0, 0, 0) 0px 0px 11px 0px;
+}
+
+.colorpicker {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: transparent;
+    border-radius: 0.6875rem;
+    width: 7.625rem;
+    height: 3.0625rem;
+    margin-top: 1vh;
+}
+
+.anarenk {
+    margin-right: 3vh;
+    border-right: 1.5px solid grey;
+    width: 15vh;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0px;
+    border-radius: 0.6875rem;
+}
+
+input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: inherit;
+}

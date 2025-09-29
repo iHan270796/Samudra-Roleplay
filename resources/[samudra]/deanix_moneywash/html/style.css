@@ -1,0 +1,356 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+#app {
+  display: none;
+}
+
+.left-panel,
+.right-panel,
+.center-panel {
+  display: none;
+}
+
+.left-panel, .right-panel {
+  position: absolute;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #1d2f5e71;
+  border: 3px solid #2980b9;
+  border-radius: 15px;
+  padding: 20px;
+  height: 500px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.left-panel {
+  top: 50%;
+  left: 40px;
+  transform: perspective(800px) translateY(-50%) rotateY(6deg);
+}
+
+.right-panel {
+  top: 50%;
+  right: 40px;
+  transform: perspective(800px) translateY(-50%) rotateY(-6deg);
+}
+
+.left-panel:hover {
+  transform: perspective(800px) translateY(-50%) rotateY(8deg) scale(1.01);
+}
+
+.right-panel:hover {
+  transform: perspective(800px) translateY(-50%) rotateY(-8deg) scale(1.01);
+}
+
+.center-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: perspective(800px) translate(-50%, -50%) rotateX(0deg);
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #1d2f5e71;
+  border-radius: 15px;
+  padding: 20px;
+  border: 3px solid #2980b9;
+  height: 500px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.center-panel:hover {
+  transform: perspective(800px) translate(-50%, -50%) rotateY(2deg) scale(1.01);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 140, 255, 0.25);
+}
+
+button {
+  padding: 8px 12px;
+  background-color: #3498db;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+
+#washQueue {
+  flex: 1;
+  min-height: 100px;
+  max-height: 180px;
+  padding-right: 5px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+
+.queue-item {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 6px;
+  margin-bottom: 8px;
+}
+
+.queue-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: white;
+}
+
+.queue-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.progress-container {
+  width: 100%;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: #00ff99;
+  transition: width 0.2s;
+}
+
+#washQueue::-webkit-scrollbar,
+.wash-list::-webkit-scrollbar,
+.wash-queue::-webkit-scrollbar {
+  display: none;
+}
+
+.left-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.wash-list {
+  flex: 3;
+  overflow-y: auto;
+}
+
+.wash-list {
+  margin-bottom: 20px;
+  padding: 16px;
+}
+
+.wash-list h3 {
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.wash-queue {
+  flex: 1;
+  margin-top: 10px;
+  padding: 10px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#washHistory {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(55, 80, 223, 0.6);
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin: 0;
+  font-size: 14px;
+}
+
+.history-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+.history-content {
+  display: flex;
+  align-items: center;
+}
+
+.history-container {
+  max-height: 170px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.history-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.history-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.history-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.history-container::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.wash-item {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 10px;
+  background-color: #117efa75;
+  color: #fff;
+  border: 2px solid #192ac9;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+}
+
+.wash-item:hover {
+  background-color: #4c7aca;
+}
+
+.wash-item.locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.wash-item.locked::after {
+  content: "🔒";
+  position: absolute;
+  right: 16px;
+  top: 12px;
+  font-size: 18px;
+}
+
+#rightPanel > div {
+  padding: 16px;
+}
+
+#continueButton {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 20px;
+  background-color: #117efa75;
+  color: #fff;
+  border: 2px solid #192ac9;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+#continueButton:hover {
+  background-color: #4c7aca;
+}
+
+#rightPanel h3#selectedItemName,
+#rightPanel p,
+#rightPanel img {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#centerPanel > div {
+  padding: 16px;
+  text-align: center;
+}
+
+#centerPanel img {
+  display: block;
+  margin: 0 auto 10px auto;
+}
+
+#startWashButton,
+#takeCashButton {
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  margin-top: 16px;
+  background-color: #117efa75;
+  color: #fff;
+  border: 2px solid #192ac9;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+#startWashButton:hover,
+#takeCashButton:hover {
+  background-color: #4c7aca;
+}
+
+#decreaseAmount,
+#increaseAmount {
+  padding: 8px 14px;
+  margin: 5px;
+  font-size: 18px;
+  border-radius: 6px;
+  background-color: #117efa75;
+  color: white;
+  border: 2px solid #192ac9;
+  cursor: pointer;
+}
+
+#decreaseAmount:hover,
+#increaseAmount:hover {
+  background-color: #4c7aca;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop Robbery</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="left-panel" style="display: none; flex-direction: column; align-items: center; gap: 10px;">
+    <h2>Ambil Kode</h2>
+    <button onclick="ambilKode()">Ambil Kode</button>
+  
+    <div class="queue" style="width: 100%; text-align: center; background: transparent;">
+      <p style="margin-bottom: 5px; color: #ffac05;">
+        Status: <span id="queue-status" style="font-weight: bold; color: #c0392b;">Menunggu...</span>
+      </p>
+    
+      <div id="progress-bar-container" style="
+        width: 100%;
+        height: 12px;
+        background: #ddd;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: inset 0 0 5px rgba(79, 85, 255, 0.3);
+        display: none;
+      ">
+        <div id="progress-bar" style="
+          width: 0%;
+          height: 100%;
+          background: linear-gradient(to right, #516bfc, #0004ff);
+          transition: width 10s linear;
+          border-radius: 20px 0 0 20px;
+        "></div>
+      </div>
+    </div>
+  </div>   
+
+  <!-- 🔢 Layout 2: Kode Hasil (kanan) -->
+  <div class="right-panel" style="display: none;">
+    <h2>Kode Berhasil Diambil</h2>
+    <p>Kode Anda:</p>
+    <div class="code-display">
+      <span id="kode-angka">----<span>
+    </div>
+    <p>Tekan <strong>ESC</strong> untuk menutup</p>
+  </div>
+
+  <!-- 🧪 Layout 3: Masukkan Kode (tengah) -->
+  <div class="center-panel" style="display: none;">
+    <h2>Masukkan Kode</h2>
+    <input type="text" id="input-kode" placeholder="####" maxlength="4" />
+    <button id="submit-btn" onclick="submitCode()">Konfirmasi</button>
+
+    <div id="reward-section" style="display: none; flex-direction: column; align-items: center; gap: 10px;">
+      <h3>Hadiah</h3>
+      <img id="reward-image" src="" alt="Item Uang Merah" style="width: 100px; height: auto; margin: 0 auto;" />
+      <p id="reward-amount" style="margin: 0; font-weight: bold;">x1</p>
+      <button onclick="ambilUangMerah()" style="width: 100%; padding: 10px;">Ambil</button>
+    </div>    
+
+    <p>Tekan <strong>ESC</strong> untuk menutup</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

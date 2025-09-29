@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 157
+Title: bwang radio ku gada suara
+Reporter: rapa ganteng
+Status: open
+Priority: medium
+Created: 1753796304000.0
+Deleted by: DNX - Jors
+Deleted at: 2025-07-29 21:14:02 UTC
+
+=== DESCRIPTION ===
+bang radio nya gada suara
+
+
+=== MESSAGES ===
+[2025-07-29 13:38:49] DnX - Hatsu: cba cumuk mas

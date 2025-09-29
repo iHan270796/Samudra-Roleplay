@@ -1,0 +1,17 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 182
+Title: Gak bisa buka inventory
+Reporter: BFW_Kim O'Zenin
+Status: closed
+Priority: medium
+Created: 1754379707000.0
+Deleted by: BFW_Raze Alpha
+Deleted at: 2025-08-07 22:09:02 UTC
+
+=== DESCRIPTION ===
+Tolongg saya tidak bisa buka inventoryy
+
+
+=== MESSAGES ===
+[2025-08-05 12:03:53] BFW_Kim O'Zenin: Tolongggg dewaa
+[2025-08-05 12:04:08] BFW_Kim O'Zenin: aku ndak bisa buka inventoryy

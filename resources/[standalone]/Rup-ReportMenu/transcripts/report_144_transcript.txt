@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 144
+Title: gak bisa buka hp
+Reporter: ESB-Thomas Verstapen
+Status: open
+Priority: medium
+Created: 1753587763000.0
+Deleted by: DNX _ ACENG
+Deleted at: 2025-07-27 22:08:59 UTC
+
+=== DESCRIPTION ===
+baru bangun min, trus buka hp gk bisa, trus ditaruh jari2 gk bisa, kira2 kenapa ya?
+
+
+=== MESSAGES ===
+[2025-07-27 04:02:59] mike: coba cuci muka sir

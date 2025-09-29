@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 103
+Title: Ga bisa Claim Starterpack
+Reporter: ECMC - Zouta Exmine
+Status: closed
+Priority: medium
+Created: 1751962471000.0
+Deleted by: DnX-S
+Deleted at: 2025-07-09 05:22:18 UTC
+
+=== DESCRIPTION ===
+gak bisa claim starterpack 1 sama 2 mas.
+
+=== MESSAGES ===
+[2025-07-08 22:15:14] ECMC - Zouta Exmine: hallo mas

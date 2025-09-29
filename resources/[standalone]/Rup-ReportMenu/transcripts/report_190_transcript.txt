@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 190
+Title: kgk bisa call medic ini
+Reporter: Pedro
+Status: closed
+Priority: medium
+Created: 1754409338000.0
+Deleted by: BFW_Raze Alpha
+Deleted at: 2025-08-07 22:09:44 UTC
+
+=== DESCRIPTION ===
+kgk bisa call medic ini
+
+=== MESSAGES ===
+[2025-08-05 15:55:43] Pedro: tolonggg
+[2025-08-05 15:56:00] Pedro: kgk bisa callmedicc nih tlong wkwkw

@@ -1,0 +1,92 @@
+# Advanced Scoreboard System - Server Configuration Example
+# Copy these settings to your server.cfg file
+
+# Basic Resource Setup
+ensure Scoreboard
+
+# Discord Integration (Optional)
+# Replace with your actual Discord bot token
+set scoreboard_discord_token "YOUR_DISCORD_BOT_TOKEN_HERE"
+
+# Replace with your Discord server (guild) ID
+set scoreboard_discord_guild "YOUR_DISCORD_GUILD_ID_HERE"
+
+# Discord Role Configuration
+# Format: ROLE_ID:ROLE_NAME:COLOR,ROLE_ID2:ROLE_NAME2:COLOR2
+# Example:
+# set scoreboard_discord_roles "123456789012345678:Admin:#FF0000,987654321098765432:Moderator:#00FF00,555666777888999000:VIP:#FFD700"
+
+# Performance Settings (Optional)
+# Adjust these based on your server performance needs
+
+# Refresh rate for scoreboard updates (milliseconds)
+# Lower values = more frequent updates, higher CPU usage
+# Higher values = less frequent updates, better performance
+# Default: 5000 (5 seconds)
+# set scoreboard_refresh_rate "5000"
+
+# Discord cache time (milliseconds)
+# How long to cache Discord data before refreshing
+# Default: 300000 (5 minutes)
+# set scoreboard_discord_cache "300000"
+
+# Maximum players to display
+# Set this to match your server's max players
+# Default: 128
+# set scoreboard_max_players "128"
+
+# Debug mode (set to true for troubleshooting)
+# WARNING: Only enable for debugging, disable in production
+# set scoreboard_debug "false"
+
+# Example Configuration for Different Server Types
+
+# Small Server (32 players max)
+# set scoreboard_max_players "32"
+# set scoreboard_refresh_rate "3000"
+
+# Large Server (256+ players)
+# set scoreboard_max_players "256"
+# set scoreboard_refresh_rate "10000"
+
+# High Performance Server
+# set scoreboard_refresh_rate "15000"
+# set scoreboard_discord_cache "600000"
+
+# Development/Testing Server
+# set scoreboard_debug "true"
+# set scoreboard_refresh_rate "2000"
+
+# Discord Role Examples for Common Server Types
+
+# Roleplay Server Example
+# set scoreboard_discord_roles "123456789012345678:Owner:#FF0000,234567890123456789:Admin:#FF4500,345678901234567890:Moderator:#FFA500,456789012345678901:Helper:#FFFF00,567890123456789012:VIP:#00FF00,678901234567890123:Member:#00BFFF"
+
+# PvP Server Example
+# set scoreboard_discord_roles "123456789012345678:Owner:#FF0000,234567890123456789:Admin:#FF4500,345678901234567890:Moderator:#FFA500,456789012345678901:VIP:#FFD700,567890123456789012:Premium:#00FF00,678901234567890123:Player:#00BFFF"
+
+# Community Server Example
+# set scoreboard_discord_roles "123456789012345678:Owner:#FF0000,234567890123456789:Admin:#FF4500,345678901234567890:Moderator:#FFA500,456789012345678901:Helper:#FFFF00,567890123456789012:Donator:#FFD700,678901234567890123:Member:#00BFFF"
+
+# Security Notes:
+# - Never share your Discord bot token publicly
+# - Use environment variables for sensitive data in production
+# - Regularly rotate your Discord bot token
+# - Monitor your Discord bot permissions
+
+# Performance Tips:
+# - Increase refresh rate for servers with many players
+# - Use longer cache times for Discord data if you have many players
+# - Monitor server performance and adjust settings accordingly
+# - Consider using a dedicated Discord bot for large servers
+
+# Troubleshooting:
+# - If Discord integration isn't working, check your bot token and guild ID
+# - If performance is poor, increase refresh rates and cache times
+# - If players aren't showing, check your framework configuration
+# - Enable debug mode temporarily to troubleshoot issues
+
+# Support:
+# - Check the README.md file for detailed configuration options
+# - Review the config.example.lua file for advanced settings
+# - Enable debug mode for detailed logging when troubleshooting

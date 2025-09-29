@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 215
+Title: server rusak 
+Reporter: LAW
+Status: open
+Priority: high
+Created: 1755350437000.0
+Deleted by: WB-DnX-Hatsu
+Deleted at: 2025-08-18 12:58:18 UTC
+
+=== DESCRIPTION ===
+server rusak gk bisa keluar dari mobil padahal gk pake harnes dan sit bel
+
+=== MESSAGES ===
+[2025-08-16 13:20:44] LAW: RUSAK

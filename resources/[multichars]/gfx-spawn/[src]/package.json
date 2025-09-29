@@ -1,0 +1,25 @@
+{
+  "name": "spawn",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "serve": "vite preview",
+    "build": "vite build --base=./ --emptyOutDir",
+    "dev": "vite --host",
+    "preview": "vite preview",
+    "watch": "vite build --base=./ --emptyOutDir --watch"
+  },
+  "dependencies": {
+    "install": "^0.13.0",
+    "npm": "^10.8.3",
+    "vue": "^3.4.37",
+    "vue-inline-svg": "^3.1.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.2",
+    "sass": "^1.78.0",
+    "sass-loader": "^16.0.1",
+    "vite": "^5.4.1"
+  }
+}

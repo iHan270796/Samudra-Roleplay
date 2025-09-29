@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 87
+Title: gak ada ems
+Reporter: CIMETGANTENG
+Status: closed
+Priority: high
+Created: 1751673900000.0
+Deleted by: DNX | 60'S | RF - HALMUN
+Deleted at: 2025-07-06 05:16:32 UTC
+
+=== DESCRIPTION ===
+pingsan bang belum di respon ama emsnya
+
+=== MESSAGES ===
+[2025-07-05 14:05:45] DNX _ Dotz: bentar ya

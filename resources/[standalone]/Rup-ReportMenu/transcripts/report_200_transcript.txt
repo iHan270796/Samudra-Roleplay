@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 200
+Title: Tarikkk dewaaa kami tenggelamm
+Reporter: BFW_Kim O'Zenin
+Status: open
+Priority: medium
+Created: 1754790108000.0
+Deleted by: DnX - Hatsu
+Deleted at: 2025-08-10 08:46:52 UTC
+
+=== DESCRIPTION ===
+tolonggg
+
+
+=== MESSAGES ===
+No messages found.

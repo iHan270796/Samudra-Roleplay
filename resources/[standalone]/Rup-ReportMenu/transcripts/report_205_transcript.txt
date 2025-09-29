@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 205
+Title: bug
+Reporter: BA - zhuwey pendragon
+Status: open
+Priority: high
+Created: 1754812317000.0
+Deleted by: WB-DnX-Hatsu
+Deleted at: 2025-08-18 12:57:38 UTC
+
+=== DESCRIPTION ===
+karakter tidak terlihat
+
+=== MESSAGES ===
+[2025-08-10 07:52:23] DNX I Sultan: karakter siapa nya sir?
+[2025-08-10 07:54:15] DNX I Sultan: Cumuk aja sir yaa, nnti kalau masih report lagi sir

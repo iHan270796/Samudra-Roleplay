@@ -1,0 +1,133 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+  font-family: Arial, sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+/* 🔵 Panel Styles */
+.left-panel, .right-panel {
+  position: absolute;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: #1d2f5e71;
+  border: 3px solid #2980b9;
+  border-radius: 15px;
+  padding: 20px;
+  height: 500px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.left-panel {
+  top: 50%;
+  left: 40px;
+  transform: perspective(800px) translateY(-50%) rotateY(6deg);
+}
+
+.right-panel {
+  top: 50%;
+  right: 40px;
+  transform: perspective(800px) translateY(-50%) rotateY(-6deg);
+}
+
+.left-panel:hover {
+  transform: perspective(800px) translateY(-50%) rotateY(8deg) scale(1.01);
+}
+
+.right-panel:hover {
+  transform: perspective(800px) translateY(-50%) rotateY(-8deg) scale(1.01);
+}
+
+.center-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: perspective(800px) translate(-50%, -50%) rotateX(0deg);
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #1d2f5e71;
+  border-radius: 15px;
+  padding: 20px;
+  border: 3px solid #2980b9;
+  height: 500px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.center-panel:hover {
+  transform: perspective(800px) translate(-50%, -50%) rotateY(2deg) scale(1.01);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(0, 140, 255, 0.25);
+}
+
+/* 🔘 Input dan Button */
+input[type="text"] {
+  padding: 10px;
+  font-size: 20px;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* 📟 Code Display */
+.code-display {
+  font-size: 36px;
+  font-weight: bold;
+  color: #00ffcc;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* 🧾 Reward Section */
+#reward-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* ⏳ Queue Status */
+.queue {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

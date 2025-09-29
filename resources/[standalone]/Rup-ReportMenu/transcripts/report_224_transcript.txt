@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 224
+Title: tidak bisa keluar mobil
+Reporter: ASUS
+Status: open
+Priority: medium
+Created: 1755496389000.0
+Deleted by: WB-DnX-Hatsu
+Deleted at: 2025-08-18 12:58:42 UTC
+
+=== DESCRIPTION ===
+cara keluar dri mobil gimana pak,udh pencet f ga keluar
+
+=== MESSAGES ===
+[2025-08-18 05:53:47] WB-DnX-Hatsu: bukak setbel nya

@@ -1,0 +1,17 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 132
+Title: pingsan kecelakaan mobil
+Reporter: andikafvahri
+Status: closed
+Priority: medium
+Created: 1752768130000.0
+Deleted by: DnX-S
+Deleted at: 2025-07-18 21:29:34 UTC
+
+=== DESCRIPTION ===
+tolong saya ems kecelakaan mobil, tidak ada ems lain dan tidak bisa doklok karena ada ems on duty 1
+
+=== MESSAGES ===
+[2025-07-17 16:02:14] andikafvahri: tolong saya ems kecelakaan mobil, tidak ada ems lain dan tidak bisa doklok karena ada ems on duty 1
+[2025-07-17 16:09:56] andikafvahri: sir tolong
+[2025-07-17 16:13:53] andikafvahri: ini fitur seperti dokter lokal atau ems lokal tidak berfungsikah?

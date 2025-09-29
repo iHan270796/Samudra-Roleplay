@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 273
+Title: tolongin saya
+Reporter: [FTD] Kahvi_Rivington
+Status: open
+Priority: medium
+Created: 1757323686000.0
+Deleted by: DNX | Brian
+Deleted at: 2025-09-09 13:13:07 UTC
+
+=== DESCRIPTION ===
+saya pingsan td medis gak ada yg respon bg
+
+=== MESSAGES ===
+[2025-09-08 09:46:28] DNX | Brian: masih pingsan bang?

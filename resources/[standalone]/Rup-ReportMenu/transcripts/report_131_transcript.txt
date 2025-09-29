@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 131
+Title: pingsan dan tidak ada ems
+Reporter: andikafvahri
+Status: closed
+Priority: medium
+Created: 1752734001000.0
+Deleted by: DnX - PIJE
+Deleted at: 2025-07-18 18:57:21 UTC
+
+=== DESCRIPTION ===
+tolong dewa saya pingsan tertabrak mobil dan dikota tidak ada ems lain lagi
+
+
+=== MESSAGES ===
+No messages found.

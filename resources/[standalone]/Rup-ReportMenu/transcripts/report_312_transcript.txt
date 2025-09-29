@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 312
+Title: bug
+Reporter: LWMC - Alex Horeg
+Status: open
+Priority: medium
+Created: 1758003523000.0
+Deleted by: DNX I Sultan
+Deleted at: 2025-09-20 11:32:56 UTC
+
+=== DESCRIPTION ===
+tolong min ini saya kenapa muter muter
+
+=== MESSAGES ===
+No messages found.

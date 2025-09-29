@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 294
+Title: orang biasa
+Reporter: BFW - UZI DEGASCIAS
+Status: open
+Priority: medium
+Created: 1757662921000.0
+Deleted by: DNX_Kazu
+Deleted at: 2025-09-12 15:31:55 UTC
+
+=== DESCRIPTION ===
+tenggelam
+
+=== MESSAGES ===
+[2025-09-12 08:16:07] DNX I Sultan: Masih tenggelam kah?

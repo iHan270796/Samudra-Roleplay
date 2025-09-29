@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fishing Minigame</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="overlay" class="hidden"></div>
+
+  <div id="minigame" class="hidden">
+    <div id="letter"></div>
+  </div>
+
+  <div id="fish-display" class="hidden">
+    <div id="fish-info">
+      <div class="fish-content">
+        <img id="fish-img" src="https://i.imgur.com/Rr1hZWL.png" />
+        <div class="fish-details">
+          <p id="fish-label">Lele</p>
+          <p id="fish-weight">Wight: 3.2kg</p>
+        </div>
+      </div>
+      <div class="fish-buttons">
+        <button class="btn-take" onclick="takeFish()">Ambil</button>
+        <button class="btn-throw" onclick="discardFish()">Buang</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "rope_preparation": "Preparation Hook",
+  "attach_rope": "Attach Rope",
+  "need_item": "You need to - %s - to perform the action",
+  "collect": "Collect",
+  "take_money": "Take Money",
+  "sec_active": "Atm security will be deactivated after %d seconds",
+  "sec_deactive": "ATM can now be robbed",
+  "atm_can_not_be_rob": "This atm can not be rob right now",
+  "not_enough_police": "Not enough police in the city.",
+  "already_done_that": "You have already done that recently"
+}

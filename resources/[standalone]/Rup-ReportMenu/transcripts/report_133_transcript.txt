@@ -1,0 +1,17 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 133
+Title: pingsan tidak bisa dokter lokal dan tidak ada ems lain
+Reporter: andikafvahri
+Status: in_progress
+Priority: high
+Created: 1752769011000.0
+Deleted by: DnX-S
+Deleted at: 2025-07-18 21:29:53 UTC
+
+=== DESCRIPTION ===
+dewa tolong saya pingsan dan tidak ada ems lain yang on duty di kota. fitur dokterlokal atau callmedic tidak berfungsi.
+
+
+=== MESSAGES ===
+[2025-07-17 16:17:07] andikafvahri: dewa tolong saya pingsan dan tidak ada ems lain yang on duty di kota. fitur dokterlokal atau callmedic tidak berfungsi.
+[2025-07-17 16:17:36] DNX|PONCOL: di mana mas

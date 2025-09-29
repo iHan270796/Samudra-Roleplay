@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 109
+Title: lagi bikin char kesantet , char nya jadi npc
+Reporter: TrustMeHoney
+Status: closed
+Priority: high
+Created: 1752100892000.0
+Deleted by: DNX|PONCOL
+Deleted at: 2025-07-11 15:02:06 UTC
+
+=== DESCRIPTION ===
+kesantet waktu lagi bikin char min , 
+
+=== MESSAGES ===
+[2025-07-10 12:42:40] sagara: dimana sir?
+[2025-07-10 12:42:53] TrustMeHoney: masi diapart

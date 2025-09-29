@@ -1,0 +1,94 @@
+$accentColor: #0f7ed8;
+$accentShade: #0f7dd885;
+
+.cart {
+  background: linear-gradient(90deg, rgba(49, 48, 48, 0.7725490196), #21222177);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid $accentColor;
+  box-shadow: 0 0 10px $accentShade;
+  margin-top: 40px;
+}
+
+.cart-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  border-right: #22232c 1px solid;
+  border-left: #ffffff 1px solid;
+  padding: 5px;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.744);
+
+  background: radial-gradient(circle farthest-corner at center center, #e7e7e700 0%, #2929299f 80%);
+  background: -webkit-radial-gradient(circle farthest-corner at center center, #e7e7e700 0%, #2929299f 80%);
+  background: -moz-radial-gradient(circle farthest-corner at center center, #e7e7e700 0%, #2929299f 80%);
+}
+
+.cart-item-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  object-fit: cover;
+
+  background: radial-gradient(circle farthest-corner at center center, #e7e7e700 0%, rgba(14, 14, 14, 0.624) 80%);
+  background: -webkit-radial-gradient(circle farthest-corner at center center, #e7e7e700 0%, #2929299f 80%);
+  background: -moz-radial-gradient(circle farthest-corner at center center, #e7e7e700 0%, #2929299f 80%);
+}
+
+.cart-action {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.input-cart {
+  background: transparent;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  max-width: 50px;
+  text-align: center;
+}
+
+.button-cart {
+  background: rgba(49, 48, 48, 0.7725490196);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.destructive {
+  background: rgb(185, 18, 18);
+}
+
+.card-pay-button {
+  background: rgba(49, 48, 48, 0.7725490196);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 152
+Title: Minta tiket ped minn
+Reporter: Pedro
+Status: closed
+Priority: medium
+Created: 1753703469000.0
+Deleted by: DNX _ ACENG
+Deleted at: 2025-07-28 23:40:29 UTC
+
+=== DESCRIPTION ===
+Minta tiket ped minn
+
+=== MESSAGES ===
+[2025-07-28 11:51:25] SWAN: ditunggu wait
+[2025-07-28 11:53:13] Swan: keluar apartemen dlu mase

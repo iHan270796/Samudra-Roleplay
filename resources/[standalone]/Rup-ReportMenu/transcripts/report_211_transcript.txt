@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 211
+Title: tenggelam
+Reporter: BFW_Kim O'Zenin
+Status: open
+Priority: medium
+Created: 1755094642000.0
+Deleted by: WB-DnX-Hatsu
+Deleted at: 2025-08-18 12:57:48 UTC
+
+=== DESCRIPTION ===
+Tenggelam di kanpolll
+
+=== MESSAGES ===
+No messages found.

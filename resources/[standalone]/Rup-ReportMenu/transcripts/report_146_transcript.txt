@@ -1,0 +1,17 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 146
+Title: bang ini kenapa gada suara radio
+Reporter: rapa ganteng
+Status: open
+Priority: low
+Created: 1753596223000.0
+Deleted by: DNX _ ACENG
+Deleted at: 2025-07-27 22:08:47 UTC
+
+=== DESCRIPTION ===
+melaporkan radio saya gada suara
+
+=== MESSAGES ===
+[2025-07-27 06:03:52] rapa ganteng: bang radio gua banggg
+[2025-07-27 06:03:59] rapa ganteng: ga da suara
+[2025-07-27 12:07:06] rapa ganteng: sir tarik mike zu di bs sir

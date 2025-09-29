@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>highlife RP Scoreboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="scoreboard" class="scoreboard hidden">
+        <div class="scoreboard-container">
+            <!-- Header -->
+            <div class="header">
+                <div class="server-info">
+                    <div class="server-logo">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <div class="server-details">
+                        <h1 class="server-name">Your Server Name</h1>
+                        <p class="server-description">Premium Roleplay Experience</p>
+                    </div>
+                </div>
+                
+                <div class="server-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span class="stat-value" id="playerCount">0</span>
+                        <span class="stat-label">Players</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span class="stat-value" id="serverTime">00:00</span>
+                        <span class="stat-label">Time</span>
+                    </div>
+                    <div class="status-indicator online">
+                        <div class="status-dot"></div>
+                        <span>ONLINE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Statistics -->
+            <div class="job-stats">
+                <!-- Job cards will be created dynamically based on active jobs -->
+            </div>
+
+            <!-- Robbery Availability -->
+            <div class="robbery-availability" id="robberyAvailability">
+                <div class="section-header">
+                    <h2><i class="fas fa-shield-alt"></i> Robbery Availability</h2>
+                    <span class="police-count-badge" id="policeCount">0 Police Online</span>
+                </div>
+                <div class="robbery-grid" id="robberyGrid">
+                    <!-- Robbery types will be populated here -->
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search players or jobs...">
+            </div>
+
+            <!-- Players List -->
+            <div class="players-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-users"></i> Active Players</h2>
+                    <span class="player-count-badge" id="filteredCount">0</span>
+                </div>
+                
+                <div class="players-list" id="playersList">
+                    <!-- Players will be populated here -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

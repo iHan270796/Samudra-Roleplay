@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 147
+Title: Pistol ceramic ilang
+Reporter: BFW_Kim O'Zenin
+Status: open
+Priority: medium
+Created: 1753597898000.0
+Deleted by: DNX _ ACENG
+Deleted at: 2025-07-27 22:08:52 UTC
+
+=== DESCRIPTION ===
+Pistol kebuang dan hilang
+
+=== MESSAGES ===
+No messages found.

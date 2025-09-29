@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 286
+Title: bantu dong
+Reporter: [FTD] - Koya
+Status: open
+Priority: high
+Created: 1757496302000.0
+Deleted by: DNX | Brian
+Deleted at: 2025-09-11 02:30:12 UTC
+
+=== DESCRIPTION ===
+anak ku cewek, dia claim kendaraan, tapi ga bisa di keluarkan
+
+=== MESSAGES ===
+[2025-09-10 09:34:55] DnX-WT-HATSU: sebentar ya ser

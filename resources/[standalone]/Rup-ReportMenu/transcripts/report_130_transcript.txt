@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 130
+Title: mobil bug
+Reporter: andikafvahri
+Status: open
+Priority: medium
+Created: 1752512666000.0
+Deleted by: DNX - PUTU TUU
+Deleted at: 2025-07-15 00:11:14 UTC
+
+=== DESCRIPTION ===
+Mobil saya ngebug gabisa dinaikin
+
+=== MESSAGES ===
+[2025-07-14 17:04:40] andikafvahri: mobil saya bug gabisa dinaikin

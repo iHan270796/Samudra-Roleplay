@@ -1,0 +1,766 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: transparent;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.scoreboard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.scoreboard.hidden {
+    display: none;
+}
+
+.scoreboard-container {
+    width: 80%;
+    max-width: 900px;
+    max-height: 75vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border-radius: 15px;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Header */
+.header {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px 20px;
+    border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.server-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.server-logo {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(45deg, #00ffff, #0080ff);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #000;
+}
+
+.server-name {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(45deg, #00ffff, #0080ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.server-description {
+    color: #a0a0a0;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.server-stats {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.stat-item i {
+    font-size: 20px;
+    color: #00ffff;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #a0a0a0;
+    text-transform: uppercase;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-indicator.online {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Job Statistics */
+.job-stats {
+    padding: 15px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Robbery Availability */
+.robbery-availability {
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.robbery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.robbery-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    position: relative;
+}
+
+.robbery-item.available {
+    border-color: rgba(34, 197, 94, 0.3);
+    background: rgba(34, 197, 94, 0.05);
+}
+
+.robbery-item.unavailable {
+    border-color: rgba(107, 114, 128, 0.3);
+    background: rgba(107, 114, 128, 0.05);
+    opacity: 0.6;
+}
+
+.robbery-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.robbery-item i {
+    font-size: 18px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.robbery-item.available i {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+.robbery-item.unavailable i {
+    background: rgba(107, 114, 128, 0.2);
+    color: #6b7280;
+}
+
+.robbery-info h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 3px;
+}
+
+.robbery-info p {
+    font-size: 11px;
+    color: #a0a0a0;
+}
+
+.robbery-status {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.robbery-status.available {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+.robbery-status.unavailable {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.police-count-badge {
+    background: #3b82f6;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.job-stat {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.job-stat:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.job-stat.police {
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.job-stat.police:hover {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.job-stat.ambulance {
+    border-color: rgba(239, 68, 68, 0.3);
+}
+
+.job-stat.ambulance:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.job-stat.mechanic {
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.job-stat.mechanic:hover {
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.job-stat.taxi {
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.job-stat.taxi:hover {
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.job-stat.lawyer {
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.job-stat.lawyer:hover {
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.job-stat.realestate {
+    border-color: rgba(236, 72, 153, 0.3);
+}
+
+.job-stat.realestate:hover {
+    background: rgba(236, 72, 153, 0.1);
+}
+
+.job-stat i {
+    font-size: 20px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.job-stat.police i { color: #3b82f6; background: rgba(59, 130, 246, 0.2); }
+.job-stat.ambulance i { color: #ef4444; background: rgba(239, 68, 68, 0.2); }
+.job-stat.mechanic i { color: #f59e0b; background: rgba(245, 158, 11, 0.2); }
+.job-stat.taxi i { color: #10b981; background: rgba(16, 185, 129, 0.2); }
+.job-stat.lawyer i { color: #8b5cf6; background: rgba(139, 92, 246, 0.2); }
+.job-stat.realestate i { color: #ec4899; background: rgba(236, 72, 153, 0.2); }
+
+.job-count {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.job-label {
+    font-size: 14px;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* Search */
+.search-container {
+    padding: 15px 20px;
+    position: relative;
+}
+
+.search-container i {
+    position: absolute;
+    left: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0a0a0;
+    font-size: 16px;
+}
+
+#searchInput {
+    width: 100%;
+    padding: 15px 20px 15px 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.1);
+}
+
+#searchInput::placeholder {
+    color: #a0a0a0;
+}
+
+/* Players Section */
+.players-section {
+    padding: 0 20px 15px;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-header h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-header h2 i {
+    color: #00ffff;
+}
+
+.player-count-badge {
+    background: #00ffff;
+    color: #000;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.players-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.player-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.player-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+    border-color: rgba(0, 255, 255, 0.3);
+}
+
+.player-main-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.player-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 600;
+    overflow: hidden;
+    position: relative;
+}
+
+.discord-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.discord-tag {
+    font-size: 14px;
+    color: #7289da;
+    font-weight: 400;
+}
+
+.discord-indicator {
+    background: #7289da;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    margin-left: 8px;
+}
+
+/* Rank badge */
+.rank-badge {
+    display: inline-block;
+    background: #444;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-right: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.player-details h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.player-job {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.job-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.player-stats {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.stat-group {
+    text-align: center;
+}
+
+.stat-group .label {
+    font-size: 11px;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.stat-group .value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.ping-good { color: #22c55e; }
+.ping-medium { color: #f59e0b; }
+.ping-bad { color: #ef4444; }
+
+.rank-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, #ff9800, #ff5722);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    margin-right: 8px;
+    vertical-align: middle;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.role-id {
+    font-size: 10px;
+    color: #ffd700;
+    margin-left: 4px;
+    font-weight: 400;
+}
+
+/* Footer */
+.footer {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-info p {
+    font-size: 12px;
+    color: #a0a0a0;
+}
+
+.footer-subtitle {
+    margin-top: 5px;
+    font-size: 10px;
+}
+
+.close-btn {
+    background: linear-gradient(45deg, #ef4444, #dc2626);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.close-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+}
+
+/* Scrollbar */
+.players-section::-webkit-scrollbar {
+    width: 6px;
+}
+
+.players-section::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.players-section::-webkit-scrollbar-thumb {
+    background: #00ffff;
+    border-radius: 3px;
+}
+
+.players-section::-webkit-scrollbar-thumb:hover {
+    background: #0080ff;
+}
+
+/* Layout Configuration */
+.scoreboard-container.small {
+    max-width: 800px;
+    max-height: 60vh;
+}
+
+.scoreboard-container.medium {
+    max-width: 1000px;
+    max-height: 70vh;
+}
+
+.scoreboard-container.large {
+    max-width: 1200px;
+    max-height: 80vh;
+}
+
+.scoreboard-container.fullscreen {
+    max-width: 95vw;
+    max-height: 95vh;
+}
+
+/* Player List Layouts */
+.players-list.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.players-list.compact .player-item {
+    padding: 15px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.players-list.compact .player-main-info {
+    flex: 1;
+}
+
+.players-list.compact .player-stats {
+    gap: 15px;
+}
+
+.players-list.compact .player-details h3 {
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+.players-list.compact .player-job {
+    margin-bottom: 3px;
+}
+
+/* Grid Layout Options */
+.job-stats.grid-2x2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.job-stats.grid-3x3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.job-stats.grid-4x4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.robbery-grid.grid-2x2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.robbery-grid.grid-3x3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.robbery-grid.grid-4x4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .scoreboard-container {
+        width: 95%;
+        max-height: 95vh;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .server-stats {
+        gap: 20px;
+    }
+    
+    .job-stats {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+    }
+    
+    .robbery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+    }
+    
+    .player-item {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .player-stats {
+        justify-content: center;
+    }
+    
+    .players-list.grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 228
+Title: pingsan dan gaada ems di kota
+Reporter: andikafvahri
+Status: open
+Priority: medium
+Created: 1755661387000.0
+Deleted by: HAYZAZ PIJE
+Deleted at: 2025-09-05 13:13:50 UTC
+
+=== DESCRIPTION ===
+pingsan dan gaada ems di kota
+
+=== MESSAGES ===
+[2025-08-20 03:43:11] andikafvahri: pingsan dan gaada ems di kota
+[2025-08-20 03:51:35] andikafvahri: tolong sir

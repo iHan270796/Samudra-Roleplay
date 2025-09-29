@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 180
+Title: ga bisa buka tas
+Reporter: CLaw
+Status: closed
+Priority: medium
+Created: 1754324007000.0
+Deleted by: BFW_Raze Alpha
+Deleted at: 2025-08-07 22:08:53 UTC
+
+=== DESCRIPTION ===
+ga bisa buka tas
+
+=== MESSAGES ===
+[2025-08-04 16:14:47] i han96: mas nya cuci muka

@@ -1,0 +1,37 @@
+Config = {}
+
+Config.SellItems = {
+    mining = {
+        {name = "tembaga", label = "Copper", price = 1200},
+        {name = "diamon", label = "Diamond", price = 2800},
+        {name = "emas", label = "Gold", price = 1800},
+        {name = "besi", label = "Iron", price = 1200},
+        {name = "papan_kayu", label = "Wood Planks", price = 2500},
+        {name = "kulit_kayu", label = "Tree bark", price = 1200},
+        {name = "ayam_packing", label = "Ayam Packing", price = 2500},
+    },
+    drugs = {
+        {name = "joint", label = "Joint", price = 35000},
+        {name = "heroin", label = "Heroin", price = 35000},
+        {name = "coke_brick", label = "Coke Brick", price = 60000},
+        {name = "goldchain", label = "Golden Chain", price = 45000},
+        {name = "rolex", label = "Golden Watch", price = 35000},
+        {name = "platinum_bar", label = "Platinum bar", price = 250000},
+        {name = "gold_bar", label = "Gold Bar", price = 170000},
+        {name = "diamond_ring", label = "Diamond Ring", price = 100000},
+        {name = "ruby_diamond", label = "Ruby Diamond", price = 1000000},
+        {name = "antique_bottle", label = "Antique bottle", price = 850000},
+        {name = "gold_monkey", label = "Gold Monkey", price = 850000},
+        {name = "lapis_panther", label = "Lapis Panther", price = 850000},
+        {name = "rembrandt", label = "Rembrandt", price = 350000},
+        {name = "van_gogh", label = "Van Gogh", price = 350000},
+    },
+    fishjob = {
+        {name = "jacksmelt", label = "Jack Smelt", price = 3500},
+        {name = "brown_trout", label = "Brown Trout", price = 3700},
+        {name = "stickleback", label = "Stick Leback", price = 4200},
+        {name = "sunfish", label = "Sun Fish", price = 5500},
+        {name = "bluegill", label = "Blue Gill", price = 6800},
+        {name = "rockfish", label = "Rock Fish", price = 7500},
+    },
+}

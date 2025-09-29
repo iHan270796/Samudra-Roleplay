@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 149
+Title: nggak ada kendaraan
+Reporter: BFW_Kim O'Zenin
+Status: closed
+Priority: medium
+Created: 1753628883000.0
+Deleted by: DNX _ ACENG
+Deleted at: 2025-07-28 23:40:39 UTC
+
+=== DESCRIPTION ===
+Tolong admin gantenggg
+
+
+=== MESSAGES ===
+[2025-07-27 15:08:27] DNX _ ACENG: ya kenapa mas

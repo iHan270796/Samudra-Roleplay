@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deanix Crafting</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div class="left-panel" id="layout1" style="display: none;">
+    <div class="crafting-list">
+      <h3>Daftar Crafting</h3>
+      <div id="item-list"></div>
+    </div>
+    <div class="crafting-queue">
+      <h3>Antrian Crafting</h3>
+      <div id="queue-list"></div>
+    </div>
+  </div>
+  <div class="right-panel" id="layout2" style="display: none;">
+    <div class="crafting-details">
+      <h3>Detail Item</h3>
+      <div id="selected-item"></div>
+      <button id="continue-crafting">Lanjut Crafting</button>
+    </div>
+    <div class="crafting-history">
+      <h3>History</h3>
+      <div id="history-list"></div>
+    </div>
+  </div>
+  <div class="center-panel" id="layout3" style="display: none;">
+    <div class="crafting-confirm">
+      <h3>Konfirmasi Crafting</h3>
+      <div class="xp-info">
+        <div class="xp-header">
+          <span id="item-level">Level 1</span>
+          <span id="item-xp-text">0 / 100 XP</span>
+        </div>
+        <div class="xp-bar">
+          <div class="xp-bar-fill" id="item-xp-bar" style="width: 0%;"></div>
+        </div>
+        <p><span id="xp-gain-preview">+10 XP</span></p>
+      </div>
+      <div id="confirm-item"></div>
+      <div class="requirement-controls">
+        <button id="minus">-</button>
+        <span id="craft-amount">1</span>
+        <button id="plus">+</button>
+      </div>
+      <button id="start-crafting">Craft</button>
+    </div>
+    <div class="mini-game" id="mini-game" style="margin-top: 20px; display: none;">
+      <div class="mini-bar-container">
+        <div class="mini-bar">
+          <div class="mini-bar-zone">
+            <span id="mini-key">W</span>
+          </div>
+          <div class="mini-bar-progress" id="mini-bar-progress"></div>
+        </div>
+      </div>
+      <div class="mini-feedback" id="mini-feedback"></div>
+    </div>
+    <div class="crafting-result">
+      <h3>Hasil Crafting</h3>
+      <div id="craft-result"></div>
+      <button id="take-item">Ambil</button>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
