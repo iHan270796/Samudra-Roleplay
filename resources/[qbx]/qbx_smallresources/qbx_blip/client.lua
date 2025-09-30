@@ -33,9 +33,10 @@ Citizen.CreateThread(function()
         {title="Cuci Batu", colour=5, id=285, x=-1759.22, y=2637.03, z=0.22},
         {title="Peleburan", colour=5, id=285, x=1085.18, y=-2002.48, z=31.39},
         {title="Tukang Kayu", colour=5, id=256, x=-565.51, y=5325.56, z=73.59},
-        {title="Kantor Pemerintah", colour=29, id=408, x=1779.44, y=3645.47, z=34.63},
+        {title="Kantor Pemerintah", colour=29, id=176, x=1779.44, y=3645.47, z=34.63},
         {title="Bahamas", colour=5, id=93, x=-1390.15, y=-584.38, z= 30.22},
         {title="Jual Ikan", colour=3, id=68, x=-3411.66, y=960.62, z=8.35},
+        {title="Sewa Gudang", colour=3, id=557, x=900.64, y=3580.18, z=32.39},
 
         -- {title="South Rockford Drive", colour=3, id=475, x=-621.0366, y=46.594829, z=43.591472},
     }

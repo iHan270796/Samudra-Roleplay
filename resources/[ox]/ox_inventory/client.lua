@@ -120,7 +120,7 @@ local Inventory = require 'modules.inventory.client'
 ---@return boolean?
 function client.openInventory(inv, data)
 
-    exports['deanix_logo']:hidehud()
+    exports['samudra_logo']:hidehud()
     exports['minimal-hud']:toggleHud(false)
 	exports['minimal-hud']:toggleMap(false)
 
@@ -950,7 +950,7 @@ end
 
 function client.closeInventory(server)
 
-    exports['deanix_logo']:showhud()
+    exports['samudra_logo']:showhud()
     exports['minimal-hud']:toggleHud(true)
 	exports['minimal-hud']:toggleMap(true)
 

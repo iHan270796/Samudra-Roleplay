@@ -8573,7 +8573,7 @@ return {
         model = 'cat_car',
         price = 27000000,
         category = 'super',
-        type = 'starterpack',
+        type = 'automobile',
         hash = `cat_car`,
     },
     amggtr = {
@@ -8582,7 +8582,7 @@ return {
         model = 'amggtr',
         price = 27000000,
         category = 'super',
-        type = 'starterpack',
+        type = 'automobile',
         hash = `amggtr`,
     },
     pika01 = {
@@ -8591,7 +8591,7 @@ return {
         model = 'pika01',
         price = 27000000,
         category = 'super',
-        type = 'starterpack',
+        type = 'automobile',
         hash = `pika01`,
     },
     hondaS2000 = {
@@ -8600,7 +8600,7 @@ return {
         model = 'hondaS2000',
         price = 27000000,
         category = 'super',
-        type = 'starterpack',
+        type = 'automobile',
         hash = `hondaS2000`,
     },
     senna = {
@@ -8609,7 +8609,7 @@ return {
         model = 'senna',
         price = 27000000,
         category = 'super',
-        type = 'starterpack',
+        type = 'automobile',
         hash = `senna`,
     },
     a296mans = {
@@ -8618,7 +8618,7 @@ return {
         model = 'a296mans',
         price = 27000000,
         category = 'super',
-        type = 'starterpack',
+        type = 'automobile',
         hash = `a296mans`,
     },
     c63hr = {
@@ -8627,7 +8627,7 @@ return {
         model = 'c63hr',
         price = 27000000,
         category = 'super',
-        type = 'starterpack',
+        type = 'automobile',
         hash = `c63hr`,
     },
     carry = {
@@ -8636,7 +8636,7 @@ return {
         model = 'carry',
         price = 27000000,
         category = 'super',
-        type = 'starterpack',
+        type = 'automobile',
         hash = `carry`,
     },
 

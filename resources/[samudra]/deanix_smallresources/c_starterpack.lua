@@ -30,16 +30,16 @@ Config.VehicleFemale = {
 }
 
 Config.ChooseVehicleMale = {
-    { label = "Senna", model = "senna", image = "nui://deanix_smallresources/html/imgs/dc_jokernsx.png" },
-    { label = "Mans 296", model = "a296mans", image = "nui://deanix_smallresources/html/imgs/evo3.png" },
-    { label = "HR C63", model = "c63hr", image = "nui://deanix_smallresources/html/imgs/isfhr.png" }
+    { label = "Senna", model = "senna", image = "nui://deanix_smallresources/html/imgs/senna.png" },
+    { label = "Mans 296", model = "a296mans", image = "nui://deanix_smallresources/html/imgs/a296mans.png" },
+    { label = "HR C63", model = "c63hr", image = "nui://deanix_smallresources/html/imgs/c63hr.png" }
 }
 
 Config.ChooseVehicleFemale = {
-    { label = "Cat Car", model = "cat_car", image = "nui://deanix_smallresources/html/imgs/brisket.png" },
-    { label = "AMG GTR", model = "amggtr", image = "nui://deanix_smallresources/html/imgs/l111s.png" },
-    { label = "PIKA 01", model = "pika01", image = "nui://deanix_smallresources/html/imgs/brisket.png" },
-    { label = "S2000", model = "hondaS2000", image = "nui://deanix_smallresources/html/imgs/a356a.png" },
+    { label = "Cat Car", model = "cat_car", image = "nui://deanix_smallresources/html/imgs/cat_car.png" },
+    { label = "AMG GTR", model = "amggtr", image = "nui://deanix_smallresources/html/imgs/amggtr.png" },
+    { label = "PIKA 01", model = "pika01", image = "nui://deanix_smallresources/html/imgs/pika01.png" },
+    { label = "S2000", model = "hondaS2000", image = "nui://deanix_smallresources/html/imgs/hondaS2000.png" },
 }
 
 -- Garasi default untuk penyimpanan kendaraan starterpack

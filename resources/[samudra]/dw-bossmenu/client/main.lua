@@ -397,7 +397,7 @@ RegisterNetEvent('dw-bossmenu:client:RefreshPermissions', function(permissions)
 end)
 -- Separated function to handle the actual opening
 function OpenJobManager(jobName)
-    exports['deanix_logo']:hidehud()
+    exports['samudra_logo']:hidehud()
     exports['minimal-hud']:toggleHud(false)
 	exports['minimal-hud']:toggleMap(false)
     if menuOpen then return end
@@ -505,7 +505,7 @@ end)
 
 -- NUI Callbacks
 RegisterNUICallback('closeUI', function(_, cb)
-    exports['deanix_logo']:showhud()
+    exports['samudra_logo']:showhud()
     exports['minimal-hud']:toggleHud(true)
 	exports['minimal-hud']:toggleMap(true)
     SetNuiFocus(false, false)

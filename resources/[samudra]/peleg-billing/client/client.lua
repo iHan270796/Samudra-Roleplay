@@ -58,7 +58,7 @@ end
 
 RegisterNetEvent('peleg-billing:client:open', function(selfData)
 
-	exports['deanix_logo']:hidehud()
+	exports['samudra_logo']:hidehud()
     exports['minimal-hud']:toggleHud(false)
 	exports['minimal-hud']:toggleMap(false)
 
@@ -83,7 +83,7 @@ end)
 --> [NUI Callbacks] <--
 RegisterNUICallback('peleg-billing:close', function(_, cb)
 
-	exports['deanix_logo']:showhud()
+	exports['samudra_logo']:showhud()
     exports['minimal-hud']:toggleHud(true)
 	exports['minimal-hud']:toggleMap(true)
 

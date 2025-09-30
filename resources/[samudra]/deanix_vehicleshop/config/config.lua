@@ -36,13 +36,13 @@ Config.Hud = {
 		DisplayRadar(true)
 		exports['minimal-hud']:toggleHud(true)
 		exports['minimal-hud']:toggleMap(true)
-		exports['deanix_logo']:showhud()
+		exports['samudra_logo']:showhud()
 	end,
 	Disable = function()
 		DisplayRadar(false)
 		exports['minimal-hud']:toggleHud(false)
 		exports['minimal-hud']:toggleMap(false)
-		exports['deanix_logo']:hidehud()
+		exports['samudra_logo']:hidehud()
 	end
 }
 

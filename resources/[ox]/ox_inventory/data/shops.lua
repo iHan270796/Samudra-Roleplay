@@ -37,7 +37,7 @@ return {
 		}
 	},
 	Phonestore = {
-		name = 'Phone Store',
+		name = 'Toko Handphone',
 		blip = {
 			id = 59, colour = 69, scale = 0.6
 		}, inventory = {
@@ -139,7 +139,7 @@ return {
 	},
 
 	Ammunation = {
-		name = 'Ammunation',
+		name = 'Toko Senjata',
 		blip = {
 			id = 110, colour = 69, scale = 0.7
 		}, inventory = {
