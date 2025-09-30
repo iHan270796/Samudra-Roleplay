@@ -9,7 +9,7 @@ local webhooks = {
     ['playgame'] = 'https://discord.com/api/webhooks/1421138492779397232/4yCEePi4saK9JT0H26Pj2gMLX6s1WwoY-kfmBsUBx0hN82-8BwoK_k5jO1jcLin5LgVp',
     ['logout'] = 'https://discord.com/api/webhooks/1369307026697486457/-xQf7FCxUJXL_tQXBQMD5s7FZds2fF9syQSBjLxvUhNriZJkiqY7tB9vXtEO5TdAi7Ob',
     ['exploit'] = '',
-    ['createcharacter'] = 'https://discord.com/api/webhooks/1388965235863457912/Ga446MJ2V8aple71I4w9zgQXwRiAYhkN_81SLHXG9U0TwBZl_39VPKLOat_9vN4Z0FYJ',
+    ['createcharacter'] = 'https://discord.com/api/webhooks/1422335762128572501/hohsNh8A58WopPd1TInGrM8yc2fA-lM5Ox_123J8oIgnog6cUoJsE2r8nY4jFVRUInn2',
     ['deletecharacter'] = '',
 }
 
