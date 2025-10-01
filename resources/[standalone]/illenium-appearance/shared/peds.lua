@@ -1053,28 +1053,13 @@ Config.Peds = {
                 "u_m_y_tattoo_01",
                 "u_m_y_ushi",
                 "u_m_y_zombie_01",
-                "gabriela",
-                "ss_bewok",
-                "LIANA_TeenEnid",
-                "NLEChoppa",
-                "wilstore_arashi",
-                "wilstore_bil",
                 "g_kazu",
-                "g_halmun",
-                "g_daniel",
                 "dotz",
                 "sagara",
                 "ls_kazublack",
                 "sagarapolice",
-                "wilstore_unclesong",
-                "l_law",
                 "ls_pije",
-                "skin_dante",
                 "sagaraladies",
-
-                -- donasi
-                "4s_fik_02",
-                "ls_law",
             }
         }
     }
