@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    
+<CVehicleModelInfoVarGlobal>    
+  <Wheels>
+    <Item/> <!-- VWT_SPORT -->
+    <Item/> <!-- VWT_MUSCLE -->
+    <Item/> <!-- VWT_LOWRIDER -->
+    <Item/> <!-- VWT_SUV -->
+    <Item/> <!-- VWT_OFFROAD -->
+    <Item> <!-- VWT_TUNER -->
+      <Item>
+        <wheelName>wheel_blitz_brw03</wheelName>
+        <wheelVariation />
+        <modShopLabel>BLITZ_BRW03</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_spt_07</wheelName>
+        <wheelVariation />
+        <modShopLabel>SPT_07</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_spt_10</wheelName>
+        <wheelVariation />
+        <modShopLabel>SPT_10</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_spt_11</wheelName>
+        <wheelVariation />
+        <modShopLabel>SPT_11</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_spt_21</wheelName>
+        <wheelVariation />
+        <modShopLabel>SPT_21</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_spt_22</wheelName>
+        <wheelVariation />
+        <modShopLabel>SPT_22</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_spt_23</wheelName>
+        <wheelVariation />
+        <modShopLabel>SPT_23</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_spt_24</wheelName>
+        <wheelVariation />
+        <modShopLabel>SPT_24</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_musc_04</wheelName>
+        <wheelVariation />
+        <modShopLabel>MUSC_04</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_hiend_10</wheelName>
+        <wheelVariation />
+        <modShopLabel>HIEND_10</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_rays_axg</wheelName>
+        <wheelVariation />
+        <modShopLabel>RAYS_AX_GRIFFONY</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_01w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_01W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_02w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_02W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_03w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_03W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_05w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_05W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_06w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_06W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_07w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_07W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_08w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_08W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_09w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_09W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_12w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_12W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_14w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_14W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_17w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_17W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_20w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_20W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_21w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_21W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_drft_22w</wheelName>
+        <wheelVariation />
+        <modShopLabel>DRFT_22W</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_suv_14</wheelName>
+        <wheelVariation />
+        <modShopLabel>SUV_14</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_suv_15</wheelName>
+        <wheelVariation />
+        <modShopLabel>SUV_15</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_suv_16</wheelName>
+        <wheelVariation />
+        <modShopLabel>SUV_16</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_yaba_gangdeep</wheelName>
+        <wheelVariation />
+        <modShopLabel>YABAKING_GANGSTA_DEEPDISH</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+      <Item>
+        <wheelName>wheel_yabaking_ghost2h</wheelName>
+        <wheelVariation />
+        <modShopLabel>YABAKING_GHOST</modShopLabel>
+        <rimRadius value="0.348500"/>
+        <rear value="false"/>
+      </Item>
+    </Item>
+    <Item/> <!-- VWT_SUPERMOD1 -->
+    <Item/> <!-- VWT_SUPERMOD2 -->
+    <Item/>
+  </Wheels>
+</CVehicleModelInfoVarGlobal>
