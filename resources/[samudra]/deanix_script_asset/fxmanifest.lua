@@ -5,7 +5,8 @@ shared_scripts {
     '@ox_lib/init.lua',
     '@qbx_core/shared/locale.lua',
     'c_asuransi.lua',
-    'c_sirine.lua'
+    'c_sirine.lua',
+    'c_props.lua'
 }
 
 client_scripts {

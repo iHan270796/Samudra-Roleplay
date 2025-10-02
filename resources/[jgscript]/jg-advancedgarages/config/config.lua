@@ -387,8 +387,8 @@ Config.GarageLocations = { -- IMPORTANT - Every garage name must be unique
     markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
   },
   ["international airport"] = { -- If you change the name of this garage from Legion Square, you must change the default value of `garage_id` to the same name in the SQL table `players_vehicles`
-    coords = vector3(-1048.46, -2668.93, 13.83),
-    spawn = {vector4(-1048.46, -2668.93, 13.83, 305.87), vector4(-1046.15, -2671.37, 13.83, 314.37), vector4(-1050.23, -2666.17, 13.83, 304.21)}, --  you can add multiple spawn locations into a table
+    coords = vector3(-1859.94, 5185.15, 6.97),
+    spawn = {vector4(-1859.94, 5185.15, 6.97, 37.49), vector4(-1856.67, 5187.37, 6.97, 50.31), vector4(-1867.41, 5178.28, 6.97, 44.16)}, --  you can add multiple spawn locations into a table
     distance = 15,
     type = "car",
     hideBlip = false,
