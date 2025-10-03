@@ -1,6 +1,8 @@
 Config = {}
 
+Config.Debug = false -- Enable debug prints in F8 console to track distance checks and exit reasons
 Config.MaxDistance = 1.7 -- Maximum distance allowed from vehicle in driveby mode. Players will be automatically exited from driveby if they exceed this distance
+Config.MaxExceedCount = 3 -- Number of consecutive distance violations before kicking (prevents physics glitch kicks). Higher = more tolerant to lag/bumps
 
 Config.Settings = {
     EnableCommand = true, -- Enables the command "GetVehicleHash" used to get the vehicle hash the player is in

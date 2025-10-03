@@ -2,13 +2,13 @@ Config = {}
 
 Config.SellItems = {
     mining = {
-        {name = "tembaga", label = "Copper", price = 1200},
-        {name = "diamon", label = "Diamond", price = 2800},
-        {name = "emas", label = "Gold", price = 1800},
-        {name = "besi", label = "Iron", price = 1200},
-        {name = "papan_kayu", label = "Wood Planks", price = 2500},
-        {name = "kulit_kayu", label = "Tree bark", price = 1200},
-        {name = "ayam_packing", label = "Ayam Packing", price = 2500},
+        {name = "tembaga", label = "Copper", price = 1500},
+        {name = "diamon", label = "Diamond", price = 3800},
+        {name = "emas", label = "Gold", price = 2500},
+        {name = "besi", label = "Iron", price = 1800},
+        {name = "papan_kayu", label = "Wood Planks", price = 3200},
+        {name = "kulit_kayu", label = "Tree bark", price = 1500},
+        {name = "ayam_packing", label = "Ayam Packing", price = 3200},
     },
     drugs = {
         {name = "joint", label = "Joint", price = 35000},

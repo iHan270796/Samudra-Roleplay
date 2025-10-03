@@ -74,7 +74,7 @@ Config.GarageVehicleReturnCostSocietyFund = false -- Job name of society fund to
 
 -- Public Garages
 Config.GarageShowBlips = true
-Config.GarageUniqueBlips = false
+Config.GarageUniqueBlips = true
 Config.GarageUniqueLocations = true
 Config.GarageEnableInteriors = true
 Config.GarageLocations = { -- IMPORTANT - Every garage name must be unique

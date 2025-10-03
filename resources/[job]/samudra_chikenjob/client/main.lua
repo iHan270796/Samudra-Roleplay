@@ -42,7 +42,8 @@ local function StartCatching()
 	end
 
 	for k, v in pairs(Config.SpawnChicken["quantity"]) do
-		chicken[k] = CreatePed(26, chickenModel, v["coords"].x, v["coords"].y, v["coords"].z, v["coords"].h, true, false)
+        chicken[k] = CreatePed(26, chickenModel, v["coords"].x, v["coords"].y, v["coords"].z, v["coords"].h, false, false) 
+		-- chicken[k] = CreatePed(26, chickenModel, v["coords"].x, v["coords"].y, v["coords"].z, v["coords"].h, true, false)
 		TaskReactAndFleePed(chicken[k], ped)
 	end
 
