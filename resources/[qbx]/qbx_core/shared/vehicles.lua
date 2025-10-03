@@ -8565,6 +8565,15 @@ return {
         type = 'automobile',
         hash = `varisryu`,
     },
+    brzrbv3 = {
+        name = 'Brzrb V3',
+        brand = 'BRZ',
+        model = 'brzrbv3',
+        price = 67000000,
+        category = 'super',
+        type = 'automobile',
+        hash = `brzrbv3`,
+    },
 
     --startterpack
     cat_car = {

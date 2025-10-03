@@ -4,6 +4,7 @@ CurrentAnimationName = nil
 CurrentTextureVariation = nil
 InHandsup = false
 CONVERTED = false
+local lastEmoteTime = 0
 
 ---@type ScenarioType
 local ChosenScenarioType
@@ -15,7 +16,6 @@ local PtfxNotif = false
 local PtfxPrompt = false
 local AnimationThreadStatus = false
 local CheckStatus = false
-local CanCancel = true
 local InExitEmote = false
 local ExitAndPlay = false
 local EmoteCancelPlaying = false
@@ -69,6 +69,7 @@ end
 
 CreateThread(function()
     LocalPlayer.state:set('canEmote', true, true)
+    LocalPlayer.state:set('canCancel', true, true)
 end)
 
 local function runAnimationThread()
@@ -163,14 +164,14 @@ local function exitScenario()
 end
 
 function EmoteCancel(force)
+    if not LocalPlayer.state.canCancel and not force then return end
+
     LocalPlayer.state:set('currentEmote', nil, true)
     EmoteCancelPlaying = true
 
     if InExitEmote then
         return
     end
-
-    if not CanCancel and not force then return end
 
     exitScenario()
 
@@ -249,29 +250,20 @@ local function checkAnimalAndOnEmotePlay(name)
     end
 end
 
-function EmoteMenuStart(name, category, textureVariation)
+function EmoteMenuStart(name, textureVariation)
     local emote = EmoteData[name]
 
     if not emote then
         return
     end
 
-    if emote.category ~= category then
-        DebugPrint("Emote category mismatch : " .. emote.category .. " vs " .. category)
-        return
-    end
-
-    if category == Category.EXPRESSIONS then
+    if emote.emoteType == EmoteType.EXPRESSIONS then
         SetPlayerPedExpression(name, true)
-        return
-    end
-
-    if emote.category == Category.ANIMAL_EMOTES then
+    elseif emote.emoteType == EmoteType.ANIMAL_EMOTES then
         checkAnimalAndOnEmotePlay(name)
-        return
+    else
+        OnEmotePlay(name, textureVariation)
     end
-
-    OnEmotePlay(name, textureVariation)
 end
 
 local function checkGender()
@@ -427,7 +419,7 @@ local function onEmotePlayClone(name)
     addProps(animOption, nil, true)
 end
 
-function EmoteMenuStartClone(name, category)
+function EmoteMenuStartClone(name)
     if not Config.PreviewPed then return end
     if not DoesEntityExist(ClonedPed) then return end
 
@@ -437,12 +429,7 @@ function EmoteMenuStartClone(name, category)
         return
     end
 
-    if emote.category ~= category then
-        DebugPrint("Emote category mismatch : " .. emote.category .. " vs " .. category)
-        return
-    end
-
-    if category == Category.EXPRESSIONS then
+    if emote.emoteType == EmoteType.EXPRESSIONS then
         SetFacialIdleAnimOverride(ClonedPed, emote[1], true)
         return
     end
@@ -484,7 +471,7 @@ function EmoteCommandStart(args)
         return
     end
 
-    if emote.category == Category.ANIMAL_EMOTES then
+    if emote.emoteType == EmoteType.ANIMAL_EMOTES then
         if Config.AnimalEmotesEnabled then
             checkAnimalAndOnEmotePlay(name)
         else
@@ -493,7 +480,7 @@ function EmoteCommandStart(args)
         return
     end
 
-    if emote.category == Category.PROP_EMOTES
+    if emote.emoteType == EmoteType.PROP_EMOTES
         and emote.AnimationOptions.PropTextureVariations
     then
         local textureVariation = tonumber(args[2])
@@ -531,15 +518,11 @@ function DestroyAllProps(isClone)
     DebugPrint("Destroyed Props for " .. (isClone and "clone" or "player"))
 end
 
-RegisterNetEvent('animations:ToggleCanDoAnims', function(value)
-    LocalPlayer.state:set('canEmote', value, true)
-end)
-
 local function playExitAndEnterEmote(name, textureVariation)
+    if not LocalPlayer.state.canCancel then return end
     ExitAndPlay = true
     DebugPrint("Canceling previous emote and playing next emote")
     local ped = PlayerPedId()
-    if not CanCancel then return end
     exitScenario()
 
     PtfxNotif = false
@@ -636,8 +619,23 @@ function OnEmotePlay(name, textureVariation)
         return EmoteChatMessage(Translate('adultemotedisabled'))
     end
 
+    if Config.AbusableEmotesDisabled and emoteData.abusable then
+        return EmoteChatMessage(Translate('abusableemotedisabled'))
+    end
+
     if InExitEmote then
         return false
+    end
+
+    if Config.EmoteCooldownMs then
+        local timeSinceLastEmote = GetGameTimer() - lastEmoteTime
+        
+        if timeSinceLastEmote < Config.EmoteCooldownMs then
+            EmoteChatMessage(Translate('emotecooldown'))
+            return
+        else
+            lastEmoteTime = GetGameTimer()
+        end
     end
 
     if Config.CancelPreviousEmote
@@ -766,7 +764,7 @@ CreateExport("EmoteCommandStart", function(emoteName, textureVariation)
 end)
 CreateExport("EmoteCancel", EmoteCancel)
 CreateExport("CanCancelEmote", function(State)
-    CanCancel = State == true
+    error("CanCancelEmote is deprecated, use LocalPlayer.state:set('canCancel', State, true) instead")
 end)
 CreateExport('IsPlayerInAnim', function()
     return LocalPlayer.state.currentEmote

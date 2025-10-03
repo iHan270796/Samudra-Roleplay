@@ -40,6 +40,7 @@ data_file "AUDIO_GAMEDATA" "audioconfig/bnkdmcrb26eng_game.dat"
 data_file "AUDIO_GAMEDATA" "audioconfig/f136_game.dat"
 data_file "AUDIO_GAMEDATA" "audioconfig/rx7bpeng_game.dat"
 data_file "AUDIO_GAMEDATA" "audioconfig/aq10nisvr38dett_game.dat"
+data_file "AUDIO_GAMEDATA" "audioconfig/kc42brz14_game.dat"
 
 -- khusus sound
 data_file "AUDIO_SOUNDDATA" "audioconfig/rb26dett_sounds.dat"
@@ -65,6 +66,7 @@ data_file "AUDIO_SOUNDDATA" "audioconfig/bnkdmcrb26eng_sounds.dat"
 data_file "AUDIO_SOUNDDATA" "audioconfig/f136_sounds.dat"
 data_file "AUDIO_SOUNDDATA" "audioconfig/rx7bpeng_sounds.dat"
 data_file "AUDIO_SOUNDDATA" "audioconfig/aq10nisvr38dett_sounds.dat"
+data_file "AUDIO_SOUNDDATA" "audioconfig/kc42brz14_sounds.dat"
 
 -- khusus amp
 data_file "AUDIO_SYNTHDATA" "audioconfig/rb26dett_amp.dat"
@@ -77,51 +79,31 @@ data_file "AUDIO_SYNTHDATA" "audioconfig/szkgsxryoshimuraeng_amp.dat"
 data_file "AUDIO_SYNTHDATA" "audioconfig/bnkdmcrb26eng_amp.dat"
 data_file "AUDIO_SYNTHDATA" "audioconfig/f136_amp.dat"
 data_file "AUDIO_SYNTHDATA" "audioconfig/rx7bpeng_amp.dat"
+data_file "AUDIO_SYNTHDATA" "audioconfig/kc42brz14_amp.dat"
 
 
 -- khusus sfx
 data_file "AUDIO_WAVEPACK" "sfx/dlc_f136"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_aq10nisvr38dett"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_rx7bpeng"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_bnkdmcrb26eng"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_r35sound"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_szkgsxryoshimuraeng"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_g55"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_nsr2teng"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_rb26dett"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_gallardov10"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_kc61evo10rally"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_ta103ninjah2r"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_bnr34ffeng"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_tagt3flat6"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_aq67merm177"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_tamustanggt50"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_str6sr20"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_lg57mustangtv8"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_lamavgineng"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_a80ffeng"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_brisket"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_aq65subej257"
-
 data_file "AUDIO_WAVEPACK" "sfx/dlc_ta488f154"
+data_file "AUDIO_WAVEPACK" "sfx/dlc_kc42brz14"
