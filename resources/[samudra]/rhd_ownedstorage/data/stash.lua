@@ -1,17 +1,4 @@
 return {
-    ["Gudang_Samudra2"] = {
-        id = "Gudang_Samudra2",
-        label = "Gudang Samudra 2",
-        slots = 100,
-        weight = 550000,
-        owned = true,
-        coords = vec(900.64, 3580.18, 31.39, 267.00),
-        prop = "v_ind_rc_lockeropn",
-        rentalData = {
-            price = 25000,
-            identifier = {["NB07NJZ3"] = "03/10/2025"}
-        },
-    },
     ["Gudang_samudra3"] = {
         id = "Gudang_samudra3",
         label = "Gudang Samudra 3",
@@ -25,19 +12,6 @@ return {
             identifier = {}
         },
     },
-    ["Gudang_Samudra1"] = {
-        id = "Gudang_Samudra1",
-        label = "Gudang Samudra 1",
-        slots = 100,
-        weight = 550000,
-        owned = true,
-        coords = vec(900.84, 3584.09, 31.23, 267.00),
-        prop = "v_ind_rc_lockeropn",
-        rentalData = {
-            price = 25000,
-            identifier = {["S69DN168"] = "31/10/2025", ["DE4VL72N"] = "31/10/2025", ["L67S6UZG"] = "03/10/2025"}
-        },
-    },
     ["gudangbaru"] = {
         id = "gudangbaru",
         label = "Gudang Baru",
@@ -48,6 +22,32 @@ return {
         rentalData = {
             price = 5000,
             identifier = {["928V5582"] = "28/02/2024"}
+        },
+    },
+    ["Gudang_Samudra2"] = {
+        id = "Gudang_Samudra2",
+        label = "Gudang Samudra 2",
+        slots = 100,
+        weight = 550000,
+        owned = true,
+        coords = vec(900.64, 3580.18, 31.39, 267.00),
+        prop = "v_ind_rc_lockeropn",
+        rentalData = {
+            price = 25000,
+            identifier = {["NB07NJZ3"] = "05/10/2025"}
+        },
+    },
+    ["Gudang_Samudra1"] = {
+        id = "Gudang_Samudra1",
+        label = "Gudang Samudra 1",
+        slots = 100,
+        weight = 550000,
+        owned = true,
+        coords = vec(900.84, 3584.09, 31.23, 267.00),
+        prop = "v_ind_rc_lockeropn",
+        rentalData = {
+            price = 25000,
+            identifier = {["DE4VL72N"] = "31/10/2025", ["L67S6UZG"] = "04/10/2025", ["S69DN168"] = "31/10/2025"}
         },
     },
 

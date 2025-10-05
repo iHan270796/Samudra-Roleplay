@@ -44,7 +44,7 @@ Citizen.CreateThread(function()
         }
     })
     exports.ox_target:addBoxZone({
-        coords = vec3(-1395.04, -611.42, 29.56),
+        coords = vec3(-1386.11, -608.2, 30.32),
         size = vec3(1.5, 1.5, 4.0),
         rotation = 35.0,
         debug = false,
@@ -214,7 +214,7 @@ Citizen.CreateThread(function()
         }
     })
     exports.ox_target:addBoxZone({
-        coords = vec3(-1200.02, -903.98, 13.73),
+        coords = vec3(-1383.8, -595.85, 30.32),
         size = vec3(1.5, 1.5, 4.0), -- minZ 11.0, maxZ 15.0
         rotation = 0.0,
         debug = false,
@@ -242,7 +242,7 @@ Citizen.CreateThread(function()
         }
     })
     exports.ox_target:addBoxZone({
-        coords = vec3(-1181.1, -899.4, 13.9),
+        coords = vec3(-1366.83, -612.36, 30.19),
         size = vec3(1.5, 1.5, 4.0), -- minZ 11.0, maxZ 15.0
         rotation = 0.0,
         debug = false,
@@ -265,6 +265,36 @@ Citizen.CreateThread(function()
                     -- end
 
                     TriggerEvent("illenium-appearance:client:OpenClothingRoom")
+                end
+            }
+        }
+    })
+
+    --dj
+    exports.ox_target:addBoxZone({
+        coords = vec3(-1380.22, -629.07, 30.49),
+        size = vec3(1.5, 1.5, 4.0), -- minZ 11.0, maxZ 15.0
+        rotation = 0.0,
+        debug = false,
+        name = 'Bahamas_Dj',
+        options = {
+            {
+                label = 'DJ',
+                icon = 'fas fa-music',
+                onSelect = function()
+                    local player = QBCore.Functions.GetPlayerData()
+
+                    if player.job.name ~= "bahamas" or not player.job.onduty then
+                        lib.notify({description = "You have to be on duty to open the safe!", type = "error"})
+                        return
+                    end
+
+                    -- if not hasWashedHands then
+                    --     lib.notify({description = "Wash your hands first!", type = "error"})
+                    --      return
+                    -- end
+
+                    TriggerEvent("wasabi_boombox:interactStatic", "bahamas_dj", vec3(-1380.22, -629.07, 30.49))
                 end
             }
         }

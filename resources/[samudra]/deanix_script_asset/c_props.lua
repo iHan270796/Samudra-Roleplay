@@ -55,6 +55,18 @@ Config.Props = {
         heading = 41.61,
         freeze = true
     },
+    {
+        model = `v_ind_rc_lockeropn`,
+        coords = vector3(-1383.8, -595.85, 29.32),
+        heading = 153.98,
+        freeze = true
+    },
+    {
+        model = `v_res_tre_fridge`,
+        coords = vector3(-1386.11, -608.2, 29.32),
+        heading = 307.68,
+        freeze = true
+    },
 }
 
 return Config

@@ -8639,14 +8639,14 @@ return {
         type = 'automobile',
         hash = `c63hr`,
     },
-    carry = {
+    acty = {
         name = 'CARRY',
-        brand = 'CR',
-        model = 'carry',
+        brand = 'SUZUKI',
+        model = 'acty',
         price = 27000000,
         category = 'super',
         type = 'automobile',
-        hash = `carry`,
+        hash = `acty`,
     },
 
 }

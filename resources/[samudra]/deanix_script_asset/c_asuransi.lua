@@ -66,6 +66,10 @@ Config.IgnoreVehicles = {
     `trailers`,
     `tr4`,
     `trailers3`,
+
+    --job kuli bangunan
+    `17mov_BuilderCar`,
+    `17mov_Mixer`
 }
 
 Config.SafeZones = {

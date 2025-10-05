@@ -42,7 +42,6 @@ Config = {
     PersistentWalk = true,
     SharedEmotesEnabled = true,
     AdultEmotesDisabled = false,
-    AbusableEmotesDisabled = false,
     AnimalEmotesEnabled = true,
 
     -- Hands Up
@@ -56,7 +55,7 @@ Config = {
     -- Pointing
     PointingEnabled = true,
     PointingKeybindEnabled = true,
-    PointingKeybind = 'B',
+    PointingKeybind = 'B', 
     PointingInCar = false,
     ReplayEmoteAfterPointing = true,
 
@@ -84,11 +83,8 @@ Config = {
     -- Preview Ped : Shows a preview of the emote on the player's ped next to the emote menu. Note that resmon will increase when this when emotes are being previewed.
     PreviewPed = true,
 
-    CheckForUpdates = true,
+    CheckForUpdates = false,
     DebugDisplay = false,
-
-    -- Emote Cooldown in milliseconds. Prevents switching emotes too quickly. If nil, no cooldown is enforced
-    EmoteCooldownMs = nil
 }
 
 Config.KeybindKeys = {

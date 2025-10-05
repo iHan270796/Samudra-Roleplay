@@ -88,6 +88,13 @@ AddEventHandler('wasabi_boombox:interact', function()
     interactBoombox(radio, radioCoords)
 end)
 
+RegisterNetEvent('wasabi_boombox:interactStatic', function(id, coords)
+    local radioId = id or "static_boombox" -- ID unik biar gak bentrok
+    local radioCoords = coords or GetEntityCoords(PlayerPedId())
+
+    interactBoombox(radioId, radioCoords)
+end)
+
 AddEventHandler('wasabi_boombox:savedSongs', function(radio)
     savedSongsMenu(radio)
 end)

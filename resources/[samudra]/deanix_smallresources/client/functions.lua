@@ -134,7 +134,7 @@ interactBoombox = function(radio, radioCoords)
     if not activeRadios[radio].data.playing then
         lib.registerContext({
             id = 'boomboxFirst',
-            title = 'Boombox',
+            title = 'Menu Music',
             options = {
                 {
                     title = 'Play Music',
@@ -156,7 +156,7 @@ interactBoombox = function(radio, radioCoords)
     else
         lib.registerContext({
             id = 'boomboxSecond',
-            title = 'Boombox',
+            title = 'Menu Music',
             options = {
                 {
                     title = 'Change Music',

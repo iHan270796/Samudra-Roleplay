@@ -1,4 +1,3 @@
--- We do this check as we don't want players using these commands due to crashing with escrowed maps.
 local shouldAllow, mapNames = true, {
     'cfx-gabz-mapdata'
 }

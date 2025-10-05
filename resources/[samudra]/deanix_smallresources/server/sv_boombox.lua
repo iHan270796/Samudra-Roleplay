@@ -2,8 +2,8 @@ local Config = require 'c_boombox'
 
 Framework = nil
 
-local Webhook = "https://discord.com/api/webhooks/1391682337296748616/d-jhqw21x3MZWacxILby1WGOfMtXg2H3xpBU93kT98Nad46akhtr-PcIA72avWg38wlQ" -- Put your Discord webhook here to log Play and Saves
-local BotUsername = "Deanix Boombox" -- Name for the Bot
+local Webhook = "https://discord.com/api/webhooks/1423733417853325445/E1ClSbdly-md48uhHJQZdFF3hSO1usD8UV7YbCm-lCQySJcYYjcdVWsoyjge7IXPcnYw" -- Put your Discord webhook here to log Play and Saves
+local BotUsername = "Samudra Boombox" -- Name for the Bot
 
 if GetResourceState('es_extended') == 'started' or GetResourceState('es_extended') == 'starting' then
     Framework = 'ESX'

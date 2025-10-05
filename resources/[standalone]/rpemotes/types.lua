@@ -18,8 +18,8 @@ VehicleRequirement = {
     REQUIRED = 'REQUIRED',
 }
 
----@enum EmoteType
-EmoteType = {
+---@enum Category
+Category = {
     EXPRESSIONS = 'Expressions',
     WALKS = 'Walks',
     SHARED = 'Shared',
@@ -93,7 +93,7 @@ EmoteType = {
 
 ---@class AnimationListConfig
 ---@field Expressions table<string, {[1]: AnimName, [2]: Label?}>
----@field Walks table<string, {[1]: AnimName, [2]: Label?, abusable?: boolean}>
+---@field Walks table<string, {[1]: AnimName, [2]: Label?}>
 ---@field Shared table<string, {[1]: Dictionary, [2]: AnimName, [3]: Label, [4]: AnimName?, AnimationOptions?: AnimationOptions, AnimalEmote?: boolean}>
 ---@field Dances table<string, {[1]: Dictionary, [2]: AnimName, [3]: Label, AnimationOptions?: AnimationOptions}>
 ---@field AnimalEmotes table<string, {[1]: Dictionary, [2]: AnimName, [3]: Label, AnimationOptions?: AnimationOptions, AdultAnimation?: boolean, AnimalEmote?: boolean}>
@@ -115,5 +115,4 @@ EmoteType = {
 ---@field AnimationOptions? AnimationOptions
 ---@field AnimalEmote? boolean
 ---@field AdultAnimation? boolean
----@field abusable? boolean true if the emote or walk style has abuse potential such as letting a player change their movement speed, or move through a wall.
----@field emoteType EmoteType
+---@field category Category

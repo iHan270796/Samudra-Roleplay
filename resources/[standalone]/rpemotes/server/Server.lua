@@ -1,4 +1,4 @@
-RegisterNetEvent("rpemotes:server:requestEmote", function(target, emotename)
+RegisterNetEvent("rpemotes:server:requestEmote", function(target, emotename, etype)
     local source = source
     if not Player(source).state.canEmote then return end
 
@@ -12,7 +12,7 @@ RegisterNetEvent("rpemotes:server:requestEmote", function(target, emotename)
         return
     end
 
-    TriggerClientEvent("rpemotes:client:requestEmote", target, emotename, source)
+    TriggerClientEvent("rpemotes:client:requestEmote", target, emotename, etype, source)
 end)
 
 RegisterNetEvent("rpemotes:server:confirmEmote", function(target, requestedemote, otheremote)
@@ -108,7 +108,7 @@ local function ExtractEmoteProps(format)
     if not success then return nil end
 
     if format == 4 then
-        local emoteTypes = { EmoteType.SHARED, EmoteType.DANCES, EmoteType.ANIMAL_EMOTES, EmoteType.EMOTES, EmoteType.PROP_EMOTES, EmoteType.EXPRESSIONS, EmoteType.WALKS }
+        local emoteTypes = { Category.SHARED, Category.DANCES, Category.ANIMAL_EMOTES, Category.EMOTES, Category.PROP_EMOTES, Category.EXPRESSIONS, Category.WALKS }
         local expressionAndWalkCount = 0
         local otherEmotesCount = 0
 
@@ -117,7 +117,7 @@ local function ExtractEmoteProps(format)
             for _ in pairs(res[emoteType]) do
                 count = count + 1
             end
-            if emoteType == EmoteType.EXPRESSIONS or emoteType == EmoteType.WALKS then
+            if emoteType == Category.EXPRESSIONS or emoteType == Category.WALKS then
                 expressionAndWalkCount = expressionAndWalkCount + count
             else
                 otherEmotesCount = otherEmotesCount + count

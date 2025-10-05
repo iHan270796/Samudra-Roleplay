@@ -153,8 +153,7 @@ RP.Walks = {
         "Butch 3"
     },
     ["Bigfoot"] = {
-        "move_characters@orleans@core@",
-        abusable = true,
+        "move_characters@orleans@core@"
     },
     ["Buzzed"] = {
         "move_m@buzzed"
@@ -249,26 +248,26 @@ RP.Walks = {
     ["Dreyfuss"] = {
         "move_dreyfuss"
     },
-    ["Drunk"] = {
+    ["DrunkWalk"] = {
         "move_m@drunk@a"
     },
-    ["Drunk2"] = {
+    ["DrunkWalk2"] = {
         "move_m@buzzed",
         "Drunk 2 - Buzzed"
     },
-    ["Drunk3"] = {
+    ["DrunkWalk3"] = {
         "move_m@drunk@moderatedrunk",
         "Drunk 3 - Moderate"
     },
-    ["Drunk4"] = {
+    ["DrunkWalk4"] = {
         "move_m@drunk@moderatedrunk_head_up",
         "Drunk 4 - Moderate 2"
     },
-    ["Drunk5"] = {
+    ["DrunkWalk5"] = {
         "move_m@drunk@slightlydrunk",
         "Drunk 5 - Slightly Drunk"
     },
-    ["Drunk6"] = {
+    ["DrunkWalk6"] = {
         "move_m@drunk@verydrunk",
         "Drunk 6 - Very Drunk"
     },
@@ -307,28 +306,23 @@ RP.Walks = {
         "Fire 3"
     },
     ["Flee"] = {
-        "move_f@flee@a",
-        abusable = true,
+        "move_f@flee@a"
     },
     ["Flee2"] = {
         "move_f@flee@c",
-        "Flee 2",
-        abusable = true,
+        "Flee 2"
     },
     ["Flee3"] = {
         "move_m@flee@a",
-        "Flee 3",
-        abusable = true,
+        "Flee 3"
     },
     ["Flee4"] = {
         "move_m@flee@b",
-        "Flee 4",
-        abusable = true,
+        "Flee 4"
     },
     ["Flee5"] = {
         "move_m@flee@c",
-        "Flee 5",
-        abusable = true,
+        "Flee 5"
     },
     ["Floyd"] = {
         "move_characters@floyd"
@@ -440,24 +434,21 @@ RP.Walks = {
     },
     ["Hurry"] = {
         "move_m@hurry@a",
-        "Hurry Male",
-        abusable = true,
+        "Hurry Male"
     },
     ["Hurry2"] = {
         "move_f@hurry@a",
-        "Hurry Female",
-        abusable = true,
+        "Hurry Female"
     },
     ["Hurry3"] = {
         "move_f@hurry@b",
-        "Hurry Female 2",
-        abusable = true,
+        "Hurry Female 2"
     },
-    ["Injured"] = {
+    ["InjuredWalk"] = {
         "move_m@injured",
         "Injured"
     },
-    ["Injured2"] = {
+    ["InjuredWalk2"] = {
         "move_f@injured",
         "Injured 2 - Female"
     },
@@ -6665,7 +6656,7 @@ RP.Emotes = {
             onFootFlag = AnimFlag.MOVING,
         }
     },
-    ["handshake"] = {
+    ["solo_handshake"] = {
         "mp_ped_interaction",
         "handshake_guy_a",
         "Handshake",
@@ -6674,7 +6665,7 @@ RP.Emotes = {
             EmoteDuration = 3000
         }
     },
-    ["handshake2"] = {
+    ["solo_handshake2"] = {
         "mp_ped_interaction",
         "handshake_guy_b",
         "Handshake 2",
@@ -7940,7 +7931,7 @@ RP.Emotes = {
             onFootFlag = AnimFlag.MOVING,
         }
     },
-    ["stickup"] = {
+    ["solo_stickup"] = {
         "random@countryside_gang_fight",
         "biker_02_stickup_loop",
         "Stick Up",
@@ -8573,7 +8564,7 @@ RP.Emotes = {
             onFootFlag = AnimFlag.MOVING,
         }
     },
-    ["slap"] = {
+    ["solo_slap"] = {
         "melee@unarmed@streamed_variations",
         "plyr_takedown_front_slap",
         "Slap",
@@ -8582,7 +8573,7 @@ RP.Emotes = {
             EmoteDuration = 2000
         }
     },
-    ["headbutt"] = {
+    ["solo_headbutt"] = {
         "melee@unarmed@streamed_variations",
         "plyr_takedown_front_headbutt",
         "Headbutt"
@@ -11470,7 +11461,7 @@ RP.PropEmotes = {
         "ped_a_enter_loop",
         "Syringe",
         AnimationOptions = {
-            Prop = "prop_syringe_01",
+            Prop = "prop_single_rose",
             PropBone = 18905,
             PropPlacement = {
                 0.11,
@@ -16437,7 +16428,7 @@ RP.PropEmotes = {
                 0.0110,
               -97.9442,
                 3.7058,
-              -23.2367
+                -23.2367
 				},
             onFootFlag = AnimFlag.LOOP,
 
@@ -16456,7 +16447,7 @@ RP.PropEmotes = {
                 0.0110,
               -97.9442,
                 3.7058,
-              -23.2367
+                -23.2367
 				},
             onFootFlag = AnimFlag.MOVING,
         }
@@ -16473,26 +16464,8 @@ RP.PropEmotes = {
                 0.0230,
                -0.0230,
               -90.0000,
-                0.0000,
+                0.0,
               -59.9999
-				},
-            onFootFlag = AnimFlag.MOVING,
-        }
-    },
-    ["wt5"] = {
-        "missfbi3_steve_phone",
-        "steve_phone_idle_a",
-        "Walkie Talkie 5",
-        AnimationOptions = {
-            Prop = "prop_cs_hand_radio",
-            PropBone = 18905,
-            PropPlacement = {
-                0.1300,
-                0.0500,
-                0.0100,
-             -113.0000,
-                0.0000,
-              -60.0000
 				},
             onFootFlag = AnimFlag.MOVING,
         }
