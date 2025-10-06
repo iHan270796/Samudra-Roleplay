@@ -1,6 +1,6 @@
 Config = Config or {}
 
-Config.CityName = "Los Santos" -- The name that's being used in the weather app etc.
+Config.CityName = "Samudra" -- The name that's being used in the weather app etc.
 Config.RealTime = true         -- if true, the time will use real life time depending on where the user lives, if false, the time will be the ingame time.
 
 Config.Weather = {}

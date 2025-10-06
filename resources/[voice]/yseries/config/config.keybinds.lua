@@ -6,11 +6,11 @@ Config.KeyBinds = {
     -- Any new player that joins the server will have the new keybind applied.
     Open = {
         Bind = "M",
-        Description = "Open your phone"
+        Description = "Buka Handphone"
     },
     FlipOrFoldPhone = {
         Bind = "SLASH", -- RIGHT / - https://docs.fivem.net/docs/game-references/input-mapper-parameter-ids/keyboard/
-        Description = "Toggle flip/fold(close/open) phone"
+        Description = "Toggle Flip atau Fold "
     },
     Focus = {
         Bind = 'LMENU',                 -- Left alt - https://docs.fivem.net/docs/game-references/controls/#controls -- use control index

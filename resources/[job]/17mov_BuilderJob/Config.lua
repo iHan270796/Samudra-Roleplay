@@ -1,8 +1,8 @@
 Config = {}
 
-Config.useModernUI = false               -- In March 2023 the jobs have passed huge rework, and the UI has been changed. Set it to false, to use OLD no longer supported UI.
-Config.splitReward = true          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
-Config.UseTarget = false                -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
+Config.useModernUI = true               -- In March 2023 the jobs have passed huge rework, and the UI has been changed. Set it to false, to use OLD no longer supported UI.
+Config.splitReward = false          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
+Config.UseTarget = true                -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
 Config.UseBuiltInNotifications = false   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used. Avalible only with modern UI
 Config.RequiredJob = "none"             -- Set to "none" if you dont want using jobs. If you are using target, you have to set "job" parameter inside every export in target.lua
 Config.RequireJobAlsoForFriends = true          -- If it's false, then only host needs to have the job, if it's true then everybody from group needs to have the Config.RequiredJob
@@ -10,7 +10,7 @@ Config.RequireOneFriendMinimum = false  -- Set to true if you want to force play
 Config.OnePercentWorth = 3500            -- Means that 1% progress will reward players with $100
 -- ^^ Here you can change payout. Tags for search tool: reward, payout, payment, money, cash, bank
 
-Config.letBossSplitReward = true                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount. Avalible only in modern UI
+Config.letBossSplitReward = false                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount. Avalible only in modern UI
 Config.multiplyRewardWhileWorkingInGroup = true     -- If it's false, then reward will stay by default. For example $1000 for completing whole job. If you'll set it to true, then the payout will depend on how many players is there in the group. For example, if for full job there's $1000, then if player will work in 4 member group, the reward will be $4000. (baseReward * partyCount)
 
 Config.EnableVehicleTeleporting = true          -- If its true, then the script will teleport the host to the company vehicle. If its false, then the company vehicle will apeear, but the whole squad need to go enter the car manually
@@ -75,10 +75,10 @@ Config.MarkerSettings = {   -- used only when Config.UseTarget = false. Colors o
 }
 
 Config.ArrowMarkerColor = {
-    r = 194,
-    g = 194,
-    b = 194,
-    a = 200,
+    r = 2,
+    g = 36,
+    b = 138,
+    a = 949,
 }
 
 Config.Locations = {       -- Here u can change all of the base job locations.
@@ -87,7 +87,6 @@ Config.Locations = {       -- Here u can change all of the base job locations.
             vector3(926.47, -1560.25, 30.74),
         },
         CurrentAction = 'open_dutyToggle',
-        -- CurrentActionMsg = 'Press ~INPUT_CONTEXT~ to ~y~start/finish~s~ work.',
         CurrentActionMsg = 'Tekan [E] Untuk Mulai Pekerjaan.',
         type = 'duty',
         scale = {x = 1.0, y = 1.0, z = 1.0}
@@ -97,7 +96,6 @@ Config.Locations = {       -- Here u can change all of the base job locations.
             vector3(918.3, -1564.3, 30.76),
         },
         CurrentAction = 'finish_job',
-        -- CurrentActionMsg = 'Press ~INPUT_CONTEXT~ to ~y~end ~s~working.',
         CurrentActionMsg = 'Tekan [E] Untuk Finish Pekerjaan.',
         scale = {x = 3.0, y = 3.0, z = 3.0}
     },
@@ -155,14 +153,14 @@ Config.Lang = {
     ["cantInvite"] = "To be able to invite more people, you must first finish the job",
     ["inviteSent"] = "Invite Terkirim!",
     ["spawnpointOccupied"] = "The car's or mixer truck spawn site is occupied",
-    ["pipesNotReady"] = "Before pouring the concrete, first you have to install the pipes",
+    ["pipesNotReady"] = "Sebelum menuangkan beton, Anda harus memasang pipa terlebih dahulu",
     ["clickToPour"] = "untuk menuangkan beton",
     ["installPipe"] = "Pasang Pipa",
-    ["pickupBlock"] = "Ambil Balok",
+    ["pickupBlock"] = "Ambil Blok Dinding",
     ["tutorialAfterMixerPickup"] = "Anda baru saja mengambil molen beton yang ditunjuk atasan Anda. Bawa ke lokasi konstruksi, lalu tuangkan beton di area yang ditentukan. Lokasi Konstruksi ditandai pada GPS",
     ["startingTutorial"] = "Selamat datang di Samudra Bangunan. Berbagai tugas menanti Anda di lokasi, mulai dari mengelas, membangun dinding, membuat saluran air, atau menuangkan beton. Jika Anda bekerja dalam kelompok, Anda sekarang harus berpencar, satu orang harus diturunkan di titik penjemputan pengaduk beton dan kemudian mengangkut pengaduk beton tersebut ke lokasi konstruksi. Setiap aktivitas, akan dijelaskan saat pertama kali Anda mendekatinya. Anda memiliki lokasi tugas yang ditandai di peta. Jika Anda bekerja sendiri, maka Anda harus menyelesaikan setiap tugas sendiri, jika Anda bekerja dalam kelompok - Anda memutuskan bagaimana Anda ingin membaginya. Anda tidak harus menyelesaikan semua tugas, Anda dapat menyelesaikannya kapan pun Anda mau, dan pembayaran Anda tergantung pada berapa % tugas yang Anda kerjakan. Semoga Anda beruntung!",
     ["installBlock"] = "Pasang Dinding",
-    ["tutorialWallBuilding"] = "Anda berada di sebelah bingkai dinding, tugas Anda adalah membangunnya menggunakan balok Dinding. Balok Dinding berada di dekat rangka, dan ditandai di GPS. Berjalanlah ke tumpukan balok, ambil satu, lalu tempelkan ke dinding",
+    ["tutorialWallBuilding"] = "Anda berada di sebelah bingkai dinding, tugas Anda adalah membangunnya menggunakan blok Dinding. Blok Dinding berada di dekat rangka, dan ditandai di GPS. Berjalanlah ke tumpukan blok, ambil satu, lalu tempelkan ke dinding",
     ["tutorialAboutPipes"] = "Anda berada di sebelah lubang yang menghadap pipa saluran pembuangan. Tugas Anda adalah memasang pipa di tempat yang tepat. Setelah memasang pipa, Anda harus menuangkan beton ke atas lubang menggunakan melon beton.",
     ["tutorialWelding"] = "Anda berada di sebelah tempat bos menyuruh Anda mengelas sesuatu. Pekerjaannya sangat sederhana, tidak memerlukan penjelasan lebih lanjut",
     ["startWelding"] = "Mulai Pengelasan",
@@ -211,12 +209,12 @@ Config.JobBlipsStyle = {
     },
     ["installPipe"] = {
         color = 47,
-        string = "[Kuli] Install pipe",
+        string = "[Kuli] Pasang Pipa",
         sprite = nil,
     },
     ["blockPickup"] = {
         color = 47,
-        string = "~o~[Kuli]~s~ Pengambilan Balok Dinding",
+        string = "~o~[Kuli]~s~ Pengambilan Blok Dinding",
         sprite = 655,
     },
     ["buildWall"] = {
@@ -720,11 +718,11 @@ Config.JobLocations = {
             -- === IMPORTANT ===
 
             [1] = {
-                blipName = "Install Sink",
+                blipName = "Pasang Sink",
                 blipSprite = 306,
                 blipColor = 1,
 
-                drawingText = "Install Sink",                                        -- This string will be drawed above coords in this Style: [E] | *text*
+                drawingText = "Pasang Sink",                                        -- This string will be drawed above coords in this Style: [E] | *text*
                 coordsToDrawText = vector3(-1096.68, -1660.53, 10.18),                 -- On this coords the text will be drawed
                 pedInteractionCoords = vector4(-1096.68, -1660.53, 9.18, 220.11),      -- After hitting E in the text, ped coords will be set to this
                 animDict = "anim@amb@clubhouse@tutorial@bkr_tut_ig3@",              -- Dict of anim that ped will play
@@ -738,11 +736,11 @@ Config.JobLocations = {
                 propSpawnName = "prop_ff_sink_02",                                 -- what prop name we should spawn? :D
             },
             [2] = {
-                blipName = "Install Fusebox",
+                blipName = "Pasang Fusebox",
                 blipSprite = 306,
                 blipColor = 1,
 
-                drawingText = "Install Fusebox",                                        -- This string will be drawed above coords in this Style: [E] | *text*
+                drawingText = "Pasang Fusebox",                                        -- This string will be drawed above coords in this Style: [E] | *text*
                 coordsToDrawText = vector3(-1099.74, -1658.63, 4.45),                 -- On this coords the text will be drawed
                 pedInteractionCoords = vector4(-1099.86, -1658.5, 3.45, 213.56),      -- After hitting E in the text, ped coords will be set to this
                 animDict = "gestures@f@standing@casual",              -- Dict of anim that ped will play
@@ -944,11 +942,11 @@ Config.JobLocations = {
             -- === IMPORTANT ===
 
             [1] = {
-                blipName = "Install Switch",
+                blipName = "Pasang Switch",
                 blipSprite = 306,
                 blipColor = 1,
 
-                drawingText = "Install Switch",                                     -- This string will be drawed above coords in this Style: [E] | *text*
+                drawingText = "Pasang Switch",                                     -- This string will be drawed above coords in this Style: [E] | *text*
                 coordsToDrawText = vector3(-1149.59, -1413.49, 4.82),               -- On this coords the text will be drawed
                 pedInteractionCoords = vector4(-1149.59, -1413.49, 3.82, 210.74),   -- After hitting E in the text, ped coords will be set to this
                 animDict = "anim@amb@clubhouse@tutorial@bkr_tut_ig3@",              -- Dict of anim that ped will play

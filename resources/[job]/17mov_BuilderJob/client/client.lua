@@ -330,14 +330,14 @@ function StartMarkers(playerData)
     if markersRunning then
         return
     end
-    
+
     if Config.RequiredJob ~= "none" then
         if playerData.job.name ~= Config.RequiredJob then
             markersRunning = false
             return
         end
     end
-    
+
     markersRunning = true
     
     if Config.UseTarget then
@@ -404,6 +404,11 @@ function StartMarkers(playerData)
                 end
                 
                 if isNearMarker and not HasAlreadyEnteredMarker then
+                    HasAlreadyEnteredMarker = true
+                    LastStation = currentStation
+                    LastPart = currentPart
+                    LastPartNum = currentPartNum
+                    TriggerEvent("17mov_construction:EnteredMarker", currentPart)
                 elseif isNearMarker and (LastStation ~= currentStation or LastPart ~= currentPart or LastPartNum ~= currentPartNum) then
                     if LastStation and LastPart and LastPartNum then
                         if not (LastStation == currentStation and LastPart == currentPart and LastPartNum == currentPartNum) then
@@ -741,32 +746,14 @@ AddEventHandler("esx:setJob", function(job)
     end
 end)
 
--- AddEventHandler("17mov_construction:EnteredMarker", function(markerName)
---     CurrentAction = Config.Locations[markerName].CurrentAction
---     CurrentActionMsg = Config.Locations[markerName].CurrentActionMsg
---     CurrentActionStation = markerName
-    
---     for i = 0, 500 do
---         Citizen.Wait(0)
---         ShowHelpNotification(CurrentActionMsg)
---     end
--- end)
-
--- AddEventHandler("17mov_construction:ExitedMarker", function(station)
---     CurrentAction = nil
---     CurrentActionMsg = nil
---     CurrentActionStation = nil
--- end)
 AddEventHandler("17mov_construction:EnteredMarker", function(markerName)
     CurrentAction = Config.Locations[markerName].CurrentAction
     CurrentActionMsg = Config.Locations[markerName].CurrentActionMsg
     CurrentActionStation = markerName
-
-    -- tampilkan ox_lib textUI
     if CurrentActionMsg then
         lib.showTextUI(CurrentActionMsg, {
             position = "left-center",
-            icon = "fa-solid fa-hard-hat", -- optional fontawesome icon
+            icon = "fa-solid fa-hard-hat",
             style = {
                 borderRadius = 8,
                 color = "white",
@@ -781,8 +768,6 @@ AddEventHandler("17mov_construction:ExitedMarker", function(station)
     CurrentAction = nil
     CurrentActionMsg = nil
     CurrentActionStation = nil
-
-    -- sembunyikan ox_lib textUI
     lib.hideTextUI()
 end)
 
@@ -1743,6 +1728,13 @@ AddEventHandler("17mov_construction:StartJob_cl", function(myId, hostId, jobInde
                 for k, wallData in pairs(jobData.walls) do
                     if IsThereFreeSlotInWall(wallData.blocksInFrameLocations) then
                         local distance = #(vec3(wallData.frame.interactionCoords.x, wallData.frame.interactionCoords.y, wallData.frame.interactionCoords.z) - playerCoords)
+
+                        if distance < 10.0 then
+                            waitTime = 0
+                            DrawMarker(20, wallData.frame.interactionCoords.x, wallData.frame.interactionCoords.y, wallData.frame.interactionCoords.z + 0.5, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 0.45, 0.45, 0.45,
+                                Config.ArrowMarkerColor.r, Config.ArrowMarkerColor.g, Config.ArrowMarkerColor.b, Config.ArrowMarkerColor.a,
+                                true, true, 2, false, false, false, false)
+                        end
                         
                         if distance < 7.0 then
                             waitTime = 0
