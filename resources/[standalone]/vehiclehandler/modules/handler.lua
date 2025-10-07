@@ -10,8 +10,18 @@ local BONES <const> = {
             'wheel_rr'
 }
 
+---@class privateHandlerData
+---@field active boolean
+---@field limited boolean
+---@field control boolean
+---@field class number | false
+---@field model number | false
+---@field data table
+---@field oxfuel boolean
+---@field electric boolean
+
 ---@class Handler : OxClass
----@field private private { active: boolean, limited: boolean, control: boolean, class: number | false, data: table, oxfuel: boolean, electric: boolean }
+---@field private private privateHandlerData
 ---@diagnostic disable-next-line: assign-type-mismatch
 local Handler = lib.class('vehiclehandler')
 
@@ -20,27 +30,38 @@ function Handler:constructor()
     self:setLimited(false)
     self:setControl(true)
     self.private.oxfuel = GetResourceState('ox_fuel') == 'started' and true or false
-    self.private.electric = false
 end
 
+---@return boolean active
 function Handler:isActive() return self.private.active end
 
+---@return boolean limited
 function Handler:isLimited() return self.private.limited end
 
+---@return boolean control
 function Handler:canControl() return self.private.control end
 
+---@return number | false class
 function Handler:getClass() return self.private.class end
 
+---@return number | false class
+function Handler:getModel() return self.private.model end
+
+---@return boolean oxfuel
 function Handler:isFuelOx() return self.private.oxfuel end
 
+---@return boolean electric
 function Handler:isElectric() return self.private.electric end
 
+---@param state string
+---@return number | nil
 function Handler:getData(state)
     if not state or type(state) ~= 'string' then return end
 
     return self.private.data[state]
 end
 
+---@return boolean isValid
 function Handler:isValid()
     if not cache.ped then return false end
     if cache.vehicle or IsPedInAnyPlane(cache.ped) then return true end
@@ -48,6 +69,9 @@ function Handler:isValid()
     return false
 end
 
+---@param vehicle number
+---@param coords vector3
+---@return boolean isTireBroken
 function Handler:isTireBroken(vehicle, coords)
     if not vehicle or not coords then return false end
 
@@ -68,33 +92,40 @@ function Handler:isTireBroken(vehicle, coords)
     return false
 end
 
+---@param state boolean
 function Handler:setActive(state)
     if state ~= nil and type(state) == 'boolean' then
         self.private.active = state
 
         if state then
             self.private.class = GetVehicleClass(cache.vehicle) or false
-            self.private.electric = GetIsVehicleElectric(GetEntityModel(cache.vehicle))
+            self.private.model = GetEntityModel(cache.vehicle)
+            self.private.electric = GetIsVehicleElectric(self.private.model)
         else
             self.private.class = false
+            self.private.model = false
             self.private.electric = false
             self.private.data = {['engine'] = 0, ['body'] = 0, ['speed'] = 0}
         end
     end
 end
 
+---@param state boolean
 function Handler:setLimited(state)
     if state ~= nil and type(state) == 'boolean' then
         self.private.limited = state
     end
 end
 
+---@param state boolean
 function Handler:setControl(state)
     if state ~= nil and type(state) == 'boolean' then
         self.private.control = state
     end
 end
 
+---@param data table<string, number>[]
+---@return table<string, number>[] | nil, table<string, number>[] | nil, table<string, number>[] | nil data
 function Handler:setData(data)
     if not data then return end
 
@@ -103,10 +134,12 @@ function Handler:setData(data)
     return data['engine'], data['body'], data['speed']
 end
 
+---@param vehicle number
+---@return boolean | nil, vector3 | nil, number | nil, number | nil enginedata
 function Handler:getEngineData(vehicle)
     if not vehicle or vehicle == 0 then return end
 
-    local backengine = Settings.backengine[GetEntityModel(vehicle)]
+    local backengine = Settings.backengine[self.private.model]
     local distance = backengine and -2.5 or 2.5
     local index = backengine and 5 or 4
     local offset = GetOffsetFromEntityInWorldCoords(vehicle, 0, distance, 0)
@@ -115,6 +148,8 @@ function Handler:getEngineData(vehicle)
     return backengine, offset, index, engine
 end
 
+---@param vehicle number
+---@param index number
 function Handler:breakTire(vehicle, index)
     if vehicle == nil or type(vehicle) ~= 'number' then return end
     if index == nil or type(index) ~= 'number' then return end
@@ -132,6 +167,9 @@ function Handler:breakTire(vehicle, index)
     end
 end
 
+---@param vehicle number
+---@param coords vector3
+---@return boolean success
 function Handler:fixTire(vehicle, coords)
     local found = self:isTireBroken(vehicle, coords)
     if not found then return false end
@@ -143,7 +181,7 @@ function Handler:fixTire(vehicle, coords)
 
     LocalPlayer.state:set("inv_busy", true, true)
 
-    if lib.progressBar(Progress['tirekit']) then
+    if lib.progressCircle(Progress['tirekit']) then
         success = true
 
         lib.callback('vehiclehandler:sync', false, function()
@@ -159,6 +197,10 @@ function Handler:fixTire(vehicle, coords)
     return success
 end
 
+---@param vehicle number
+---@param coords vector3
+---@param fixtype string
+---@return boolean success
 function Handler:fixVehicle(vehicle, coords, fixtype)
     local backengine, offset, hoodindex, engine = self:getEngineData(vehicle)
 
@@ -174,7 +216,7 @@ function Handler:fixVehicle(vehicle, coords, fixtype)
                 end)
             end
 
-            if lib.progressBar(Progress[fixtype]) then
+            if lib.progressCircle(Progress[fixtype]) then
                 success = true
             end
 
@@ -224,6 +266,8 @@ function Handler:fixVehicle(vehicle, coords, fixtype)
     return false
 end
 
+---@param fixtype string
+---@return boolean | nil success
 function Handler:basicfix(fixtype)
     if not cache.ped then return false end
     if not fixtype or type(fixtype) ~= 'string' then return false end
@@ -239,6 +283,7 @@ function Handler:basicfix(fixtype)
     end
 end
 
+---@return boolean success
 function Handler:basicwash()
     if not cache.ped then return false end
 
@@ -253,7 +298,7 @@ function Handler:basicwash()
     LocalPlayer.state:set("inv_busy", true, true)
     TaskStartScenarioInPlace(cache.ped, "WORLD_HUMAN_MAID_CLEAN", 0, true)
 
-    if lib.progressBar(Progress['cleankit']) then
+    if lib.progressCircle(Progress['cleankit']) then
         success = true
 
         lib.callback('vehiclehandler:sync', false, function()
@@ -270,6 +315,7 @@ function Handler:basicwash()
     return success
 end
 
+---@return boolean success
 function Handler:adminfix()
     if not self:isValid() then return false end
 
@@ -291,6 +337,7 @@ function Handler:adminfix()
     return true
 end
 
+---@return boolean success
 function Handler:adminwash()
     if not self:isValid() then return false end
 
@@ -302,6 +349,8 @@ function Handler:adminwash()
     return true
 end
 
+---@param newlevel number
+---@return boolean success
 function Handler:adminfuel(newlevel)
     if not self:isValid() then return false end
     if not newlevel then return false end

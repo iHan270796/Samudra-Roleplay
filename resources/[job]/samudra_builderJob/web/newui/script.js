@@ -96,9 +96,9 @@ async function SetHost(name, playerId, percentage) {
     }
 
     oldHostId = playerId
-    let mainMenuTemplate = `<div id="myTeamHostPlayerId${playerId}" style="transform: translateX(-106%)" class="box"><div class="icon"><img src="newui/assets/hostIcon.svg" height="50px"><img src="newui/assets/strokes.svg" height="40px"></div><div class="content"><div class="topic">Nama Boss</div><div class="value">${name}</div></div></div>`
+    let mainMenuTemplate = `<div id="myTeamHostPlayerId${playerId}" style="transform: translateX(-106%)" class="box"><div class="icon"><img src="newui/assets/hostIcon.svg" height="50px"><img src="newui/assets/strokes.svg" height="40px"></div><div class="content"><div class="topic">Boss Name</div><div class="value">${name}</div></div></div>`
 
-    let manageRewardTemplate = `<div id="manageRewardHostPlayerId${playerId}" style="transform: translateX(-106%)" class="box"><div class="icon"><img src="newui/assets/hostIcon.svg" height="50px"><img src="newui/assets/strokes.svg" height="40px"></div><div class="content"><div class="topic">Nama Boss</div><div class="value">${name}</div></div><input type="number" class="boxInput" id="rewardInput${playerId}" value=${percentage} lastVal=${percentage}></div>`
+    let manageRewardTemplate = `<div id="manageRewardHostPlayerId${playerId}" style="transform: translateX(-106%)" class="box"><div class="icon"><img src="newui/assets/hostIcon.svg" height="50px"><img src="newui/assets/strokes.svg" height="40px"></div><div class="content"><div class="topic">Boss Name</div><div class="value">${name}</div></div><input type="number" class="boxInput" id="rewardInput${playerId}" value=${percentage} lastVal=${percentage}></div>`
     
     $(".myTeam").prepend(mainMenuTemplate)
     $(".teamRewards").prepend(manageRewardTemplate)
@@ -364,8 +364,8 @@ window.addEventListener('message', function (event) {
             $("#startJob").fadeIn(250)
         }
         $("#counter").fadeOut(250)
-        $(".header .bgText").text("KULI BANGUNAN")
-        $(".header .text").text("KULI BANGUNAN")
+        $(".header .bgText").text("BUILDER LOBBY")
+        $(".header .text").text("BUILDER LOBBY")
         $("#inviteScreen").fadeOut(250)
         $("#warningScreen").fadeOut(250)
         $("#tutorialScreen").fadeOut(250)

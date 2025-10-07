@@ -2,6 +2,7 @@ return {
     ['cleankit'] = {
         label = locale('progress.cleankit'),
         duration = 15000,
+        position = 'bottom',
         useWhileDead = false,
         canCancel = true,
         disable = {
@@ -14,6 +15,7 @@ return {
     ['tirekit'] = {
         label = locale('progress.tirekit'),
         duration = 15000,
+        position = 'bottom',
         useWhileDead = false,
         canCancel = true,
         disable = {
@@ -31,6 +33,7 @@ return {
     ['smallkit'] = {
         label = locale('progress.smallkit'),
         duration = 20000,
+        position = 'bottom',
         useWhileDead = false,
         canCancel = true,
         disable = {
@@ -47,6 +50,7 @@ return {
     ['bigkit'] = {
         label = locale('progress.bigkit'),
         duration = 30000,
+        position = 'bottom',
         useWhileDead = false,
         canCancel = true,
         disable = {

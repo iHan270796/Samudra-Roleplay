@@ -25,7 +25,7 @@ function SpawnStartingPed()
             {
                 event = "multiplayerConstruction:OpenMainMenu",
                 icon = "fa-solid fa-handshake-simple",
-                label = "Mulai Bekerja",
+                label = "Mulai Kerja",
                 -- job = "RequiredJob",
                 canInteract = function(entity)
                     return #(GetEntityCoords(PlayerPedId()) - vec3(Config.Locations.DutyToggle.Coords[1].x, Config.Locations.DutyToggle.Coords[1].y, Config.Locations.DutyToggle.Coords[1].z)) < 5.0

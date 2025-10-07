@@ -11,6 +11,7 @@ shared_scripts {
     'c_peds.lua',
     'c_boombox.lua',
     'c_bossgang.lua',
+    'c_duduk.lua',
 }
 
 client_scripts {

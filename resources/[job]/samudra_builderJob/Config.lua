@@ -1,13 +1,13 @@
 Config = {}
 
-Config.useModernUI = true               -- In March 2023 the jobs have passed huge rework, and the UI has been changed. Set it to false, to use OLD no longer supported UI.
-Config.splitReward = false          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
+Config.useModernUI = false               -- In March 2023 the jobs have passed huge rework, and the UI has been changed. Set it to false, to use OLD no longer supported UI.
+Config.splitReward = true          -- This option work's only when useModernUI is false. If this option is true, the payout is: (Config.OnePercentWorth * Progress ) / PartyCount, if false then: (Config.OnePercentWorth * Progress)
 Config.UseTarget = true                -- Change it to true if you want to use a target system. All setings about the target system are under target.lua file.
 Config.UseBuiltInNotifications = false   -- Set to false if you want to use ur framework notification style. Otherwise, the built in modern notifications will be used. Avalible only with modern UI
 Config.RequiredJob = "none"             -- Set to "none" if you dont want using jobs. If you are using target, you have to set "job" parameter inside every export in target.lua
 Config.RequireJobAlsoForFriends = true          -- If it's false, then only host needs to have the job, if it's true then everybody from group needs to have the Config.RequiredJob
 Config.RequireOneFriendMinimum = false  -- Set to true if you want to force players to create teams
-Config.OnePercentWorth = 3500            -- Means that 1% progress will reward players with $100
+Config.OnePercentWorth = 3200            -- Means that 1% progress will reward players with $100
 -- ^^ Here you can change payout. Tags for search tool: reward, payout, payment, money, cash, bank
 
 Config.letBossSplitReward = false                    -- If it's true, then boss can manage whole party rewards percent in menu. If you'll set it to false, then everybody will get same amount. Avalible only in modern UI
@@ -158,7 +158,7 @@ Config.Lang = {
     ["installPipe"] = "Pasang Pipa",
     ["pickupBlock"] = "Ambil Blok Dinding",
     ["tutorialAfterMixerPickup"] = "Anda baru saja mengambil molen beton yang ditunjuk atasan Anda. Bawa ke lokasi konstruksi, lalu tuangkan beton di area yang ditentukan. Lokasi Konstruksi ditandai pada GPS",
-    ["startingTutorial"] = "Selamat datang di Samudra Bangunan. Berbagai tugas menanti Anda di lokasi, mulai dari mengelas, membangun dinding, membuat saluran air, atau menuangkan beton. Jika Anda bekerja dalam kelompok, Anda sekarang harus berpencar, satu orang harus diturunkan di titik penjemputan pengaduk beton dan kemudian mengangkut pengaduk beton tersebut ke lokasi konstruksi. Setiap aktivitas, akan dijelaskan saat pertama kali Anda mendekatinya. Anda memiliki lokasi tugas yang ditandai di peta. Jika Anda bekerja sendiri, maka Anda harus menyelesaikan setiap tugas sendiri, jika Anda bekerja dalam kelompok - Anda memutuskan bagaimana Anda ingin membaginya. Anda tidak harus menyelesaikan semua tugas, Anda dapat menyelesaikannya kapan pun Anda mau, dan pembayaran Anda tergantung pada berapa % tugas yang Anda kerjakan. Semoga Anda beruntung!",
+    ["startingTutorial"] = "Selamat datang di 17mov Bangunan. Berbagai tugas menanti Anda di lokasi, mulai dari mengelas, membangun dinding, membuat saluran air, atau menuangkan beton. Jika Anda bekerja dalam kelompok, Anda sekarang harus berpencar, satu orang harus diturunkan di titik penjemputan pengaduk beton dan kemudian mengangkut pengaduk beton tersebut ke lokasi konstruksi. Setiap aktivitas, akan dijelaskan saat pertama kali Anda mendekatinya. Anda memiliki lokasi tugas yang ditandai di peta. Jika Anda bekerja sendiri, maka Anda harus menyelesaikan setiap tugas sendiri, jika Anda bekerja dalam kelompok - Anda memutuskan bagaimana Anda ingin membaginya. Anda tidak harus menyelesaikan semua tugas, Anda dapat menyelesaikannya kapan pun Anda mau, dan pembayaran Anda tergantung pada berapa % tugas yang Anda kerjakan. Semoga Anda beruntung!",
     ["installBlock"] = "Pasang Dinding",
     ["tutorialWallBuilding"] = "Anda berada di sebelah bingkai dinding, tugas Anda adalah membangunnya menggunakan blok Dinding. Blok Dinding berada di dekat rangka, dan ditandai di GPS. Berjalanlah ke tumpukan blok, ambil satu, lalu tempelkan ke dinding",
     ["tutorialAboutPipes"] = "Anda berada di sebelah lubang yang menghadap pipa saluran pembuangan. Tugas Anda adalah memasang pipa di tempat yang tepat. Setelah memasang pipa, Anda harus menuangkan beton ke atas lubang menggunakan melon beton.",

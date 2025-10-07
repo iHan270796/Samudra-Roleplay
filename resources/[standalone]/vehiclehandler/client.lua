@@ -6,6 +6,7 @@ local Handler = require 'modules.handler'
 local Settings = lib.load('data.vehicle')
 local Units = Settings.units == 'mph' and 2.23694 or 3.6
 
+---@param vehicle number
 local function startThread(vehicle)
     if not vehicle then return end
     if not Handler or Handler:isActive() then return end
@@ -14,6 +15,7 @@ local function startThread(vehicle)
 
     local oxfuel = Handler:isFuelOx()
     local class = Handler:getClass()
+    local model = Handler:getModel()
 
     CreateThread(function()
         while (cache.vehicle == vehicle) and (cache.seat == -1) do
@@ -42,7 +44,7 @@ local function startThread(vehicle)
             end
 
             -- Driveability handler (fuel)
-            if not Handler:isElectric() then
+            if not Handler:isElectric() and Handler:getClass() ~= 14 then
                 local fuel = oxfuel and Entity(vehicle).state.fuel or GetVehicleFuelLevel(vehicle)
 
                 if fuel <= 7 then
@@ -70,7 +72,7 @@ local function startThread(vehicle)
             end
 
             -- Prevent rotation controls while flipped/airborne
-            if Settings.regulated[class] then
+            if Settings.regulated[class] and not Settings.exclusions[model] then
                 local roll, airborne = 0.0, false
 
                 if speed < 2.0 then
@@ -110,7 +112,9 @@ local function startThread(vehicle)
     end)
 end
 
-AddEventHandler('entityDamaged', function (victim, _, weapon, _)
+---@param victim number
+---@param weapon number | string
+AddEventHandler('entityDamaged', function(victim, _, weapon, _)
     if not Handler or not Handler:isActive() then return end
     if victim ~= cache.vehicle then return end
     if GetWeapontypeGroup(weapon) ~= 0 then return end
@@ -152,31 +156,39 @@ AddEventHandler('entityDamaged', function (victim, _, weapon, _)
     end
 end)
 
+---@param fixtype string
+---@return boolean | nil success
 lib.callback.register('vehiclehandler:basicfix', function(fixtype)
     if not Handler then return end
     return Handler:basicfix(fixtype)
 end)
 
+---@return boolean | nil success
 lib.callback.register('vehiclehandler:basicwash', function()
     if not Handler then return end
     return Handler:basicwash()
 end)
 
+---@return boolean | nil success
 lib.callback.register('vehiclehandler:adminfix', function()
     if not Handler or not Handler:isActive() then return end
     return Handler:adminfix()
 end)
 
+---@return boolean | nil success
 lib.callback.register('vehiclehandler:adminwash', function()
     if not Handler or not Handler:isActive() then return end
     return Handler:adminwash()
 end)
 
+---@param newlevel number
+---@return boolean | nil success
 lib.callback.register('vehiclehandler:adminfuel', function(newlevel)
     if not Handler or not Handler:isActive() then return end
     return Handler:adminfuel(newlevel)
 end)
 
+---@param seat number
 lib.onCache('seat', function(seat)
     if seat == -1 then
         startThread(cache.vehicle)

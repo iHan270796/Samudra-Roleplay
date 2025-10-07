@@ -771,10 +771,10 @@ AddEventHandler("17mov_construction:ExitedMarker", function(station)
     lib.hideTextUI()
 end)
 
-RegisterCommand("+17MovConstructionJobStartMarkerAction", function()
+RegisterCommand("+17movConstructionJobStartMarkerAction", function()
 end, false)
 
-RegisterCommand("-17MovConstructionJobStartMarkerAction", function()
+RegisterCommand("-17movConstructionJobStartMarkerAction", function()
     if CurrentAction ~= nil then
         if CurrentAction == "open_dutyToggle" then
             OpenDutyMenu()
@@ -790,10 +790,10 @@ RegisterCommand("-17MovConstructionJobStartMarkerAction", function()
     end
 end, false)
 
-TriggerEvent("chat:removeSuggestion", "/+17MovConstructionJobStartMarkerAction")
-TriggerEvent("chat:removeSuggestion", "/-17MovConstructionJobStartMarkerAction")
+TriggerEvent("chat:removeSuggestion", "/+17movConstructionJobStartMarkerAction")
+TriggerEvent("chat:removeSuggestion", "/-17movConstructionJobStartMarkerAction")
 
-RegisterKeyMapping("+17MovConstructionJobStartMarkerAction", Config.Lang.keybind, "keyboard", "E")
+RegisterKeyMapping("+17movConstructionJobStartMarkerAction", Config.Lang.keybind, "keyboard", "E")
 
 local nearbyPlayersData = {}
 
@@ -2029,61 +2029,6 @@ AddEventHandler("17mov_construction:StartJob_cl", function(myId, hostId, jobInde
             Citizen.Wait(waitTime)
         end
     end)
-
-    -- if jobData.enableConcretePouring then
-    --     CreateThread(function()
-    --         while true do
-    --             if not OnDuty then
-    --                 break
-    --             end
-                
-    --             local waitTime = 1000
-    --             local vehicle = GetVehiclePedIsIn(PlayerPedId(), false)
-    --             local vehicleModel = GetEntityModel(vehicle)
-                
-    --             if vehicleModel == GetHashKey(Config.MixerModel) then
-    --                 for k, targetData in pairs(jobData.mixerTargetLocations) do
-    --                     if not targetData.concreteReady then
-    --                         local distance = #(targetData.targetLocation - GetEntityCoords(PlayerPedId()))
-                            
-    --                         if distance < 20.0 and distance > 4.0 then
-    --                             waitTime = 0
-    --                             DrawMarker(20, targetData.targetLocation.x, targetData.targetLocation.y, targetData.targetLocation.z, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 2.0, 2.0, 2.0,
-    --                                 Config.MarkerSettings.UnActive.r, Config.MarkerSettings.UnActive.g, Config.MarkerSettings.UnActive.b, Config.MarkerSettings.UnActive.a,
-    --                                 true, false, 2, false, false, false, false)
-    --                         elseif distance < 4.0 then
-    --                             waitTime = 0
-    --                             DrawMarker(20, targetData.targetLocation.x, targetData.targetLocation.y, targetData.targetLocation.z, 0.0, 0.0, 0.0, 0.0, 180.0, 0.0, 2.0, 2.0, 2.0,
-    --                                 Config.MarkerSettings.Active.r, Config.MarkerSettings.Active.g, Config.MarkerSettings.Active.b, Config.MarkerSettings.Active.a,
-    --                                 true, false, 2, false, false, false, false)
-    --                             ShowHelpNotification(Config.Lang.clickToPour)
-                                
-    --                             if IsControlJustReleased(0, 38) then
-    --                                 if PipesReady(targetData) then
-    --                                     local mixerVehicle = GetVehiclePedIsIn(PlayerPedId(), false)
-    --                                     TriggerServerEvent("17mov_construction:PourConcrete", hostPlayer, targetData.concreteSettings, {jobIndex = jobIndex, holeIndex = k, netId = VehToNet(mixerVehicle)})
-    --                                     SetEntityHeading(mixerVehicle, targetData.mixerFixedTargetLocation.w)
-    --                                     SetEntityCoords(mixerVehicle, targetData.mixerFixedTargetLocation.x, targetData.mixerFixedTargetLocation.y, targetData.mixerFixedTargetLocation.z, false, false, false, false)
-    --                                     FreezeEntityPosition(mixerVehicle, true)
-    --                                     return
-    --                                 else
-    --                                     Notify(Config.Lang.pipesNotReady)
-    --                                 end
-    --                             end
-    --                         end
-    --                     end
-    --                 end
-    --             end
-                
-    --             Citizen.Wait(waitTime)
-    --         end
-    --     end)
-    -- end
-    
-    -- SendNUIMessage({
-    --     action = "showCounter"
-    -- })
-
     if jobData.enableConcretePouring then
     CreateThread(function()
         local showingText = false

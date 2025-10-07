@@ -1,12 +1,12 @@
 return {
-    units = 'kmh' ,             -- (mph, kmh)
+    units = 'mph' ,             -- (mph, kmh)
     breaktire = true,           -- Enable/Disable breaking off vehicle wheel on impact
     threshold = {
         health = 50.0,          -- Health difference needed to break off wheel (LastHealth - CurrentHealth)
         speed  = 50.0,          -- Speed difference needed to break off wheel (LastSpeed - CurrentSpeed)
         heavy  = 90.0,          -- Speed difference needed to disable vehicle instantly (LastSpeed - CurrentSpeed)
     },
-    globalmultiplier = 15.0,    -- Base damage multiplier for all vehicles (lower value = less damage)
+    globalmultiplier = 20.0,    -- Base damage multiplier for all vehicles (lower value = less damage)
     classmultiplier = {         -- Add-on damage multiplier for vehicle classes
         [0] =   1.0,            -- 0: Compacts
                 1.0,            -- 1: Sedans
@@ -16,7 +16,7 @@ return {
                 0.95,           -- 5: Sports Classics
                 0.95,	        -- 6: Sports
                 0.95,	        -- 7: Super
-                0.50,	        -- 8: Motorcycles
+                0.47,	        -- 8: Motorcycles
                 0.7,	        -- 9: Off-road
                 0.25,	        -- 10: Industrial
                 0.35,	        -- 11: Utility
@@ -56,6 +56,11 @@ return {
                 true,           -- 20: Commercial
                 false,          -- 21: Trains
                 true,           -- 22: Open Wheel
+    },
+    exclusions = {              -- Prevent rotation controls for these specific models, even if their class is regulated
+        [`deluxo`] = true,
+        [`scramjet`] = true,
+        [`vigilante`] = true,
     },
     backengine = {
         [`ninef`] = true,
