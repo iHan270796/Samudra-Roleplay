@@ -78,11 +78,11 @@ Config.Companies.Services = {
     {
         job = "mechanic",
         name = "Mechanic",
-        icon = "https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/logo_hp_mekanik.png",
+        icon = "https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/logo_hp_mechanic.png",
         canCall = true,    -- if true, players can call the company
         canMessage = true, -- if true, players can message the company
         location = {
-            name = "FTD Mechanic",
+            name = "Mechanic",
             coords = {
                 x = 63.49,
                 y = 6532.47

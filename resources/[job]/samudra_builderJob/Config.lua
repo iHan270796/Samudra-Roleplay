@@ -25,7 +25,7 @@ Config.WallBuildingTime = 15000
 Config.WeldingTime = 12500
 Config.wearingAnimation = { dict = "anim@heists@box_carry@", name = "idle"}
 Config.installingBlockToFrameScenario = "WORLD_HUMAN_HAMMERING"
-Config.JobCooldown = 1 * 60 -- 10 * 60            -- 0 minutes cooldown between making jobs (in brackets there's example for 10 minutes)
+Config.JobCooldown = 1 * 10 -- 10 * 60            -- 0 minutes cooldown between making jobs (in brackets there's example for 10 minutes)
 Config.GiveKeysToAllLobby = true                    -- Set to false if you want to give keys only for group creator while starting job
 Config.EnableWaypoint = false                       -- Set to true if you want to enable the waypoint for ur current job location
 

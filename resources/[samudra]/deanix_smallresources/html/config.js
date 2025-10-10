@@ -350,6 +350,47 @@ const guidebookConfig = {
                     <img src="https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/sellhunting.png" alt="sellhunting" style="width:100%; height:auto; margin-bottom: 20px;" />
                     `
                 },
+               truckjob: {
+               title: '🚍 Truck Job:',
+               icon: false,
+               content: `
+                    <h3>🚍 Tutorial Kerja Truck:</h3>
+                    <p>🚍 Kerja Truck:</p>
+                        <ol>
+                            <li>🚍 Silahkan ke koordinat 10108 temui warlok lalu otot mata ke warlok dan mulai kerja truk job.</li>
+                        </ol>
+                    <img src="https://media.discordapp.net/attachments/1425806072941379584/1425859137840877689/image.png" alt="map police" style="width:100%; height:auto; margin-bottom: 20px;" />
+                    <img src="https://media.discordapp.net/attachments/1425806072941379584/1425859137840877689/image.png" alt="map police" style="width:100%; height:auto; margin-bottom: 20px;" />
+                    <h4>🚍 Head to the Hunting Area</h4>
+                        <ol>
+                            <li>Go to the hunting zone marked on your map.</li>
+                        </ol>
+                    <img src="https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/map_hunting.png" alt="map hunting" style="width:100%; height:auto; margin-bottom: 20px;" />
+                    <h4>🚍 Buy a Hunting Weapon and Start the Hunting Job</h4>
+                        <ol>
+                            <li>Use your eye muscle on the NPC to buy a hunting rifle and then select the Poultry First when you .</li>
+                            <li> (For first-time hunters, it is recommended to select the Poultry task. It's easier, safer, and perfect for learning the basics before moving on to bigger game.).</li>
+                        </ol>
+                    <img src="https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/npc_hutning.png" alt="npc hunting" style="width:100%; height:auto; margin-bottom: 20px;" />
+                    <h4>🚍 Start Hunting</h4>
+                        <ol>
+                            <li>Head to the designated hunting area. Look around for your target (e.g. chickens. collect the animal using the interact key.</li>
+                        </ol>
+                    <img src="https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/map_chiken.png" alt="map hunting" style="width:100%; height:auto; margin-bottom: 20px;" />
+                    <h4>🚍 Start Hunting</h4>
+                        <ol>
+                            <li>Head to the designated hunting area. Look around for your target (e.g. chickens. collect the animal using the interact key.</li>
+                        </ol>
+                    <img src="https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/map_chiken.png" alt="map hunting" style="width:100%; height:auto; margin-bottom: 20px;" />
+                    <img src="https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/chiken_1.png" alt="chiken_1" style="width:100%; height:auto; margin-bottom: 20px;" />
+                    <img src="https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/chiken_2.png" alt="chiken_2" style="width:100%; height:auto; margin-bottom: 20px;" />
+                    <h4>🚍 Sell</h4>
+                        <ol>
+                            <li>Sell your products at the First Point. As you level up, you can unlock access to hunt larger animals like Pig, Deers, and more.</li>
+                        </ol>
+                    <img src="https://r2.fivemanage.com/TiE6ranVo04nMKHvigw7T/sellhunting.png" alt="sellhunting" style="width:100%; height:auto; margin-bottom: 20px;" />
+                    `
+                },
             }
         },
         vip: { // always unique

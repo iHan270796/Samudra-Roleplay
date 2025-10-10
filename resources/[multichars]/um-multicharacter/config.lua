@@ -20,7 +20,7 @@ Config.DeleteButton = false
 Config.DefaultSlots = 1
 
 -- if 'set um:NewPlayerApartmentInsideStart false in server.cfg' this coords will be used.
-Config.NewPlayerNoApartmentStartCoords = vector4(-1881.31, 5265.59, 6.98, 221.24)
+Config.NewPlayerNoApartmentStartCoords = vector4(-1847.56, 5179.18, 6.97, 45.26)
 
 Config.NoSpawnMenuOnlyLastLocation = {
     Status = false,                -- If you make it true, the character will spawn at Last Location.

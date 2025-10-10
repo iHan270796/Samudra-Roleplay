@@ -63,8 +63,7 @@ function RegisterServerCallback(callbackName, callbackFunction)
     serverCallbacks[callbackName] = callbackFunction
 end
 
-RegisterNetEvent("17mov_Callbacks:GetResponse" .. GetCurrentResourceName())
-AddEventHandler("17mov_Callbacks:GetResponse" .. GetCurrentResourceName(), function(callbackName, requestId, ...)
+RegisterNetEvent("17mov_Callbacks:GetResponse" .. GetCurrentResourceName(), function(callbackName, requestId, ...)
     local callback = serverCallbacks[callbackName]
     if callback == nil then
         return
@@ -192,8 +191,7 @@ Citizen.CreateThread(function()
     end)
 end)
 
-RegisterNetEvent("17mov_construction:SendRequestToClient_sv")
-AddEventHandler("17mov_construction:SendRequestToClient_sv", function(targetPlayerId)
+RegisterNetEvent("17mov_construction:SendRequestToClient_sv", function(targetPlayerId)
     local senderId = source
     
     for index, lobby in pairs(lobbies) do
@@ -242,8 +240,7 @@ AddEventHandler("17mov_construction:SendRequestToClient_sv", function(targetPlay
     TriggerClientEvent("17mov_construction:SendRequestToClient_cl", targetPlayerId, GetPlayerIdentity(senderId))
 end)
 
-RegisterNetEvent("17mov_construction:ClientReactRequest")
-AddEventHandler("17mov_construction:ClientReactRequest", function(accepted)
+RegisterNetEvent("17mov_construction:ClientReactRequest", function(accepted)
     local clientId = source
     local hostId = nil
     local lobbyExists = false
@@ -292,8 +289,7 @@ AddEventHandler("17mov_construction:ClientReactRequest", function(accepted)
     end
 end)
 
-RegisterNetEvent("17mov_construction:KickPlayerFromLobby")
-AddEventHandler("17mov_construction:KickPlayerFromLobby", function(targetPlayerId, shouldNotify, kickedPlayerId)
+RegisterNetEvent("17mov_construction:KickPlayerFromLobby", function(targetPlayerId, shouldNotify, kickedPlayerId)
     local kickedId = targetPlayerId
     local hostId = nil
     
@@ -366,13 +362,11 @@ AddEventHandler("17mov_construction:KickPlayerFromLobby", function(targetPlayerI
     end
 end)
 
-RegisterNetEvent("17movement_builder:disableCustomTask")
-AddEventHandler("17movement_builder:disableCustomTask", function(hostId, taskId)
+RegisterNetEvent("17movement_builder:disableCustomTask", function(hostId, taskId)
     TriggerForAllMembers(hostId, "17mov_construction:disableThisCustomTask", taskId)
 end)
 
-RegisterNetEvent("17mov_builder:CustomTaskDone")
-AddEventHandler("17mov_builder:CustomTaskDone", function(hostId, taskData, taskIndex)
+RegisterNetEvent("17mov_builder:CustomTaskDone", function(hostId, taskData, taskIndex)
     local playerId = source
     local lobbyIndex = nil
     
@@ -441,13 +435,11 @@ AddEventHandler("17mov_builder:CustomTaskDone", function(hostId, taskData, taskI
     TriggerForAllMembers(hostId, "17mov_Builder:SpawnCustomProps", taskData, taskIndex)
 end)
 
-RegisterNetEvent("17mov_Construction:DisableThisPipe")
-AddEventHandler("17mov_Construction:DisableThisPipe", function(hostId, pipeId)
+RegisterNetEvent("17mov_Construction:DisableThisPipe", function(hostId, pipeId)
     TriggerForAllMembers(hostId, "17mov_construction:disableThisPipe", pipeId)
 end)
 
-RegisterNetEvent("17mov_construction:PourConcrete")
-AddEventHandler("17mov_construction:PourConcrete", function(hostId, concreteData, holeData)
+RegisterNetEvent("17mov_construction:PourConcrete", function(hostId, concreteData, holeData)
     local playerId = source
     local lobbyIndex = nil
     
@@ -491,8 +483,7 @@ AddEventHandler("17mov_construction:PourConcrete", function(hostId, concreteData
     end
 end)
 
-RegisterNetEvent("17mov_Construction:SpawnPipe_SV")
-AddEventHandler("17mov_Construction:SpawnPipe_SV", function(hostId, pipeData, pipeInfo)
+RegisterNetEvent("17mov_Construction:SpawnPipe_SV", function(hostId, pipeData, pipeInfo)
     local playerId = source
     local lobbyIndex = nil
     
@@ -558,8 +549,7 @@ AddEventHandler("17mov_Construction:SpawnPipe_SV", function(hostId, pipeData, pi
     lobbies[lobbyIndex].builtPipes[pipeKey] = true
 end)
 
-RegisterNetEvent("17mov_constructionJob:RemoveMixerPickupBlip")
-AddEventHandler("17mov_constructionJob:RemoveMixerPickupBlip", function(hostId, mixerCoords)
+RegisterNetEvent("17mov_constructionJob:RemoveMixerPickupBlip", function(hostId, mixerCoords)
     TriggerForAllMembers(hostId, "17mov_constructionJob:RemoveMixerPickupBlip_cl")
     
     for index, spawn in pairs(Config.MixerSpawns) do
@@ -569,8 +559,7 @@ AddEventHandler("17mov_constructionJob:RemoveMixerPickupBlip", function(hostId, 
     end
 end)
 
-RegisterNetEvent("17mov_constructionJob:sendMixer")
-AddEventHandler("17mov_constructionJob:sendMixer", function(hostId, mixerNetId)
+RegisterNetEvent("17mov_constructionJob:sendMixer", function(hostId, mixerNetId)
     for index, lobby in pairs(lobbies) do
         if lobby.host == hostId then
             lobby.mixerNetId = mixerNetId
@@ -579,13 +568,11 @@ AddEventHandler("17mov_constructionJob:sendMixer", function(hostId, mixerNetId)
     TriggerForAllMembers(hostId, "17mov_constructionJob:sendMixer_cl", mixerNetId)
 end)
 
-RegisterNetEvent("17mov_constructionJob:deleteBlockFromSpawn")
-AddEventHandler("17mov_constructionJob:deleteBlockFromSpawn", function(hostId, blockId)
+RegisterNetEvent("17mov_constructionJob:deleteBlockFromSpawn", function(hostId, blockId)
     TriggerForAllMembers(hostId, "17mov_constructionJob:deleteBlockFromSpawn_cl", blockId)
 end)
 
-RegisterNetEvent("17mov_constructionJob:installBlockOnWall")
-AddEventHandler("17mov_constructionJob:installBlockOnWall", function(hostId, blockData, progressValue)
+RegisterNetEvent("17mov_constructionJob:installBlockOnWall", function(hostId, blockData, progressValue)
     local playerId = source
     local cooldownTime = Config.WallBuildingTime * 0.8
     local currentTime = GetGameTimer()
@@ -660,8 +647,7 @@ AddEventHandler("17mov_constructionJob:installBlockOnWall", function(hostId, blo
     lobbies[targetLobbyIndex].blockedWalls[blockData.wallIndex] = nil
 end)
 
-RegisterNetEvent("17mov_constructionJob:weldingReady")
-AddEventHandler("17mov_constructionJob:weldingReady", function(hostId, weldingIndex, progressValue)
+RegisterNetEvent("17mov_constructionJob:weldingReady", function(hostId, weldingIndex, progressValue)
     local playerId = source
     local lobbyIndex = nil
     
@@ -730,8 +716,7 @@ AddEventHandler("17mov_constructionJob:weldingReady", function(hostId, weldingIn
     end
 end)
 
-RegisterNetEvent("17mov_construction:endJob_sv")
-AddEventHandler("17mov_construction:endJob_sv", function(jobCompleted, vehicleNetId)
+RegisterNetEvent("17mov_construction:endJob_sv", function(jobCompleted, vehicleNetId)
     local playerId = source
     TriggerForAllMembers(playerId, "17mov_construction:endJob_cl", 0)
     
@@ -805,8 +790,7 @@ local playerCooldowns = {}
 local lastStartTime = 0
 local startCooldown = 3000
 
-RegisterNetEvent("17mov_construction:StartJob_sv")
-AddEventHandler("17mov_construction:StartJob_sv", function()
+RegisterNetEvent("17mov_construction:StartJob_sv", function()
     local playerId = source
     local currentTime = GetGameTimer()
     
@@ -1066,8 +1050,7 @@ function TriggerForAllMembers(hostId, eventName, arg1, arg2, arg3, arg4, arg5)
     end
 end
 
-RegisterNetEvent("17mov_construction:SendVehicleNetId")
-AddEventHandler("17mov_construction:SendVehicleNetId", function(vehicleNetId)
+RegisterNetEvent("17mov_construction:SendVehicleNetId", function(vehicleNetId)
     local playerId = source
     for index, lobby in pairs(lobbies) do
         if lobby.host == playerId then

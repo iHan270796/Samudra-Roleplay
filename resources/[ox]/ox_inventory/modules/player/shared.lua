@@ -80,7 +80,8 @@ UtilsSlot   = {
         'WEAPON_PRECISIONRIFLE',
         'WEAPON_TACTICALRIFLE',
         'WEAPON_HEAVYSNIPER',
-        'WEAPON_HEAVYSNIPER_MK2'
+        'WEAPON_HEAVYSNIPER_MK2',
+        'WEAPON_BAT'
         }
     },
 

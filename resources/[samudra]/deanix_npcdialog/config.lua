@@ -860,8 +860,8 @@ Config.Peds = {
     --baju police
     [18] = {
         ["model"] = "s_m_y_cop_01",
-        ["coords"] = vector4(458.44, -999.79, 29.69, 356.08),
-        ["cam"] = vector4(458.44, -999.29, 31.40, 182.39), -- If the camera angle doesn't look right, give the heading a full negative value, e.g. -93.0 instead of 93.0. If this doesn't work, enter the heading value of the direction your pad is facing the npc!
+        ["coords"] = vector4(459.3, -995.61, 29.69, 177.79),
+        ["cam"] = vector4(459.3, -996.11, 31.40, 357.25), -- If the camera angle doesn't look right, give the heading a full negative value, e.g. -93.0 instead of 93.0. If this doesn't work, enter the heading value of the direction your pad is facing the npc!
         ["markerCoord"] = vector3(458.44, -999.79, 30.69),
         ["interactive"] = {
             ["type"] = "target", -- or fivem keys https://docs.fivem.net/docs/game-references/controls/

@@ -67,6 +67,12 @@ Config.Props = {
         heading = 307.68,
         freeze = true
     },
+    {
+        model = `prop_helipad_01`,
+        coords = vector3(1203.01, -1546.31, 38.4),
+        heading = 180.68,
+        freeze = true
+    },
 }
 
 return Config

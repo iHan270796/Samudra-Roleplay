@@ -113,13 +113,13 @@ return {
                 help = "Block/Unblock team invitations.",
             },
             leave = {
-                help = "Leave the team.",
+                help = "Keluar Dari Team.",
             },
             
         },
         target = {
-            toggle_job_duty = "Start & Stop Service",
-            pickup_cargo = "Pick up Cargo",
+            toggle_job_duty = "Mula/Berhenti Kerja",
+            pickup_cargo = "Ambil Paket",
             put_cargo = "Put Cargo %s/%s",
             deliver_cargo = "Deliver Cargo",            
         }

@@ -171,7 +171,7 @@ return {
 	PoliceArmoury = {
 		name = 'Police Armoury',
 		groups = {
-			['police'] = 4
+			['police'] = 10
 		},
 		blip = {
 			id = 110, colour = 84, scale = 0.6

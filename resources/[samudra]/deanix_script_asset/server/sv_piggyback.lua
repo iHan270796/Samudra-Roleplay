@@ -1,7 +1,5 @@
 local piggybacking = {}
---piggybacking[source] = targetSource, source is piggybacking targetSource
 local beingPiggybacked = {}
---beingPiggybacked[targetSource] = source, targetSource is beingPiggybacked by source
 
 RegisterServerEvent("Piggyback:sync", function(targetSrc)
 	local source = source

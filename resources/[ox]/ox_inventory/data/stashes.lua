@@ -82,6 +82,13 @@ return {
 		groups = {['ambulance'] = 0}
     },
 	{
+        name = 'medisstash',
+        label = 'Medis Stash',
+        slots = 500,
+        weight = 4000000,
+		groups = {['ambulance'] = 0}
+    },
+	{
         name = 'policestash_',
         label = 'POlice Stash',
         slots = 500,

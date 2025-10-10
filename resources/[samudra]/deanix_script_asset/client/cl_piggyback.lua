@@ -60,7 +60,6 @@ local function ensureAnimDict(animDict)
 end
 
 RegisterNetEvent("gendong:sidia", function(source, args)
--- RegisterCommand("piggyback",function(source, args)
 	if not piggyback.InProgress then
 		local closestPlayer = GetClosestPlayer(3)
 		if closestPlayer then

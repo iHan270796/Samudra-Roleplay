@@ -31,7 +31,7 @@ Config.Locations = {
         logoImage = "ems.png",
         locations = {
             {
-                coords = vector3(-490.22, -981.26, 34.1), -- Main Hospital
+                coords = vector3(1145.68, -1559.98, 35.09), -- Main Hospital
                 width = 1.0,
                 length = 1.0,
                 heading = 0,
@@ -96,7 +96,7 @@ Config.ApplicationPoints = {
         label = "Police Application"
     },
     ["ambulance"] = {
-        coords = vector3(-468.05, -1009.4, 23.82),  -- Near the hospital
+        coords = vector3(1145.68, -1559.98, 35.09),  -- Near the hospital
         width = 1.0,
         length = 1.0,
         heading = 0,

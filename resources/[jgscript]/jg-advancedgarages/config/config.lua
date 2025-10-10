@@ -261,8 +261,8 @@ Config.GarageLocations = { -- IMPORTANT - Every garage name must be unique
     markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
   },
   ["Calais Avenue"] = { -- If you change the name of this garage from Legion Square, you must change the default value of `garage_id` to the same name in the SQL table `players_vehicles`
-    coords = vector3(1182.06, -1548.32, 39.4),
-    spawn = {vector4(1181.92, -1545.41, 39.4, 3.34), vector4(1185.58, -1545.76, 39.4, 9.57), vector4(1185.5, -1556.17, 39.4, 181.59), vector4(1182.3, -1555.46, 39.4, 181.51)}, --  you can add multiple spawn locations into a table
+    coords = vector3(1156.3, -1474.06, 34.69),
+    spawn = {vector4(1156.3, -1474.06, 34.69, 91.05), vector4(1156.64, -1470.69, 34.69, 94.02), vector4(1157.06, -1467.14, 34.69, 89.63), vector4(1156.87, -1477.94, 34.69, 93.04)}, --  you can add multiple spawn locations into a table
     distance = 20,
     type = "car",
     hideBlip = true,
@@ -607,9 +607,9 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
     }
   },
   ["Ambulance Heli"] = {
-    coords = vector3(350.67, -588.32, 74.16),
-    spawn = vector4(350.67, -588.32, 74.16, 249.43),
-    distance = 15,
+    coords = vector3(1202.91, -1546.28, 41.28),
+    spawn = vector4(1202.91, -1546.28, 41.28, 88.3),
+    distance = 7,
     job = {"ambulance"},
     type = "air",
     hideBlip = true,

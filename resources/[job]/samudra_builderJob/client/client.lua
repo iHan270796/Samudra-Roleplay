@@ -38,7 +38,6 @@ CreateThread(function()
         end
         Citizen.Wait(100)
     end
-    
     if Config.useModernUI then
         SendNUIMessage({
             ui = "new"
@@ -50,20 +49,17 @@ CreateThread(function()
         nuiLoaded = true
         Citizen.Wait(500)
     end
-    
     while true do
         if nuiLoaded then
             break
         end
         Citizen.Wait(100)
     end
-    
     SendNUIMessage({
         action = "setProgressBarAlign",
         align = Config.ProgressBarAlign,
         offset = Config.ProgressBarOffset
     })
-    
     if not Config.EnableCloakroom then
         SendNUIMessage({
             action = "hideCloakroom"
@@ -77,26 +73,24 @@ if Config.useModernUI then
         tutorialActive = false
         tutorialName = ""
     end)
-    
-    RegisterNetEvent("17mov_construction:UpdateHostPercentages")
-    AddEventHandler("17mov_construction:UpdateHostPercentages", function(data)
+
+    RegisterNetEvent("17mov_construction:UpdateHostPercentages", function(data)
         SendNUIMessage({
             action = "updateHostRewards",
             value = data
         })
     end)
-    
+
     RegisterNUICallback("menuClosed", function()
         menuOpen = false
         SetNuiFocus(false, false)
     end)
-    
+
     RegisterNUICallback("dontShowTutorialAgain", function(data, cb)
         SetResourceKvpInt("17mov_Tutorials:" .. tutorialName, 1)
     end)
-    
-    RegisterNetEvent("17mov_construction:SetMyReward")
-    AddEventHandler("17mov_construction:SetMyReward", function(reward)
+
+    RegisterNetEvent("17mov_construction:SetMyReward", function(reward)
         SendNUIMessage({
             action = "updateMyReward",
             reward = reward
@@ -136,9 +130,7 @@ if Config.useModernUI then
             })
         end)
     end
-    
-    RegisterNetEvent("17mov_construction:clearMyLobby")
-    AddEventHandler("17mov_construction:clearMyLobby", function()
+    RegisterNetEvent("17mov_construction:clearMyLobby", function()
         nearbyPlayers = {}
         TriggerServerCallback("17mov_construction:init", function(data)
             SendNUIMessage({
@@ -150,8 +142,7 @@ if Config.useModernUI then
         end)
     end)
     
-    RegisterNetEvent("17mov_construction:RefreshMugs")
-    AddEventHandler("17mov_construction:RefreshMugs", function(players, hostId)
+    RegisterNetEvent("17mov_construction:RefreshMugs", function(players, hostId)
         while true do
             if scriptInitialized then
                 break
@@ -215,7 +206,7 @@ if Config.useModernUI then
                 memberCount = memberCount + 1
             end
         end
-        
+
         if memberCount == 1 then
             TriggerServerCallback("17mov_construction:init", function(data)
                 SendNUIMessage({
@@ -228,15 +219,14 @@ if Config.useModernUI then
         end
         
         TriggerServerCallback("17mov_construction:IfPlayerOwnsTeam", function(isOwner)
-            SendNUIMessage({
-                action = "ToggleHostHUD",
-                boolean = isOwner
-            })
+                SendNUIMessage({
+                    action = "ToggleHostHUD",
+                    boolean = isOwner
+                })
+            end)
         end)
-    end)
-else
-    RegisterNetEvent("17mov_construction:RefreshMugs")
-    AddEventHandler("17mov_construction:RefreshMugs", function(names, myId, hostStatus)
+    else
+    RegisterNetEvent("17mov_construction:RefreshMugs", function(names, myId, hostStatus)
         while true do
             if scriptInitialized then
                 break
@@ -299,8 +289,7 @@ function TriggerServerCallback(name, callback, ...)
     TriggerServerEvent("17mov_Callbacks:GetResponse" .. GetCurrentResourceName(), name, id, ...)
 end
 
-RegisterNetEvent("17mov_Callbacks:receiveData" .. GetCurrentResourceName())
-AddEventHandler("17mov_Callbacks:receiveData" .. GetCurrentResourceName(), function(name, id, ...)
+RegisterNetEvent("17mov_Callbacks:receiveData" .. GetCurrentResourceName(), function(name, id, ...)
     if pendingCallbacks[name] == nil then
         return
     end
@@ -660,18 +649,15 @@ function InitalizeScript(fastLoad)
     end)
 end
 
-RegisterNetEvent("QBCore:Client:OnPlayerLoaded")
-AddEventHandler("QBCore:Client:OnPlayerLoaded", function()
+RegisterNetEvent("QBCore:Client:OnPlayerLoaded", function()
     InitalizeScript()
 end)
 
-RegisterNetEvent("esx:playerLoaded")
-AddEventHandler("esx:playerLoaded", function()
+RegisterNetEvent("esx:playerLoaded", function()
     InitalizeScript()
 end)
 
-RegisterNetEvent("QBCore:Client:OnJobUpdate")
-AddEventHandler("QBCore:Client:OnJobUpdate", function(job)
+RegisterNetEvent("QBCore:Client:OnJobUpdate", function(job)
     playerData = GetPlayerData()
     
     if Config.RequiredJob ~= "none" then
@@ -703,8 +689,7 @@ AddEventHandler("QBCore:Client:OnJobUpdate", function(job)
     end
 end)
 
-RegisterNetEvent("esx:setJob")
-AddEventHandler("esx:setJob", function(job)
+RegisterNetEvent("esx:setJob", function(job)
     while true do
         if playerData ~= nil then
             if playerData.job ~= nil then
@@ -1035,8 +1020,7 @@ RegisterNUICallback("notify", function(data)
     Notify(data.msg)
 end)
 
-RegisterNetEvent("17mov_construction:SendRequestToClient_cl")
-AddEventHandler("17mov_construction:SendRequestToClient_cl", function(name, fromId)
+RegisterNetEvent("17mov_construction:SendRequestToClient_cl", function(name, fromId)
     SendNUIMessage({
         action = "ShowInviteBox",
         name = name
@@ -1144,8 +1128,7 @@ function AddBlip(name, sprite, coords, color)
     return blip
 end
 
-RegisterNetEvent("17mov_constructionJob:refreshProgressValue")
-AddEventHandler("17mov_constructionJob:refreshProgressValue", function(value)
+RegisterNetEvent("17mov_constructionJob:refreshProgressValue", function(value)
     if value > currentProgress then
         currentProgress = value
         totalProgress = value
@@ -1166,13 +1149,11 @@ RegisterNUICallback("tutorialClosed", function()
     DisableControlAction(0, 35, false)
 end)
 
-RegisterNetEvent("17mov_construction:disableThisCustomTask")
-AddEventHandler("17mov_construction:disableThisCustomTask", function(taskIndex)
+RegisterNetEvent("17mov_construction:disableThisCustomTask", function(taskIndex)
     jobData.customTasks[taskIndex].ready = true
 end)
 
-RegisterNetEvent("17mov_Builder:SpawnCustomProps")
-AddEventHandler("17mov_Builder:SpawnCustomProps", function(taskData, taskIndex)
+RegisterNetEvent("17mov_Builder:SpawnCustomProps", function(taskData, taskIndex)
     if taskData.spawnPropAfter then
         while not HasModelLoaded(taskData.propSpawnName) do
             RequestModel(taskData.propSpawnName)
@@ -1189,8 +1170,7 @@ AddEventHandler("17mov_Builder:SpawnCustomProps", function(taskData, taskIndex)
     RemoveBlip(jobData.customTasks[taskIndex].blip)
 end)
 
-RegisterNetEvent("17mov_construction:StartJob_cl")
-AddEventHandler("17mov_construction:StartJob_cl", function(myId, hostId, jobIndex, memberCount, vehicleNetId, skipTeleport)
+RegisterNetEvent("17mov_construction:StartJob_cl", function(myId, hostId, jobIndex, memberCount, vehicleNetId, skipTeleport)
     local hostPlayer = myId
     local spawnPoint = Config.SpawnPoint
     local locationData = Config.JobLocations[jobIndex]
@@ -1658,7 +1638,7 @@ AddEventHandler("17mov_construction:StartJob_cl", function(myId, hostId, jobInde
     end)
     
     local wallInteractionBlocked = false
-    
+
     CreateThread(function()
         while true do
             if not OnDuty then
@@ -1713,7 +1693,7 @@ AddEventHandler("17mov_construction:StartJob_cl", function(myId, hostId, jobInde
             Wait(500)
         end
     end)
-    
+
     CreateThread(function()
         while true do
             if not OnDuty then
@@ -2139,8 +2119,7 @@ function IsThereFreeSlotInWall(blocksArray)
     return hasFreeSlot
 end
 
-RegisterNetEvent("17mov_constructionJob:sendMixer_cl")
-AddEventHandler("17mov_constructionJob:sendMixer_cl", function(netId, myId, hostId)
+RegisterNetEvent("17mov_constructionJob:sendMixer_cl", function(netId, myId, hostId)
     Citizen.Wait(1000)
     
     if myId == hostId then
@@ -2166,19 +2145,16 @@ AddEventHandler("17mov_constructionJob:sendMixer_cl", function(netId, myId, host
     SetVehicle(mixerVehicle)
 end)
 
-RegisterNetEvent("17mov_construction:disableThisPipe")
-AddEventHandler("17mov_construction:disableThisPipe", function(data)
+RegisterNetEvent("17mov_construction:disableThisPipe", function(data)
     Config.JobLocations[data.jobIndex].mixerTargetLocations[data.holeIndex].pipes[data.pipeIndex].ready = true
 end)
 
-RegisterNetEvent("17mov_constructionJob:disableWeldingBlip")
-AddEventHandler("17mov_constructionJob:disableWeldingBlip", function(index)
+RegisterNetEvent("17mov_constructionJob:disableWeldingBlip", function(index)
     jobData.welding[index].ready = true
     RemoveBlip(jobData.welding[index].blip)
 end)
 
-RegisterNetEvent("17mov_constructionJob:installBlockOnWall_cl")
-AddEventHandler("17mov_constructionJob:installBlockOnWall_cl", function(data)
+RegisterNetEvent("17mov_constructionJob:installBlockOnWall_cl", function(data)
     jobData.walls[data.wallIndex].blocksInFrameLocations[data.placeIndex].ready = true
     
     local blockModel = "17mov_brick_00" .. math.random(1, 4)
@@ -2262,8 +2238,7 @@ function Pick(model, animDict, animName)
     end
 end
 
-RegisterNetEvent("17mov_constructionJob:deleteBlockFromSpawn_cl")
-AddEventHandler("17mov_constructionJob:deleteBlockFromSpawn_cl", function(wallIndex)
+RegisterNetEvent("17mov_constructionJob:deleteBlockFromSpawn_cl", function(wallIndex)
     local highestBlockIndex = 0
     
     for i = 1, #jobData.walls[wallIndex].blocksInFrameLocations do
@@ -2297,15 +2272,13 @@ function PipesReady(targetData)
     return true
 end
 
-RegisterNetEvent("17mov_constructionJob:RemoveMixerPickupBlip_cl")
-AddEventHandler("17mov_constructionJob:RemoveMixerPickupBlip_cl", function()
+RegisterNetEvent("17mov_constructionJob:RemoveMixerPickupBlip_cl", function()
     if mixerBlip then
         RemoveBlip(mixerBlip)
     end
 end)
 
-RegisterNetEvent("17mov_construction:PourConcrete_cl")
-AddEventHandler("17mov_construction:PourConcrete_cl", function(concreteSettings, data)
+RegisterNetEvent("17mov_construction:PourConcrete_cl", function(concreteSettings, data)
     Config.JobLocations[data.jobIndex].mixerTargetLocations[data.holeIndex].concreteReady = true
     RemoveBlip(Config.JobLocations[data.jobIndex].mixerTargetLocations[data.holeIndex].blip)
     
@@ -2347,8 +2320,7 @@ AddEventHandler("onResourceStop", function(resourceName)
     SetModelAsNoLongerNeeded("17mov_wallframe_wall")
 end)
 
-RegisterNetEvent("17mov_ConstructionJob:SpawnPipe")
-AddEventHandler("17mov_ConstructionJob:SpawnPipe", function(pipeData, data)
+RegisterNetEvent("17mov_ConstructionJob:SpawnPipe", function(pipeData, data)
     Config.JobLocations[data.jobIndex].mixerTargetLocations[data.holeIndex].pipes[data.pipeIndex].ready = true
     RemoveBlip(Config.JobLocations[data.jobIndex].mixerTargetLocations[data.holeIndex].pipes[data.pipeIndex].blip)
     
@@ -2409,8 +2381,7 @@ function EndJob()
     endJobBlocked = true
 end
 
-RegisterNetEvent("17mov_construction:endJob_cl")
-AddEventHandler("17mov_construction:endJob_cl", function()
+RegisterNetEvent("17mov_construction:endJob_cl", function()
     if RemoveKeys ~= nil then
         RemoveKeys()
     end
