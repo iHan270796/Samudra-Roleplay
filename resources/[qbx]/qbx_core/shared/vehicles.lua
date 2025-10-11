@@ -8648,5 +8648,24 @@ return {
         type = 'automobile',
         hash = `acty`,
     },
+    --kendaraan addon
+    porschebarbie = {
+        name = 'Porsche Barbie',
+        brand = 'PRS',
+        model = 'porschebarbie',
+        price = 27000000,
+        category = 'super',
+        type = 'automobile',
+        hash = `porschebarbie`,
+    },
+    g650barbie = {
+        name = 'G650 Barbie',
+        brand = 'GB',
+        model = 'g650barbie',
+        price = 27000000,
+        category = 'super',
+        type = 'automobile',
+        hash = `g650barbie`,
+    },
 
 }

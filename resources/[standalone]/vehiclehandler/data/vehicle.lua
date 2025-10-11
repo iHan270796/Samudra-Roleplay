@@ -2,11 +2,11 @@ return {
     units = 'mph' ,             -- (mph, kmh)
     breaktire = true,           -- Enable/Disable breaking off vehicle wheel on impact
     threshold = {
-        health = 50.0,          -- Health difference needed to break off wheel (LastHealth - CurrentHealth)
-        speed  = 50.0,          -- Speed difference needed to break off wheel (LastSpeed - CurrentSpeed)
-        heavy  = 90.0,          -- Speed difference needed to disable vehicle instantly (LastSpeed - CurrentSpeed)
+        health = 60.0,          -- Health difference needed to break off wheel (LastHealth - CurrentHealth)
+        speed  = 60.0,          -- Speed difference needed to break off wheel (LastSpeed - CurrentSpeed)
+        heavy  = 110.0,          -- Speed difference needed to disable vehicle instantly (LastSpeed - CurrentSpeed)
     },
-    globalmultiplier = 20.0,    -- Base damage multiplier for all vehicles (lower value = less damage)
+    globalmultiplier = 12.0,    -- Base damage multiplier for all vehicles (lower value = less damage)
     classmultiplier = {         -- Add-on damage multiplier for vehicle classes
         [0] =   1.0,            -- 0: Compacts
                 1.0,            -- 1: Sedans
@@ -15,7 +15,7 @@ return {
                 1.0,	        -- 4: Muscle
                 0.95,           -- 5: Sports Classics
                 0.95,	        -- 6: Sports
-                0.95,	        -- 7: Super
+                0.75,	        -- 7: Super
                 0.47,	        -- 8: Motorcycles
                 0.7,	        -- 9: Off-road
                 0.25,	        -- 10: Industrial

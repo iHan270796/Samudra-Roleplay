@@ -3,7 +3,7 @@ Config.Inventory = "ox" -- "qb" or "ox"
 Config.Locale = 'en'
 Config.RadioItem = 'radio'
 Config.MaxFrequency = 9999
-Config.RadioLogsWebhook = "https://discord.com/api/webhooks/1381918993321037834/1M0TdKtqjPIo06BGIenvR3caZ-JT4nQFnRAq_KwuaPNDkCDiDWVLyngNxx2QGroeDnyF"
+Config.RadioLogsWebhook = "https://discord.com/api/webhooks/1426536513130332170/osBceIF4KYM8PcPxEzDBDXrPLiF08heYV4iOHoyYqLR3RzFoa-fViEfzIZnyWd5JEFiH"
 
 Config.RestrictedChannels = {
     [1] = { police = true, ambulance = true},

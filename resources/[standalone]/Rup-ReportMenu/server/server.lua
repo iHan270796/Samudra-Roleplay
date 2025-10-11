@@ -59,6 +59,7 @@ RegisterNetEvent('rup-reportmenu:sendAdminNotification', function(data)
         if IsPlayerAceAllowed(playerId, 'reportmenu.admin.view') or 
            IsPlayerAceAllowed(playerId, 'reportmenu.mod.view') then
             TriggerClientEvent('ox_lib:notify', playerId, {
+                position = 'center-left',
                 title = data.title,
                 description = data.description,
                 icon = data.icon or 'fa-solid fa-bell',
@@ -237,10 +238,16 @@ lib.callback.register('rup-reportmenu:addMessage', function(source, data)
                     local menuState = lib.callback.await('rup-reportmenu:client:menuState', source)
                     if not menuState then
                         TriggerClientEvent('ox_lib:notify', playerId, {
+                            position = 'center-left',
                             title = 'New Message in Report ID: ' .. data.report_id,
                             description = 'You have a new message in your report: ' .. result.title,
                             icon = 'fa-solid fa-envelope',
-                            color = '#00FF00'
+                            color = '#00FF00',
+                            sound = {
+                                bank = 'HUD_FRONTEND_DEFAULT_SOUNDSET',
+                                name = 'SELECT',
+                                set = 'HUD_FRONTEND_DEFAULT_SOUNDSET'
+                            }
                         })
                         TriggerEvent('rup-reportmenu:sendAdminNotification', {
                             title = 'New Message in Report',
