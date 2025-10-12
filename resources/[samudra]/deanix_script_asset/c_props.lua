@@ -73,6 +73,18 @@ Config.Props = {
         heading = 180.68,
         freeze = true
     },
+    {
+        model = `prop_food_tray_02`,
+        coords = vector3(-1392.36, -607.04, 30.34),
+        heading = 215.50,
+        freeze = true
+    },
+    {
+        model = `prop_food_tray_02`,
+        coords = vector3(-1387.82, -613.87, 30.34),
+        heading = 215.50,
+        freeze = true
+    },
 }
 
 return Config

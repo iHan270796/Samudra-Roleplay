@@ -1,0 +1,17 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 345
+Title: mobilku 
+Reporter: Pipin
+Status: open
+Priority: medium
+Created: 1760168836000.0
+Deleted by: SRP/Jordi #BV#VILL
+Deleted at: 2025-10-11 14:49:38 UTC
+
+=== DESCRIPTION ===
+min tolong mobilku nyemplung
+
+=== MESSAGES ===
+[2025-10-11 07:47:50] SRP - Reza: kecemplung dmna?
+[2025-10-11 07:48:09] Pipin: 1092
+[2025-10-11 07:49:34] SRP/Jordi #BV#VILL: done ya

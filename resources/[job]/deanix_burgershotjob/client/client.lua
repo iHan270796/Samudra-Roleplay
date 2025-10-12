@@ -22,6 +22,15 @@ RegisterNetEvent('deanix_burgershot:tray', function()
         slots = 5 
     })
 end)
+RegisterNetEvent('deanix_burgershot:tray2', function()
+    TriggerServerEvent("InteractSound_SV:PlayOnSource", "StashOpen", 0.4)
+
+    exports.ox_inventory:openInventory('stash', {
+        id = 'bahamastray2',
+        label = 'Tray2',
+        slots = 5 
+    })
+end)
 
 RegisterNetEvent("deanix_burgershot:openBahanUI", function()
     SetNuiFocus(true, true)

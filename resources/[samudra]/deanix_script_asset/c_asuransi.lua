@@ -1,6 +1,6 @@
 local Config = {}
 
-Config.cooldown = 45
+Config.cooldown = 60
 
 Config.IgnoreVehicles = {
     --kendaraan polisi

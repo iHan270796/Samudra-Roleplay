@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 352
+Title: Mau Treatment EMS Kosong gimana solusi nya?
+Reporter: Danz
+Status: closed
+Priority: medium
+Created: 1760226284000.0
+Deleted by: SRP - SENNZ #DJAWA
+Deleted at: 2025-10-12 08:23:10 UTC
+
+=== DESCRIPTION ===
+Tolong
+
+=== MESSAGES ===
+[2025-10-11 23:46:01] HAYZAZ PIJE: bisa otomatis di komputer resepsionis

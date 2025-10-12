@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 353
+Title: tenggelam
+Reporter: Lockhart
+Status: open
+Priority: medium
+Created: 1760230310000.0
+Deleted by: SRP - SENNZ #DJAWA
+Deleted at: 2025-10-12 08:23:13 UTC
+
+=== DESCRIPTION ===
+saya mau buat karakter malah tenggelam di air
+
+=== MESSAGES ===
+[2025-10-12 00:57:57] SRP - SENNZ #DJAWA: gimana mas

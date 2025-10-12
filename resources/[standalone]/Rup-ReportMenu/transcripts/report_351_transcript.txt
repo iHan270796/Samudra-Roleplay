@@ -1,0 +1,18 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 351
+Title: tolong
+Reporter: RAFKHA CUKURUKUK
+Status: open
+Priority: medium
+Created: 1760220256000.0
+Deleted by: AGATHA
+Deleted at: 2025-10-12 05:48:46 UTC
+
+=== DESCRIPTION ===
+mobil saya nyangkut di tempat modif pada saat lagi modif
+
+=== MESSAGES ===
+[2025-10-11 22:04:44] SRP | Yatno: kantong berapa
+[2025-10-11 22:04:44] SRP | Yatno: kantong berapa
+[2025-10-11 22:05:02] SRP | Yatno: oke sebentar
+[2025-10-11 22:05:02] SRP | Yatno: oke sebentar

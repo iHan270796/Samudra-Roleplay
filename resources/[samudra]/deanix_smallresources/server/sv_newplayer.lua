@@ -74,7 +74,7 @@ end
 function GiveReward(src)
     local Player = QBCore.Functions.GetPlayer(src)
     if Player then
-        Player.Functions.AddMoney("cash", 100000, "new-player-reward")
+        -- Player.Functions.AddMoney("cash", 100000, "new-player-reward")
         TriggerClientEvent('QBCore:Notify', src, "🎉 Kamu mendapatkan $100000 karena telah menyelesaikan tutorial!", "success")
     end
 end

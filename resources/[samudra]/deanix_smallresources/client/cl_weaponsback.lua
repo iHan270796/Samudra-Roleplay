@@ -62,8 +62,8 @@ local Weapons = {
     [`WEAPON_DOUBLEACTION`] = { object = `w_pi_wep1_gun`, item = 'WEAPON_DOUBLEACTION', rot = vector3(-90,0,0)},
 
     -- MELEE
-    [`WEAPON_BAT`] = {object = `w_me_bat`, item = 'WEAPON_BAT', rot = vector3(0,92.5,0)},
-    [`WEAPON_BATTLEAXE`] = {object = `w_me_battleaxe`, item = 'WEAPON_BATTLEAXE', rot = vector3(0,92.5,0)},
+    -- [`WEAPON_BAT`] = {object = `w_me_bat`, item = 'WEAPON_BAT', rot = vector3(0,92.5,0)},
+    [`WEAPON_BATTLEAXE`] = {object = `w_me_battleaxe`, item = 'WEAPON_BATTLEAXE', rot = vector3(-90,92.5,0)},
     [`WEAPON_CROWBAR`] = {object = `w_me_crowbar`, item = 'WEAPON_CROWBAR', rot = vector3(0,92.5,0)},
     [`WEAPON_FIREEXTINGUISHER`] = {object = `w_am_fire_exting`, item = 'WEAPON_FIREEXTINGUISHER', rot = vector3(0,92.5,0)},
     [`WEAPON_GOLFCLUB`] = {object = `w_me_gclub`, item = 'WEAPON_GOLFCLUB', rot = vector3(0,92.5,0)},
@@ -83,6 +83,13 @@ local Weapons = {
         rot = vector3(90,90,0),
         pos = vec3(-0.15, -0.08, -0.30),
         bone = 51826,
+    },
+    [`WEAPON_BAT`] = {
+        object = `w_me_bat`,
+        item = 'WEAPON_BAT',
+        bone = 24818, -- spine mid
+        pos = vec3(0.25, -0.20, -0.20),
+        rot = vec3(20.0, -90.0, 70.0),
     },
 }
 

@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 349
+Title: medis ga respon
+Reporter: ZenD
+Status: closed
+Priority: medium
+Created: 1760180018000.0
+Deleted by: AGATHA
+Deleted at: 2025-10-12 05:48:59 UTC
+
+=== DESCRIPTION ===
+medis ga respon pingsan
+
+=== MESSAGES ===
+[2025-10-11 10:54:02] ZenD: medis ga respon
+[2025-10-11 10:54:14] ZenD: saya pingsan tolong min?

@@ -75,6 +75,12 @@ return {
         weight = 10000,
     },
 	{
+        name = 'bahamastray2',
+        label = 'Tray2',
+        slots = 5,
+        weight = 10000,
+    },
+	{
         name = 'ambulancestash',
         label = 'ambulancestash',
         slots = 500,

@@ -1,0 +1,17 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 344
+Title: mas kendaran aku di simpen mana sekarang udah bener nga bentrok mod nya 
+Reporter: RifkyAdmiral
+Status: open
+Priority: medium
+Created: 1760166845000.0
+Deleted by: SRP - Reza
+Deleted at: 2025-10-11 14:34:49 UTC
+
+=== DESCRIPTION ===
+Kendaran aku di simpen garasi mana mas mood udah nga bentrok
+
+=== MESSAGES ===
+[2025-10-11 07:15:24] SRP- DINOCAT: garasi mass untuk simpen kendaraan
+[2025-10-11 07:20:55] RifkyAdmiral: mas  tolong tp ke tempat staterpack dong
+[2025-10-11 07:30:38] SRP/Jordi #BV#VILL: sudah kah?

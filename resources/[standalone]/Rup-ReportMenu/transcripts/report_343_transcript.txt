@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 343
+Title: kendaran saya tiba tiba mogok  tolong
+Reporter: RifkyAdmiral
+Status: in_progress
+Priority: medium
+Created: 1760165859000.0
+Deleted by: SRP_Kazu
+Deleted at: 2025-10-11 13:59:42 UTC
+
+=== DESCRIPTION ===
+Tolong kendaran saya tiba tiba mogok
+
+=== MESSAGES ===
+[2025-10-11 06:57:55] SRP_Kazu: OTW

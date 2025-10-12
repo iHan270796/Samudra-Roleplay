@@ -237,7 +237,8 @@ return {
 		}, locations = {
 			vec3(-1392.25, -607.63, 30.1)
 		}, targets = {
-			{ loc = vec3(-1392.25, -607.63, 30.1), length = 0.5, width = 3.0, heading = 190.0, minZ = 28.5, maxZ = 32.0, distance = 6 }
+			{ loc = vec3(-1392.25, -607.63, 30.1), length = 0.5, width = 3.0, heading = 190.0, minZ = 28.5, maxZ = 32.0, distance = 6 },
+			{ loc = vec3(-1387.97, -613.59, 30.22), length = 0.5, width = 3.0, heading = 190.0, minZ = 28.5, maxZ = 32.0, distance = 6 }
 		}
 	},
 	-- BlackMarketArms = {

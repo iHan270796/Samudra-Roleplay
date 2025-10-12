@@ -205,7 +205,23 @@ Citizen.CreateThread(function()
         name = 'Burgershot_katalog',
         options = {
             {
-                label = 'Food Catalogue',
+                label = 'Menu Makanan',
+                icon = 'fas fa-sign-in-alt',
+                onSelect = function()
+                    TriggerEvent("deanix_burgershot:openCustomerMenu")
+                end
+            }
+        }
+    })
+    exports.ox_target:addBoxZone({
+        coords = vec3(-1385.65, -611.83, 30.34),
+        size = vec3(1.5, 1.5, 4.0), -- minZ 11.0, maxZ 15.0 -> tinggi 4.0
+        rotation = 0.0,
+        debug = false,
+        name = 'Burgershot_katalog2',
+        options = {
+            {
+                label = 'Menu Makanan',
                 icon = 'fas fa-sign-in-alt',
                 onSelect = function()
                     TriggerEvent("deanix_burgershot:openCustomerMenu")
@@ -333,18 +349,66 @@ Citizen.CreateThread(function()
             }
         }
     })
+    exports.ox_target:addBoxZone({
+        coords = vec3(-1390.43, -614.9, 30.34),
+        size = vec3(1.5, 1.5, 4.0), -- minZ 11.0, maxZ 15.0
+        rotation = 0.0,
+        debug = false,
+        name = 'Daftar_pesanan_burgershot2',
+        options = {
+            {
+                label = "Order List",
+                icon = "fas fa-sign-in-alt",
+                groups = "bahamas", -- set job restriction langsung di ox_target
+                onSelect = function()
+                    TriggerEvent("deanix_burgershot:openPegawaiOrders")
+                end
+            },
+            {
+                icon = 'fa-solid fa-plug',
+                label = 'Charging Phone',
+                distance = 4,
+                onSelect = function()
+                    TriggerServerEvent('charger:server:startCharging')
+                end
+            },
+            {
+                name = 'stop_phone_charger',
+                icon = 'fa-solid fa-plug-circle-xmark',
+                label = 'Stop Charging',
+                onSelect = function()
+                    TriggerEvent('charger:client:stopCharging')
+                end
+            }
+        }
+    })
     exports['anes_interaction']:AddInteraction({
         id = "BurgershotTray",
-        label = "Take Orders Here",
+        label = "Ambil Orderan Disini",
         icon = "fas fa-box", -- Font Awesome icon
-        coords = vec3(-1191.97, -897.68, 14.18),
+        coords = vec3(-1392.36, -607.04, 30.34),
         distance = 2.0,       -- distance to interact
         distancedot = 1.5,   -- distance to show floating dot
         options = {
             {
-                actionlabel = "Open Menu",
+                actionlabel = "Buka Tray",
                 actionkey = "E",
                 event = "deanix_burgershot:tray", -- triggers client event
+            },
+        }
+    })
+    exports['anes_interaction']:AddInteraction({
+        id = "BurgershotTray2",
+        label = "Ambil Orderan Disini",
+        icon = "fas fa-box", -- Font Awesome icon
+        coords = vec3(-1387.82, -613.87, 30.34),
+        distance = 2.0,       -- distance to interact
+        distancedot = 1.5,   -- distance to show floating dot
+        options = {
+            {
+                actionlabel = "Buka Tray",
+                actionkey = "E",
+                event = "deanix_burgershot:tray2", -- triggers client event
             },
         }
     })
