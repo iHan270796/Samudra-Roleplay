@@ -287,3 +287,29 @@ RegisterCommand('bahamas', function(source, args, raw)
 
     TriggerClientEvent('dev_rpchat:sendburger', -1, source, name, args, { 196, 33, 246 })
 end)
+
+RegisterCommand('pemerintah', function(source, args, raw)
+    if source == 0 then
+        print('dev_rpchat: you can\'t use this command from rcon!')
+        return
+    end
+
+    local Player = QBCore.Functions.GetPlayer(source)
+    if not Player or Player.PlayerData.job.name ~= "pemerintah" then
+        TriggerClientEvent('QBCore:Notify', source, "Anda Tidak Bisa Akses Command Ini.", "error")
+        return
+    end
+
+    args = table.concat(args, ' ')
+    local name = GetCharacterName(source)
+    
+    if Config.firstname then 
+        name = GetPlayerName2(source) 
+    elseif Config.lastname then 
+        name = GetLastName(source) 
+    elseif Config.job then 
+        name = GetJobName(source) 
+    end
+
+    TriggerClientEvent('dev_rpchat:sendpemerintah', -1, source, name, args, { 196, 33, 246 })
+end)

@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 357
+Title: mau ambil staterpack
+Reporter: POL_MUSALO
+Status: open
+Priority: low
+Created: 1760247103000.0
+Deleted by: SRP - Reza
+Deleted at: 2025-10-12 13:23:41 UTC
+
+=== DESCRIPTION ===
+min blom ambil staterpack
+
+=== MESSAGES ===
+No messages found.

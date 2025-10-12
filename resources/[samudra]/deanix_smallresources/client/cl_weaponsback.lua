@@ -62,7 +62,6 @@ local Weapons = {
     [`WEAPON_DOUBLEACTION`] = { object = `w_pi_wep1_gun`, item = 'WEAPON_DOUBLEACTION', rot = vector3(-90,0,0)},
 
     -- MELEE
-    -- [`WEAPON_BAT`] = {object = `w_me_bat`, item = 'WEAPON_BAT', rot = vector3(0,92.5,0)},
     [`WEAPON_BATTLEAXE`] = {object = `w_me_battleaxe`, item = 'WEAPON_BATTLEAXE', rot = vector3(-90,92.5,0)},
     [`WEAPON_CROWBAR`] = {object = `w_me_crowbar`, item = 'WEAPON_CROWBAR', rot = vector3(0,92.5,0)},
     [`WEAPON_FIREEXTINGUISHER`] = {object = `w_am_fire_exting`, item = 'WEAPON_FIREEXTINGUISHER', rot = vector3(0,92.5,0)},
@@ -87,7 +86,7 @@ local Weapons = {
     [`WEAPON_BAT`] = {
         object = `w_me_bat`,
         item = 'WEAPON_BAT',
-        bone = 24818, -- spine mid
+        bone = 24818,
         pos = vec3(0.25, -0.20, -0.20),
         rot = vec3(20.0, -90.0, 70.0),
     },
@@ -134,6 +133,17 @@ AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
     TriggerEvent('ox_inventory:updateInventory')
 end)
 
+RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
+   for i, _ in pairs(slots) do
+        local slot = slots[i]
+        if slot.entity ~= nil then
+            SetEntityAsMissionEntity(slot.entity, false, false)
+            NetworkRequestControlOfEntity(slot.entity)
+            DeleteEntity(slot.entity)
+        end
+    end
+end)
+
 AddEventHandler('onResourceStop', function(resourceName)
     if (GetCurrentResourceName() == resourceName) then
         for i, _ in pairs(slots) do
@@ -173,9 +183,9 @@ end
 
 local function putOnBack(hash, forcedSlot)
     local whatSlot = forcedSlot or checkForSlot(hash)
+
     if not whatSlot then return end
 
-    -- clear entity lama
     if slots[whatSlot].entity and DoesEntityExist(slots[whatSlot].entity) then
         DeleteEntity(slots[whatSlot].entity)
         slots[whatSlot].entity = nil
@@ -196,7 +206,6 @@ local function putOnBack(hash, forcedSlot)
     slots[whatSlot].hash   = hash
     slots[whatSlot].wep    = item
 
-    -- 🔑 Pakai prioritas: weapon data > slot data > default
     local bone = weapon.bone or slots[whatSlot].bone or 24816
     local pos  = weapon.pos  or slots[whatSlot].pos  or vec3(0.0, 0.0, 0.0)
     local rot  = weapon.rot  or slots[whatSlot].rot  or vec3(0.0, 0.0, 0.0)
@@ -210,49 +219,6 @@ local function putOnBack(hash, forcedSlot)
         true, true, false, true, 2, true
     )
 end
-
-
--- local function putOnBack(hash, forcedSlot)
---     local whatSlot = forcedSlot or checkForSlot(hash)
---     if not whatSlot then return end
-
---     if slots[whatSlot].entity and DoesEntityExist(slots[whatSlot].entity) then
---         DeleteEntity(slots[whatSlot].entity)
---         slots[whatSlot].entity = nil
---     end
-
---     local weapon = Weapons[hash]
---     if not weapon then return end
-
---     local object = weapon.object
---     local item   = weapon.item
---     local model  = type(object) == "string" and joaat(object) or object
---     lib.requestModel(model, 500)
-
---     local coords = GetEntityCoords(ped)
---     local prop   = CreateObject(model, coords.x, coords.y, coords.z, true, true, true)
-
---     slots[whatSlot].entity = prop
---     slots[whatSlot].hash   = hash
---     slots[whatSlot].wep    = item
-
---     if weapon.bone then slots[whatSlot].bone = weapon.bone end
---     if weapon.pos  then slots[whatSlot].pos  = weapon.pos  end
---     if weapon.rot  then slots[whatSlot].rot  = weapon.rot  end
-
---     local bone = slots[whatSlot].bone or 24816
---     local pos  = slots[whatSlot].pos  or vec3(0.0, 0.0, 0.0)
---     local rot  = slots[whatSlot].rot  or vec3(0.0, 0.0, 0.0)
-
---     AttachEntityToEntity(
---         prop,
---         ped,
---         GetPedBoneIndex(ped, bone),
---         pos.x, pos.y, pos.z,
---         rot.x, rot.y, rot.z,
---         true, true, false, true, 2, true
---     )
--- end
 
 AddEventHandler('ox_inventory:currentWeapon', function(data)
     if not LocalPlayer.state.isLoggedIn then return end
@@ -349,6 +315,39 @@ lib.onCache('vehicle', function(value)
     end
 end)
 
+CreateThread(function()
+    local wasInVehicle = false
+
+    while true do
+        Wait(500)
+        local ped = PlayerPedId()
+        local veh = GetVehiclePedIsIn(ped, false)
+
+        if veh ~= 0 and not wasInVehicle then
+            wasInVehicle = true
+            for i, slot in pairs(slots) do
+                if slot.entity and DoesEntityExist(slot.entity) then
+                    DetachEntity(slot.entity, true, true)
+                    DeleteEntity(slot.entity)
+                    slot.entity = nil
+                end
+            end
+
+        elseif veh == 0 and wasInVehicle then
+            wasInVehicle = false
+            if GetResourceState('ox_inventory') == 'started' and playerLoaded then
+                local items = ox_inventory:GetPlayerItems()
+                for _, item in pairs(items) do
+                    local hash = joaat(item.name)
+                    local bodySlot = invToBody[item.slot]
+                    if Weapons[hash] and bodySlot and hash ~= curWeapon then
+                        putOnBack(hash, bodySlot)
+                    end
+                end
+            end
+        end
+    end
+end)
 
 lib.onCache('ped', function(value)
     ped = value
@@ -396,17 +395,19 @@ CreateThread(function()
                         local pos  = Weapons[v.hash].pos  or slots[k].pos  or vec3(0.0, 0.0, 0.0)
                         local rot  = Weapons[v.hash].rot  or slots[k].rot  or vec3(0.0, 0.0, 0.0)
 
-                       AttachEntityToEntity(
-                       prop,
-                       ped,
-                       GetPedBoneIndex(ped, bone),
-                       pos.x, pos.y, pos.z,
-                       rot.x, rot.y, rot.z,
-                       true, true, false, true, 2, true
-                       )
+                        AttachEntityToEntity(
+                        prop,
+                        ped,
+                        GetPedBoneIndex(ped, bone),
+                        pos.x, pos.y, pos.z,
+                        rot.x, rot.y, rot.z,
+                        true, true, false, true, 2, true
+                        )
                     end
                 end
             end
+        else
+            Wait(2000)
         end
     end
 end)

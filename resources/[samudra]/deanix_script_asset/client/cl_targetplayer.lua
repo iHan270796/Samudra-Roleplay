@@ -24,5 +24,14 @@ CreateThread(function()
                 TriggerEvent('police:client:RobPlayer')
             end
         },
+        {
+            icon = 'user-lock',
+            label = 'Borgol-lepasBorgol',
+            distance = 3,
+            groups = 'police',
+            onSelect = function(data)
+                TriggerEvent('police:client:CuffPlayer')
+            end
+        },
     })
 end)

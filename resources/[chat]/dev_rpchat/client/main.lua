@@ -195,6 +195,52 @@ RegisterNetEvent('dev_rpchat:sendburger', function(playerId, title, message, col
     end, playerId)
 end)
 
+RegisterNetEvent('dev_rpchat:sendpemerintah', function(playerId, title, message, color)
+    -- Obtener la calle y zona donde está el EMS
+    local target = GetPlayerFromServerId(playerId)
+    local targetPed = GetPlayerPed(target)
+    local targetCoords = GetEntityCoords(targetPed)
+
+    local streetName, crossingRoad = GetStreetNameAtCoord(targetCoords.x, targetCoords.y, targetCoords.z)
+    local streetLabel = GetStreetNameFromHashKey(streetName)
+
+    if crossingRoad and crossingRoad ~= 0 then
+        local crossingLabel = GetStreetNameFromHashKey(crossingRoad)
+        streetLabel = streetLabel .. " y " .. crossingLabel
+    end
+
+    -- Limitar el nombre de la calle a 15 caracteres
+    local function truncateString(str, length)
+        if str and #str > length then
+            return str:sub(1, length) .. "..."
+        end
+        return str
+    end
+
+    streetLabel = truncateString(streetLabel, 15)
+
+    -- Obtener el nombre y el rango del EMS
+    QBCore.Functions.TriggerCallback('dev_rpchat:getPlayerJobData', function(playerData)
+        if playerData then
+            local rankLabel = playerData.job.grade.name or "pemerintah" -- Usar el nombre del rango o "Médico" por defecto
+            local playerName = playerData.name
+
+            -- Enviar la alerta a TODOS los clientes conectados
+            TriggerEvent('chat:addMessage', {
+                template =
+                    '<div class="pemerintah_box">' ..
+                        '<div class="barra_pemerintah"></div>' ..
+                        '<div class="pemerintah_label"><i class="fa-solid fa-bullhorn"></i> PEMERINTAH</div>' ..
+                        '<div class="player_id_pemerintah"><i class="fa-solid fa-user-secret"></i> INFO</div>' ..
+                        '<div class="player_name_box_pemerintah"><i class="fa-solid fa-user-secret"></i> {1} - {2}</div>' ..
+                        '<div class="message_box_pemerintah">{3}</div>' ..
+                    '</div>',
+                args = { streetLabel, rankLabel, playerName, message }
+            })
+        end
+    end, playerId)
+end)
+
 RegisterNetEvent('dev_rpchat:sendMe', function(playerId, title, message, color)
     local source = PlayerId()
     local target = GetPlayerFromServerId(playerId)

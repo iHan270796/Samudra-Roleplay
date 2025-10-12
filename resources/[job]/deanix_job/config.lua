@@ -36,8 +36,8 @@ Config.SmeltingResults = {
     "besi"
 }
 
-Config.DrillMaxDurability = 3
-Config.AxeMaxDurability = 3
+Config.DrillMaxDurability = 5
+Config.AxeMaxDurability = 5
 
 Config.RockProps = {
     'prop_rock_1_g'

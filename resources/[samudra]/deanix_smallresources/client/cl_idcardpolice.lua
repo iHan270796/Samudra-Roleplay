@@ -2,6 +2,24 @@ local QBCore = exports['qb-core']:GetCoreObject()
 
 CreateThread(function()
     exports.ox_target:addBoxZone({
+        coords = vec3(1756.48, 3651.24, 35.49),
+        size = vec3(1.0, 1.0, 3.0),
+        rotation = 0, 
+        debug = false,
+        options = {
+            {
+                name = 'duty_pemerintah',
+                icon = 'fas fa-sign-in-alt',
+                label = 'Toggle Duty',
+                groups = 'pemerintah',
+                onSelect = function()
+                    TriggerServerEvent("QBCore:ToggleDuty")
+                end
+            }
+        },
+        distance = 1.5
+    })
+    exports.ox_target:addBoxZone({
         coords = vec3(1758.09, 3652.19, 35.49),
         size = vec3(1.0, 1.0, 3.0),
         rotation = 0, 

@@ -241,6 +241,21 @@ return {
 			{ loc = vec3(-1387.97, -613.59, 30.22), length = 0.5, width = 3.0, heading = 190.0, minZ = 28.5, maxZ = 32.0, distance = 6 }
 		}
 	},
+	pemerintah = {
+		name = 'Document',
+		groups = {
+			['pemerintah'] = 2
+		},
+		blip = {
+			-- id = 403, colour = 69, scale = 0.6
+		}, inventory = {
+			{ name = 'documents', price = 15000, },
+		}, locations = {
+			vec3(1771.14, 3664.6, 35.29)
+		}, targets = {
+			{ loc = vec3(1771.14, 3664.6, 35.29), length = 0.5, width = 3.0, heading = 190.0, minZ = 33.5, maxZ = 37.0, distance = 6 }
+		}
+	},
 	-- BlackMarketArms = {
 	-- 	name = 'Black Market (Arms)',
 	-- 	inventory = {

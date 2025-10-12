@@ -9,3 +9,4 @@ Config.sheriff = 'sheriff' -- job name for sheriff
 Config.police = 'police' -- job name for police 
 Config.police = 'mechanic'
 Config.police = 'bahamas'
+Config.police = 'pemerintah'

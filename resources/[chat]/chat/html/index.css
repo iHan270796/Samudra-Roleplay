@@ -165,7 +165,67 @@
 }
 
 
+/* pemerintahan */
+.pemerintah_box {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  font-size: 0.7vw;
+    background: #ffc400de !important;
+	box-shadow: 0 0 10px #dadf4023;
+  color: white;
+  padding: .3vw .4vw;
+  border-radius: .2vw;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  animation: animchat .4s forwards;
+}
+.pemerintah_box .barra_pemerintah {
+  height: 20px;
+  width: 5px;
+  margin-right: -0.2vw;
+  border-radius: 8px;
 
+}
+.pemerintah_box .pemerintah_label {
+  background-color: #00d5ff6b;
+      	box-shadow: inset 0 0 12px #00000050;
+  color: white;
+  font-weight: 600;
+  padding: 0.2vw 0.4vw;
+  margin-right: 0.5vw;
+  border-radius: 0.2vw;
+    animation: pulse 3000ms infinite;
+}
+.pemerintah_box .player_id_pemerintah {
+  padding: 0.2vw 0.4vw;
+  margin-right: 0.5vw;
+  border-radius: 0.2vw;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    background-color: #ff9900;
+    box-shadow: 0 0 12px #dfa54039;
+}
+
+/* Caja para el nombre del jugador */
+.pemerintah_box .player_name_box_pemerintah {
+  background-color: #02a6ff60;
+    	box-shadow: 0 0 12px #7eaee854;
+  color: white;
+  font-weight: bold;
+  padding: 0.2vw 0.4vw;
+  margin-right: 0.5vw;
+  border-radius: 0.2vw;
+}
+
+/* Caja para el mensaje */
+.pemerintah_box .message_box_pemerintah {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+      font-weight: 400;
+  padding: 0.2vw 0.4vw;
+  border-radius: 0.2vw;
+}
 
 .pd_box {
   display: flex;
