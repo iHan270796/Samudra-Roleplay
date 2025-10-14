@@ -53,6 +53,7 @@ Config.Framework = 'auto' -- 'auto', 'qb-core', 'esx', 'standalone'
 Config.MaxPlayers = 128
 Config.RefreshTime = 5000 -- Refresh every 5 seconds
 Config.Debug = false -- Enable debug output
+Config.Keybind = 'F2' -- Key to open/close scoreboard
 ```
 
 ### Robbery Types
@@ -81,7 +82,9 @@ Config.PlayerVisibility = {
     hidePlayerNames = false,
     hideOfflinePlayers = true,
     showOnlyPolice = false,
-    hideSpecificJobs = {'unemployed'}
+    hideSpecificJobs = {'unemployed'},
+    allowPlayerHideToggle = true, -- Allow players to hide their own info
+    showHideButton = true -- Show/hide the "Hide My Info" button
 }
 ```
 
@@ -95,11 +98,31 @@ Config.Layout = {
 }
 ```
 
+### New Configuration Options (v2.1.0)
+
+#### Configurable Keybind
+```lua
+Config.Keybind = 'F2' -- Change the scoreboard opening key
+-- Examples:
+Config.Keybind = 'TAB'   -- Use Tab key
+Config.Keybind = 'F10'   -- Use F10 key
+Config.Keybind = 'LSHIFT' -- Use Left Shift key
+```
+
+#### Hide Button Control
+```lua
+Config.PlayerVisibility = {
+    -- ... other options ...
+    showHideButton = false -- Hide the "Hide My Info" button completely
+}
+```
+
 ## 🎮 Usage
 
 ### Opening the Scoreboard
-- **Default Key**: F2
-- **Command**: `/scoreboard_f2`
+- **Default Key**: F2 (configurable via `Config.Keybind`)
+- **Command**: `/scoreboard_toggle`
+- **Available Keys**: F1-F12, TAB, ENTER, ESC, SPACE, SHIFT, CTRL, ALT, NUMPAD keys
 
 ### Features Available
 - **Search Players**: Use the search bar to find specific players
@@ -187,6 +210,24 @@ Config.Debug = true
 This will provide detailed logging for troubleshooting.
 
 ## 📝 Changelog
+
+### Version 2.1.0 - Recent Updates
+- **🎮 Configurable Keybind**: Added `Config.Keybind` option to change the scoreboard opening key
+  - Default: F2
+  - Supports all FiveM key names (F1-F12, TAB, ENTER, etc.)
+  - Automatic fallback to F2 if invalid key is configured
+- **👁️ Hide Button Control**: Added `Config.PlayerVisibility.showHideButton` option
+  - Enable/disable the "Hide My Info" button in the header
+  - Default: true (button visible)
+  - Set to false to hide the button completely
+- **🎯 Improved Button Positioning**: Moved "Hide My Info" button to header section
+  - Now positioned next to player count and server time
+  - Better integration with header layout
+  - Compact styling for header placement
+- **⚙️ Enhanced Configuration**: Updated configuration options with better documentation
+  - Added comprehensive keybind documentation
+  - Improved config comments and examples
+  - Better validation and error handling
 
 ### Version 2.0.0
 - Added robbery availability system

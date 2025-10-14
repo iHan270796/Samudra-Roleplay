@@ -8,10 +8,40 @@ Config.FrameworkName = 'QBCore' -- Display name for the framework
 Config.MaxPlayers = 64
 Config.RefreshTime = 5000 -- Refresh every 5 seconds
 Config.Debug = false -- Enable/disable debug output
+Config.Keybind = 'F10' -- Key to open/close scoreboard
+-- Available options: 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'
+--                   'TAB', 'ENTER', 'ESC', 'SPACE', 'LSHIFT', 'RSHIFT', 'LCTRL', 'RCTRL'
+--                   'LALT', 'RALT', 'CAPITAL', 'NUMPAD0' through 'NUMPAD9'
+--                   Any other FiveM key name (see FiveM documentation for full list)
 
 -- Job Configuration
 -- Note: Only jobs with active players (count > 0) will be displayed in the scoreboard
 -- Jobs with 0 players will be automatically hidden
+
+-- Job Type Grouping Configuration
+-- When enabled, jobs with the same 'type' field from QBCore shared jobs will be grouped together
+Config.JobTypeGrouping = {
+    enabled = false, -- Set to true to enable job type grouping
+    fallbackToIndividual = false, -- If a job type doesn't have a group config, show individual jobs
+    groupConfigs = {
+        ['mechanic'] = {
+            label = 'Mekanik',
+            color = '#F59E0B',
+            icon = 'wrench'
+        },
+        ['police'] = {
+            label = 'Polisi',
+            color = '#3B82F6',
+            icon = 'shield'
+        },
+        ['pemerintah'] = {
+            label = 'Pemerintah',
+            color = '#FF8800',
+            icon = 'shield'
+        }
+    }
+}
+
 Config.Jobs = {
     ['police'] = {
         label = 'Polisi',
@@ -25,31 +55,32 @@ Config.Jobs = {
     },
     ['mechanic'] = {
         label = 'Mekanik',
-        color = '#F59E0B',
+        color = 'FFF5DA0B',
         icon = 'wrench'
     },
     ['bahamas'] = {
         label = 'Bahamas',
-        color = 'FFF5D60B',
+        color = 'FF7CF50B',
         icon = 'utensils'
     },
     ['pemerintah'] = {
         label = 'Pemerintah',
-        color = '#15FF00',
+        color = '#FF8800',
         icon = 'building-ngo'
     },
     ['unemployed'] = {
-        label = 'Warga',
+        label = 'Pengangguran',
         color = '#6B7280',
         icon = 'user'
     }
 }
 
 
+
 -- Server Information
 Config.ServerInfo = {
     name = 'Samudra Roleplay',
-    description = 'Kota Ringan Pitur Menarik'
+    description = 'Kota Ringan Fitur Menarik'
 }
 
 -- Discord Configuration
@@ -57,7 +88,7 @@ Config.Discord = {
     enabled = true,
     botToken = GetConvar('scoreboard_discord_token', ''), -- Load from server.cfg
     guildId = GetConvar('scoreboard_discord_guild', ''), -- Load from server.cfg
-    showAvatars = false,
+    showAvatars = true,
     showRoles = true,
     cacheTime = 300000 -- Cache Discord data for 5 minutes
 }
@@ -86,13 +117,13 @@ Config.RobberyTypes = {
         label = 'Bank Heist',
         icon = 'fas fa-university',
         color = '#45B7D1',
-        minPolice = 3
+        minPolice = 4
     },
     ['drug'] = {
-        label = 'Drug Lab',
-        icon = 'fas fa-flask',
+        label = 'Atm',
+        icon = 'fas fa-money-bills',
         color = '#96CEB4',
-        minPolice = 1
+        minPolice = 3
     },
     ['store'] = {
         label = 'Store Robbery',
@@ -115,7 +146,9 @@ Config.PlayerVisibility = {
     hideOfflinePlayers = false, -- Hide players with 0 ping (temporarily disabled for debugging)
     showOnlyPolice = false, -- Show only police officers
     showOnlySpecificJobs = {}, -- Array of job names to show only (e.g., {'police', 'ambulance'})
-    hideSpecificJobs = {} -- Array of job names to hide (e.g., {'unemployed'})
+    hideSpecificJobs = {'realestate'}, -- Array of job names to hide (e.g., {'unemployed'})
+    allowPlayerHideToggle = true, -- Allow players to hide their own name and job
+    showHideButton = true -- Show/hide the "Hide My Info" button in the scoreboard header
 }
 
 -- Layout Configuration
@@ -136,6 +169,6 @@ Config.Layout = {
     
     -- Responsive settings
     responsive = true, -- Enable responsive design
-    mobileLayout = 'compact' -- 'compact', 'list', 'grid' for mobile devices
+    mobileLayout = 'grid' -- 'compact', 'list', 'grid' for mobile devices
 }
 

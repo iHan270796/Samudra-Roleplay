@@ -9,7 +9,7 @@ RegisterNetEvent("rst-starterpack:server:claimStarterpack", function(gender)
     if Player.PlayerData.metadata["starterpack"] == true then
         TriggerClientEvent('ox_lib:notify', src, {
             description = 'You`ve picked up the Starterpack.',
-            type = 'error' -- atau 'success'
+            type = 'error'
         })
         return
     end
@@ -18,18 +18,17 @@ RegisterNetEvent("rst-starterpack:server:claimStarterpack", function(gender)
     local vehicles = (gender == 0) and Config.VehicleMale or Config.VehicleFemale
 
     for _, v in pairs(items) do
-        Player.Functions.AddItem(v.itemName, v.qty)
-        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[v.itemName], "add")
-    end   
+        -- Player.Functions.AddItem(v.itemName, v.qty)
+        exports.ox_inventory:AddItem(src, v.itemName, v.qty)
+    end
 
-    -- Beri kendaraan dan ambil info plate
     if gender == 0 then
         local veh = vehicles[1]
         if veh then
             local vehicle, plate = GiveVehicle(src, veh, false)
             TriggerClientEvent('ox_lib:notify', src, {
                 description = 'The starterpack vehicle ' .. vehicle .. ' with plates ' .. plate .. ' made it into the garage.',
-                type = 'success' -- atau 'success'
+                type = 'success'
             })
         end
     else
@@ -37,14 +36,13 @@ RegisterNetEvent("rst-starterpack:server:claimStarterpack", function(gender)
             local vehicle, plate = GiveVehicle(src, veh, false)
             TriggerClientEvent('ox_lib:notify', src, {
                 description = 'The starterpack vehicle ' .. vehicle .. ' with plates ' .. plate .. ' made it into the garage.',
-                type = 'success' -- atau 'success'
+                type = 'success'
             })
         end
     end
 
     Player.Functions.SetMetaData("starterpack", true)
 
-    -- Simpan metadata ke database
     MySQL.Async.execute('UPDATE players SET metadata = ? WHERE citizenid = ?', {
         json.encode(Player.PlayerData.metadata),
         Player.PlayerData.citizenid
@@ -59,7 +57,7 @@ RegisterNetEvent("rst-starterpack:server:giveChosenVehicle", function(vehicle)
     if Player.PlayerData.metadata["starterpack2"] == true then
         TriggerClientEvent('ox_lib:notify', src, {
                 description = 'You have selected the 2nd Starterpack vehicle.',
-                type = 'error' -- atau 'success'
+                type = 'error'
             })
         return
     end
@@ -74,7 +72,7 @@ RegisterNetEvent("rst-starterpack:server:giveChosenVehicle", function(vehicle)
     })
     TriggerClientEvent('ox_lib:notify', src, {
         description = 'The ' .. model .. ' vehicle was successfully put into the garage.',
-        type = 'success' -- atau 'success'
+        type = 'success'
     })
 end)
 
@@ -99,7 +97,7 @@ function GiveVehicle(source, vehicle, notify)
     if notify ~= false then
         TriggerClientEvent('ox_lib:notify', src, {
             description = 'Starterpack vehicle ' .. vehicle .. ' ditambahkan!',
-            type = 'success' -- atau 'success'
+            type = 'success'
         })
     end
 
@@ -135,7 +133,6 @@ QBCore.Commands.Add("setstarterpack", "Set Starterpack METADATA", {{name = "citi
                 TriggerClientEvent('QBCore:Notify', src, "Please Provide Status true or false", "error")
             end
 		else
-			-- TriggerClientEvent('QBCore:Notify', src, "Citizen Is not Online Right Now/Not Exist, Trying To Update in Database", "primary")
             local result = MySQL.Sync.fetchScalar('SELECT metadata FROM players WHERE citizenid = ?', {args[1]})
             if result then
                 local status = nil
@@ -180,10 +177,9 @@ QBCore.Commands.Add("checkstarterpack", "Check Starterpack METADATA", {{name = "
             end
             TriggerClientEvent('ox_lib:notify', src, {
                 description = "Starterpack Claim Status for " .. Player.PlayerData.name .. " is " .. status,
-                type = 'infrom' -- atau 'success'
+                type = 'infrom'
             })
 		else
-            -- TriggerClientEvent('QBCore:Notify', src, "Citizen Is not Online Right Now/Not Exist, Trying To Search in Database", "primary")
             local result = MySQL.Sync.fetchScalar('SELECT metadata FROM players WHERE citizenid = ?', {args[1]})
             if result then
                 local status = nil
@@ -196,19 +192,19 @@ QBCore.Commands.Add("checkstarterpack", "Check Starterpack METADATA", {{name = "
                 end
                 TriggerClientEvent('ox_lib:notify', src, {
                     description = 'Starterpack Claim Status is ' .. status,
-                    type = 'infrom' -- atau 'success'
+                    type = 'infrom'
                 })
             else
                 TriggerClientEvent('ox_lib:notify', src, {
                     description = 'Citizen ID Not Found.',
-                    type = 'error' -- atau 'success'
+                    type = 'error'
                 })
             end
 		end
 	else
         TriggerClientEvent('ox_lib:notify', src, {
             description = 'Please Provide Citizen ID.',
-            type = 'error' -- atau 'success'
+            type = 'error'
         })
 	end
 end, "admin")

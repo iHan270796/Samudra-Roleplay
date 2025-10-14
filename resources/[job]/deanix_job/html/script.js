@@ -47,7 +47,7 @@ function startMovingBar() {
 
   movingBar.style.left = '0px';
   let startTime = Date.now();
-  let duration = 4500; // 2 seconds
+  let duration = 2500; // 2 seconds
 
   barInterval = setInterval(() => {
     let elapsed = Date.now() - startTime;

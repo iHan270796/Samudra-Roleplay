@@ -8502,14 +8502,14 @@ return {
         type = 'automobile',
         hash = `moonshine`,
     },
-    hotwaterlab = {
-        name = 'RX7 HOT',
-        brand = 'NISSAN',
-        model = 'hotwaterlab',
+    karma = {
+        name = 'Karma',
+        brand = 'KRA',
+        model = 'karma',
         price = 67000000,
         category = 'super',
         type = 'automobile',
-        hash = `hotwaterlab`,
+        hash = `karma`,
     },
     miodrag = {
         name = 'Mio Drag',

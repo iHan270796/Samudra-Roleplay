@@ -57,6 +57,7 @@ local function handleLastStand()
     local laststandTime = exports.qbx_medical:GetLaststandTime()
     if laststandTime > config.laststandTimer or doctorCount == 0 then
         qbx.drawText2d({ text = locale('info.bleed_out', math.ceil(laststandTime)), coords = vec2(1.0, 1.44), scale = 0.6 })
+        qbx.drawText2d({ text = locale('info.dockter_lokal'), coords = vec2(1.0, 1.40), scale = 0.6 })
     else
         qbx.drawText2d({ text = locale('info.bleed_out_help', math.ceil(laststandTime)), coords = vec2(1.0, 1.44), scale = 0.6 })
         handleRequestingEms()

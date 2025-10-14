@@ -265,7 +265,7 @@ Config.GarageLocations = { -- IMPORTANT - Every garage name must be unique
     spawn = {vector4(1156.3, -1474.06, 34.69, 91.05), vector4(1156.64, -1470.69, 34.69, 94.02), vector4(1157.06, -1467.14, 34.69, 89.63), vector4(1156.87, -1477.94, 34.69, 93.04)}, --  you can add multiple spawn locations into a table
     distance = 20,
     type = "car",
-    hideBlip = true,
+    hideBlip = false,
     blip = {
       id = 357,
       color = 29,
@@ -279,7 +279,7 @@ Config.GarageLocations = { -- IMPORTANT - Every garage name must be unique
     spawn = {vector4(407.55, -988.39, 29.27, 50.95), vector4(407.8, -993.19, 29.27, 60.06), vector4(406.72, -997.37, 29.27, 64.75), vector4(407.93, -984.4, 29.27, 54.3)}, --  you can add multiple spawn locations into a table
     distance = 7,
     type = "car",
-    hideBlip = true,
+    hideBlip = false,
     blip = {
       id = 357,
       color = 29,
@@ -377,7 +377,7 @@ Config.GarageLocations = { -- IMPORTANT - Every garage name must be unique
     spawn = {vector4(-240.07, -1475.29, 31.46, 321.89), vector4(-237.44, -1477.75, 31.42, 315.82)}, --  you can add multiple spawn locations into a table
     distance = 10,
     type = "car",
-    hideBlip = true,
+    hideBlip = false,
     blip = {
       id = 357,
       color = 29,
@@ -418,6 +418,34 @@ Config.GarageLocations = { -- IMPORTANT - Every garage name must be unique
     coords = vector3(1748.56, 3621.14, 34.95),
     spawn = {vector4(1747.39, 3612.25, 34.99, 302.77), vector4(1745.59, 3615.38, 34.99, 308.7), vector4(1743.78, 3618.27, 34.99, 302.48)}, --  you can add multiple spawn locations into a table
     distance = 20,
+    type = "car",
+    hideBlip = false,
+    blip = {
+      id = 357,
+      color = 29,
+      scale = 0.5
+    },
+    hideMarkers = true,
+    markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
+  },
+  ["Terminal Bus"] = { -- If you change the name of this garage from Legion Square, you must change the default value of `garage_id` to the same name in the SQL table `players_vehicles`
+    coords = vector3(412.7, -641.64, 28.5),
+    spawn = {vector4(415.99, -641.34, 28.5, 272.62), vector4(415.71, -644.09, 28.5, 272.81), vector4(409.05, -644.03, 28.5, 93.73), vector4(409.0, -641.36, 28.5, 89.09)}, --  you can add multiple spawn locations into a table
+    distance = 20,
+    type = "car",
+    hideBlip = false,
+    blip = {
+      id = 357,
+      color = 29,
+      scale = 0.5
+    },
+    hideMarkers = true,
+    markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
+  },
+  ["Kuli Bangunan"] = { -- If you change the name of this garage from Legion Square, you must change the default value of `garage_id` to the same name in the SQL table `players_vehicles`
+    coords = vector3(918.93, -1577.47, 30.61),
+    spawn = {vector4(918.93, -1577.47, 30.61, 2.8), vector4(922.04, -1577.59, 30.56, 9.63), vector4(913.43, -1578.48, 30.68, 6.01)}, --  you can add multiple spawn locations into a table
+    distance = 10,
     type = "car",
     hideBlip = false,
     blip = {

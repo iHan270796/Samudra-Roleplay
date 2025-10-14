@@ -7,7 +7,7 @@ return {
         offDutyPay = false,
         grades = {
             [0] = {
-                name = 'Samudra',
+                name = 'Pengangguran',
                 payment = 2000
             },
         },

@@ -9,19 +9,7 @@ return {
         prop = "v_ind_rc_lockeropn",
         rentalData = {
             price = 25000,
-            identifier = {}
-        },
-    },
-    ["gudangbaru"] = {
-        id = "gudangbaru",
-        label = "Gudang Baru",
-        slots = 234,
-        weight = 234000,
-        owned = false,
-        coords = vec(815.71, -1342.75, 26.22, 0.00),
-        rentalData = {
-            price = 5000,
-            identifier = {["928V5582"] = "28/02/2024"}
+            identifier = {["D51N32SB"] = "14/10/2025"}
         },
     },
     ["Gudang_Samudra2"] = {
@@ -48,6 +36,18 @@ return {
         rentalData = {
             price = 25000,
             identifier = {["DE4VL72N"] = "31/10/2025", ["L67S6UZG"] = "04/10/2025", ["S69DN168"] = "31/10/2025"}
+        },
+    },
+    ["gudangbaru"] = {
+        id = "gudangbaru",
+        label = "Gudang Baru",
+        slots = 234,
+        weight = 234000,
+        owned = false,
+        coords = vec(815.71, -1342.75, 26.22, 0.00),
+        rentalData = {
+            price = 5000,
+            identifier = {["928V5582"] = "28/02/2024"}
         },
     },
 

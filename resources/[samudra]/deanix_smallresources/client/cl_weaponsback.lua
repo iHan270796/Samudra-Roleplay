@@ -92,6 +92,112 @@ local Weapons = {
     },
 }
 
+--hapus prop senjata
+local WeaponsHapus = {
+    [`WEAPON_BAT`] = { object = `w_me_bat`, trashes = true },
+    [`WEAPON_NIGHTSTICK`] = { object = `w_me_nightstick`, trashes = true },
+    [`WEAPON_ADVANCEDRIFLE`] = { object = `w_ar_advancedrifle`, trashes = true },
+    [`WEAPON_ASSAULTRIFLE`] = { object = `w_ar_assaultrifle`, trashes = true },
+    [`WEAPON_ASSAULTRIFLE_MK2`] = { object = `w_ar_assaultriflemk2`, trashes = true },
+    [`WEAPON_ASSAULTSHOTGUN`] = { object = `w_sg_assaultshotgun`, trashes = true },
+    [`WEAPON_ASSAULTSMG`] = { object = `w_sb_assaultsmg`, trashes = true },
+    [`WEAPON_BULLPUPRIFLE`] = { object = `w_ar_bullpuprifle`, trashes = true },
+    [`WEAPON_BULLPUPRIFLE_MK2`] = { object = `w_ar_bullpupriflemk2`, trashes = true },
+    [`WEAPON_BULLPUPSHOTGUN`] = { object = `w_sg_bullpupshotgun`, trashes = true },
+    [`WEAPON_CARBINERIFLE`] = { object = `w_ar_carbinerifle`, trashes = true },
+    [`WEAPON_CARBINERIFLE_MK2`] = { object = `w_ar_carbineriflemk2`, trashes = true },
+    [`WEAPON_COMBATMG`] = { object = `w_mg_combatmg`, trashes = true },
+    [`WEAPON_COMBATMG_MK2`] = { object = `w_mg_combatmgmk2`, trashes = true },
+    [`WEAPON_COMBATPDW`] = { object = `w_sb_pdw`, trashes = true },
+    [`WEAPON_COMBATSHOTGUN`] = { object = `w_sg_pumpshotgunh4`, trashes = true },
+    [`WEAPON_COMPACTRIFLE`] = { object = `w_ar_assaultrifle_smg`, trashes = true },
+    [`WEAPON_DBSHOTGUN`] = { object = `w_sg_doublebarrel`, trashes = true },
+    [`WEAPON_FIREWORK`] = { object = `w_lr_firework`, trashes = true },
+    [`WEAPON_GUSENBERG`] = { object = `w_sb_gusenberg`, trashes = true },
+    [`WEAPON_HEAVYRIFLE`] = { object = `w_ar_heavyrifleh`, trashes = true },
+    [`WEAPON_HEAVYSHOTGUN`] = { object = `w_sg_heavyshotgun`, trashes = true },
+    [`WEAPON_HEAVYSNIPER`] = { object = `w_sr_heavysniper`, trashes = true },
+    [`WEAPON_HEAVYSNIPER_MK2`] = { object = `w_sr_heavysnipermk2`, trashes = true },
+    [`WEAPON_MARKSMANRIFLE`] = { object = `w_sr_marksmanrifle`, trashes = true },
+    [`WEAPON_MARKSMANRIFLE_MK2`] = { object = `w_sr_marksmanriflemk2`, trashes = true },
+    [`WEAPON_MG`] = { object = `w_mg_mg`, trashes = true },
+    [`WEAPON_MICROSMG`] = { object = `w_sb_microsmg`, trashes = true },
+    [`WEAPON_MILITARYRIFLE`] = { object = `w_ar_bullpuprifleh4`, trashes = true },
+    [`WEAPON_MINISMG`] = { object = `w_sb_minismg`, trashes = true },
+    [`WEAPON_MUSKET`] = { object = `w_ar_musket`, trashes = true },
+    [`WEAPON_PUMPSHOTGUN`] = { object = `w_sg_pumpshotgun`, trashes = true },
+    [`WEAPON_PUMPSHOTGUN_MK2`] = { object = `w_sg_pumpshotgunmk2`, trashes = true },
+    [`WEAPON_SAWNOFFSHOTGUN`] = { object = `w_sg_sawnoff`, trashes = true },
+    [`WEAPON_SMG`] = { object = `w_sb_smg`, trashes = true },
+    [`WEAPON_SMG_MK2`] = { object = `w_sb_smgmk2`, trashes = true },
+    [`WEAPON_SNIPERRIFLE`] = { object = `w_sr_sniperrifle`, trashes = true },
+    [`WEAPON_SPECIALCARBINE`] = { object = `w_ar_specialcarbine`, trashes = true },
+    [`WEAPON_SPECIALCARBINE_MK2`] = { object = `w_ar_specialcarbinemk2`, trashes = true },
+    [`WEAPON_AUTOSHOTGUN`] = { object = `w_sg_sweeper`, trashes = true },
+    [`WEAPON_PRECISIONRIFLE`] = { object = `w_sr_precisionrifle_reh`, trashes = true },
+    [`WEAPON_TACTICALRIFLE`] = { object = `w_ar_carbinerifle_reh`, trashes = true },
+    [`WEAPON_RAYMINIGUN`] = { object = `w_mg_sminigun`, trashes = true },
+    [`WEAPON_RAYCARBINE`] = { object = `w_ar_srifle`, trashes = true },
+    [`WEAPON_RAILGUN`] = { object = `w_ar_railgun`, trashes = true },
+    [`WEAPON_RPG`] = { object = `w_lr_rpg`, trashes = true },
+    [`WEAPON_HOMINGLAUNCHER`] = { object = `w_lr_homing`, trashes = true },
+    [`WEAPON_MINIGUN`] = { object = `w_mg_minigun`, trashes = true },
+
+    ["WEAPON_APPISTOL"] = { object = "w_pi_appistol", trashes = true },
+    [`WEAPON_PISTOL`] = { object = `w_pi_pistol`, trashes = true },
+    [`WEAPON_COMBATPISTOL`] = { object = `w_pi_combatpistol`, trashes = true },
+    [`WEAPON_PISTOL50`] = { object = `w_pi_pistol50`, trashes = true },
+    [`WEAPON_SNSPISTOL`] = { object = `w_pi_sns_pistol`, trashes = true },
+    [`WEAPON_HEAVYPISTOL`] = { object = `w_pi_heavypistol`, trashes = true },
+    [`WEAPON_VINTAGEPISTOL`] = { object = `w_pi_vintage_pistol`, trashes = true },
+    [`WEAPON_REVOLVER`] = { object = `w_pi_revolver`, trashes = true },
+    [`WEAPON_DOUBLEACTION`] = { object = `w_pi_wep1_gun`, trashes = true },
+
+    -- MELEE
+    [`WEAPON_BATTLEAXE`] = {object = `w_me_battleaxe`, trashes = true },
+    [`WEAPON_CROWBAR`] = {object = `w_me_crowbar`, trashes = true },
+    [`WEAPON_FIREEXTINGUISHER`] = {object = `w_am_fire_exting`, trashes = true },
+    [`WEAPON_GOLFCLUB`] = {object = `w_me_gclub`, trashes = true },
+    [`WEAPON_HATCHET`] = {object = `w_me_hatchet`, trashes = true },
+    [`WEAPON_HAZARDCAN`] = {object = `w_ch_jerrycan`, trashes = true },
+    [`WEAPON_FERTILIZERCAN`] = {object = `w_am_jerrycan_sf`, trashes = true },
+    [`WEAPON_MACHETE`] = {object = `w_me_machette_lr`, trashes = true },
+    [`WEAPON_PETROLCAN`] = {object = `w_am_jerrycan`, trashes = true },
+    [`WEAPON_POOLCUE`] = {object = `w_me_poolcue`, trashes = true },
+    [`WEAPON_STONE_HATCHET`] = {object = `w_me_stonehatchet`, trashes = true },
+    [`WEAPON_WRENCH`] = {object = `w_me_wrench`, trashes = true },
+    [`WEAPON_CANDYCANE`] = {object = `w_me_candy_xm3`, trashes = true },
+}
+
+local trashModels = {}
+
+for _, v in pairs(WeaponsHapus) do
+    if v.trashes then
+        local hash = type(v.object) == "string" and joaat(v.object) or v.object
+        trashModels[hash] = true
+    end
+end
+
+local function hapuspropsenjata()
+    local objects = GetGamePool('CObject')
+    local ped = PlayerPedId()
+
+    for _, obj in ipairs(objects) do
+        local model = GetEntityModel(obj)
+        if trashModels[model] and not IsEntityAttachedToEntity(obj, ped) then
+            SetEntityAsMissionEntity(obj, false, true)
+            NetworkRequestControlOfEntity(obj)
+            local timeout = GetGameTimer() + 1000
+            while not NetworkHasControlOfEntity(obj) and GetGameTimer() < timeout do
+                Wait(0)
+                NetworkRequestControlOfEntity(obj)
+            end
+            DeleteObject(obj)
+            DeleteEntity(obj)
+        end
+    end
+end
+
 local invToBody = {
     [2] = 2,
     [3] = 3,
@@ -127,35 +233,6 @@ local slots = {
         wep = nil
     },
 }
-
-AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
-    playerLoaded = true
-    TriggerEvent('ox_inventory:updateInventory')
-end)
-
-RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
-   for i, _ in pairs(slots) do
-        local slot = slots[i]
-        if slot.entity ~= nil then
-            SetEntityAsMissionEntity(slot.entity, false, false)
-            NetworkRequestControlOfEntity(slot.entity)
-            DeleteEntity(slot.entity)
-        end
-    end
-end)
-
-AddEventHandler('onResourceStop', function(resourceName)
-    if (GetCurrentResourceName() == resourceName) then
-        for i, _ in pairs(slots) do
-            local slot = slots[i]
-            if slot.entity ~= nil then
-                SetEntityAsMissionEntity(slot.entity, false, false)
-                NetworkRequestControlOfEntity(slot.entity)
-                DeleteEntity(slot.entity)
-            end
-        end
-    end
-end)
 
 local function clearSlot(i)
     if slots[i].entity and DoesEntityExist(slots[i].entity) then
@@ -219,6 +296,20 @@ local function putOnBack(hash, forcedSlot)
         true, true, false, true, 2, true
     )
 end
+
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+    playerLoaded = true
+    TriggerEvent('ox_inventory:updateInventory')
+end)
+
+RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
+    hapuspropsenjata()
+end)
+
+AddEventHandler('onResourceStop', function(resourceName)
+    if resourceName ~= GetCurrentResourceName() then return end
+    hapuspropsenjata()
+end)
 
 AddEventHandler('ox_inventory:currentWeapon', function(data)
     if not LocalPlayer.state.isLoggedIn then return end

@@ -1,5 +1,5 @@
-RegisterCommand('callmedic', function(source)
-    print('[AI Medic] callmedic command triggered by source: ' .. source)
+RegisterCommand('dokterlokal', function(source)
+    -- print('[AI Medic] dokterlokal command triggered by source: ' .. source)
     local onlineEMS = 0
     if Utils.QBCore then
         for _, id in pairs(Utils.QBCore.Functions.GetPlayers()) do

@@ -10,7 +10,6 @@ RegisterServerEvent("deanix_mining:giveStone", function()
 
     if Player then
         Player.Functions.AddItem("stone", 1)
-        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['stone'], 'add')
         TriggerClientEvent('ox_lib:notify', src, {
             title = 'Mining',
             description = 'Kamu mendapatkan batu hasil tambang',
@@ -28,32 +27,8 @@ RegisterServerEvent("deanix_mining:breakDrill", function()
         if drillSlot then
             if drillSlot.info and drillSlot.info.durability then
                 drillSlot.info.durability = drillSlot.info.durability - 1
-
-                if drillSlot.info.durability <= 0 then
-                    Player.Functions.RemoveItem("drill", 1, drillSlot.slot)
-                    TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['drill'], 'remove')
-                    TriggerClientEvent('ox_lib:notify', src, {
-                       title = 'Mining',
-                       description = 'Drill kamu rusak dan hancur',
-                       type = 'error'
-                    })
-                else
-                    Player.Functions.RemoveItem("drill", 1, drillSlot.slot)
-                    TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['drill'], 'remove')
-                    TriggerClientEvent('ox_lib:notify', src, {
-                       title = 'Mining',
-                       description = 'Drill kamu sedikit rusak',
-                       type = 'inform'
-                    })
-                end
             else
                 Player.Functions.RemoveItem("drill", 1, drillSlot.slot)
-                TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['drill'], 'remove')
-                TriggerClientEvent('ox_lib:notify', src, {
-                    title = 'Mining',
-                    description = 'Drill kamu rusak',
-                    type = 'error'
-                })
             end
         end
     end
@@ -66,22 +41,10 @@ RegisterServerEvent("deanix_mining:washStone", function()
 
     if Player.Functions.RemoveItem("stone", 1) then
         Player.Functions.AddItem("batu_bersih", 1)
-
-        CreateThread(function()
-            TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["stone"], "remove")
-            Wait(500)
-            TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["batu_bersih"], "add")
-            TriggerClientEvent('ox_lib:notify', src, {
-                title = 'Mining',
-                description = 'Kamu berhasil mencuci batu menjadi batu bersih',
-                type = 'success'
-            })
-        end)
-    else
         TriggerClientEvent('ox_lib:notify', src, {
             title = 'Mining',
-            description = 'Kamu tidak punya batu untuk dicuci',
-            type = 'error'
+            description = 'Kamu berhasil mencuci batu menjadi batu bersih',
+            type = 'success'
         })
     end
 end)
@@ -101,33 +64,20 @@ RegisterServerEvent("deanix_mining:smeltStone", function()
 
         local totalRewards = math.random(2, 3)
         local givenRewards = {}
+        for i = 1, totalRewards do
+            local reward = possibleRewards[i]
+            local amount = math.random(1, 2)
 
-        CreateThread(function()
-            TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['batu_bersih'], 'remove')
+            Player.Functions.AddItem(reward, amount)
+            table.insert(givenRewards, "x" .. amount .. " " .. QBCore.Shared.Items[reward].label)
             Wait(500)
+        end
 
-            for i = 1, totalRewards do
-                local reward = possibleRewards[i]
-                local amount = math.random(1, 2)
-
-                Player.Functions.AddItem(reward, amount)
-                TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[reward], 'add')
-                table.insert(givenRewards, "x" .. amount .. " " .. QBCore.Shared.Items[reward].label)
-                Wait(500)
-            end
-
-            local rewardText = table.concat(givenRewards, ", ")
-            TriggerClientEvent('ox_lib:notify', src, {
-                title = 'Mining',
-                description = 'Kamu mendapatkan: ' .. rewardText,
-                type = 'success'
-            })
-        end)
-    else
+        local rewardText = table.concat(givenRewards, ", ")
         TriggerClientEvent('ox_lib:notify', src, {
             title = 'Mining',
-            description = 'Kamu tidak punya batu bersih untuk dilebur.',
-            type = 'error'
+            description = 'Kamu mendapatkan: ' .. rewardText,
+            type = 'success'
         })
     end
 end)
@@ -143,7 +93,6 @@ RegisterServerEvent("deanix_mining:giveWood", function()
 
     local amount = math.random(1, 3)
     Player.Functions.AddItem("kayu", amount)
-    TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['kayu'], 'add')
     TriggerClientEvent('ox_lib:notify', src, {
         title = 'Lumberjack',
         description = 'Kamu mendapatkan x' .. amount .. ' kayu.',
@@ -160,34 +109,8 @@ RegisterServerEvent("deanix_mining:breakAxe", function()
         if axeSlot then
             if axeSlot.info and axeSlot.info.durability then
                 axeSlot.info.durability = axeSlot.info.durability - 1
-
-                if axeSlot.info.durability <= 0 then
-                    Player.Functions.RemoveItem("axe", 1, axeSlot.slot)
-                    TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['axe'], 'remove')
-                    TriggerClientEvent('ox_lib:notify', src, {
-                        title = 'Lumberjack',
-                        description = 'Kapak kamu rusak dan hancur.',
-                        type = 'error'
-                    })
-                else
-                    Player.Functions.RemoveItem("axe", 1, axeSlot.slot)
-                    TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['axe'], 'remove')
-                    Player.Functions.AddItem("axe", 1, axeSlot.slot, axeSlot.info)
-                    TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['axe'], 'add')
-                    TriggerClientEvent('ox_lib:notify', src, {
-                        title = 'Lumberjack',
-                        description = 'Kapak kamu sedikit rusak.',
-                        type = 'inform'
-                    })
-                end
             else
                 Player.Functions.RemoveItem("axe", 1, axeSlot.slot)
-                TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items['axe'], 'remove')
-                TriggerClientEvent('ox_lib:notify', src, {
-                    title = 'Lumberjack',
-                    description = 'Kapak kamu rusak.',
-                    type = 'error'
-                })
             end
         end
     end
@@ -204,12 +127,6 @@ RegisterServerEvent("deanix_mining:processWood", function()
 
         Player.Functions.AddItem("papan_kayu", jumlahPapan)
         Player.Functions.AddItem("kulit_kayu", jumlahKulit)
-
-        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["kayu"], "remove")
-        Wait(500)
-        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["papan_kayu"], "add")
-        Wait(500)
-        TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["kulit_kayu"], "add")
 
         TriggerClientEvent('ox_lib:notify', src, {
             title = 'Lumberjack',

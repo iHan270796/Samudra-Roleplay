@@ -31,7 +31,6 @@ RegisterServerEvent("deanix_burgershot:bayarItem", function(items)
         if removed then
             for _, v in pairs(items) do
                 Player.Functions.AddItem(v.name, v.qty)
-                TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items[v.name], 'add')
             end
             TriggerClientEvent('ox_lib:notify', src, {
                 title = 'Payment successful (account money)!',

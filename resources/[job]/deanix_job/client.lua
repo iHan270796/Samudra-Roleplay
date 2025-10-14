@@ -25,7 +25,7 @@ local spawnedRocks = 0
 local rockEntities = {}
 local Washing = false
 
-function Notify(msg, tipe)
+local function Notify(msg, tipe)
     lib.notify({
         title = 'Info',
         description = msg,
@@ -426,9 +426,6 @@ exports.ox_target:addBoxZone({
             onSelect = function()
                 WashStone()
             end,
-            -- canInteract = function(entity, distance, coords, name)
-            --     return LocalPlayer.state.miningUniform == true
-            -- end
         }
     }
 })
@@ -447,9 +444,6 @@ exports.ox_target:addBoxZone({
             onSelect = function()
                 SmeltStone()
             end,
-            -- canInteract = function(entity, distance, coords, name)
-            --     return LocalPlayer.state.miningUniform == true
-            -- end
         }
     }
 })
@@ -457,9 +451,9 @@ exports.ox_target:addBoxZone({
 
 exports.ox_target:addBoxZone({
     coords = Config.WoodProcessingSpot,
-    size = vec3(7.0, 7.0, 2.0), -- Panjang, Lebar, Tinggi
+    size = vec3(7.0, 7.0, 2.0),
     rotation = 0,
-    debug = false, -- true kalau mau lihat zona
+    debug = false,
     options = {
         {
             name = 'process_wood',
@@ -468,9 +462,6 @@ exports.ox_target:addBoxZone({
             onSelect = function()
                 ProcessWood()
             end,
-            -- canInteract = function(entity, distance, coords, name)
-            --     return LocalPlayer.state.lumberjackUniform == true
-            -- end
         }
     }
 })
@@ -509,7 +500,7 @@ function WashStone()
             Wait(500)
         end
     end)
-    QBCore.Functions.Progressbar("washing_stone", "Washing Stone...", 7500, false, true, {
+    QBCore.Functions.Progressbar("washing_stone", "Prosess Cuci Batu...", 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -535,7 +526,7 @@ function WashStone()
         DeleteEntity(rock)
         ClearPedTasks(ped)
 
-        Notify("You cancelled stone washing.", "error")
+        Notify("Proses Cuci Batu Dibatalkan.", "error")
     end)
 end
 
@@ -548,7 +539,7 @@ function SmeltStone()
         return
     end
 
-    QBCore.Functions.Progressbar("smelt_stone", "Melting rocks...", Config.SmeltTime or 5000, false, true, {
+    QBCore.Functions.Progressbar("smelt_stone", "Proses Peleburan...", Config.SmeltTime or 5000, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -562,7 +553,7 @@ function SmeltStone()
         TriggerServerEvent("deanix_mining:smeltStone")
     end, function()
         ClearPedTasks(ped)
-        Notify("Melt cancelled.", "error")
+        Notify("Proses Peleburan Dibatalkan.", "error")
     end)
 end
 
@@ -579,7 +570,7 @@ function ProcessWood()
     while not HasAnimDictLoaded("amb@world_human_hammering@male@base") do Wait(10) end
     TaskPlayAnim(ped, "amb@world_human_hammering@male@base", "base", 8.0, -8, -1, 1, 0, false, false, false)
 
-    QBCore.Functions.Progressbar("processing_wood", "Processing wood...", 7500, false, true, {
+    QBCore.Functions.Progressbar("processing_wood", "Proses Potong Kayu...", 7500, false, true, {
         disableMovement = true,
         disableCarMovement = true,
         disableMouse = false,
@@ -589,7 +580,7 @@ function ProcessWood()
         TriggerServerEvent("deanix_mining:processWood")
     end, function()
         ClearPedTasks(ped)
-        Notify("The wood process is cancelled.")
+        Notify("Proses Kayu Dibatalkan.")
     end)
 end
 

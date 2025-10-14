@@ -8,6 +8,8 @@ let visibilityConfig = {};
 let robberySettings = {};
 let lastUpdateTime = 0;
 let updateInProgress = false;
+let playerHidden = false;
+let playerId = null;
 
 // Initialize scoreboard
 document.addEventListener('DOMContentLoaded', function() {
@@ -22,6 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
         searchTimeout = setTimeout(() => {
             filterPlayers(this.value);
         }, 300); // Debounce search for 300ms
+    });
+    
+    // Hide button functionality
+    const hideToggleBtn = document.getElementById('hideToggle');
+    hideToggleBtn.addEventListener('click', function() {
+        togglePlayerVisibility();
     });
 });
 
@@ -50,6 +58,21 @@ function openScoreboard(data) {
     // Update server info
     document.querySelector('.server-name').textContent = data.serverInfo.name;
     document.querySelector('.server-description').textContent = data.serverInfo.description;
+    
+    // Store player ID for hide functionality
+    if (data.playerId) {
+        playerId = data.playerId;
+    }
+    
+    // Show/hide the Hide My Info button based on configuration
+    const visibilityControls = document.querySelector('.visibility-controls-header');
+    if (visibilityControls) {
+        if (data.showHideButton === false) {
+            visibilityControls.style.display = 'none';
+        } else {
+            visibilityControls.style.display = 'flex';
+        }
+    }
 }
 
 // Close scoreboard
@@ -94,6 +117,11 @@ function updateScoreboardData(data) {
     visibilityConfig = data.visibilityConfig || {};
     robberySettings = data.robberySettings || {};
     
+    // Show/hide visibility controls based on configuration
+    const visibilityControls = document.querySelector('.visibility-controls');
+    if (visibilityControls) {
+        visibilityControls.style.display = visibilityConfig.allowPlayerHideToggle ? 'flex' : 'none';
+    }
     
     // Apply layout configuration
     applyLayoutConfiguration();
@@ -216,6 +244,38 @@ function updatePlayersList() {
     });
 }
 
+// Toggle player visibility
+function togglePlayerVisibility() {
+    playerHidden = !playerHidden;
+    const hideToggleBtn = document.getElementById('hideToggle');
+    const icon = hideToggleBtn.querySelector('i');
+    const span = hideToggleBtn.querySelector('span');
+    
+    if (playerHidden) {
+        hideToggleBtn.classList.add('active');
+        icon.className = 'fas fa-eye-slash';
+        span.textContent = 'Show My Info';
+    } else {
+        hideToggleBtn.classList.remove('active');
+        icon.className = 'fas fa-eye';
+        span.textContent = 'Hide My Info';
+    }
+    
+    // Send toggle request to server
+    fetch(`https://${GetParentResourceName()}/toggleVisibility`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            hidden: playerHidden
+        })
+    });
+    
+    // Refresh the player list to reflect changes
+    updatePlayersList();
+}
+
 // Create player element
 function createPlayerElement(player) {
     const playerDiv = document.createElement('div');
@@ -224,24 +284,35 @@ function createPlayerElement(player) {
     const jobColor = getJobColor(player.job);
     const pingClass = getPingClass(player.ping);
     
+    // Check if this player is hidden
+    const isHidden = player.hidden || false;
+    
     // Discord avatar or default
     let avatarContent;
     const jobConfig = jobConfigs[player.job] || getDefaultJobConfig(player.job);
     const jobIcon = `fas fa-${jobConfig.icon}`;
     
-    if (player.discord && player.discord.avatar) {
+    if (player.discord && player.discord.avatar && !isHidden) {
         avatarContent = `<img src="${player.discord.avatar}" alt="Avatar" class="discord-avatar" onerror="this.onerror=null;this.style.display='none';this.parentNode.innerHTML='<i class=\'${jobIcon}\'></i>';">`;
     } else {
         avatarContent = `<i class="${jobIcon}"></i>`;
     }
     
     // Discord name or character name
-    const displayName = player.discord && player.discord.nickname ? 
-        player.discord.nickname : 
-        (player.discord && player.discord.username ? player.discord.username : player.name);
+    let displayName;
+    if (isHidden) {
+        displayName = 'Hidden Player';
+    } else {
+        displayName = player.discord && player.discord.nickname ? 
+            player.discord.nickname : 
+            (player.discord && player.discord.username ? player.discord.username : player.name);
+    }
     
-    // Rank badge - show in front of name
-    const rankBadge = player.rank ? `<span class="rank-badge" style="background: ${player.rankColor || '#444'}; color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; margin-right: 5px;">${player.rank}</span>` : '';
+    // Rank badge - show in front of name (only if not hidden)
+    const rankBadge = (player.rank && !isHidden) ? `<span class="rank-badge" style="background: ${player.rankColor || '#444'}; color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px; font-weight: bold; margin-right: 5px;">${player.rank}</span>` : '';
+    
+    // Job label (hidden if player is hidden)
+    const jobLabel = isHidden ? 'Hidden' : player.jobLabel;
     
     playerDiv.innerHTML = `
         <div class="player-main-info">
@@ -252,9 +323,9 @@ function createPlayerElement(player) {
                 <h3>${rankBadge} ${displayName}</h3>
                 <div class="player-job">
                     <span class="job-badge" style="background: ${jobColor}; color: #000;">
-                        ${player.jobLabel}
+                        ${jobLabel}
                     </span>
-                    ${player.discord ? `<span class="discord-indicator"><i class="fab fa-discord"></i></span>` : ''}
+                    ${(player.discord && !isHidden) ? `<span class="discord-indicator"><i class="fab fa-discord"></i></span>` : ''}
                 </div>
                 <div style="font-size: 12px; color: #a0a0a0;">
                     ID: ${player.id}
