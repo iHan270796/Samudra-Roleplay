@@ -143,8 +143,8 @@ return {
 		blip = {
 			id = 110, colour = 69, scale = 0.7
 		}, inventory = {
-			{ name = 'weapon_knife', price = 20000, },
-			{ name = 'weapon_bat', price = 30000 }
+			{ name = 'weapon_knife', price = 20000 },
+			-- { name = 'weapon_bat', price = 30000 }
 		}, locations = {
 			vec3(-662.180, -934.961, 21.829),
 			vec3(810.25, -2157.60, 29.62),
@@ -250,6 +250,7 @@ return {
 			-- id = 403, colour = 69, scale = 0.6
 		}, inventory = {
 			{ name = 'documents', price = 15000, },
+			{ name = 'billing_tablet', price = 25000, },
 		}, locations = {
 			vec3(1771.14, 3664.6, 35.29)
 		}, targets = {

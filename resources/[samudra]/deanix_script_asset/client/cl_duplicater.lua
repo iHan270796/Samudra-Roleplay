@@ -1,27 +1,13 @@
--- Thread untuk cek kontrol manual
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(0)
-        -- 0 = InputGroup (keyboard & controller), 73 = INPUT_VEH_HEADLIGHT (X)
-        if IsControlJustReleased(0, 73) then
-            duplicateVehicleWithDriver()
-        end
-    end
-end)
-
--- Daftar mobil yang bisa di-duplicate
 local allowedModels = {
     "rmodmi8lb",
     "lhuracant",
-    "mansm8",
+    -- "mansm8",
     "silviajdm",
-    "m4lb"
+    "m4lb",
+    "kuruma2"
 }
 
--- List vehicle duplicate beserta info owner
 local duplicatedVehicles = {}
-
--- Cek apakah model mobil di daftar allowed
 local function isModelAllowed(model)
     for _, m in ipairs(allowedModels) do
         if model == GetHashKey(m) then
@@ -31,8 +17,7 @@ local function isModelAllowed(model)
     return false
 end
 
--- Fungsi duplicate & spawn AI driver
-function duplicateVehicleWithDriver()
+local function duplicateVehicleWithDriver()
     local ped = PlayerPedId()
     if IsPedInAnyVehicle(ped, false) then
         local veh = GetVehiclePedIsIn(ped, false)
@@ -41,8 +26,6 @@ function duplicateVehicleWithDriver()
         if isModelAllowed(model) then
             local coords = GetEntityCoords(veh)
             local heading = GetEntityHeading(veh)
-
-            -- Spawn di belakang kendaraan
             local offset = 5.0
             local headingRad = math.rad(heading)
             local spawnX = coords.x + math.sin(headingRad) * -offset
@@ -54,8 +37,7 @@ function duplicateVehicleWithDriver()
             SetVehicleColours(newVeh, GetVehicleColours(veh))
             SetVehicleNumberPlateText(newVeh, GetVehicleNumberPlateText(veh))
             SetEntityAsMissionEntity(newVeh, true, true)
-            
-            -- Spawn ped NPC driver
+
             local driverHash = GetHashKey("a_m_m_skater_01")
             RequestModel(driverHash)
             while not HasModelLoaded(driverHash) do
@@ -63,20 +45,25 @@ function duplicateVehicleWithDriver()
             end
             local driver = CreatePedInsideVehicle(newVeh, 4, driverHash, -1, true, true)
 
-            -- NPC mengemudi secara AI
             TaskVehicleDriveWander(driver, newVeh, 30.0, 786603)
             SetModelAsNoLongerNeeded(driverHash)
-
-            -- Simpan info owner
             table.insert(duplicatedVehicles, {vehicle = newVeh, driver = driver, owner = PlayerId()})
         end
     end
 end
 
--- Loop untuk auto delete kendaraan & driver jika owner menjauh
 Citizen.CreateThread(function()
     while true do
-        Citizen.Wait(2000) -- cek tiap 2 detik
+        Citizen.Wait(0)
+        if IsControlJustReleased(0, 73) then
+            duplicateVehicleWithDriver()
+        end
+    end
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        Citizen.Wait(2000)
         for i = #duplicatedVehicles, 1, -1 do
             local data = duplicatedVehicles[i]
             local veh = data.vehicle
@@ -89,20 +76,17 @@ Citizen.CreateThread(function()
                     local pCoords = GetEntityCoords(ownerPed)
                     local vCoords = GetEntityCoords(veh)
                     local dist = #(pCoords - vCoords)
-                    if dist > 50.0 then -- jarak >50 meter
-                        -- Driver keluar dulu
+                    if dist > 50.0 then
                         if DoesEntityExist(driver) then
                             TaskLeaveVehicle(driver, veh, 0)
                             Citizen.Wait(500)
                             DeletePed(driver)
                         end
-                        -- Hapus kendaraan
                         SetEntityAsMissionEntity(veh, true, true)
                         DeleteVehicle(veh)
                         table.remove(duplicatedVehicles, i)
                     end
                 else
-                    -- Jika owner tidak ada, tetap hapus
                     if DoesEntityExist(driver) then DeletePed(driver) end
                     if DoesEntityExist(veh) then
                         SetEntityAsMissionEntity(veh, true, true)
@@ -111,7 +95,6 @@ Citizen.CreateThread(function()
                     table.remove(duplicatedVehicles, i)
                 end
             else
-                -- Hapus driver jika kendaraan sudah hilang
                 if DoesEntityExist(driver) then DeletePed(driver) end
                 table.remove(duplicatedVehicles, i)
             end

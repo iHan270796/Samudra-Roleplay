@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPS Optimization Panel</title>
+    <link rel="stylesheet" href="./assets/css/app.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css">
+</head>
+<body>
+    <div id="app" v-if="ui">
+        <!-- Modern FPS Optimization Panel -->
+        <div class="mmorpg-panel">
+            <!-- Panel Header -->
+            <div class="panel-header">
+                <div class="header-background-effect"></div>
+                <div class="header-ornament left"></div>
+                <h2 class="panel-title">
+                    <div class="title-icon-container">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <div class="icon-pulse"></div>
+                    </div>
+                    <div class="title-text-container">
+                        <span class="title-main">FPS OPTIMIZATION</span>
+                        <span class="title-sub">PANEL</span>
+                    </div>
+                    <div class="title-accent-line"></div>
+                </h2>
+                <div class="header-ornament right"></div>
+                <div class="header-glow"></div>
+                
+                <!-- Close Button -->
+                <button class="header-close-btn" @click="closeMenu" title="Menüyü Kapat (ESC)">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Live FPS Display -->
+            <div class="fps-display">
+                <div class="performance-meters">
+                    <div class="perf-meter fps">
+                        <div class="circular-bar-container">
+                            <svg class="circular-bar-svg" viewBox="0 0 64 64">
+                                <defs>
+                                    <linearGradient id="gradientGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#34d399;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#10b981;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+                                    </linearGradient>
+                                    <linearGradient id="gradientBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+                                    </linearGradient>
+                                    <linearGradient id="gradientOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+                                    </linearGradient>
+                                    <linearGradient id="gradientRed" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#f87171;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#ef4444;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+                                    </linearGradient>
+                                    <linearGradient id="circularGradientBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:0.9" />
+                                    </linearGradient>
+                                    <linearGradient id="circularGradientGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#34d399;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#10b981;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#059669;stop-opacity:0.9" />
+                                    </linearGradient>
+                                    <linearGradient id="circularGradientOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#d97706;stop-opacity:0.9" />
+                                    </linearGradient>
+                                </defs>
+                                <circle class="circular-bar-bg" cx="32" cy="32" r="30"></circle>
+                                <circle class="circular-bar-progress fps" :class="fpsStatusClass" cx="32" cy="32" r="30" :style="{strokeDashoffset: 188.5 - (currentFps * 1.571)}"></circle>
+                            </svg>
+                            <div class="circular-bar-icon fps">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                        </div>
+                        <div class="perf-meter-info">
+                            <div class="perf-meter-value">{{ currentFps }}</div>
+                            <div class="perf-meter-label">FPS</div>
+                            <div class="perf-meter-status" :class="fpsStatusClass">{{ fpsStatus }}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="perf-meter cpu" :class="cpuStatusClass">
+                        <div class="circular-bar-container">
+                            <svg class="circular-bar-svg" viewBox="0 0 64 64">
+                                <circle class="circular-bar-bg" cx="32" cy="32" r="30"></circle>
+                                <circle class="circular-bar-progress cpu" :class="cpuStatusClass" cx="32" cy="32" r="30" :style="{strokeDashoffset: 188.5 - (cpuUsage * 1.885)}"></circle>
+                            </svg>
+                            <div class="circular-bar-icon cpu">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                        </div>
+                        <div class="perf-meter-info">
+                            <div class="perf-meter-value">{{ cpuUsage }}</div>
+                            <div class="perf-meter-label">CPU</div>
+                            <div class="perf-meter-status" :class="cpuStatusClass">{{ cpuStatus }}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="perf-meter gpu" :class="gpuStatusClass">
+                        <div class="circular-bar-container">
+                            <svg class="circular-bar-svg" viewBox="0 0 64 64">
+                                <circle class="circular-bar-bg" cx="32" cy="32" r="30"></circle>
+                                <circle class="circular-bar-progress gpu" :class="gpuStatusClass" cx="32" cy="32" r="30" :style="{strokeDashoffset: 188.5 - (gpuUsage * 1.885)}"></circle>
+                            </svg>
+                            <div class="circular-bar-icon gpu">
+                                <i class="fas fa-display"></i>
+                            </div>
+                        </div>
+                        <div class="perf-meter-info">
+                            <div class="perf-meter-value">{{ gpuUsage }}</div>
+                            <div class="perf-meter-label">GPU</div>
+                            <div class="perf-meter-status" :class="gpuStatusClass">{{ gpuStatus }}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="perf-meter ram" :class="ramStatusClass">
+                        <div class="circular-bar-container">
+                            <svg class="circular-bar-svg" viewBox="0 0 64 64">
+                                <circle class="circular-bar-bg" cx="32" cy="32" r="30"></circle>
+                                <circle class="circular-bar-progress ram" :class="ramStatusClass" cx="32" cy="32" r="30" :style="{strokeDashoffset: 188.5 - (ramUsage * 1.885)}"></circle>
+                            </svg>
+                            <div class="circular-bar-icon ram">
+                                <i class="fas fa-memory"></i>
+                            </div>
+                        </div>
+                        <div class="perf-meter-info">
+                            <div class="perf-meter-value">{{ ramUsage }}</div>
+                            <div class="perf-meter-label">RAM</div>
+                            <div class="perf-meter-status" :class="ramStatusClass">{{ ramStatus }}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Detaylı Performans Bilgileri -->
+                <div class="detailed-performance-info">
+                    <div class="performance-detail">
+                        <i class="fas fa-clock"></i>
+                        <span class="detail-label">Frame Time:</span>
+                        <span class="detail-value">{{ frameTime }}ms</span>
+                    </div>
+                    <div class="performance-detail">
+                        <i class="fas fa-microchip"></i>
+                        <span class="detail-label">Memory:</span>
+                        <span class="detail-value">{{ memoryUsage }}MB</span>
+                    </div>
+                    <div class="performance-detail">
+                        <i class="fas fa-history"></i>
+                        <span class="detail-label">Avg FPS:</span>
+                        <span class="detail-value">{{ averageFps }}</span>
+                    </div>
+                    <div class="performance-detail">
+                        <i class="fas fa-chart-line"></i>
+                        <span class="detail-label">Performance:</span>
+                        <span class="detail-value" :class="overallPerformanceClass">{{ overallPerformance }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="panel-content-horizontal">
+                <!-- Horizontal Tab Menu -->
+                <div class="tab-menu-horizontal">
+                    <div class="tab-item" 
+                         :class="{active: activeTab === 'graphics'}" 
+                         @click="setActiveTab('graphics')">
+                        <i class="fas fa-paint-brush"></i>
+                        <span>Graphics</span>
+                    </div>
+                    <div class="tab-item" 
+                         :class="{active: activeTab === 'performance'}" 
+                         @click="setActiveTab('performance')">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Performance</span>
+                    </div>
+                </div>
+
+                <!-- Content Area -->
+                <div class="content-area-horizontal">
+                    <!-- Graphics Tab -->
+                    <div v-if="activeTab === 'graphics'" class="tab-content">
+                        <div class="content-header">
+                            <h3><i class="fas fa-paint-brush"></i> Graphics Settings</h3>
+                            <div class="preset-buttons">
+                                <button @click="applyPreset('low')" class="preset-btn low">Low</button>
+                                <button @click="applyPreset('medium')" class="preset-btn medium">Medium</button>
+                                <button @click="applyPreset('high')" class="preset-btn high">High</button>
+                                <button @click="applyPreset('ultra')" class="preset-btn ultra">Ultra</button>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-grid">
+                            <div class="setting-group" v-for="(setting, key) in graphicsSettings" :key="key">
+                                <div class="setting-label">
+                                    {{ setting.label }}
+                                    <span class="setting-description">{{ setting.description }}</span>
+                                </div>
+                                <div class="setting-control">
+                                    <select v-model="setting.value" class="mmorpg-select" @change="updateGraphicsSetting(key)">
+                                        <option v-for="option in setting.options" :key="option" :value="option">{{ option }}</option>
+                                    </select>
+                                </div>
+                                <div class="setting-impact" :class="setting.impact">
+                                    <i class="fas fa-circle"></i>
+                                    {{ getImpactText(setting.impact) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Tab -->
+                    <div v-if="activeTab === 'performance'" class="tab-content">
+                        <div class="content-header">
+                            <h3><i class="fas fa-tachometer-alt"></i> Performance Settings</h3>
+                            <button @click="optimizePerformance" class="optimize-btn">
+                                <i class="fas fa-rocket"></i> Auto Optimize
+                            </button>
+                        </div>
+                        
+                        <div class="performance-toggles">
+                            <div class="toggle-group" 
+                                 v-for="(toggle, key) in performanceSettings" 
+                                 :key="key"
+                                 :class="{enabled: toggle.enabled}">
+                                <div class="toggle-item">
+                                    <div class="toggle-icon">
+                                        <i :class="toggle.icon"></i>
+                                    </div>
+                                    <label class="toggle-label">
+                                        <span class="toggle-text">{{ toggle.label }}</span>
+                                        <span class="toggle-description">{{ toggle.description }}</span>
+                                    </label>
+                                    <div class="toggle-switch" :class="{active: toggle.enabled}" @click="togglePerformance(key)">
+                                        <div class="toggle-slider"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Footer Buttons -->
+            <div class="panel-footer">
+                <button class="footer-btn reset" @click="resetToDefaults">
+                    <i class="fas fa-undo"></i>
+                    Reset
+                </button>
+                <button class="footer-btn apply" @click="applySettings">
+                    <i class="fas fa-check"></i>
+                    Apply
+                </button>
+                <button class="footer-btn cancel" @click="cancelSettings">
+                    <i class="fas fa-times"></i>
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="./vue.js"></script>
+</body>
+</html>
+</html>

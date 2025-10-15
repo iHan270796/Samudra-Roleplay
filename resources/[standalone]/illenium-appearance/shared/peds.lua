@@ -1060,6 +1060,7 @@ Config.Peds = {
                 "sagarapolice",
                 "ls_pije",
                 "sagaraladies",
+                "wilstore_bil",
             }
         }
     }

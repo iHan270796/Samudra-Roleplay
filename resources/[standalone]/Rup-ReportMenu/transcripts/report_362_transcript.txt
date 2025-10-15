@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 362
+Title: tiba tiba pingsan
+Reporter: ONAR-UBEDD#PREMAN
+Status: open
+Priority: medium
+Created: 1760411936000.0
+Deleted by: SRP-Thewitunn
+Deleted at: 2025-10-15 08:47:50 UTC
+
+=== DESCRIPTION ===
+tiba tiba pingsan
+
+=== MESSAGES ===
+[2025-10-14 03:32:46] ONAR-UBEDD#PREMAN: haloo
+[2025-10-15 01:28:55] BV-Jordi#VILL: dimana?
