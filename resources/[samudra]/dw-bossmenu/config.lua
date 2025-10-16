@@ -73,12 +73,12 @@ Config.Locations = {
         logoImage = "police.png",
         locations = {
             {
-                coords = vector3(1770.19, 3663.31, 40.2), -- Mechanic Shop
+                coords = vector3(1757.1, 3638.98, 34.09), -- Mechanic Shop
                 width = 1.0,
                 length = 1.0,
                 heading = 0,
-                minZ = 10.0,
-                maxZ = 15.0,
+                minZ = 32.0,
+                maxZ = 36.0,
             }
         }
     }

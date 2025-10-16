@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 364
+Title: claim benefits beta
+Reporter: FriXilz
+Status: open
+Priority: medium
+Created: 1760509448000.0
+Deleted by: Brian
+Deleted at: 2025-10-16 03:20:54 UTC
+
+=== DESCRIPTION ===
+claim benefits beta
+
+=== MESSAGES ===
+No messages found.

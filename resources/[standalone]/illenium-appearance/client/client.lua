@@ -6,12 +6,15 @@ local function LoadPlayerUniform(reset)
         TriggerServerEvent("illenium-appearance:server:syncUniform", nil)
         return
     end
+
     lib.callback("illenium-appearance:server:getUniform", false, function(uniformData)
         if not uniformData then
             return
         end
+
         if Config.BossManagedOutfits then
-            local result = lib.callback.await("illenium-appearance:server:getManagementOutfits", false, uniformData.type, Framework.GetGender())
+            local result = lib.callback.await("illenium-appearance:server:getManagementOutfits", false, uniformData.type,
+                Framework.GetGender())
             local uniform = nil
             for i = 1, #result, 1 do
                 if result[i].name == uniformData.name then
@@ -69,29 +72,31 @@ function InitAppearance()
         end
     end)
     ResetBlips()
+
     if Config.BossManagedOutfits then
         Management.AddItems()
     end
+
     RestorePlayerStats()
 end
 
 AddEventHandler("onResourceStart", function(resource)
-    if resource == GetCurrentResourceName() then
-        InitAppearance()
-    end
+    if resource ~= GetCurrentResourceName() then return end
+
+    InitAppearance()
 end)
 
 local function getNewCharacterConfig()
     local config = GetDefaultConfig()
-    config.enableExit   = false
+    config.enableExit = false
 
-    config.ped          = Config.NewCharacterSections.Ped
-    config.headBlend    = Config.NewCharacterSections.HeadBlend
+    config.ped = Config.NewCharacterSections.Ped
+    config.headBlend = Config.NewCharacterSections.HeadBlend
     config.faceFeatures = Config.NewCharacterSections.FaceFeatures
     config.headOverlays = Config.NewCharacterSections.HeadOverlays
-    config.components   = Config.NewCharacterSections.Components
-    config.props        = Config.NewCharacterSections.Props
-    config.tattoos      = not Config.RCoreTattoosCompatibility and Config.NewCharacterSections.Tattoos
+    config.components = Config.NewCharacterSections.Components
+    config.props = Config.NewCharacterSections.Props
+    config.tattoos = not Config.RCoreTattoosCompatibility and Config.NewCharacterSections.Tattoos
 
     return config
 end
@@ -108,34 +113,41 @@ function SetInitialClothes(initial)
 end
 
 function InitializeCharacter(gender, onSubmit, onCancel)
-    SetInitialClothes(Config.InitialPlayerClothes[gender])
     local config = getNewCharacterConfig()
+
+    SetInitialClothes(Config.InitialPlayerClothes[gender])
     TriggerServerEvent("illenium-appearance:server:ChangeRoutingBucket")
     client.startPlayerCustomization(function(appearance)
-        if (appearance) then
+        if appearance then
             TriggerServerEvent("illenium-appearance:server:saveAppearance", appearance)
-            if onSubmit then
-                onSubmit()
-            end
-        elseif onCancel then
-            onCancel()
+
+            if not onSubmit then goto continue end
+
+            onSubmit()
+
+            goto continue
         end
+
+        if not onCancel then goto continue end
+
+        onCancel()
+
+        ::continue::
+
         Framework.CachePed()
         TriggerServerEvent("illenium-appearance:server:ResetRoutingBucket")
     end, config)
 end
 
 function OpenShop(config, isPedMenu, shopType)
-    --exports['qs-inventory']:setInClothing(true)
     lib.callback("illenium-appearance:server:hasMoney", false, function(hasMoney, money)
         if not hasMoney and not isPedMenu then
             lib.notify({
                 title = "Cannot Enter Shop",
                 description = "Not enough cash. Need $" .. money,
                 type = "error",
-                position = Config.NotifyOptions.position
+                position = Config.NotifyOptions.position,
             })
-            --exports['qs-inventory']:setInClothing(false)
             return
         end
 
@@ -150,11 +162,10 @@ function OpenShop(config, isPedMenu, shopType)
                     title = _L("cancelled.title"),
                     description = _L("cancelled.description"),
                     type = "inform",
-                    position = Config.NotifyOptions.position
+                    position = Config.NotifyOptions.position,
                 })
             end
             Framework.CachePed()
-            --exports['qs-inventory']:setInClothing(false)
         end, config)
     end, shopType)
 end
@@ -171,8 +182,10 @@ local function OpenClothingShop(isPedMenu)
         config.headOverlays = false
         config.tattoos = not Config.RCoreTattoosCompatibility and false
     end
+
     OpenShop(config, isPedMenu, "clothing")
 end
+
 local function OpenClothingShop2(isPedMenu) --admin
     local config = GetDefaultConfig()
     config.components = true
@@ -198,14 +211,14 @@ RegisterNetEvent("illenium-appearance:client:importOutfitCode", function()
             label = _L("outfits.import.name.label"),
             placeholder = _L("outfits.import.name.placeholder"),
             default = _L("outfits.import.name.default"),
-            required = true
+            required = true,
         },
         {
             type = "input",
             label = _L("outfits.import.code.label"),
             placeholder = "XXXXXXXXXXXX",
-            required = true
-        }
+            required = true,
+        },
     })
 
     if not response then
@@ -222,14 +235,14 @@ RegisterNetEvent("illenium-appearance:client:importOutfitCode", function()
                     title = _L("outfits.import.success.title"),
                     description = _L("outfits.import.success.description"),
                     type = "success",
-                    position = Config.NotifyOptions.position
+                    position = Config.NotifyOptions.position,
                 })
             else
                 lib.notify({
                     title = _L("outfits.import.failure.title"),
                     description = _L("outfits.import.failure.description"),
                     type = "error",
-                    position = Config.NotifyOptions.position
+                    position = Config.NotifyOptions.position,
                 })
             end
         end, outfitName, outfitCode)
@@ -243,7 +256,7 @@ RegisterNetEvent("illenium-appearance:client:generateOutfitCode", function(id)
                 title = _L("outfits.generate.failure.title"),
                 description = _L("outfits.generate.failure.description"),
                 type = "error",
-                position = Config.NotifyOptions.position
+                position = Config.NotifyOptions.position,
             })
             return
         end
@@ -253,8 +266,8 @@ RegisterNetEvent("illenium-appearance:client:generateOutfitCode", function(id)
                 type = "input",
                 label = _L("outfits.generate.success.description"),
                 default = code,
-                disabled = true
-            }
+                disabled = true,
+            },
         })
     end, id)
 end)
@@ -265,8 +278,8 @@ RegisterNetEvent("illenium-appearance:client:saveOutfit", function()
             type = "input",
             label = _L("outfits.save.name.label"),
             placeholder = _L("outfits.save.name.placeholder"),
-            required = true
-        }
+            required = true,
+        },
     })
 
     if not response then
@@ -290,7 +303,7 @@ RegisterNetEvent("illenium-appearance:client:saveOutfit", function()
                     title = _L("outfits.save.failure.title"),
                     description = _L("outfits.save.failure.description"),
                     type = "error",
-                    position = Config.NotifyOptions.position
+                    position = Config.NotifyOptions.position,
                 })
                 return
             end
@@ -304,8 +317,10 @@ RegisterNetEvent("illenium-appearance:client:saveOutfit", function()
     end
 end)
 
-RegisterNetEvent('illenium-appearance:client:updateOutfit', function(outfitID)
-    if not outfitID then return end
+RegisterNetEvent("illenium-appearance:client:updateOutfit", function(outfitID)
+    if not outfitID then
+        return
+    end
 
     lib.callback("illenium-appearance:server:getOutfits", false, function(outfits)
         local outfitExists = false
@@ -321,7 +336,7 @@ RegisterNetEvent('illenium-appearance:client:updateOutfit', function(outfitID)
                 title = _L("outfits.update.failure.title"),
                 description = _L("outfits.update.failure.description"),
                 type = "error",
-                position = Config.NotifyOptions.position
+                position = Config.NotifyOptions.position,
             })
             return
         end
@@ -339,7 +354,7 @@ local function RegisterChangeOutfitMenu(id, parent, outfits, mType)
         id = id,
         title = _L("outfits.change.title"),
         menu = parent,
-        options = {}
+        options = {},
     }
     for i = 1, #outfits, 1 do
         changeOutfitMenu.options[#changeOutfitMenu.options + 1] = {
@@ -352,8 +367,8 @@ local function RegisterChangeOutfitMenu(id, parent, outfits, mType)
                 model = outfits[i].model,
                 components = outfits[i].components,
                 props = outfits[i].props,
-                disableSave = mType and true or false
-            }
+                disableSave = mType and true or false,
+            },
         }
     end
 
@@ -369,14 +384,14 @@ local function RegisterUpdateOutfitMenu(id, parent, outfits)
         id = id,
         title = _L("outfits.update.title"),
         menu = parent,
-        options = {}
+        options = {},
     }
     for i = 1, #outfits, 1 do
         updateOutfitMenu.options[#updateOutfitMenu.options + 1] = {
             title = outfits[i].name,
             description = outfits[i].model,
             event = "illenium-appearance:client:updateOutfit",
-            args = outfits[i].id
+            args = outfits[i].id,
         }
     end
 
@@ -392,14 +407,14 @@ local function RegisterGenerateOutfitCodeMenu(id, parent, outfits)
         id = id,
         title = _L("outfits.generate.title"),
         menu = parent,
-        options = {}
+        options = {},
     }
     for i = 1, #outfits, 1 do
         generateOutfitCodeMenu.options[#generateOutfitCodeMenu.options + 1] = {
             title = outfits[i].name,
             description = outfits[i].model,
             event = "illenium-appearance:client:generateOutfitCode",
-            args = outfits[i].id
+            args = outfits[i].id,
         }
     end
 
@@ -411,7 +426,7 @@ local function RegisterDeleteOutfitMenu(id, parent, outfits, deleteEvent)
         id = id,
         title = _L("outfits.delete.title"),
         menu = parent,
-        options = {}
+        options = {},
     }
 
     table.sort(outfits, function(a, b)
@@ -421,9 +436,10 @@ local function RegisterDeleteOutfitMenu(id, parent, outfits, deleteEvent)
     for i = 1, #outfits, 1 do
         deleteOutfitMenu.options[#deleteOutfitMenu.options + 1] = {
             title = string.format(_L("outfits.delete.item.title"), outfits[i].name),
-            description = string.format(_L("outfits.delete.item.description"), outfits[i].model, (outfits[i].gender and (" - Gender: " .. outfits[i].gender) or "")),
+            description = string.format(_L("outfits.delete.item.description"), outfits[i].model,
+                (outfits[i].gender and (" - Gender: " .. outfits[i].gender) or "")),
             event = deleteEvent,
-            args = outfits[i].id
+            args = outfits[i].id,
         }
     end
 
@@ -431,13 +447,15 @@ local function RegisterDeleteOutfitMenu(id, parent, outfits, deleteEvent)
 end
 
 RegisterNetEvent("illenium-appearance:client:OutfitManagementMenu", function(args)
-    local outfits = lib.callback.await("illenium-appearance:server:getManagementOutfits", false, args.type, Framework.GetGender())
+    local outfits = lib.callback.await("illenium-appearance:server:getManagementOutfits", false, args.type,
+        Framework.GetGender())
     local managementMenuID = "illenium_appearance_outfit_management_menu"
     local changeManagementOutfitMenuID = "illenium_appearance_change_management_outfit_menu"
     local deleteManagementOutfitMenuID = "illenium_appearance_delete_management_outfit_menu"
 
     RegisterChangeOutfitMenu(changeManagementOutfitMenuID, managementMenuID, outfits, args.type)
-    RegisterDeleteOutfitMenu(deleteManagementOutfitMenuID, managementMenuID, outfits, "illenium-appearance:client:DeleteManagementOutfit")
+    RegisterDeleteOutfitMenu(deleteManagementOutfitMenuID, managementMenuID, outfits,
+        "illenium-appearance:client:DeleteManagementOutfit")
     local managementMenu = {
         id = managementMenuID,
         title = string.format(_L("outfits.manage.title"), args.type),
@@ -451,14 +469,14 @@ RegisterNetEvent("illenium-appearance:client:OutfitManagementMenu", function(arg
                 title = _L("outfits.save.menuTitle"),
                 description = string.format(_L("outfits.save.menuDescription"), args.type),
                 event = "illenium-appearance:client:SaveManagementOutfit",
-                args = args.type
+                args = args.type,
             },
             {
                 title = _L("outfits.delete.title"),
                 description = string.format(_L("outfits.delete.description"), args.type),
                 menu = deleteManagementOutfitMenuID,
-            }
-        }
+            },
+        },
     }
 
     Management.AddBackMenuItem(managementMenu, args)
@@ -472,7 +490,7 @@ RegisterNetEvent("illenium-appearance:client:SaveManagementOutfit", function(mTy
         Type = mType,
         Model = client.getPedModel(cache.ped),
         Components = client.getPedComponents(cache.ped),
-        Props = client.getPedProps(cache.ped)
+        Props = client.getPedProps(cache.ped),
     }
 
     local rankValues
@@ -480,50 +498,49 @@ RegisterNetEvent("illenium-appearance:client:SaveManagementOutfit", function(mTy
     if mType == "Job" then
         outfitData.JobName = client.job.name
         rankValues = Framework.GetRankInputValues("job")
-
     else
         outfitData.JobName = client.gang.name
         rankValues = Framework.GetRankInputValues("gang")
     end
 
     local dialogResponse = lib.inputDialog(_L("outfits.save.managementTitle"), {
-            {
-                label = _L("outfits.save.name.label"),
-                type = "input",
-                required = true
-            },
-            {
-                label = _L("outfits.save.gender.label"),
-                type = "select",
-                options = {
-                    {
-                        label = _L("outfits.save.gender.male"), value = "male"
-                    },
-                    {
-                        label = _L("outfits.save.gender.female"), value = "female"
-                    }
+        {
+            label = _L("outfits.save.name.label"),
+            type = "input",
+            required = true,
+        },
+        {
+            label = _L("outfits.save.gender.label"),
+            type = "select",
+            options = {
+                {
+                    label = _L("outfits.save.gender.male"),
+                    value = "male",
                 },
-                default = "male",
+                {
+                    label = _L("outfits.save.gender.female"),
+                    value = "female",
+                },
             },
-            {
-                label = _L("outfits.save.rank.label"),
-                type = "select",
-                options = rankValues,
-                default = "0"
-            }
-        })
+            default = "male",
+        },
+        {
+            label = _L("outfits.save.rank.label"),
+            type = "select",
+            options = rankValues,
+            default = "0",
+        },
+    })
 
     if not dialogResponse then
         return
     end
-
 
     outfitData.Name = dialogResponse[1]
     outfitData.Gender = dialogResponse[2]
     outfitData.MinRank = tonumber(dialogResponse[3])
 
     TriggerServerEvent("illenium-appearance:server:saveManagementOutfit", outfitData)
-
 end)
 
 local function RegisterWorkOutfitsListMenu(id, parent, menuData)
@@ -531,7 +548,7 @@ local function RegisterWorkOutfitsListMenu(id, parent, menuData)
         id = id,
         menu = parent,
         title = _L("jobOutfits.title"),
-        options = {}
+        options = {},
     }
     local event = "illenium-appearance:client:loadJobOutfit"
     if Config.BossManagedOutfits then
@@ -540,10 +557,9 @@ local function RegisterWorkOutfitsListMenu(id, parent, menuData)
     if menuData then
         for _, v in pairs(menuData) do
             menu.options[#menu.options + 1] = {
-                title = v.outfitLabel or v.name or "Outfit",
-                -- title = v.name,
+                title = v.name,
                 event = event,
-                args = v
+                args = v,
             }
         end
     end
@@ -553,7 +569,7 @@ end
 function OpenMenu(isPedMenu, menuType, menuData)
     local mainMenuID = "illenium_appearance_main_menu"
     local mainMenu = {
-        id = mainMenuID
+        id = mainMenuID,
     }
     local menuItems = {}
 
@@ -571,33 +587,33 @@ function OpenMenu(isPedMenu, menuType, menuData)
         {
             title = _L("outfits.change.title"),
             description = _L("outfits.change.pDescription"),
-            menu = changeOutfitMenuID
+            menu = changeOutfitMenuID,
         },
         {
             title = _L("outfits.update.title"),
             description = _L("outfits.update.description"),
-            menu = updateOutfitMenuID
+            menu = updateOutfitMenuID,
         },
         {
             title = _L("outfits.save.menuTitle"),
             description = _L("outfits.save.description"),
-            event = "illenium-appearance:client:saveOutfit"
+            event = "illenium-appearance:client:saveOutfit",
         },
         {
             title = _L("outfits.generate.title"),
             description = _L("outfits.generate.description"),
-            menu = generateOutfitCodeMenuID
+            menu = generateOutfitCodeMenuID,
         },
         {
             title = _L("outfits.delete.title"),
             description = _L("outfits.delete.mDescription"),
-            menu = deleteOutfitMenuID
+            menu = deleteOutfitMenuID,
         },
         {
             title = _L("outfits.import.menuTitle"),
             description = _L("outfits.import.description"),
-            event = "illenium-appearance:client:importOutfitCode"
-        }
+            event = "illenium-appearance:client:importOutfitCode",
+        },
     }
     if menuType == "default" then
         local header = string.format(_L("clothing.title"), Config.ClothingCost)
@@ -609,7 +625,7 @@ function OpenMenu(isPedMenu, menuType, menuData)
             title = header,
             description = _L("clothing.options.description"),
             event = "illenium-appearance:client:openClothingShop",
-            args = isPedMenu
+            args = isPedMenu,
         }
         for i = 0, #outfitMenuItems, 1 do
             menuItems[#menuItems + 1] = outfitMenuItems[i]
@@ -625,7 +641,7 @@ function OpenMenu(isPedMenu, menuType, menuData)
             title = _L("clothing.outfits.civilian.title"),
             description = _L("clothing.outfits.civilian.description"),
             event = "illenium-appearance:client:reloadSkin",
-            args = true
+            args = true,
         }
 
         local workOutfitsMenuID = "illenium_appearance_work_outfits_menu"
@@ -634,7 +650,7 @@ function OpenMenu(isPedMenu, menuType, menuData)
         menuItems[#menuItems + 1] = {
             title = _L("jobOutfits.title"),
             description = _L("jobOutfits.description"),
-            menu = workOutfitsMenuID
+            menu = workOutfitsMenuID,
         }
     end
     mainMenu.options = menuItems
@@ -771,7 +787,7 @@ RegisterNetEvent("illenium-appearance:client:changeOutfit", function(data)
                     title = _L("outfits.change.failure.title"),
                     description = _L("outfits.change.failure.description"),
                     type = "error",
-                    position = Config.NotifyOptions.position
+                    position = Config.NotifyOptions.position,
                 })
             end
             p:resolve(appearance)
@@ -788,7 +804,7 @@ RegisterNetEvent("illenium-appearance:client:changeOutfit", function(data)
         if data.disableSave then
             TriggerServerEvent("illenium-appearance:server:syncUniform", {
                 type = data.type,
-                name = data.name
+                name = data.name,
             }) -- Is a uniform
         else
             local appearance = client.getPedAppearance(cache.ped)
@@ -804,7 +820,7 @@ RegisterNetEvent("illenium-appearance:client:DeleteManagementOutfit", function(i
         title = _L("outfits.delete.management.success.title"),
         description = _L("outfits.delete.management.success.description"),
         type = "success",
-        position = Config.NotifyOptions.position
+        position = Config.NotifyOptions.position,
     })
 end)
 
@@ -814,7 +830,7 @@ RegisterNetEvent("illenium-appearance:client:deleteOutfit", function(id)
         title = _L("outfits.delete.success.title"),
         description = _L("outfits.delete.success.description"),
         type = "success",
-        position = Config.NotifyOptions.position
+        position = Config.NotifyOptions.position,
     })
 end)
 
@@ -832,7 +848,7 @@ RegisterNetEvent("illenium-appearance:client:reloadSkin", function(bypassChecks)
             title = _L("commands.reloadskin.failure.title"),
             description = _L("commands.reloadskin.failure.description"),
             type = "error",
-            position = Config.NotifyOptions.position
+            position = Config.NotifyOptions.position,
         })
         return
     end
@@ -858,7 +874,7 @@ RegisterNetEvent("illenium-appearance:client:ClearStuckProps", function()
             title = _L("commands.clearstuckprops.failure.title"),
             description = _L("commands.clearstuckprops.failure.description"),
             type = "error",
-            position = Config.NotifyOptions.position
+            position = Config.NotifyOptions.position,
         })
         return
     end
@@ -866,179 +882,10 @@ RegisterNetEvent("illenium-appearance:client:ClearStuckProps", function()
     reloadSkinTimer = GetGameTimer()
 
     for _, v in pairs(GetGamePool("CObject")) do
-      if IsEntityAttachedToEntity(cache.ped, v) then
-        SetEntityAsMissionEntity(v, true, true)
-        DeleteObject(v)
-        DeleteEntity(v)
-      end
+        if IsEntityAttachedToEntity(cache.ped, v) then
+            SetEntityAsMissionEntity(v, true, true)
+            DeleteObject(v)
+            DeleteEntity(v)
+        end
     end
 end)
-
-
--- function PlayClothingAnim(dict, anim, duration, label)
---     local ped = PlayerPedId()
---     RequestAnimDict(dict)
---     while not HasAnimDictLoaded(dict) do Wait(10) end
-
---     -- Mulai animasi
---     TaskPlayAnim(ped, dict, anim, 8.0, -8.0, -1, 49, 0, false, false, false)
-
---     -- ox_lib progress bar
---     local success = lib.progressBar({
---         duration = duration or 1500,
---         label = label or 'Mengatur pakaian...',
---         useWhileDead = false,
---         canCancel = true,
---         disable = {
---             move = true,
---             car = true,
---             combat = true,
---             mouse = false,
---         },
---         anim = {
---             dict = dict,
---             clip = anim,
---             flag = 49,
---         }
---     })
-
---     -- Jika dibatalkan
---     if not success then
---         ClearPedTasks(ped)
---     end
--- end
-
--- local storedComponents = {}
--- local storedProps = {}
--- local lastOutfit = {}
-
--- local function ToggleClothing(part, data)
---     local ped = PlayerPedId()
---     local isProp = data.prop
---     local id = data.id
---     local anim = data.anim
---     local label = data.label
---     local default = data.default or { drawable = 0, texture = 0 }
-
---     PlayClothingAnim(anim.dict, anim.anim, anim.duration, label)
---     Wait(600)
-
---     if not lastOutfit[part] then
---         if isProp then
---             storedProps[part] = {
---                 drawable = GetPedPropIndex(ped, id),
---                 texture = GetPedPropTextureIndex(ped, id)
---             }
---             ClearPedProp(ped, id)
---         else
---             storedComponents[part] = {
---                 drawable = GetPedDrawableVariation(ped, id),
---                 texture = GetPedTextureVariation(ped, id)
---             }
---             SetPedComponentVariation(ped, id, default.drawable, default.texture, 2)
-
---             if part == "shirt" then
---                 storedComponents["arms"] = {
---                     drawable = GetPedDrawableVariation(ped, 3),
---                     texture = GetPedTextureVariation(ped, 3)
---                 }
---                 storedComponents["torso"] = {
---                     drawable = GetPedDrawableVariation(ped, 8),
---                     texture = GetPedTextureVariation(ped, 8)
---                 }
-
---                 -- Set arms dan torso default (biar gak bolong dan gak nempel kaos)
---                 if GetEntityModel(ped) == `mp_m_freemode_01` then
---                     SetPedComponentVariation(ped, 3, 15, 0, 2) -- arms laki-laki default
---                     SetPedComponentVariation(ped, 8, 15, 0, 2) -- torso laki-laki kosong
---                 else
---                     SetPedComponentVariation(ped, 3, 15, 0, 2) -- arms cewe default
---                     SetPedComponentVariation(ped, 8, 15, 0, 2) -- torso cewe kosong (kadang 2, bisa kamu cek di in-game)
---                 end
---             end
---         end
---         lastOutfit[part] = true
---     else
---         if isProp and storedProps[part] then
---             SetPedPropIndex(ped, id, storedProps[part].drawable, storedProps[part].texture, true)
---         elseif not isProp and storedComponents[part] then
---             SetPedComponentVariation(ped, id, storedComponents[part].drawable, storedComponents[part].texture, 2)
-
---             -- Kembalikan arms dan torso juga kalau bagian shirt
---             if part == "shirt" then
---                 if storedComponents["arms"] then
---                     SetPedComponentVariation(ped, 3, storedComponents["arms"].drawable, storedComponents["arms"].texture, 2)
---                 end
---                 if storedComponents["torso"] then
---                     SetPedComponentVariation(ped, 8, storedComponents["torso"].drawable, storedComponents["torso"].texture, 2)
---                 end
---             end
---         end
---         lastOutfit[part] = false
---     end
--- end
-
--- local clothingData = {
---     hat =        { prop = true,  id = 0, anim = { dict = "mp_masks@on_foot", anim = "put_on_mask", duration = 1000 }, label = "Memakai/melepas Helm" },
---     glasses =    { prop = true,  id = 1, anim = { dict = "clothingspecs", anim = "take_off", duration = 1500 }, label = "Memakai/melepas Kacamata" },
---     earrings =   { prop = true,  id = 2, anim = { dict = "mp_masks@on_foot", anim = "put_on_mask", duration = 1500 }, label = "Memakai/melepas Anting" },
---     watch =      { prop = true,  id = 6, anim = { dict = "nmt_3_rcm-10", anim = "cs_nigel_dual-10", duration = 1500 }, label = "Memakai/melepas Jam Tangan" },
---     chain =      { prop = true,  id = 7, anim = { dict = "nmt_3_rcm-10", anim = "cs_nigel_dual-10", duration = 1500 }, label = "Memakai/melepas Kalung" },
---     mask =       { prop = false, id = 1, anim = { dict = "missfbi4", anim = "takeoff_mask", duration = 1500 }, label = "Memakai/melepas Masker", default = { drawable = 0, texture = 0 } },
---     shirt =      { prop = false, id = 11, anim = { dict = "clothingtie", anim = "try_tie_positive_a", duration = 1500 }, label = "Memakai/melepas Baju", default = { drawable = 15, texture = 0 } },
---     pants =      { prop = false, id = 4, anim = { dict = "random@domestic", anim = "pickup_low", duration = 1200 }, label = "Memakai/melepas Celana", default = { drawable = 14, texture = 0 } },
---     shoes =      { prop = false, id = 6, anim = { dict = "random@domestic", anim = "pickup_low", duration = 1200 }, label = "Memakai/melepas Sepatu", default = { drawable = 96, texture = 0 } },
---     bag =        { prop = false, id = 5, anim = { dict = "clothingtie", anim = "try_tie_positive_a", duration = 1500 }, label = "Memakai/melepas Tas", default = { drawable = 0, texture = 0 } },
---     gloves =     { prop = false, id = 3, anim = { dict = "nmt_3_rcm-10", anim = "cs_nigel_dual-10", duration = 1500 }, label = "Memakai/melepas Sarung Tangan", default = { drawable = 0, texture = 0 } }
--- }
-
--- RegisterCommand("shirt", function()
---     TriggerEvent("qb-clothing:client:adjust:shirt")
--- end)
-
--- RegisterCommand("pants", function()
---     TriggerEvent("qb-clothing:client:adjust:pants")
--- end)
-
--- RegisterCommand("shoes", function()
---     TriggerEvent("qb-clothing:client:adjust:shoes")
--- end)
-
--- RegisterCommand("mask", function()
---     TriggerEvent("qb-clothing:client:adjust:mask")
--- end)
-
--- RegisterCommand("hat", function()
---     TriggerEvent("qb-clothing:client:adjust:hat")
--- end)
-
--- RegisterCommand("glasses", function()
---     TriggerEvent("qb-clothing:client:adjust:glasses")
--- end)
-
--- RegisterCommand("earrings", function()
---     TriggerEvent("qb-clothing:client:adjust:earrings")
--- end)
-
--- RegisterCommand("watch", function()
---     TriggerEvent("qb-clothing:client:adjust:watch")
--- end)
-
--- RegisterCommand("chain", function()
---     TriggerEvent("qb-clothing:client:adjust:chain")
--- end)
-
--- RegisterCommand("bag", function()
---     TriggerEvent("qb-clothing:client:adjust:bag")
--- end)
-
--- RegisterCommand("gloves", function()
---     TriggerEvent("qb-clothing:client:adjust:gloves")
--- end)
-
-
--- for part, data in pairs(clothingData) do
---     RegisterNetEvent("qb-clothing:client:adjust:" .. part, function()
---         ToggleClothing(part, data)
---     end)
--- end
