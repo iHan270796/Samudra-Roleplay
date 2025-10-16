@@ -8667,5 +8667,14 @@ return {
         type = 'automobile',
         hash = `g650barbie`,
     },
+    huralbnormal = {
+        name = 'Hural LB Normal',
+        brand = 'Lamborghini',
+        model = 'huralbnormal',
+        price = 27000000,
+        category = 'super',
+        type = 'automobile',
+        hash = `huralbnormal`,
+    },
 
 }
