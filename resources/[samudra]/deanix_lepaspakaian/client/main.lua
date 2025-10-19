@@ -1,14 +1,18 @@
+local QBCore = exports['qb-core']:GetCoreObject()
 local CamHandle = nil
-
 local CurrentFov = 60.0
-
 local CurrentHeightAdd = 0.0
-
 local CamActive = false
+local AnimPlaying = false
 
-local LastIndexes = { mask = nil, hat = nil, glasses = nil, shirt = nil, undershirt = nil, vest = nil, chain = nil, watch = nil, bracelet = nil, pants = nil, bag = nil, shoes = nil }
+local LastIndexes = {
+    mask = nil, hat = nil, glasses = nil, shirt = nil,
+    undershirt = nil, vest = nil, chain = nil,
+    watch = nil, bracelet = nil, pants = nil,
+    bag = nil, shoes = nil
+}
 
-local LastTextureIndexes = { mask = nil, hat = nil, glasses = nil, shirt = nil, undershirt = nil, vest = nil, chain = nil, watch = nil, bracelet = nil, pants = nil, bag = nil, shoes = nil }
+local LastTextureIndexes = table.clone(LastIndexes)
 
 local ClothingTable = {
     mask = { type = 'component', id = 1 },
@@ -17,7 +21,7 @@ local ClothingTable = {
     shirt = {
         type = 'component',
         id = 11,
-        extras = { -- 🔥 extras ikut di-handle
+        extras = {
             { name = 'undershirt', type = 'component', id = 8, default = 15 },
             { name = 'gloves', type = 'component', id = 3, default = 15 },
             { name = 'decals', type = 'component', id = 10, default = 0 }
@@ -32,8 +36,8 @@ local ClothingTable = {
     bag = { type = 'component', id = 5 },
     shoes = { type = 'component', id = 6 }
 }
-local AnimPlaying = false
 
+--- Get clothing state (buat NUI)
 local function GetClothingState()
     return {
         mask = GetPedDrawableVariation(PlayerPedId(), 1) ~= 0,
@@ -51,9 +55,12 @@ local function GetClothingState()
     }
 end
 
+--- Buka UI dan aktifkan kamera
 local function OpenMenu()
-    local pedHeading = GetEntityHeading(PlayerPedId()) + 180.0
-    local camCoords = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 2.0, 0.0)
+    local ped = PlayerPedId()
+    local pedHeading = GetEntityHeading(ped) + 180.0
+    local camCoords = GetOffsetFromEntityInWorldCoords(ped, 0.0, 2.0, 0.0)
+
     CamHandle = CreateCamWithParams('DEFAULT_SCRIPTED_CAMERA', camCoords.x, camCoords.y, camCoords.z, 0.0, 0.0, pedHeading, CurrentFov, false, 0)
     SetCamUseShallowDofMode(CamHandle, true)
     SetCamNearDof(CamHandle, 0.2)
@@ -61,108 +68,105 @@ local function OpenMenu()
     SetCamDofStrength(CamHandle, 1.0)
     SetCamActive(CamHandle, true)
     RenderScriptCams(true, true, 500, true, true)
+
     CamActive = true
     SetNuiFocus(true, true)
     SendNUIMessage({ type = 'OpenMenu', clothingStates = GetClothingState() })
     exports['minimal-hud']:toggleMap(false)
-    -- if Config.HideMinimap then DisplayRadar(false) end
 end
 
+--- Scale (zoom)
 RegisterNuiCallback('changeScale', function(data, cb)
     CurrentFov = CurrentFov + data.scale
-    if CurrentFov > Config.MaxFov then CurrentFov = Config.MaxFov end
-    if CurrentFov < Config.MinFov then CurrentFov = Config.MinFov end
+    CurrentFov = math.clamp(CurrentFov, Config.MinFov, Config.MaxFov)
     SetCamFov(CamHandle, CurrentFov)
 end)
 
+--- Rotate karakter
 RegisterNuiCallback('changeRotation', function(data, cb)
-    if data.side == 'right' then
-        local playerHeading = GetEntityHeading(PlayerPedId())
-        local playerRotation = playerHeading + 4.0
-        SetEntityHeading(PlayerPedId(), playerRotation % 360)
-    elseif data.side == 'left' then
-        local playerHeading = GetEntityHeading(PlayerPedId())
-        local playerRotation = playerHeading + -4.0
-        SetEntityHeading(PlayerPedId(), playerRotation % 360)
-    end
+    local ped = PlayerPedId()
+    local heading = GetEntityHeading(ped)
+    local rotation = heading + (data.side == 'right' and 4.0 or -4.0)
+    SetEntityHeading(ped, rotation % 360)
 end)
 
+--- Naik / turun kamera
 RegisterNuiCallback('changeHeight', function(data, cb)
     if data.direction == 'up' then
-        CurrentHeightAdd = CurrentHeightAdd + 0.01
-        if CurrentHeightAdd > Config.MaxHeight then CurrentHeightAdd = Config.MaxHeight end
-        local camCoords = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 2.0, 0.0)
-        SetCamCoord(CamHandle, camCoords.x, camCoords.y, camCoords.z + CurrentHeightAdd)
-        PointCamAtEntity(CamHandle, PlayerPedId(), 0.0, 0.0, CurrentHeightAdd)
+        CurrentHeightAdd = math.min(CurrentHeightAdd + 0.01, Config.MaxHeight)
     elseif data.direction == 'down' then
-        CurrentHeightAdd = CurrentHeightAdd - 0.01
-        if CurrentHeightAdd < 0 then CurrentHeightAdd = 0 end
-        local camCoords = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 2.0, 0.0)
-        SetCamCoord(CamHandle, camCoords.x, camCoords.y, camCoords.z + CurrentHeightAdd)
-        PointCamAtEntity(CamHandle, PlayerPedId(), 0.0, 0.0, CurrentHeightAdd)
+        CurrentHeightAdd = math.max(CurrentHeightAdd - 0.01, 0)
     end
+    local camCoords = GetOffsetFromEntityInWorldCoords(PlayerPedId(), 0.0, 2.0, 0.0)
+    SetCamCoord(CamHandle, camCoords.x, camCoords.y, camCoords.z + CurrentHeightAdd)
+    PointCamAtEntity(CamHandle, PlayerPedId(), 0.0, 0.0, CurrentHeightAdd)
 end)
 
+--- Ganti status pakaian
 RegisterNuiCallback('changeClothesState', function(data, cb)
     if AnimPlaying then return end
+
+    local ped = PlayerPedId()
     local clothingData = ClothingTable[data.clothing]
+    local anim = Config.Clothing[data.clothing] and Config.Clothing[data.clothing].animation
+    if not anim then return end
+
+    RequestAnimDict(anim.dict)
+    while not HasAnimDictLoaded(anim.dict) do Wait(100) end
+    if IsPedInAnyVehicle(ped) then anim.move = 51 end
+
+    local isFemale = IsPedModel(ped, `mp_f_freemode_01`)
+    local femaleDefault = Config.FemaleDefaults[data.clothing]
 
     if LastIndexes[data.clothing] then
-        -- 🔄 Balikin item utama
-        local anim = Config.Clothing[data.clothing].animation
-        while not HasAnimDictLoaded(anim.dict) do RequestAnimDict(anim.dict) Wait(100) end
-        if IsPedInAnyVehicle(PlayerPedId()) then anim.move = 51 end
-        TaskPlayAnim(PlayerPedId(), anim.dict, anim.name, 3.0, 3.0, anim.duration, anim.move, 0, false, false, false)
+        -- 🔄 Balikin
+        TaskPlayAnim(ped, anim.dict, anim.name, 3.0, 3.0, anim.duration, anim.move, 0, false, false, false)
         AnimPlaying = true
-        Wait(math.max(anim.duration - 500, 500))
+        Wait(anim.duration - 400)
         AnimPlaying = false
 
         if clothingData.type == 'component' then
-            SetPedComponentVariation(PlayerPedId(), clothingData.id, LastIndexes[data.clothing], LastTextureIndexes[data.clothing])
+            SetPedComponentVariation(ped, clothingData.id, LastIndexes[data.clothing], LastTextureIndexes[data.clothing])
         else
-            SetPedPropIndex(PlayerPedId(), clothingData.id, LastIndexes[data.clothing], LastTextureIndexes[data.clothing])
+            SetPedPropIndex(ped, clothingData.id, LastIndexes[data.clothing], LastTextureIndexes[data.clothing])
         end
+
         LastIndexes[data.clothing], LastTextureIndexes[data.clothing] = nil, nil
 
-        -- 🔄 Balikin extras
         if clothingData.extras then
             for _, extra in ipairs(clothingData.extras) do
                 if LastIndexes[extra.name] then
-                    SetPedComponentVariation(PlayerPedId(), extra.id, LastIndexes[extra.name], LastTextureIndexes[extra.name])
+                    SetPedComponentVariation(ped, extra.id, LastIndexes[extra.name], LastTextureIndexes[extra.name])
                     LastIndexes[extra.name], LastTextureIndexes[extra.name] = nil, nil
                 end
             end
         end
-
     else
-        -- ❌ Lepasin item utama
+        -- ❌ Lepas
         local clothingStates = GetClothingState()
         if not clothingStates[data.clothing] then return Config.Notification("You don't have that part on") end
 
-        local anim = Config.Clothing[data.clothing].animation
-        while not HasAnimDictLoaded(anim.dict) do RequestAnimDict(anim.dict) Wait(100) end
-        if IsPedInAnyVehicle(PlayerPedId()) then anim.move = 51 end
+        TaskPlayAnim(ped, anim.dict, anim.name, 3.0, 3.0, anim.duration, anim.move, 0, false, false, false)
         AnimPlaying = true
-        TaskPlayAnim(PlayerPedId(), anim.dict, anim.name, 3.0, 3.0, anim.duration, anim.move, 0, false, false, false)
-        Wait(math.max(anim.duration - 500, 500))
+        Wait(anim.duration - 400)
         AnimPlaying = false
 
         if clothingData.type == 'component' then
-            LastIndexes[data.clothing] = GetPedDrawableVariation(PlayerPedId(), clothingData.id)
-            LastTextureIndexes[data.clothing] = GetPedTextureVariation(PlayerPedId(), clothingData.id)
-            SetPedComponentVariation(PlayerPedId(), clothingData.id, Config.Clothing[data.clothing].default, 0)
+            LastIndexes[data.clothing] = GetPedDrawableVariation(ped, clothingData.id)
+            LastTextureIndexes[data.clothing] = GetPedTextureVariation(ped, clothingData.id)
+            local default = isFemale and femaleDefault or Config.Clothing[data.clothing].default
+            SetPedComponentVariation(ped, clothingData.id, default or 15, 0)
         else
-            LastIndexes[data.clothing] = GetPedPropIndex(PlayerPedId(), clothingData.id)
-            LastTextureIndexes[data.clothing] = GetPedPropTextureIndex(PlayerPedId(), clothingData.id)
-            ClearPedProp(PlayerPedId(), clothingData.id)
+            LastIndexes[data.clothing] = GetPedPropIndex(ped, clothingData.id)
+            LastTextureIndexes[data.clothing] = GetPedPropTextureIndex(ped, clothingData.id)
+            ClearPedProp(ped, clothingData.id)
         end
 
-        -- ❌ Copot extras
         if clothingData.extras then
             for _, extra in ipairs(clothingData.extras) do
-                LastIndexes[extra.name] = GetPedDrawableVariation(PlayerPedId(), extra.id)
-                LastTextureIndexes[extra.name] = GetPedTextureVariation(PlayerPedId(), extra.id)
-                SetPedComponentVariation(PlayerPedId(), extra.id, extra.default, 0)
+                LastIndexes[extra.name] = GetPedDrawableVariation(ped, extra.id)
+                LastTextureIndexes[extra.name] = GetPedTextureVariation(ped, extra.id)
+                SetPedComponentVariation(ped, extra.id, extra.default, 0)
             end
         end
     end
@@ -170,28 +174,23 @@ RegisterNuiCallback('changeClothesState', function(data, cb)
     SendNUIMessage({ type = 'UpdateStates', clothingStates = GetClothingState() })
 end)
 
+--- Tutup menu
 RegisterNuiCallback('close', function(data, cb)
     RenderScriptCams(false, true, 500, 1, 0)
     DestroyCam(CamHandle, false)
     SetNuiFocus(false, false)
     exports['minimal-hud']:toggleMap(true)
-    -- if Config.HideMinimap then DisplayRadar(true) end
     CamActive = false
 end)
 
+--- Loop kamera
 CreateThread(function()
     while true do
-        if CamActive then
-            SetUseHiDof()
-        else
-            Wait(1000)
-        end
+        if CamActive then SetUseHiDof() else Wait(1000) end
         Wait(0)
     end
 end)
 
-RegisterCommand(Config.Open.command, function()
-    OpenMenu()
-end)
-
+--- Command buka menu
+RegisterCommand(Config.Open.command, function() OpenMenu() end)
 RegisterKeyMapping(Config.Open.command, Config.Open.label, 'keyboard', Config.Open.key)

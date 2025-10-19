@@ -469,6 +469,20 @@ Config.GarageLocations = { -- IMPORTANT - Every garage name must be unique
     },
     hideMarkers = true,
     markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
+  },
+  ["Asuransi Paleto"] = { -- If you change the name of this garage from Legion Square, you must change the default value of `garage_id` to the same name in the SQL table `players_vehicles`
+    coords = vector3(1649.71, 3789.61, 34.79),
+    spawn = {vector4(1643.66, 3798.36, 34.49, 216.16)}, --  you can add multiple spawn locations into a table
+    distance = 15,
+    type = "car",
+    hideBlip = false,
+    blip = {
+      id = 68,
+      color = 0,
+      scale = 0.7
+    },
+    hideMarkers = true,
+    markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
   }
 }
 
@@ -1030,10 +1044,10 @@ Config.GangGarageLocations = { -- IMPORTANT - Every garage name must be unique
 Config.ImpoundCommand = "iv"
 Config.ImpoundFeesSocietyFund = "police" -- Job name of society fund to pay impound fees into (optional)
 Config.ImpoundShowBlips = true
-Config.ImpoundUniqueBlips = false
+Config.ImpoundUniqueBlips = true
 Config.ImpoundTimeOptions = {0, 1, 4, 12, 24, 72, 168} -- in hours
 Config.ImpoundLocations = { -- IMPORTANT - Every impound name must be unique
-  ["Impound A"] = {
+  ["Asuransi Polisi"] = {
     coords = vector3(410.8, -1626.26, 29.29),
     spawn = vector4(408.44, -1630.88, 29.29, 136.88),
     distance = 15,
@@ -1048,21 +1062,21 @@ Config.ImpoundLocations = { -- IMPORTANT - Every impound name must be unique
     hideMarkers = true,
     markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
   },
-  ["Impound B"] = {
-    coords = vector3(1649.71, 3789.61, 34.79),
-    spawn = vector4(1643.66, 3798.36, 34.49, 216.16),
-    distance = 15,
-    type = "car",
-    job = {"police"},
-    hideBlip = false,
-    blip = {
-      id = 68,
-      color = 0,
-      scale = 0.7
-    },
-    hideMarkers = true,
-    markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
-  }
+  -- ["Impound B"] = {
+  --   coords = vector3(1649.71, 3789.61, 34.79),
+  --   spawn = vector4(1643.66, 3798.36, 34.49, 216.16),
+  --   distance = 15,
+  --   type = "car",
+  --   job = {"police"},
+  --   hideBlip = false,
+  --   blip = {
+  --     id = 68,
+  --     color = 0,
+  --     scale = 0.7
+  --   },
+  --   hideMarkers = true,
+  --   markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
+  -- }
 }
 
 -- Garage Interior

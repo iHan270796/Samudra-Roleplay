@@ -1,0 +1,16 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 368
+Title: tolongg min
+Reporter: DevinGZ - NGMC #NorinnNR
+Status: open
+Priority: medium
+Created: 1760678756000.0
+Deleted by: SRP - Reza
+Deleted at: 2025-10-17 13:16:43 UTC
+
+=== DESCRIPTION ===
+minn tolong saya pingsan tapi masih duty min
+
+
+=== MESSAGES ===
+[2025-10-17 05:26:19] SRP - Reza: ems cuman dirimu aj mas?

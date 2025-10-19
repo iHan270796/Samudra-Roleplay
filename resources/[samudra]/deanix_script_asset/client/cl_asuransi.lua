@@ -1,4 +1,3 @@
--- local QBCore = exports['qb-core']:GetCoreObject()
 local Config = require 'c_asuransi'
 local SafeZones = {}
 
@@ -15,9 +14,7 @@ local function pointInPoly(point, poly)
         local xj, yj = poly[j].x, poly[j].y
         local intersect = ((yi > y) ~= (yj > y)) and
             (x < (xj - xi) * (y - yi) / ((yj - yi) + 0.00001) + xi)
-        if intersect then
-            inside = not inside
-        end
+        if intersect then inside = not inside end
         j = i
     end
     return inside
@@ -60,15 +57,13 @@ RegisterNetEvent('c_asuransi:done', function()
     end
 
     local smuaKendaraan = GetGamePool('CVehicle')
+    local plates = {}
+
     for i = 1, #smuaKendaraan do
         local kendaraan = smuaKendaraan[i]
-
         if DoesEntityExist(kendaraan) and kursiKosong(kendaraan) then
             local model = GetEntityModel(kendaraan)
-
-            if lib.table.contains(Config.IgnoreVehicles, model) then
-                goto continue
-            end
+            if lib.table.contains(Config.IgnoreVehicles, model) then goto continue end
 
             local pos = GetEntityCoords(kendaraan)
             local inSafe = false
@@ -79,11 +74,15 @@ RegisterNetEvent('c_asuransi:done', function()
                 end
             end
 
-            if inSafe then
-                goto continue
+            if not inSafe then
+                local plate = GetVehicleNumberPlateText(kendaraan):gsub("%s+", "")
+                table.insert(plates, plate)
             end
-            DeleteVehicle(kendaraan)
         end
         ::continue::
+    end
+
+    if #plates > 0 then
+        TriggerServerEvent("c_asuransi:MasukimpundB", plates)
     end
 end)

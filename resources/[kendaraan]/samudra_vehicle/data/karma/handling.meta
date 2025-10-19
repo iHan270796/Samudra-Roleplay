@@ -4,7 +4,7 @@
   <HandlingData>
     <Item type="CHandlingData">
       <handlingName>karma</handlingName>
-      <fMass value="970.000000" />
+      <fMass value="1700.000000" />
       <fDownforceModifier value="20.1500000" /> 
       <fInitialDragCoeff value="1.99" />
       <fPercentSubmerged value="85.000000" />

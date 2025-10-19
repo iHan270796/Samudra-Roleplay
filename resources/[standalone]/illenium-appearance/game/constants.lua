@@ -304,7 +304,7 @@ constants.DATA_CLOTHES = {
 	body = {
 		components = {
 			male = {
-				{ 11, 252 },
+				{ 11, 15 },
 				{ 3,  15 },
 				{ 8,  15 },
 				{ 10, 0 },
@@ -326,12 +326,12 @@ constants.DATA_CLOTHES = {
 	bottom = {
 		components = {
 			male = {
-				{ 4, 61 },
-				{ 6, 34 }
+				{ 4, 14 },
+				{ 6, 96 }
 			},
 			female = {
 				{ 4, 15 },
-				{ 6, 35 }
+				{ 6, 59 }
 			}
 		},
 		props = {

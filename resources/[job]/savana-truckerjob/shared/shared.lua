@@ -22,7 +22,7 @@ shared.TruckerJob = {
                 level = 1, xp = 25,
                 imgSrc = 'images/trailers/tanker.png',
                 name = 'Fuel Tanker XL', type = 'ADR 3', 
-                vehicles = {'phantom3', 'tanker'}, totalPrice = 65000, 
+                vehicles = {'phantom3', 'tanker'}, totalPrice = 70000, 
                 start = { vector3(852.97, -2905.25, 5.97), 180.05}, 
                 trailer = {vector3(861.22, -2908.3, 5.97), 180.37}, 
                 arrive = vector3(-969.0496, -2899.3401, 14.0317)
@@ -31,7 +31,7 @@ shared.TruckerJob = {
                 level = 5, xp = 50,
                 imgSrc = 'images/trailers/trailerlogs.png',
                 name = 'Timber Haul', type = 'NO ADR',
-                vehicles = {'phantom', 'trailerlogs'}, totalPrice = 85000, 
+                vehicles = {'phantom', 'trailerlogs'}, totalPrice = 88000, 
                 start = { vector3(852.97, -2905.25, 5.97), 180.05}, 
                 trailer = {vector3(861.22, -2908.3, 5.97), 180.37}, 
                 arrive = vector3(1385.0824, -742.9412, 67.1472)
@@ -40,7 +40,7 @@ shared.TruckerJob = {
                 level = 10, xp = 75,
                 imgSrc = 'images/trailers/trailers4.png',
                 name = 'Clothing Materials', type = 'NO ADR',
-                vehicles = {'phantom3', 'trailers4'}, totalPrice = 140000, 
+                vehicles = {'phantom3', 'trailers4'}, totalPrice = 145000, 
                 start = { vector3(852.97, -2905.25, 5.97), 180.05}, 
                 trailer = {vector3(861.22, -2908.3, 5.97), 180.37}, 
                 arrive = vector3(725.4348, -983.8358, 24.2330)

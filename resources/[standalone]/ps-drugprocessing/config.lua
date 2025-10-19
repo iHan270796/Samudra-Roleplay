@@ -12,7 +12,7 @@ Config.Delays = {
 }
 
 Config.CircleZones = {
-	WeedField = {coords = vector3(310.77, 4339.82, 49.54), name = ('Weed Farm'), radius = 100.0},
+	WeedField = {coords = vector3(4819.81, -5030.29, 31.73), name = ('Weed Farm'), radius = 100.0},
 	--WeedProcessing = {coords = vector3(1038.33, -3204.44, -38.17), name = ('Weed Process'), radius = 100.0},
 	
 	-- MethProcessing = {coords = vector3(978.17, -147.98, -48.53), name = ('Meth Process'), radius = 20.0},
@@ -26,12 +26,12 @@ Config.CircleZones = {
 	-- ChemicalsField = {coords = vector3(1264.97, 1803.96, 82.94), name = ('Chemicals'), radius = 100.0},
 	-- ChemicalsConvertionMenu = {coords = vector3(3536.71, 3662.63, 28.12), name = ('Chemicals Process'), radius = 100.0},
 
-	CokeField = {coords = vector3(2715.95, -845.7, 23.47), name = ('Coke'), radius = 100.0},
+	CokeField = {coords = vector3(5518.36, -5816.42, 17.91), name = ('Coke'), radius = 100.0},
 	CokeProcessing = {coords = vector3(1087.14, -3195.31, -38.99), name = ('Coke Process'), radius = 20.0}, 
 	CokePowder = {coords = vector3(1092.9, -3196.65, -38.99), name = ('Powder Cutting'), radius = 20.0},--vector3(1092.9, -3196.65, -38.99)
 	CokeBrick = {coords = vector3(1099.57, -3194.35, -38.99), name = ('Brick Up Packages'), radius = 20.0},--vector3(1099.57, -3194.35, -38.99)
 	
-	HeroinField = {coords = vector3(-2339.15, -54.32, 95.05), name = ('Heroin'), radius = 100.0},
+	HeroinField = {coords = vector3(4600.59, -4878.58, 18.08), name = ('Heroin'), radius = 100.0},
 	HeroinProcessing = {coords = vector3(1391.41, 3605.55, 39.07), name = ('Heroin Process'), radius = 100.0},
 
 	-- lsdProcessing = {coords = vector3(2503.84, -428.11, 92.99), name = ('LSD process'), radius = 100.0},

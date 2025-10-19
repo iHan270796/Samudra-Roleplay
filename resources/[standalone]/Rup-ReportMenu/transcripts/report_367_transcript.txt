@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 367
+Title: ini builder nya nge bug kah
+Reporter: FriXilz
+Status: open
+Priority: medium
+Created: 1760607178000.0
+Deleted by: SRP - Reza
+Deleted at: 2025-10-17 12:06:28 UTC
+
+=== DESCRIPTION ===
+truk semen nya nge bug
+
+=== MESSAGES ===
+[2025-10-16 09:33:24] SRP | BIXY: BUG GIMANA BANG
