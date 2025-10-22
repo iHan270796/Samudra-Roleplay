@@ -183,25 +183,35 @@ RegisterNetEvent("deanix_shoprobbery:receiveCode", function(code, zoneId)
     })
 end)
 
-
 function notifyshoprobb(message)
-    exports['ps-dispatch']:CustomAlert({
-        message = message,
-        dispatchCode = "10-90",
-        code = "10-90",
-        icon = "fas fa-vault",
-        priority = 1,
-        jobs = { "leo" },
-        sound = "Lose_1st",
-        sound2 = "GTAO_FM_Events_Soundset",
-        flash = true,
-        scale = 1.5,
-        sprite = 161,
-        color = 1,
-        length = 5,
-        coords = GetEntityCoords(PlayerPedId())
+    local coords = GetEntityCoords(PlayerPedId())
+
+    -- kirim dispatch pakai wasabi_mdt
+    exports['wasabi_mdt']:SendPremadeDispatch('store_robbery', {
+        location = '24/7 Store - Vinewood Boulevard',
+        coords = { x = coords.x, y = coords.y, z = coords.z },
+        description = message or 'Alarm dipicu di Warung, lapor tersangka bersenjata!'
     })
 end
+
+-- function notifyshoprobb(message)
+--     exports['ps-dispatch']:CustomAlert({
+--         message = message,
+--         dispatchCode = "10-90",
+--         code = "10-90",
+--         icon = "fas fa-vault",
+--         priority = 1,
+--         jobs = { "leo" },
+--         sound = "Lose_1st",
+--         sound2 = "GTAO_FM_Events_Soundset",
+--         flash = true,
+--         scale = 1.5,
+--         sprite = 161,
+--         color = 1,
+--         length = 5,
+--         coords = GetEntityCoords(PlayerPedId())
+--     })
+-- end
 
 RegisterNUICallback("closeUI", function(_, cb)
     SetNuiFocus(false, false)

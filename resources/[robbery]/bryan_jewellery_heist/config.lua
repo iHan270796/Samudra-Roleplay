@@ -8,7 +8,7 @@ Config.Cooldown = 30 -- Minutes
 
 Config.AutoLock = true
 
-Config.RequiredPolice = 4
+Config.RequiredPolice = 1
 Config.PoliceJobs = {
     'police'
 }

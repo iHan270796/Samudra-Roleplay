@@ -271,7 +271,7 @@ const Notifications: React.FC = () => {
   return (
   <Toaster
     containerStyle={{
-      top: '-53vh', // posisi notifikasi lebih ke atas
+      top: '-23vh', // posisi notifikasi lebih ke atas
       right: '16px',
     }}
   />

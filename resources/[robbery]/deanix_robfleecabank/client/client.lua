@@ -578,23 +578,34 @@ function OpenCodeInput()
 end
 
 function NotifyPolice(message)
-    exports['ps-dispatch']:CustomAlert({
-        message = message,
-        dispatchCode = "10-90",
-        code = "10-90",
-        icon = "fas fa-vault",
-        priority = 1,
-        jobs = { "leo" },
-        sound = "Lose_1st",
-        sound2 = "GTAO_FM_Events_Soundset",
-        flash = true,
-        scale = 1.5,
-        sprite = 161,
-        color = 1,
-        length = 5,
-        coords = GetEntityCoords(PlayerPedId())
+    local coords = GetEntityCoords(PlayerPedId())
+
+    -- kirim dispatch pakai wasabi_mdt
+    exports['wasabi_mdt']:SendPremadeDispatch('bank_robbery', {
+        location = 'FleecaBank ',
+        coords = { x = coords.x, y = coords.y, z = coords.z },
+        description = message or 'Terjadi Prapokan FleecaBank!'
     })
 end
+
+-- function NotifyPolice(message)
+--     exports['ps-dispatch']:CustomAlert({
+--         message = message,
+--         dispatchCode = "10-90",
+--         code = "10-90",
+--         icon = "fas fa-vault",
+--         priority = 1,
+--         jobs = { "leo" },
+--         sound = "Lose_1st",
+--         sound2 = "GTAO_FM_Events_Soundset",
+--         flash = true,
+--         scale = 1.5,
+--         sprite = 161,
+--         color = 1,
+--         length = 5,
+--         coords = GetEntityCoords(PlayerPedId())
+--     })
+-- end
 
 RegisterNUICallback("submitCode", function(data, cb)
     local inputCode = data.code

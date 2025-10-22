@@ -630,35 +630,35 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
     },
     hideMarkers = true,
     markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
-    vehiclesType = "spawner", -- Use owned vehicles that can anyone in this society can access - more details: https://docs.jgscripts.com/advanced-garages/job-and-gang-garages
+    vehiclesType = "owned", -- Use owned vehicles that can anyone in this society can access - more details: https://docs.jgscripts.com/advanced-garages/job-and-gang-garages
     showLiveriesExtrasMenu = true, -- Allow player to select a livery and extras before pulling vehicle out 
     vehicles = {
       [1] = {
         model = "ambulancecak", -- spawn code for vehicle
         plate = "Medis", -- set as false for a random plate; do not use a plate already in use in the DB!
         minJobGrade = 0, -- only available to players with set minimum grade
-        nickname = "Ems Ambulance", -- Show a custom name instead of the vehicle's real name
+        nickname = "Ambulance Medis", -- Show a custom name instead of the vehicle's real name
         livery = 1,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [2] = {
         model = "ghispo3",
         plate = "Medis",
         minJobGrade = 1,
-        nickname = "Ems Sedan G3",
+        nickname = "Medis Sedan G3",
         livery = 2,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [3] = {
         model = "ems_gs1200",
         plate = "Medis",
         minJobGrade = 1,
-        nickname = "Ems Bike Gs1200",
+        nickname = "Medis Gs1200",
         livery = 2,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       }
     }
   },
@@ -704,7 +704,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
     },
     hideMarkers = true,
     markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
-    vehiclesType = "spawner", -- Spawn a basic vehicle from a list
+    vehiclesType = "owned", -- Spawn a basic vehicle from a list
     showLiveriesExtrasMenu = true, -- Allow player to select a livery and extras before pulling vehicle out 
     vehicles = {
       [1] = {
@@ -714,7 +714,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Audi", -- Show a custom name instead of the vehicle's real name
         livery = 1,
         extras = {1, 2, 3, 4, 5, 6, 10},
-        maxMods = true
+        maxMods = false
       },
       [2] = {
         model = "baracuda",
@@ -723,7 +723,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Baracuda",
         livery = 2,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [3] = {
         model = "barracks",
@@ -732,7 +732,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Barraks",
         livery = 2,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [4] = {
         model = "evleo",
@@ -741,7 +741,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Evleo",
         livery = 2,
         extras = {1, 2, 3, 4, 5, 6, 7},
-        maxMods = true
+        maxMods = false
       },
       [5] = {
         model = "evopol",
@@ -750,7 +750,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Evo",
         livery = 2,
         extras = {1, 4},
-        maxMods = true
+        maxMods = false
       },
       [6] = {
         model = "hiacepol",
@@ -759,7 +759,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Hiace",
         livery = 2,
         extras = {2, 4, 7},
-        maxMods = true
+        maxMods = false
       },
       [7] = {
         model = "elantrapol",
@@ -768,7 +768,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Elantra",
         livery = 2,
         extras = {1, 2, 3, 4, 5, 6, 10},
-        maxMods = true
+        maxMods = false
       },
       [8] = {
         model = "brimob1",
@@ -777,7 +777,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Police Brimob",
         livery = 2,
         extras = {1, 2, 3, 4, 5, 6, 7, 8, 9, 12},
-        maxMods = true
+        maxMods = false
       },
       [9] = {
         model = "polisivx200",
@@ -786,7 +786,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Vx200",
         livery = 2,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [10] = {
         model = "r1200rtp",
@@ -795,7 +795,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi R1200",
         livery = 1,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [11] = {
         model = "psp_bmwgs",
@@ -804,7 +804,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Gs",
         livery = 1, 2,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [12] = {
         model = "brimobdirtbike",
@@ -813,7 +813,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Brimob Bike",
         livery = 1,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [13] = {
         model = "polisidirtbike",
@@ -822,7 +822,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Sanchez",
         livery = 1,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [14] = {
         model = "pajeropol",
@@ -831,7 +831,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Pajero",
         livery = 2,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [15] = {
         model = "polraptor",
@@ -840,7 +840,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Raptor",
         livery = 1, 2, 3,
         extras = {1, 2, 3, 4, 5},
-        maxMods = true
+        maxMods = false
       },
       [16] = {
         model = "riot",
@@ -849,7 +849,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Riot",
         livery = 2,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [17] = {
         model = "police3",
@@ -858,16 +858,16 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Sedan",
         livery = 2,
         extras = {2, 4},
-        maxMods = true
+        maxMods = false
       },
       [18] = {
-        model = "14tesla",
+        model = "a14tesla",
         plate = "Polisi",
         minJobGrade = 6,
         nickname = "Polisi Tesla",
         livery = 1,
         extras = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12},
-        maxMods = true
+        maxMods = false
       },
       [19] = {
         model = "lguard",
@@ -876,7 +876,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Hilux",
         livery = 2,
         extras = {2, 4},
-        maxMods = true
+        maxMods = false
       },
       [20] = {
         model = "priuspol",
@@ -885,7 +885,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Taprius",
         livery = 2,
         extras = {1, 2, 3, 4, 5, 6, 10},
-        maxMods = true
+        maxMods = false
       },
       [21] = {
         model = "triton",
@@ -894,7 +894,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Triton",
         livery = 2,
         extras = {1, 4},
-        maxMods = true
+        maxMods = false
       },
       [22] = {
         model = "wranglerpolisi",
@@ -903,7 +903,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Wrangler",
         livery = 2,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [23] = {
         model = "pd_wrangler",
@@ -912,7 +912,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Wrangler Brimob ",
         livery = 1,
         extras = {1, 2},
-        maxMods = true
+        maxMods = false
       },
       [24] = {
         model = "zr2",
@@ -921,7 +921,7 @@ Config.JobGarageLocations = { -- IMPORTANT - Every garage name must be unique
         nickname = "Polisi Zr2 ",
         livery = 1,
         extras = {2, 4},
-        maxMods = true
+        maxMods = false
       }
     }
   },

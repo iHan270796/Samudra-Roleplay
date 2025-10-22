@@ -73,21 +73,38 @@ RegisterServerEvent('stasiek_selldrugsv2:pay', function(drugToSell)
     end
 end)
 
+-- RegisterServerEvent('stasiek_selldrugsv2:notifycops', function(drugToSell)
+--     TriggerClientEvent('ps-dispatch:customAlert', -1, {
+--         message = "Suspicious activity related to " .. (drugToSell.label or "narcotics"),
+--         dispatchCode = "10-66",
+--         code = "10-66",
+--         icon = "fas fa-capsules",
+--         priority = 2,
+--         jobs = { "police", "sheriff" },
+--         sound = "Alarm_Store",
+--         sound2 = "DLC_HEIST_HACKING_SNAKE_SOUNDS",
+--         flash = true,
+--         scale = 1.2,
+--         sprite = 140,
+--         color = 3,
+--         length = 5,
+--         coords = drugToSell.coords
+--     })
+-- end)
+
 RegisterServerEvent('stasiek_selldrugsv2:notifycops', function(drugToSell)
-    TriggerClientEvent('ps-dispatch:customAlert', -1, {
-        message = "Suspicious activity related to " .. (drugToSell.label or "narcotics"),
-        dispatchCode = "10-66",
-        code = "10-66",
-        icon = "fas fa-capsules",
+    local coords = drugToSell.coords
+    local label = drugToSell.label or "narcotics"
+
+    local mdtData = {
+        type = 'disturbance',
+        title = 'Suspicious Drug Activity',
+        description = "Suspicious activity related to " .. label,
+        location = 'Possible drug deal reported',
+        coords = coords,
         priority = 2,
-        jobs = { "police", "sheriff" },
-        sound = "Alarm_Store",
-        sound2 = "DLC_HEIST_HACKING_SNAKE_SOUNDS",
-        flash = true,
-        scale = 1.2,
-        sprite = 140,
-        color = 3,
-        length = 5,
-        coords = drugToSell.coords
-    })
+        departments = { "police", "sheriff" }
+    }
+
+    TriggerEvent('wasabi_mdt:createExternalDispatch', mdtData)
 end)

@@ -72,7 +72,7 @@ local function OpenMenu()
     CamActive = true
     SetNuiFocus(true, true)
     SendNUIMessage({ type = 'OpenMenu', clothingStates = GetClothingState() })
-    exports['minimal-hud']:toggleMap(false)
+    -- exports['minimal-hud']:toggleMap(false)
 end
 
 --- Scale (zoom)
@@ -179,7 +179,7 @@ RegisterNuiCallback('close', function(data, cb)
     RenderScriptCams(false, true, 500, 1, 0)
     DestroyCam(CamHandle, false)
     SetNuiFocus(false, false)
-    exports['minimal-hud']:toggleMap(true)
+    -- exports['minimal-hud']:toggleMap(true)
     CamActive = false
 end)
 

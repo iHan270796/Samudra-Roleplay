@@ -243,12 +243,12 @@ CreateThread(function()
         },
     distance = 3.5
     })
-    exports["qb-target"]:AddBoxZone("cokeleafproc", vector3(1086.2, -3194.9, -38.99), 2.5, 1.4, {
+    exports["qb-target"]:AddBoxZone("cokeleafproc", vector3(1086.52, -3194.28, -39.19), 2.5, 1.4, {
         name = "cokeleafproc",
         heading = 0,
         debugPoly = false,
-        minZ = -39.39,
-        maxZ = -38.39,
+        minZ = -37.39,
+        maxZ = -40.39,
     }, {
         options = {
             {
@@ -261,12 +261,12 @@ CreateThread(function()
         },
     distance = 3.5
     })
-    exports["qb-target"]:AddBoxZone("cokepowdercut", vector3(1092.89, -3195.78, -38.99), 7.65, 1.2, {
+    exports["qb-target"]:AddBoxZone("cokepowdercut", vector3(1091.24, -3196.2, -39.59), 7.65, 1.2, {
         name = "cokepowdercut",
         heading = 90,
         debugPoly = false,
-        minZ = -39.39,
-        maxZ = -38.44,
+        minZ = -37.39,
+        maxZ = -40.44,
     }, {
         options = {
             {
@@ -279,30 +279,28 @@ CreateThread(function()
         },
     distance = 3.5
     })
-    exports["qb-target"]:AddBoxZone("cokebricked", vector3(1100.51, -3199.46, -38.93), 2.6, 1.0, {
-        name = "cokebricked",
-        heading = 90,
-        debugPoly = false,
-        minZ = -39.99,
-        maxZ = -38.59,
-    }, {
+    exports.ox_target:addBoxZone({
+        coords = vec3(1101.56, -3199.61, -39.19),
+        size = vec3(1.5, 1.5, 4.0), -- minZ 11.0, maxZ 15.0
+        rotation = 0.0,
+        debug = false,
+        name = 'cokebricked',
         options = {
             {
-                type = "client",
-                event = "deanix_crafting:client:openprosescocain3",
-                icon = "fas fa-weight-scale",
                 label = Lang:t("target.bagging"),
-                --job = "cokecutter", -- Remove this line if you do not want a job check.
-            },
-        },
-    distance = 3.5
+                icon = "fas fa-weight-scale",
+                onSelect = function()
+                    TriggerEvent("deanix_crafting:client:openprosescocain3")
+                end
+            }
+        }
     })
-    exports["qb-target"]:AddBoxZone("weedproces", vector3(1038.37, -3206.06, -38.17), 2.6, 1.0, {
+    exports["qb-target"]:AddBoxZone("weedproces", vector3(1038.38, -3205.86, -39.12), 2.6, 1.0, {
         name = "weedproces",
         heading = 0,
         debugPoly = false,
-        minZ = -38.37,
-        maxZ = -37.57,
+        minZ = -36.37,
+        maxZ = -40.57,
     }, {
         options = {
             {

@@ -397,9 +397,9 @@ RegisterNetEvent('dw-bossmenu:client:RefreshPermissions', function(permissions)
 end)
 -- Separated function to handle the actual opening
 function OpenJobManager(jobName)
-    exports['samudra_logo']:hidehud()
-    exports['minimal-hud']:toggleHud(false)
-	exports['minimal-hud']:toggleMap(false)
+    -- exports['samudra_logo']:hidehud()
+    -- exports['minimal-hud']:toggleHud(false)
+	-- exports['minimal-hud']:toggleMap(false)
     if menuOpen then return end
     
     QBCore.Functions.TriggerCallback('dw-bossmenu:server:GetJobData', function(jobData)
@@ -505,9 +505,9 @@ end)
 
 -- NUI Callbacks
 RegisterNUICallback('closeUI', function(_, cb)
-    exports['samudra_logo']:showhud()
-    exports['minimal-hud']:toggleHud(true)
-	exports['minimal-hud']:toggleMap(true)
+    -- exports['samudra_logo']:showhud()
+    -- exports['minimal-hud']:toggleHud(true)
+	-- exports['minimal-hud']:toggleMap(true)
     SetNuiFocus(false, false)
     menuOpen = false
     cb('ok')

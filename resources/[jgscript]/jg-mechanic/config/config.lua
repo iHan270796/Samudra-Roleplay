@@ -462,6 +462,7 @@ Config.MechanicLocations = {
           { name = "manual_gearbox", label = "Nitrous Bottle", price = 1500 },
           { name = "mechanic_tablet", label = "Mechanic Tablet", price = 1500 },
           { name = "billing_tablet", label = "Tablet Billing", price = 1500 },
+          { name = "harness", label = "Race Harness", price = 25000 },
         },
       },
       {

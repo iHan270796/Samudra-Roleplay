@@ -40,15 +40,15 @@ Config.StarterItems = {
 Config.CustomHud = function(bool)
     if bool then
         -- Example: exports['myhud']:SetDisplay(false)
-        exports['minimal-hud']:toggleHud(false)
-		exports['minimal-hud']:toggleMap(false)
-		exports['samudra_logo']:hidehud()
+        -- exports['minimal-hud']:toggleHud(false)
+		-- exports['minimal-hud']:toggleMap(false)
+		-- exports['samudra_logo']:hidehud()
         --Debug('Hud is hidden', 'debug')
     else
         -- Example: exports['myhud']:SetDisplay(true)
-        exports['minimal-hud']:toggleHud(true)
-		exports['minimal-hud']:toggleMap(true)
-		exports['samudra_logo']:showhud()
+        -- exports['minimal-hud']:toggleHud(true)
+		-- exports['minimal-hud']:toggleMap(true)
+		-- exports['samudra_logo']:showhud()
         --Debug('Hud is show', 'debug')
     end
 end

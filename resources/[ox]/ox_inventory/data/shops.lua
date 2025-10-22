@@ -176,6 +176,7 @@ return {
 		blip = {
 			id = 110, colour = 84, scale = 0.6
 		}, inventory = {
+			{ name = 'mdt_tablet', price = 150000, grade = 4 },
 			{ name = 'documents', price = 1500, grade = 4 },
 			{ name = 'billing_tablet', price = 250000, grade = 4 },
 			{ name = 'megaphone', price = 2500, grade = 4 },

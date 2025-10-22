@@ -58,9 +58,9 @@ end
 
 RegisterNetEvent('peleg-billing:client:open', function(selfData)
 
-	exports['samudra_logo']:hidehud()
-    exports['minimal-hud']:toggleHud(false)
-	exports['minimal-hud']:toggleMap(false)
+	-- exports['samudra_logo']:hidehud()
+    -- exports['minimal-hud']:toggleHud(false)
+	-- exports['minimal-hud']:toggleMap(false)
 
     if selfData then
         SendNUIMessage({ type = 'tablet:locale', data = selfData.locale or {}, disableHome = selfData.disableHome or false, self = selfData })
@@ -83,9 +83,9 @@ end)
 --> [NUI Callbacks] <--
 RegisterNUICallback('peleg-billing:close', function(_, cb)
 
-	exports['samudra_logo']:showhud()
-    exports['minimal-hud']:toggleHud(true)
-	exports['minimal-hud']:toggleMap(true)
+	-- exports['samudra_logo']:showhud()
+    -- exports['minimal-hud']:toggleHud(true)
+	-- exports['minimal-hud']:toggleMap(true)
 
 	closeTablet()
 	cb(true)

@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 370
+Title: min minta uang 
+Reporter: SRP|VHANO
+Status: open
+Priority: medium
+Created: 1760860555000.0
+Deleted by: SRP|VHANO
+Deleted at: 2025-10-19 14:56:37 UTC
+
+=== DESCRIPTION ===
+minta uang min
+
+=== MESSAGES ===
+[2025-10-19 07:56:28] SRP|VHANO: min

@@ -264,23 +264,34 @@ next_ped = function(drugToSell)
 end
 
 function NotifyPolice(message)
-    exports['ps-dispatch']:CustomAlert({
-        message = message,
-        dispatchCode = "10-90",
-        code = "10-90",
-        icon = "fas fa-vault",
-        priority = 1,
-        jobs = { "leo" },
-        sound = "Lose_1st",
-        sound2 = "GTAO_FM_Events_Soundset",
-        flash = true,
-        scale = 1.5,
-        sprite = 161,
-        color = 1,
-        length = 5,
-        coords = GetEntityCoords(PlayerPedId())
+    local coords = GetEntityCoords(PlayerPedId())
+
+    -- kirim dispatch pakai wasabi_mdt
+    exports['wasabi_mdt']:SendPremadeDispatch('drug_deal', {
+        location = 'Vinewood Boulevard',
+        coords = { x = coords.x, y = coords.y, z = coords.z },
+        description = message or 'Terjadi transaksi Narkoba!'
     })
 end
+
+-- function NotifyPolice(message)
+--     exports['ps-dispatch']:CustomAlert({
+--         message = message,
+--         dispatchCode = "10-90",
+--         code = "10-90",
+--         icon = "fas fa-vault",
+--         priority = 1,
+--         jobs = { "leo" },
+--         sound = "Lose_1st",
+--         sound2 = "GTAO_FM_Events_Soundset",
+--         flash = true,
+--         scale = 1.5,
+--         sprite = 161,
+--         color = 1,
+--         length = 5,
+--         coords = GetEntityCoords(PlayerPedId())
+--     })
+-- end
 
 CreateThread(function()
 	while true do

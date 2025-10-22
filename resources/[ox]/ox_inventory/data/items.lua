@@ -5765,5 +5765,9 @@ return {
 	['ayam_packing'] = {
         label = 'Ayam Paking',
         weight = 50,
-    }
+    },
+	['mdt_tablet'] = {
+        label = 'Mdt Tablet',
+        weight = 50,
+    },
 }

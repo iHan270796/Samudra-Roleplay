@@ -120,9 +120,9 @@ local Inventory = require 'modules.inventory.client'
 ---@return boolean?
 function client.openInventory(inv, data)
 
-    exports['samudra_logo']:hidehud()
-    exports['minimal-hud']:toggleHud(false)
-	exports['minimal-hud']:toggleMap(false)
+    -- exports['samudra_logo']:hidehud()
+    -- exports['minimal-hud']:toggleHud(false)
+	-- exports['minimal-hud']:toggleMap(false)
 
     if invOpen then
         if not inv and currentInventory.type == 'newdrop' then
@@ -950,9 +950,9 @@ end
 
 function client.closeInventory(server)
 
-    exports['samudra_logo']:showhud()
-    exports['minimal-hud']:toggleHud(true)
-	exports['minimal-hud']:toggleMap(true)
+    -- exports['samudra_logo']:showhud()
+    -- exports['minimal-hud']:toggleHud(true)
+	-- exports['minimal-hud']:toggleMap(true)
 
     -- because somehow people are triggering this when the inventory isn't loaded
     -- and they're incapable of debugging, and I can't repro on a fresh install
