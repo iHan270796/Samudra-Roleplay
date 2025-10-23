@@ -37,8 +37,6 @@ window.APP = {
         clearTimeout(this.showWindowTimer);
       }
       this.showWindow = true;
-      document.getElementById('img_alerta').classList.add('imgalertalow');
-
       this.resetShowWindowTimer();
 
       const messagesObj = this.$refs.messages;
@@ -59,8 +57,6 @@ window.APP = {
     ON_OPEN() {
       this.showInput = true;
       this.showWindow = true;
-      document.getElementById('img_alerta').classList.add('imgalertalow');
-
       if (this.showWindowTimer) {
         clearTimeout(this.showWindowTimer);
       }
@@ -73,15 +69,7 @@ window.APP = {
       }, 100);
     },
     ON_MESSAGE({ message }) {
-      if(message.args == '')
-      {
-       // window.console.log('chat message:' +  JSON.stringify(message));
-      }
-      else
-      {
-       // window.console.log('chat message:' +  JSON.stringify(message));
-        this.messages.push(message);
-      }
+      this.messages.push(message);
     },
     ON_CLEAR() {
       this.messages = [];
@@ -100,12 +88,21 @@ window.APP = {
       if (!suggestion.params) {
         suggestion.params = []; //TODO Move somewhere else
       }
+
+      if (this.removedSuggestions.find(a => a.name == suggestion.name)) {
+        this.removedSuggestions.splice(this.removedSuggestions.indexOf(suggestion.name), 1)
+      }
       this.backingSuggestions.push(suggestion);
     },
     ON_SUGGESTION_REMOVE({ name }) {
       if(this.removedSuggestions.indexOf(name) <= -1) {
         this.removedSuggestions.push(name);
       }
+    },
+    ON_COMMANDS_RESET() {
+      console.log('Resetting Command Suggestions');
+      this.removedSuggestions = [];
+      this.backingSuggestions = [];
     },
     ON_TEMPLATE_ADD({ template }) {
       if (this.templates[template.id]) {
@@ -118,26 +115,6 @@ window.APP = {
       this.removeThemes();
 
       this.setThemes(themes);
-    },
-    SetAlerta({nivelAlerta})
-    {
-      document.getElementById('img_alerta').src = 'alerta' + nivelAlerta + '.png';
-      document.getElementById('alerta').style.display = 'inline';
-    },
-    HideAlerta()
-    {
-      document.getElementById('alerta').style.display = 'none';
-    },
-    AlertaTransparent({value})
-    {
-      if(value)
-      {
-        document.getElementById('alerta').style.display = 'none';
-      }
-      else
-      {
-        document.getElementById('alerta').style.display = 'inline';
-      }
     },
     removeThemes() {
       for (let i = 0; i < document.styleSheets.length; i++) {
@@ -227,8 +204,6 @@ window.APP = {
       this.showWindowTimer = setTimeout(() => {
         if (!this.showInput) {
           this.showWindow = false;
-          document.getElementById('img_alerta').classList.remove('imgalertalow');
-
         }
       }, CONFIG.fadeTimeout);
     },
@@ -286,4 +261,15 @@ window.APP = {
       this.resetShowWindowTimer();
     },
   },
+
+  
 };
+addEventListener("message", function(event) {
+
+  if(event.data.meta == "me") {
+  document.getElementById("me").innerHTML = event.data.html;
+} else if (event.data.meta == "do") {
+  document.getElementById("do").innerHTML = event.data.html;
+}
+
+});

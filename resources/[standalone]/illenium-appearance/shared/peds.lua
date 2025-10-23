@@ -1064,6 +1064,7 @@ Config.Peds = {
                 "wilstore_bil",
                 "g085",
                 "manz01",
+                "kenz",
             },
         },
     },

@@ -233,9 +233,9 @@ cfg = {
     },
 
     useStress = true,
-    MinimumStress = 60,         -- Minimum Stress Level For Screen Shaking
-    MinimumSpeedUnbuckled = 150, -- Going Over This Speed Unbuckled Will Cause Stress
-    MinimumSpeed = 150,        -- Going Over This Speed While Buckled Will Cause Stress
+    MinimumStress = 25,         -- Minimum Stress Level For Screen Shaking
+    MinimumSpeedUnbuckled = 100, -- Going Over This Speed Unbuckled Will Cause Stress
+    MinimumSpeed = 70,        -- Going Over This Speed While Buckled Will Cause Stress
     StressChance = 0.1,
     WhitelistedWeaponArmed = { -- Disable showing armed icon from weapons in this table
         [`weapon_petrolcan`] = true,

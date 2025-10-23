@@ -210,7 +210,7 @@ Config.AcceptableTasks = {
         -- Experience points for completing the mission
         exp = 400,
         -- Reward for completing the task
-        fee = 40000,
+        fee = 50000,
         --[[
             The coordinates of the task.
             !!! Please add at least as many coordinates as there are targets.
@@ -235,7 +235,7 @@ Config.AcceptableTasks = {
         type = "collecting",
         goal = 3,
         exp = 400,
-        fee = 40000,
+        fee = 50000,
         destinations = {
             [1] = { coords = vec4(479.736267, -1736.109863, 29.145020, 206.929138) },
             [2] = { coords = vec4(313.898895, -2040.672485, 20.922363, 308.976379) },
@@ -253,7 +253,7 @@ Config.AcceptableTasks = {
         type = "delivery",
         goal = 3,
         exp = 400,
-        fee = 50000,
+        fee = 60000,
         destinations = {
             [1] = { coords = vec4(-1011.0830, -1224.7694, 5.8178, 270.7039) },
             [2] = { coords = vec4(-1002.3689, -1219.4747, 5.7666, 166.7043) },
@@ -270,7 +270,7 @@ Config.AcceptableTasks = {
         type = "collecting",
         goal = 3,
         exp = 400,
-        fee = 50000,
+        fee = 60000,
         destinations = {
             [1] = { coords = vec4(-1011.0830, -1224.7694, 5.8178, 270.7039) },
             [2] = { coords = vec4(-1002.3689, -1219.4747, 5.7666, 166.7043) },
@@ -287,7 +287,7 @@ Config.AcceptableTasks = {
         type = "delivery",
         goal = 3,
         exp = 400,
-        fee = 60000,
+        fee = 70000,
         destinations = {
             [1] = { coords = vec4(93.3542, 71.2765, 73.4167, 134.4712) },
             [2] = { coords = vec4(-103.1247, -69.9278, 58.8590, 302.5392) },
@@ -304,7 +304,7 @@ Config.AcceptableTasks = {
         type = "collecting",
         goal = 3,
         exp = 400,
-        fee = 60000,
+        fee = 70000,
         destinations = {
             [1] = { coords = vec4(93.3542, 71.2765, 73.4167, 134.4712) },
             [2] = { coords = vec4(-103.1247, -69.9278, 58.8590, 302.5392) },
@@ -322,7 +322,7 @@ Config.AcceptableTasks = {
         type = "delivery",
         goal = 6,
         exp = 600,
-        fee = 70000,
+        fee = 80000,
         destinations = {
             [1] = { coords = vec4(-717.6805, -1119.7814, 10.6524, 324.5773) },
             [2] = { coords = vec4(-766.9211, -1034.7822, 14.1332, 293.6201) },
@@ -340,7 +340,7 @@ Config.AcceptableTasks = {
         type = "collecting",
         goal = 6,
         exp = 600,
-        fee = 70000,
+        fee = 80000,
         destinations = {
             [1] = { coords = vec4(-717.6805, -1119.7814, 10.6524, 324.5773) },
             [2] = { coords = vec4(-766.9211, -1034.7822, 14.1332, 293.6201) },
@@ -358,7 +358,7 @@ Config.AcceptableTasks = {
         type = "delivery",
         goal = 6,
         exp = 600,
-        fee = 80000,
+        fee = 90000,
         destinations = {
             [1] = { coords = vec4(52.351654, -1588.219727, 29.583130, 48.188972) },
             [2] = { coords = vec4(15.6336, -1309.8014, 29.1793, 303.8186) },
@@ -376,7 +376,7 @@ Config.AcceptableTasks = {
         type = "collecting",
         goal = 6,
         exp = 600,
-        fee = 80000,
+        fee = 90000,
         destinations = {
             [1] = { coords = vec4(52.351654, -1588.219727, 29.583130, 48.188972) },
             [2] = { coords = vec4(15.6336, -1309.8014, 29.1793, 303.8186) },
@@ -395,7 +395,7 @@ Config.AcceptableTasks = {
         type = "delivery",
         goal = 8,
         exp = 600,
-        fee = 90000,
+        fee = 100000,
         destinations = {
             [1] = { coords = vec4(-703.3541, -1040.5404, 16.1117, 249.2910) },
             [2] = { coords = vec4(-1025.3828, -1137.8115, 2.1586, 26.3512) },
@@ -416,7 +416,7 @@ Config.AcceptableTasks = {
         type = "collecting",
         goal = 8,
         exp = 600,
-        fee = 90000,
+        fee = 100000,
         destinations = {
             [1] = { coords = vec4(-703.3541, -1040.5404, 16.1117, 249.2910) },
             [2] = { coords = vec4(-1025.3828, -1137.8115, 2.1586, 26.3512) },
@@ -437,7 +437,7 @@ Config.AcceptableTasks = {
         type = "delivery",
         goal = 8,
         exp = 600,
-        fee = 100000,
+        fee = 110000,
         destinations = {
             [1] = { coords = vec4(-1407.2572, 537.0112, 122.9235, 80.6345) },
             [2] = { coords = vec4(-635.1705, 529.9332, 109.6877, 222.7794) },
@@ -457,7 +457,7 @@ Config.AcceptableTasks = {
         type = "collecting",
         goal = 8,
         exp = 600,
-        fee = 100000,
+        fee = 110000,
         destinations = {
             [1] = { coords = vec4(-1407.2572, 537.0112, 122.9235, 80.6345) },
             [2] = { coords = vec4(-635.1705, 529.9332, 109.6877, 222.7794) },
@@ -478,7 +478,7 @@ Config.AcceptableTasks = {
         type = "delivery",
         goal = 8,
         exp = 850,
-        fee = 110000,
+        fee = 130000,
         destinations = {
             [1] = { coords = vec4(472.4281, -1277.7552, 29.5577, 293.7424) },
             [2] = { coords = vec4(597.0978, 87.0353, 92.7726, 204.1583) },
@@ -498,7 +498,7 @@ Config.AcceptableTasks = {
         type = "collecting",
         goal = 8,
         exp = 850,
-        fee = 110000,
+        fee = 130000,
         destinations = {
             [1] = { coords = vec4(472.4281, -1277.7552, 29.5577, 293.7424) },
             [2] = { coords = vec4(597.0978, 87.0353, 92.7726, 204.1583) },
@@ -518,7 +518,7 @@ Config.AcceptableTasks = {
         type = "delivery",
         goal = 8,
         exp = 850,
-        fee = 120000,
+        fee = 150000,
         destinations = {
             [1] = { coords = vec4(353.248352, -2036.400024, 22.337769, 107.716537) },
             [2] = { coords = vec4(152.663742, -1823.604370, 27.864502, 56.692913) },
@@ -538,7 +538,7 @@ Config.AcceptableTasks = {
         type = "collecting",
         goal = 8,
         exp = 850,
-        fee = 120000,
+        fee = 150000,
         destinations = {
             [1] = { coords = vec4(353.248352, -2036.400024, 22.337769, 107.716537) },
             [2] = { coords = vec4(152.663742, -1823.604370, 27.864502, 56.692913) },
@@ -559,7 +559,7 @@ Config.AcceptableTasks = {
         type = "collecting",
         goal = 10,
         exp = 1250,
-        fee = 130000,
+        fee = 180000,
         destinations = {
             [1] = { coords = vec4(15.1934, -1032.5333, 29.3466, 130.3846) },
             [2] = { coords = vec4(-583.8513, 195.2310, 71.4421, 99.6975) },
@@ -581,7 +581,7 @@ Config.AcceptableTasks = {
         type = "delivery",
         goal = 10,
         exp = 1250,
-        fee = 130000,
+        fee = 180000,
         destinations = {
             [1] = { coords = vec4(15.1934, -1032.5333, 29.3466, 130.3846) },
             [2] = { coords = vec4(-583.8513, 195.2310, 71.4421, 99.6975) },

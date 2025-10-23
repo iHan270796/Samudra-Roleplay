@@ -8621,14 +8621,14 @@ return {
         type = 'automobile',
         hash = `c63hr`,
     },
-    acty = {
-        name = 'CARRY',
-        brand = 'SUZUKI',
-        model = 'acty',
+    a23BGTRX = {
+        name = 'TRX Black Ghost ',
+        brand = 'Ram',
+        model = 'a23BGTRX',
         price = 27000000,
         category = 'super',
         type = 'automobile',
-        hash = `acty`,
+        hash = `a23BGTRX`,
     },
     --kendaraan addon
     porschebarbie = {
@@ -8690,18 +8690,18 @@ return {
         brand = 'MOD',
         model = 'modskyline34',
         price = 750000,
-        category = 'offroad',
+        category = 'super',
         type = 'automobile',
         hash = `modskyline34`,
     },
-    kevo = {
-        name = 'Evo K',
+    fmod3wide = {
+        name = 'Tesla 3 WB',
         brand = 'MOD',
-        model = 'kevo',
+        model = 'fmod3wide',
         price = 750000,
-        category = 'offroad',
+        category = 'super',
         type = 'automobile',
-        hash = `kevo`,
+        hash = `fmod3wide`,
     },
 
     -- kedaraan polisi
