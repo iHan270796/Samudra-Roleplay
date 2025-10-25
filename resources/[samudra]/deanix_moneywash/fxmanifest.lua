@@ -4,7 +4,10 @@ game 'gta5'
 description 'Deanix Moneywash By I Han'
 author 'Deanix Roleplay'
 
-shared_script 'config.lua'
+shared_script {
+    '@ox_lib/init.lua',
+    'config.lua'
+}
 
 client_script 'client.lua'
 server_script 'server.lua'

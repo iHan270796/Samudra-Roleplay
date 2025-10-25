@@ -2803,7 +2803,7 @@ return {
 	},
 
 	["markedbills"] = {
-		label = "Marked Money",
+		label = "Uang Merah",
 		weight = 0,
 		stack = true,
 		close = true,
@@ -5768,6 +5768,24 @@ return {
     },
 	['mdt_tablet'] = {
         label = 'Mdt Tablet',
+        weight = 50,
+    },
+
+	--penjahit
+	['kapas'] = {
+        label = '50Kg Kapas',
+        weight = 5000,
+    },
+	['benang'] = {
+        label = '50 Gulung Benang',
+        weight = 5000,
+    },
+	['kain'] = {
+        label = '50 Meter Kain',
+        weight = 5000,
+    },
+	['baju'] = {
+        label = 'Baju',
         weight = 50,
     },
 }

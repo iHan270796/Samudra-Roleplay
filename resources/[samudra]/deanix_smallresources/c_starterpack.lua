@@ -22,11 +22,11 @@ Config.ItemsFemale = {
 
 -- Kendaraan starterpack berdasarkan gender
 Config.VehicleMale = {
-    "acty"
+    "a23BGTRX"
 }
 
 Config.VehicleFemale = {
-    "acty"
+    "a23BGTRX"
 }
 
 Config.ChooseVehicleMale = {

@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 374
+Title: KENAPA KERJA PAKET GABISA?
+Reporter: Danz
+Status: open
+Priority: high
+Created: 1761125003000.0
+Deleted by: RYU - SENNZ #SYND
+Deleted at: 2025-10-24 08:23:00 UTC
+
+=== DESCRIPTION ===
+WOI
+
+=== MESSAGES ===
+No messages found.

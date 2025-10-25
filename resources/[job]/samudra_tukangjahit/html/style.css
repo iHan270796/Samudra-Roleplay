@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: transparent;
+  color: #dbeeff;
+  user-select: none;
+}
+
+.hidden {
+  display: none;
+}
+
+#task-ui {
+  position: absolute;
+  left: 16px;
+  top: 250px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.tasks-panel {
+  width: 320px;
+  background: rgba(8, 30, 50, 0.85);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(80, 150, 220, 0.12);
+}
+
+/* Header (TASKS) */
+.tasks-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.tasks-header i {
+  width: 34px;
+  height: 34px;
+  background: rgba(10, 60, 100, 0.6);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7fd0ff;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.tasks-header span {
+  font-weight: 700;
+  color: #66d0ff;
+  font-size: 16px;
+}
+
+/* Task Card */
+.task-card {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+}
+
+/* Task title + ratio (atas) */
+.task-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.task-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.task-ratio {
+  font-size: 13px;
+  color: #a8d8ff;
+}
+
+/* Description */
+.task-desc {
+  font-size: 12px;
+  color: #bcdff6;
+  margin-bottom: 8px;
+}
+
+/* Progress bar */
+.task-progress {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.task-progress span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #48c6ef, #6f86d6);
+  transition: width 300ms ease;
+}
+
+/* Checkbox kecil di kiri */
+.task-checkbox {
+  width: 14px;
+  height: 14px;
+  border: 2px solid #66baff;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.task-checkbox.checked {
+  background: #48c6ef;
+}
+
+.menu-icon {
+  width: auto;
+  height: 34px;
+  background: rgba(10, 60, 100, 0.6);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 12px;
+  color: #7fd0ff;
+  font-size: 18px;
+  font-weight: bold;
+  gap: 8px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.menu-title {
+  font-weight: 700;
+  color: #66d0ff;
+  font-size: 16px;
+}
+

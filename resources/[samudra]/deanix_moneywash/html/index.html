@@ -36,10 +36,20 @@
       <div>
         <h3>Cuci Uang</h3>
         <img src="nui://ox_inventory/web/images/markedbills.png" style="width: 64px;"/>
-        <p>Jumlah: <span id="amountToWash">1</span></p>
-        <button id="decreaseAmount">-</button>
-        <button id="increaseAmount">+</button>
-        <button id="startWashButton">Cuci Uang</button>
+       <div class="amount-controls">
+  <button id="decreaseAmount">-</button>
+  <input 
+    type="number" 
+    id="amountToWash" 
+    value="1" 
+    min="1" 
+    oninput="updateAmountFromInput()" 
+    class="amount-input"
+  />
+  <button id="increaseAmount">+</button>
+</div>
+
+<button id="startWashButton">Cuci Uang</button>
       </div>
       <div>
         <h3>Hasil Cash</h3>

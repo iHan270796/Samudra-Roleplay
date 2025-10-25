@@ -38,6 +38,9 @@ Citizen.CreateThread(function()
         {title="Jual Ikan", colour=3, id=68, x=-3411.66, y=960.62, z=8.35},
         {title="Sewa Gudang", colour=3, id=557, x=900.64, y=3580.18, z=32.39},
 
+        {title="Tukang Jahit", colour=3, id=366, x=714.26, y=-976.57, z=24.13},
+        {title="Ambil Kapas", colour=3, id=366, x=1595.02, y=-2598.8, z=52.58},
+
         -- {title="South Rockford Drive", colour=3, id=475, x=-621.0366, y=46.594829, z=43.591472},
     }
 

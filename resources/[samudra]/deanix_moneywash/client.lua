@@ -24,34 +24,11 @@ RegisterNetEvent('deanix_moneywash:addToQueue', function(amount)
     })
 end)
 
--- CreateThread(function()
---     for _, loc in pairs(Config.MoneyWashLocations) do
---         exports['qb-target']:AddBoxZone("moneywash_zone", loc, 1.5, 1.5, {
---             name = "moneywash_zone",
---             heading = 0,
---             debugPoly = false,
---             minZ = loc.z - 1.0,
---             maxZ = loc.z + 1.0,
---         }, {
---             options = {
---                 {
---                     icon = "fas fa-money-bill-wave",
---                     label = "Cuci Uang Merah",
---                     action = function()
---                         TriggerEvent("deanix_moneywash:openUI")
---                     end,
---                 },
---             },
---             distance = 2.0
---         })
---     end
--- end)
-
 CreateThread(function()
     for _, loc in pairs(Config.MoneyWashLocations) do
         exports.ox_target:addBoxZone({
             coords = loc,
-            size = vec3(1.5, 1.5, 2.0), -- panjang, lebar, tinggi
+            size = vec3(1.5, 1.5, 2.0),
             rotation = 0,
             debug = false,
             options = {
@@ -107,32 +84,34 @@ RegisterNUICallback('startWash', function(data, cb)
     local itemName = data.item
     local amount = tonumber(data.amount or 0)
 
-    if itemName and amount >= Config.MinAmount then
-        QBCore.Functions.TriggerCallback('deanix_moneywash:tryStartWash', function(success, reward)
-            if success then
-                SendNUIMessage({
-                    action = "addToQueue",
-                    item = itemName,
-                    amount = amount,
-                    reward = reward
-                })
-            else
-                lib.notify({
-                    title = 'Tidak cukup item untuk dicuci!',
-                    type = 'error'
-                })
-            end
-
-            cb({
-                success = success,
-                reward = reward
-            })
-        end, itemName, amount)
-    else
+    if not itemName or amount < (Config.MinAmount or 1) then
         lib.notify({
             title = 'Jumlah terlalu kecil!',
             type = 'error'
         })
         cb({ success = false })
+        return
     end
+
+    QBCore.Functions.TriggerCallback('deanix_moneywash:tryStartWash', function(success, reward)
+        if success then
+            SendNUIMessage({
+                action = "addToQueue",
+                item = itemName,
+                amount = amount,
+                reward = reward
+            })
+            cb({ success = true, reward = reward })
+        else
+            lib.notify({
+                title = 'Tidak cukup item untuk dicuci!',
+                type = 'error'
+            })
+            cb({ success = false, reward = 0 })
+        end
+    end, itemName, amount)
+    SetTimeout(5000, function()
+        if not cb then return end
+        cb({ success = false, reward = 0 })
+    end)
 end)

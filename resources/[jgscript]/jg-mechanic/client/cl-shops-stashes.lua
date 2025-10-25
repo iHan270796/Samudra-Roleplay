@@ -29,17 +29,60 @@ local function drawCustomMarker(center, marker, shopDistance, mechanicId, shopNa
   return point
 end
 
+-- local function openShop(mechanicId, shopIndex)
+--   local mechanicConfig = Config.MechanicLocations[mechanicId]
+
+--   if not mechanicConfig or not mechanicConfig.shops or not mechanicConfig.shops[shopIndex] then
+--     Framework.Client.Notify("Shop not found: " .. mechanicId .. " .. index: " .. shopIndex, "error")
+--     return
+--   end
+
+--   local shop = mechanicConfig.shops[shopIndex]
+--   local shopItems = shop.items or {}
+
+--   local options = {}
+--   for index, v in pairs(shopItems) do
+--     local image = Config.LargeImages and Config.ShopImages .. v.name .. ".png" or nil
+--     table.insert(options, {
+--       title = v.label,
+--       icon = Config.ShopImages .. v.name .. ".png",
+--       image = image,
+--       description = ("Buy for %d %s"):format(v.price, Config.Currency),
+--       event = "jg-mechanic:client:input-shop-purchase-qty",
+--       args = { shopIndex = shopIndex, itemIndex = index, item = v.name, price = v.price, mechanicId = mechanicId }
+--     })
+--   end
+
+--   local context = {
+--     id = "shop_" .. mechanicId .. "_" .. shopIndex,
+--     title = shop.name .. " Shop",
+--     options = options
+--   }
+
+--   if Config.Menus == "lation_ui" then exports.lation_ui:registerMenu(context) else lib.registerContext(context) end
+--   if Config.Menus == "lation_ui" then exports.lation_ui:showMenu(("shop_%s_%s"):format(mechanicId, shopIndex)) else lib.showContext(("shop_%s_%s"):format(mechanicId, shopIndex)) end
+-- end
 local function openShop(mechanicId, shopIndex)
   local mechanicConfig = Config.MechanicLocations[mechanicId]
-
   if not mechanicConfig or not mechanicConfig.shops or not mechanicConfig.shops[shopIndex] then
     Framework.Client.Notify("Shop not found: " .. mechanicId .. " .. index: " .. shopIndex, "error")
     return
   end
 
-  local shop = mechanicConfig.shops[shopIndex]
-  local shopItems = shop.items or {}
+  local PlayerData = Framework.Client.GetPlayerData()
+  local job = PlayerData.job
+  local grade = job.grade and job.grade.level or job.grade or 0
 
+  local shop = mechanicConfig.shops[shopIndex]
+  local requiredGrade = shop.grade or 0
+
+  -- 🔒 Cek grade
+  if grade < requiredGrade then
+    Framework.Client.Notify(("You need at least grade %d to access this shop."):format(requiredGrade), "error")
+    return
+  end
+
+  local shopItems = shop.items or {}
   local options = {}
   for index, v in pairs(shopItems) do
     local image = Config.LargeImages and Config.ShopImages .. v.name .. ".png" or nil
@@ -59,8 +102,13 @@ local function openShop(mechanicId, shopIndex)
     options = options
   }
 
-  if Config.Menus == "lation_ui" then exports.lation_ui:registerMenu(context) else lib.registerContext(context) end
-  if Config.Menus == "lation_ui" then exports.lation_ui:showMenu(("shop_%s_%s"):format(mechanicId, shopIndex)) else lib.showContext(("shop_%s_%s"):format(mechanicId, shopIndex)) end
+  if Config.Menus == "lation_ui" then
+    exports.lation_ui:registerMenu(context)
+    exports.lation_ui:showMenu(("shop_%s_%s"):format(mechanicId, shopIndex))
+  else
+    lib.registerContext(context)
+    lib.showContext(("shop_%s_%s"):format(mechanicId, shopIndex))
+  end
 end
 
 RegisterNetEvent("jg-mechanic:client:input-shop-purchase-qty", function(args)

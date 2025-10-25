@@ -82,6 +82,15 @@ function updateItemLockStates() {
   }
 }
 
+function updateAmountFromInput() {
+  const input = document.getElementById('amountToWash');
+  let value = parseInt(input.value, 10);
+
+  if (isNaN(value) || value < 1) value = 1;
+  input.value = value;
+  currentAmount = value;
+}
+
 document.querySelectorAll('.wash-item').forEach(button => {
   button.addEventListener('click', () => {
     currentItem = button.dataset.item;
@@ -96,13 +105,13 @@ document.getElementById('continueButton').addEventListener('click', () => {
 
 document.getElementById('increaseAmount').addEventListener('click', () => {
   currentAmount++;
-  document.getElementById('amountToWash').innerText = currentAmount;
+  document.getElementById('amountToWash').value = currentAmount;
 });
 
 document.getElementById('decreaseAmount').addEventListener('click', () => {
   if (currentAmount > 1) {
     currentAmount--;
-    document.getElementById('amountToWash').innerText = currentAmount;
+    document.getElementById('amountToWash').value = currentAmount;
   }
 });
 
@@ -117,7 +126,14 @@ document.getElementById('startWashButton').addEventListener('click', () => {
     },
     body: JSON.stringify({ item: currentItem, amount: currentAmount }),
   })
-  .then(res => res.json())
+  .then(async res => {
+  try {
+    return await res.json();
+  } catch {
+    console.warn('⚠️ Response kosong dari NUI, skip JSON parse.');
+    return { success: false };
+    }
+  })
   .then(res => {
     if (res.success) {
       const queueItem = {

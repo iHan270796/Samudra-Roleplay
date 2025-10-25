@@ -1754,4 +1754,83 @@ Config.Peds = {
             },
         }
     },
+
+    --tukang jahit
+    [35] = {
+        ["model"] = "a_m_y_gencaspat_01",
+        ["coords"] = vector4(714.39, -976.6, 23.13, 182.41),
+        ["cam"] = vector4(714.52, -977.19, 24.83, 3.26), -- If the camera angle doesn't look right, give the heading a full negative value, e.g. -93.0 instead of 93.0. If this doesn't work, enter the heading value of the direction your pad is facing the npc!
+        ["markerCoord"] = vector3(714.52, -977.19, 24.53),
+        ["interactive"] = {
+            -- ["type"] = "target", -- or fivem keys https://docs.fivem.net/docs/game-references/controls/
+            ["type"] = 38, -- https://docs.fivem.net/docs/game-references/controls/
+
+            ["key_label"] = "e", -- If type fivem is converted to index key, the name of the key must be entered "E"
+            ["text"] = "Talk to npc", -- Text that will appear when you approach the npc
+            ["icon"] = "fa-solid fa-people-arrows",
+            ["distance"] = 3, -- Interactive distance
+            
+            ["uiMarker"] = true, -- If you make it True, you will have a nice image on the screen, but I do not recommend it for resmon.
+            ["uiDrawText"] = true, -- If you make it True, you will have a nice text on the screen, but I do not recommend it for resmon.
+
+            ["drawmarker_distance"] = 4,
+            ["interactiveState"] = false, -- -- Don't touch this
+            ["drawmarker_math"] = 46 -- It is part of a division process that magnifies the marker according to proximity and distance.
+        },
+        ["animDict"] = "amb@world_human_clipboard@male@base",
+        ["animName"] = "idle_b",
+        ["name"] = { -- Ped name
+            ["firstname"] = "Tukang",
+            ["lastname"] = "Jahit",
+        },
+        ["title"] = "Tukang Jahit", -- the text you want to appear maybe character task etc.
+        ["question"] = "Halo Pak Ada Yang Bisa Saya Bantu", -- question or text
+        ["options"] = {
+            ["option1"] = {
+                ["button"] = 1, -- A, B, C, D or 1, 2, 3, 4, 
+                ["label"] = "Baju Kerja", -- The answer to the option will appear in the person
+                ["event"] = "pakaibaju:penjahit", -- Event name
+                ["server"] = false, -- Make this true if there will be a server side event trigger
+                ["client"] = true, -- If there will be a client side event trigger, make it true
+                ["argument"] = 0, -- You can send only 1 argument and this can include framework variables.                   
+                ["selected"] = false, -- Don't touch this
+            },
+            ["option2"] = {
+                ["button"] = 2, -- A, B, C, D or 1, 2, 3, 4, 
+                ["label"] = "Baju Biasa", -- The answer to the option will appear in the person
+                ["event"] = "Kembalikebaju:awal", -- Event name
+                ["server"] = false, -- Make this true if there will be a server side event trigger
+                ["client"] = true, -- If there will be a client side event trigger, make it true
+                ["argument"] = 0, -- You can send only 1 argument and this can include framework variables.                   
+                ["selected"] = false, -- Don't touch this
+            },
+            ["option3"] = {
+                ["button"] = 3, -- A, B, C, D or 1, 2, 3, 4, 
+                ["label"] = "Mulai Pekerjaan", -- The answer to the option will appear in the person
+                ["event"] = "MulaiPekerjaan", -- Event name
+                ["server"] = false, -- Make this true if there will be a server side event trigger
+                ["client"] = true, -- If there will be a client side event trigger, make it true
+                ["argument"] = 0, -- You can send only 1 argument and this can include framework variables.                   
+                ["selected"] = false, -- Don't touch this
+            },
+            ["option4"] = {
+                ["button"] = 4, -- A, B, C, D or 1, 2, 3, 4, 
+                ["label"] = "Berhenti Bekerja", -- The answer to the option will appear in the person
+                ["event"] = "StopPekerjaan", -- Event name
+                ["server"] = false, -- Make this true if there will be a server side event trigger
+                ["client"] = true, -- If there will be a client side event trigger, make it true
+                ["argument"] = 0, -- You can send only 1 argument and this can include framework variables.                   
+                ["selected"] = false, -- Don't touch this
+            },
+            ["option5"] = {
+                ["button"] = 5, -- A, B, C, D or 1, 2, 3, 4, 
+                ["label"] = "Tidak Terimakasih", -- The answer to the option will appear in the person
+                ["event"] = "", -- Event name
+                ["server"] = false, -- Make this true if there will be a server side event trigger
+                ["client"] = false, -- If there will be a client side event trigger, make it true
+                ["argument"] = "Hello World", -- You can send only 1 argument and this can include framework variables.                   
+                ["selected"] = false, -- Don't touch this
+            },
+        }
+    },
 }

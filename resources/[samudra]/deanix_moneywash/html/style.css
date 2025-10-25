@@ -354,3 +354,45 @@ h3 {
 #increaseAmount:hover {
   background-color: #4c7aca;
 }
+
+.amount-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.amount-controls button {
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+  border: none;
+  background-color: #2e2e2e;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.amount-controls button:hover {
+  background-color: #3b3b3b;
+}
+
+.amount-input {
+  width: 60px;
+  text-align: center;
+  font-size: 18px;
+  background: transparent;
+  border: 2px solid #444;
+  border-radius: 5px;
+  color: white;
+  outline: none;
+}
+
+.amount-input::-webkit-inner-spin-button,
+.amount-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+

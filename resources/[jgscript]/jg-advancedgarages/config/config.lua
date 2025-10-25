@@ -470,6 +470,20 @@ Config.GarageLocations = { -- IMPORTANT - Every garage name must be unique
     hideMarkers = true,
     markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
   },
+  ["Tukang Jahit"] = { -- If you change the name of this garage from Legion Square, you must change the default value of `garage_id` to the same name in the SQL table `players_vehicles`
+    coords = vector3(706.59, -979.9, 24.14),
+    spawn = {vector4(706.59, -979.9, 24.14, 222.12), vector4(702.82, -980.42, 24.14, 220.58)}, --  you can add multiple spawn locations into a table
+    distance = 10,
+    type = "car",
+    hideBlip = false,
+    blip = {
+      id = 357,
+      color = 29,
+      scale = 0.5
+    },
+    hideMarkers = true,
+    markers = { id = 21, size = { x = 0.3, y = 0.3, z = 0.3 }, color = { r = 255, g = 255, b = 255, a = 120 }, bobUpAndDown = 0, faceCamera = 0, rotate = 1, drawOnEnts = 0 },
+  },
   ["Asuransi Paleto"] = { -- If you change the name of this garage from Legion Square, you must change the default value of `garage_id` to the same name in the SQL table `players_vehicles`
     coords = vector3(1649.71, 3789.61, 34.79),
     spawn = {vector4(1643.66, 3798.36, 34.49, 216.16)}, --  you can add multiple spawn locations into a table

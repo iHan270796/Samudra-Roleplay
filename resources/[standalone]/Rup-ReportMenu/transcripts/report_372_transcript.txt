@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 372
+Title: GABISA DOKTER LOKAL
+Reporter: Danz
+Status: open
+Priority: medium
+Created: 1760957057000.0
+Deleted by: RYU - SENNZ #SYND
+Deleted at: 2025-10-24 08:23:02 UTC
+
+=== DESCRIPTION ===
+TOLONG
+
+=== MESSAGES ===
+No messages found.

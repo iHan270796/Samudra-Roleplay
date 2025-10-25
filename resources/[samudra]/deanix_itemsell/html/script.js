@@ -69,7 +69,7 @@ function selectItem(item) {
   document.getElementById("item-image").src = `https://cfx-nui-ox_inventory/web/images/${item.name}.png`;
   document.getElementById("item-label").innerText = item.label;
   document.getElementById("item-price").innerText = `$${item.price}`;
-  document.getElementById("qty").innerText = selectedQty;
+  document.getElementById("qty").value = selectedQty;
 
   const sellBtn = document.getElementById("sell-btn");
   const itemAmount = parseInt(item.amount ?? 0, 10);
@@ -85,12 +85,6 @@ function selectItem(item) {
   }
 }
 
-// function adjustQty(amount) {
-//   if (!selectedItem) return;
-//   selectedQty = Math.max(0, selectedQty + amount);
-//   document.getElementById("qty").innerText = selectedQty;
-// }
-
 function adjustQty(amount) {
   if (!selectedItem) return;
 
@@ -102,7 +96,7 @@ function adjustQty(amount) {
   }
 
   selectedQty = Math.max(0, Math.min(newQty, maxQty));
-  document.getElementById("qty").innerText = selectedQty;
+  document.getElementById("qty").value = selectedQty;
 }
 
 
@@ -225,6 +219,24 @@ function notify(message, type = "info") {
     body: JSON.stringify({ message, type }),
   });
 }
+
+function updateQtyFromInput() {
+  if (!selectedItem) return;
+  const input = document.getElementById("qty");
+  let value = parseInt(input.value, 10);
+
+  if (isNaN(value) || value < 0) value = 0;
+
+  const maxQty = parseInt(selectedItem.amount ?? 0, 10);
+  if (value > maxQty) {
+    notify(`Kamu hanya punya ${maxQty}x ${selectedItem.label}`, "error");
+    value = maxQty;
+  }
+
+  selectedQty = value;
+  input.value = selectedQty;
+}
+
 
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
