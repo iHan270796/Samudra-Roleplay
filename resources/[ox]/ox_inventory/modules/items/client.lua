@@ -3,7 +3,7 @@ if not lib then return end
 local Items = require 'modules.items.shared' --[[@as table<string, OxClientItem>]]
 
 local function sendDisplayMetadata(data)
-	SendNUIMessage({
+    SendNUIMessage({
 		action = 'displayMetadata',
 		data = data
 	})
@@ -16,9 +16,9 @@ local function displayMetadata(metadata, value)
 	local data = {}
 
 	if type(metadata) == 'string' then
-		if not value then return end
+        if not value then return end
 
-		data = { { metadata = metadata, value = value } }
+        data = { { metadata = metadata, value = value } }
 	elseif table.type(metadata) == 'array' then
 		for i = 1, #metadata do
 			for k, v in pairs(metadata[i]) do
@@ -37,15 +37,15 @@ local function displayMetadata(metadata, value)
 		end
 	end
 
-	if client.uiLoaded then
-		return sendDisplayMetadata(data)
-	end
+    if client.uiLoaded then
+        return sendDisplayMetadata(data)
+    end
 
-	CreateThread(function()
-		repeat Wait(100) until client.uiLoaded
+    CreateThread(function()
+        repeat Wait(100) until client.uiLoaded
 
-		sendDisplayMetadata(data)
-	end)
+        sendDisplayMetadata(data)
+    end)
 end
 
 exports('displayMetadata', displayMetadata)
@@ -54,17 +54,17 @@ exports('displayMetadata', displayMetadata)
 ---@param name string?
 ---@return table?
 local function getItem(_, name)
-	if not name then return Items end
+    if not name then return Items end
 
 	if type(name) ~= 'string' then return end
 
-	name = name:lower()
+    name = name:lower()
 
-	if name:sub(0, 7) == 'weapon_' then
-		name = name:upper()
-	end
+    if name:sub(0, 7) == 'weapon_' then
+        name = name:upper()
+    end
 
-	return Items[name]
+    return Items[name]
 end
 
 setmetatable(Items --[[@as table]], {
@@ -99,16 +99,16 @@ Item('bandage', function(data, slot)
 	end)
 end)
 
-Item('coke_brick', function(data, slot)
-	local maxHealth = GetEntityMaxHealth(cache.ped)
-	local health = GetEntityHealth(cache.ped)
-	ox_inventory:useItem(data, function(data)
-		if data then
-			SetEntityHealth(cache.ped, math.min(maxHealth, math.floor(health + maxHealth / 10)))
-			lib.notify({ description = 'You feel better already' })
-		end
-	end)
-end)
+-- Item('armour', function(data, slot)
+-- 	if GetPedArmour(cache.ped) < 100 then
+-- 		ox_inventory:useItem(data, function(data)
+-- 			if data then
+-- 				SetPlayerMaxArmour(PlayerData.id, 100)
+-- 				SetPedArmour(cache.ped, 100)
+-- 			end
+-- 		end)
+-- 	end
+-- end)
 
 client.parachute = false
 Item('parachute', function(data, slot)
@@ -120,13 +120,40 @@ Item('parachute', function(data, slot)
 				GiveWeaponToPed(cache.ped, chute, 0, true, false)
 				SetPedGadget(cache.ped, chute, true)
 				lib.requestModel(1269906701)
-				client.parachute = { CreateParachuteBagObject(cache.ped, true, true), slot?.metadata?.type or -1 }
+				client.parachute = {CreateParachuteBagObject(cache.ped, true, true), slot?.metadata?.type or -1}
 				if slot.metadata.type then
 					SetPlayerParachuteTintIndex(PlayerData.id, slot.metadata.type)
 				end
 			end
 		end)
 	end
+end)
+
+Item('armour_plate', function(data, slot)
+    if exports.ox_inventory:Search('slots', "armour") then
+        local success = lib.progressBar({
+            duration = 3000,
+            label = 'Inserting armor plate...',
+            useWhileDead = false,
+            canCancel = true,
+            disable = {
+                car = false,
+                move = false,
+                combat = true,
+                mouse = false
+            },
+            anim = {
+                dict = 'clothingtie',
+                clip = 'try_tie_positive_a'
+            }
+        })
+
+        if success then
+            TriggerServerEvent('armor:insertPlate')
+        end
+    else
+        lib.notify({ type = "error", description = "No armour vest" })
+    end
 end)
 
 Item('phone', function(data, slot)
@@ -137,51 +164,6 @@ Item('phone', function(data, slot)
 	if success then
 		exports.npwd:setPhoneVisible(not result)
 	end
-end)
-
-Item('armour', function(data, slot)
-	if GetPedArmour(cache.ped) < 60 then
-		ox_inventory:useItem(data, function(data)
-			if data then
-				SetPlayerMaxArmour(PlayerData.id, 60)
-				SetPedArmour(cache.ped, 60)
-			end
-		end)
-	end
-end)
-Item('armourr', function(data, slot)
-	if GetPedArmour(cache.ped) < 85 then
-		ox_inventory:useItem(data, function(data)
-			if data then
-				SetPlayerMaxArmour(PlayerData.id, 85)
-				SetPedArmour(cache.ped, 85)
-			end
-		end)
-	end
-end)
-Item('heavy_armour', function(data, slot)
-	if GetPedArmour(cache.ped) < 100 then
-		ox_inventory:useItem(data, function(data)
-			if data then
-				SetPlayerMaxArmour(PlayerData.id, 100)
-				SetPedArmour(cache.ped, 100)
-			end
-		end)
-	end
-end)
-
-Item('joint', function(data, slot)
-    ox_inventory:useItem(data, function(data)
-        if data then
-            local ped = cache.ped
-            local current = GetPedArmour(ped)
-            local add = 20
-            local new = math.min(100, current + add) -- biar max 100
-            SetPlayerMaxArmour(PlayerData.id, 100)
-            SetPedArmour(ped, new)
-            lib.notify({ description = ('Armour +%s'):format(add) })
-        end
-    end)
 end)
 
 Item('clothing', function(data, slot)

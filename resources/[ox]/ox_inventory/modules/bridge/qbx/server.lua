@@ -103,16 +103,5 @@ end
 ---@return number | string
 ---@diagnostic disable-next-line: duplicate-set-field
 function server.getOwnedVehicleId(entityId)
-    return Entity(entityId).state.vehicleid or
-        exports.qbx_vehicles:GetVehicleIdByPlate(GetVehicleNumberPlateText(entityId))
-end
-
----@diagnostic disable-next-line: duplicate-set-field
-function server.getAccountMoney(playerId, typeAccount)
-    return QBX:GetMoney(playerId, typeAccount)
-end
-
----@diagnostic disable-next-line: duplicate-set-field
-function server.removeAccountMoney(playerId, typeAccount, amount)
-    QBX:RemoveMoney(playerId, typeAccount, amount)
+    return Entity(entityId).state.vehicleid or exports.qbx_vehicles:GetVehicleIdByPlate(GetVehicleNumberPlateText(entityId))
 end

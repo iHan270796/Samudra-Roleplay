@@ -17,8 +17,8 @@
         "being_helped": "You are being helped..."
     },
     "info": {
-        "civ_died": "Civilian Died",
-        "civ_down": "Civilian Down",
+        "civ_died": "Warga Tidak Sadarkan Diri",
+        "civ_down": "Warga Pingsan",
         "civ_call": "Civilian Call",
         "ems_down": "Doctor %s Down",
         "respawn_txt": "RESPAWN IN: ~r~%s~s~ SECONDS",

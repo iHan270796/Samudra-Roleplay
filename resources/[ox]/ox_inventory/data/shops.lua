@@ -5,9 +5,6 @@ return {
 			id = 59, colour = 69, scale = 0.6
 		}, inventory = {
 			{ name = 'water_bottle', price = 5500 },
-			-- { name = 'beer', price = 7000 },
-			-- { name = 'whiskey', price = 7000 },
-			-- { name = 'ecola', price = 7000 },
 			{ name = 'sandwich', price = 7000 },
 			{ name = 'snikkel_candy', price = 5500 },
 			{ name = 'twerks_candy', price = 5500 },
@@ -24,7 +21,7 @@ return {
 			vec3(2557.94, 382.05, 108.62),
 			vec3(373.55, 325.56, 103.56),
 		}, targets = {
-			{ loc = vec3(25.06, -1347.32, 29.5), length = 0.7, width = 0.5, heading = 0.0, minZ = 29.5, maxZ = 29.9, distance = 1.5 },
+			{ loc = vec3(25.06, -1347.32, 29.5), length = 1.5, width = 3.0, heading = 0.0, minZ = 29.5, maxZ = 29.9, distance = 2 },
 			{ loc = vec3(-3039.18, 585.13, 7.91), length = 0.6, width = 0.5, heading = 15.0, minZ = 7.91, maxZ = 8.31, distance = 1.5 },
 			{ loc = vec3(-3242.2, 1000.58, 12.83), length = 0.6, width = 0.6, heading = 175.0, minZ = 12.83, maxZ = 13.23, distance = 1.5 },
 			{ loc = vec3(1728.39, 6414.95, 35.04), length = 0.6, width = 0.6, heading = 65.0, minZ = 35.04, maxZ = 35.44, distance = 1.5 },
@@ -36,6 +33,7 @@ return {
 			{ loc = vec3(373.13, 326.29, 103.57), length = 0.6, width = 0.5, heading = 345.0, minZ = 103.57, maxZ = 103.97, distance = 1.5 },
 		}
 	},
+
 	Phonestore = {
 		name = 'Toko Handphone',
 		blip = {
@@ -124,27 +122,12 @@ return {
 		}
 	},
 
-	Tokotas = {
-		name = 'Toko Tas',
-		blip = {
-			id = 59, colour = 69, scale = 0.6
-		}, inventory = {
-			{ name = 'bag', price = 250000 },
-			{ name = 'bag2', price = 450000 }
-		}, locations = {
-			vec3(-1339.66, -1267.7, 4.33)
-		}, targets = {
-			{ loc = vec3(-1339.66, -1267.7, 4.33), length = 0.6, width = 3.0, heading = 145.57, minZ = 2.0, maxZ = 6.8, distance = 3.5 }
-		}
-	},
-
 	Ammunation = {
 		name = 'Toko Senjata',
 		blip = {
-			id = 110, colour = 69, scale = 0.7
+			id = 110, colour = 69, scale = 0.8
 		}, inventory = {
 			{ name = 'weapon_knife', price = 20000 },
-			-- { name = 'weapon_bat', price = 30000 }
 		}, locations = {
 			vec3(-662.180, -934.961, 21.829),
 			vec3(810.25, -2157.60, 29.62),
@@ -183,7 +166,8 @@ return {
 			{ name = 'handcuffs', price = 1500, grade = 4 },
 			{ name = 'empty_evidence_bag', price = 1500, grade = 4 },
 			{ name = 'police_stormram', price = 1500, grade = 4 },
-			{ name = 'heavy_armour', price = 1500, grade = 4 },
+			{ name = 'armour', price = 1500, grade = 4 },
+			{ name = 'armour_plate', price = 1500, grade = 4 },
 			{ name = 'radio', price = 21500, grade = 4 },
 			{ name = 'bodycam', price = 21500, grade = 4 },
 			{ name = 'ifaks', price = 500, grade = 4 },
@@ -216,7 +200,8 @@ return {
 			{ name = 'weapon_specialcarbine', price = 25000, grade = 4 },
 			{ name = 'weapon_specialcarbine_mk2', price = 25000, grade = 4 },
 			{ name = 'weapon_heavysniper', price = 25000, grade = 4 },
-			{ name = 'weapon_sniperrifle', price = 25000, grade = 4 }
+			{ name = 'weapon_sniperrifle', price = 25000, grade = 4 },
+			{ name = 'tactical_backpack', price = 25000, grade = 4 }
 		}, locations = {
 			vec3(483.06, -999.29, 30.59)
 		}, targets = {
@@ -258,20 +243,53 @@ return {
 			{ loc = vec3(1771.14, 3664.6, 35.29), length = 0.5, width = 3.0, heading = 190.0, minZ = 33.5, maxZ = 37.0, distance = 6 }
 		}
 	},
-	-- BlackMarketArms = {
-	-- 	name = 'Black Market (Arms)',
-	-- 	inventory = {
-	-- 		{ name = 'WEAPON_DAGGER', price = 5000, metadata = { registered = false	}, currency = 'black_money' },
-	-- 		{ name = 'WEAPON_CERAMICPISTOL', price = 50000, metadata = { registered = false }, currency = 'black_money' },
-	-- 		{ name = 'at_suppressor_light', price = 50000, currency = 'black_money' },
-	-- 		{ name = 'ammo-rifle', price = 1000, currency = 'black_money' },
-	-- 		{ name = 'ammo-rifle2', price = 1000, currency = 'black_money' }
-	-- 	}, locations = {
-	-- 		vec3(309.09, -913.75, 56.46)
-	-- 	}, targets = {
 
-	-- 	}
-	-- },
+	Tokotas = {
+		name = 'Toko Tas',
+		blip = {
+			id = 59, colour = 69, scale = 0.6
+		}, inventory = {
+			{ name = 'backpack', price = 250000 },
+			{ name = 'backpack_medium', price = 450000 }
+		}, locations = {
+			vec3(-1339.67, -1265.78, 5.02)
+		}, targets = {
+			{ loc = vec3(-1339.67, -1265.78, 4.02), length = 0.6, width = 3.0, heading = 145.57, minZ = 2.0, maxZ = 7.8, distance = 4.5 }
+		}
+	},
+
+	Medicine = {
+		name = 'Medicine Cabinet',
+		groups = {
+			['ambulance'] = 0
+		},
+		blip = {
+			id = 403, colour = 69, scale = 0.8
+		}, inventory = {
+			{ name = 'medikit', price = 26 },
+			{ name = 'bandage', price = 5 }
+		}, locations = {
+			vec3(306.3687, -601.5139, 43.28406)
+		}, targets = {
+
+		}
+	},
+
+	BlackMarketArms = {
+		name = 'Black Market (Arms)',
+		inventory = {
+			{ name = 'WEAPON_DAGGER', price = 25000, metadata = { registered = false	}, currency = 'black_money' },
+			{ name = 'WEAPON_CERAMICPISTOL', price = 550000, metadata = { registered = false }, currency = 'black_money' },
+			{ name = 'at_suppressor_light', price = 550000, currency = 'black_money' },
+			{ name = 'ammo-rifle', price = 1000, currency = 'black_money' },
+			{ name = 'ammo-rifle2', price = 1000, currency = 'black_money' }
+		}, locations = {
+			vec(-46.86, 1947.35, 190.55)
+		}, targets = {
+			{ loc = vec3(-46.86, 1947.35, 190.55), length = 0.5, width = 3.0, heading = 270.0, minZ = 188.0, maxZ = 192.5, distance = 8 }
+
+		}
+	},
 
 	VendingMachineDrinks = {
 		name = 'Vending Machine',

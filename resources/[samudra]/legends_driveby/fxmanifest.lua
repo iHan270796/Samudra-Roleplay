@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'Legends Scripts'
 description 'Advanced driveby system for fivem'
-version '1.2.3'
+version '1.3.0'
 
 lua54 'yes'
 

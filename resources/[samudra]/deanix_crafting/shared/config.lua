@@ -170,7 +170,7 @@ Config.JobCrafting = {
     ['armor'] = {
         {
             item = 'armour',
-            label = 'Armor Biasa',
+            label = 'Rompi Anti Pluru',
             requirements = {
                 { item = 'tembaga',    amount = 25 },
                 { item = 'besi',    amount = 25 },
@@ -184,8 +184,8 @@ Config.JobCrafting = {
             level = 1
         },
         {
-            item = 'armourr',
-            label = 'Armor Standar',
+            item = 'armour_plate',
+            label = 'Besi Rompi',
             requirements = {
                 { item = 'tembaga',    amount = 30 },
                 { item = 'besi',    amount = 30 },

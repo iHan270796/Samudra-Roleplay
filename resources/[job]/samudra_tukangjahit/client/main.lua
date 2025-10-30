@@ -4,6 +4,7 @@ local vehicleEntity = nil
 local hasWorkClothes = false
 local currentServerInfo = nil
 local lastStage = nil
+local selectedCloth = nil
 
 local zones = {
     kapas = {},
@@ -25,8 +26,10 @@ local stageColors = {
     kapas = {r = 255, g = 255, b = 0, a = 150},
     benang = {r = 0, g = 200, b = 255, a = 150},
     kain = {r = 255, g = 150, b = 150, a = 150},
-    baju = {r = 0, g = 255, b = 0, a = 150}
+    baju = {r = 0, g = 255, b = 0, a = 150},
+    ['pilih_baju'] = {r = 0, g = 180, b = 255, a = 180}
 }
+
 
 local function Notify(msg, type) QBCore.Functions.Notify(msg, type or 'primary') end
 
@@ -167,7 +170,6 @@ local function StopJob()
     end
     CloseHud()
     RemoveAllZones()
-    Notify('Kerja dihentikan', 'primary')
     TriggerServerEvent('tailorjob:server:stopJob')
 end
 
@@ -214,7 +216,7 @@ local function DoTask(stage, index)
     exports.ox_target:removeZone(zones[stage][index])
     zones[stage][index] = nil
     TriggerEvent('tailorjob:client:removeMarker', stage, index)
-    TriggerServerEvent('tailorjob:server:completeTask', stage)
+    TriggerServerEvent('tailorjob:server:completeTask', stage, selectedCloth)
 end
 
 local function CreateTaskZones()
@@ -227,23 +229,50 @@ local function CreateTaskZones()
         label = 'Ambil Kapas'
         icon = 'fa-solid fa-tree'
         onSelect = function(i) DoTask('kapas', i) end
+
     elseif stage == 'benang' then
         pool = Config.Coords.BenangStations
         label = 'Proses Benang'
         icon = 'fa-solid fa-cogs'
         onSelect = function(i) DoTask('benang', i) end
+
     elseif stage == 'kain' then
         pool = Config.Coords.KainStations
         label = 'Proses Kain'
         icon = 'fa-solid fa-tshirt'
         onSelect = function(i) DoTask('kain', i) end
-    elseif stage == 'baju' then
-        pool = Config.Coords.BajuStation
-        label = 'Jahit Baju'
-        icon = 'fa-solid fa-scissors'
-        onSelect = function(i) DoTask('baju', i) end
-    end
 
+    elseif stage == 'baju' then
+        lib.notify({ title = 'Tahap Jahit', description = 'Silahkan pilih pakaian yang mau dijahit di meja pemilihan.', type = 'inform' })
+        local zoneId = exports.ox_target:addSphereZone({
+            name = 'pilih_baju_zone',
+            coords = Config.Coords.PilihBaju,
+            radius = 1.5,
+            debug = false,
+            options = {
+                {
+                    label = 'Pilih Jenis Pakaian',
+                    icon = 'fa-solid fa-shirt',
+                    onSelect = function()
+                        lib.registerContext({
+                            id = 'menu_pilih_baju',
+                            title = 'Pilih Jenis Pakaian',
+                            options = {
+                                { title = 'Baju', event = 'tailorjob:client:setClothType', icon = 'nui://ox_inventory/web/images/baju.png', args = 'Baju' },
+                                { title = 'Celana', event = 'tailorjob:client:setClothType', icon = 'nui://ox_inventory/web/images/celana.png', args = 'Celana' },
+                                { title = 'Kaos Kaki', event = 'tailorjob:client:setClothType', icon = 'nui://ox_inventory/web/images/kaoskaki.png', args = 'Kaos Kaki' },
+                                { title = 'Masker', event = 'tailorjob:client:setClothType', icon = 'nui://ox_inventory/web/images/masker.png', args = 'Masker' },
+                                { title = 'T-Shirt', event = 'tailorjob:client:setClothType', icon = 'nui://ox_inventory/web/images/t-shirt.png', args = 'T-Shirt' },
+                            }
+                        })
+                        lib.showContext('menu_pilih_baju')
+                    end
+                }
+            }
+        })
+        zones['pilih_baju'] = { zoneId }
+        return
+    end
     if pool then
         for i, v in ipairs(pool) do
             local zoneName = ('tailor_%s_%d'):format(stage, i)
@@ -265,6 +294,50 @@ local function CreateTaskZones()
     end
 end
 
+RegisterNetEvent('tailorjob:client:setClothType', function(typeName)
+    selectedCloth = typeName
+    Notify(('Kamu memilih untuk menjahit: %s'):format(typeName), 'success')
+    if zones['pilih_baju'] then
+        for _, z in pairs(zones['pilih_baju']) do
+            exports.ox_target:removeZone(z)
+        end
+        zones['pilih_baju'] = nil
+    end
+
+    SendNUIMessage({
+        action = 'updateClothType',
+        cloth = selectedCloth
+    })
+
+    if currentServerInfo then
+        SendHudUpdate(currentServerInfo)
+        SendNUIMessage({
+            action = 'updateClothType',
+            cloth = selectedCloth
+        })
+    end
+
+    local pool = Config.Coords.BajuStation
+    for i, v in ipairs(pool) do
+        local zoneName = ('tailor_baju_%d'):format(i)
+        local zoneId = exports.ox_target:addSphereZone({
+            name = zoneName,
+            coords = v,
+            radius = 1.5,
+            debug = false,
+            options = {
+                {
+                    label = ('Proses %s'):format(typeName),
+                    icon = 'fa-solid fa-scissors',
+                    onSelect = function() DoTask('baju', i) end
+                }
+            }
+        })
+        zones['baju'][i] = zoneId
+    end
+end)
+
+
 RegisterNetEvent('tailorjob:client:updateProgress', function(info)
     currentServerInfo = info
     UpdateActiveStage()
@@ -280,6 +353,12 @@ RegisterNetEvent('tailorjob:client:updateProgress', function(info)
     end
 
     SendHudUpdate(info)
+    if selectedCloth and currentStage == 'baju' then
+    SendNUIMessage({
+            action = 'updateClothType',
+            cloth = selectedCloth
+        })
+    end
 
     if currentStage ~= lastStage then
         RemoveAllZones()
@@ -296,6 +375,9 @@ RegisterNetEvent('tailorjob:client:updateProgress', function(info)
 end)
 
 RegisterNetEvent('tailorjob:client:jobStarted', function(info)
+
+    SendNUIMessage({ action = 'resetCloth' })
+
     isWorking = true
     lastStage = nil
     currentServerInfo = info
@@ -339,7 +421,6 @@ CreateThread(function()
             local ped = PlayerPedId()
             local coords = GetEntityCoords(ped)
 
-
             for stage, data in pairs(currentServerInfo.tasks) do
                 if stage ~= currentStage then goto continue end
                 if data.done < data.required then
@@ -350,10 +431,32 @@ CreateThread(function()
                         pool = Config.Coords.BenangStations
                     elseif stage == 'kain' then
                         pool = Config.Coords.KainStations
-                    elseif stage == 'baju' then
-                        pool = Config.Coords.BajuStation
+                        elseif stage == 'baju' then
+                    if not selectedCloth then
+                        pool = { Config.Coords.PilihBaju }
+                    for _, v in ipairs(pool) do
+                            local dist = #(coords - vec3(v.x, v.y, v.z))
+                        if dist < 25.0 then
+                                sleep = 5
+                            local color = stageColors['pilih_baju']
+                                    DrawMarker(
+                                        Config.Marker.type or 2,
+                                        v.x, v.y, v.z + 0.5,
+                                        0.0, 0.0, 0.0,
+                                        0.0, 0.0, 0.0,
+                                        Config.Marker.size.x or 0.5,
+                                        Config.Marker.size.y or 0.5,
+                                        Config.Marker.size.z or 0.5,
+                                        color.r, color.g, color.b, color.a,
+                                        true, true, 2, false, false, false, false
+                                    )
+                                end
+                            end
+                        goto continue
+                        else
+                            pool = Config.Coords.BajuStation
+                        end
                     end
-
                     if pool then
                         for i, v in ipairs(pool) do
                             if markerVisible[stage][i] ~= false then

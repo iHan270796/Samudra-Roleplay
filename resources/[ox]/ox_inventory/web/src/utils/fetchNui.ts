@@ -13,11 +13,7 @@ import { isEnvBrowser } from './misc';
 
 const resourceName = (window as any).GetParentResourceName ? (window as any).GetParentResourceName() : 'ox_inventory';
 
-export async function fetchNui<T>(eventName: string, data?: unknown, debugData?: unknown): Promise<T> {
-  if (isEnvBrowser() && debugData) {
-    console.log(`NUI Debug [${eventName}]:`, debugData);
-    return debugData as T; // Return debug data directly in browser environment
-  }
+export async function fetchNui<T>(eventName: string, data?: unknown): Promise<T> {
   if (isEnvBrowser()) return undefined as any; // HACK FOR BORING ERRORS IN DEV
 
   try {

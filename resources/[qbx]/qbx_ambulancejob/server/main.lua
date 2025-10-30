@@ -13,6 +13,7 @@ local function alertAmbulance(src, text)
 	for _, v in pairs(players) do
 		if v.PlayerData.job.type == 'ems' and v.PlayerData.job.onduty then
 			TriggerClientEvent('hospital:client:ambulanceAlert', v.PlayerData.source, coords, text)
+			TriggerClientEvent('hospital:client:requestEmsDispatch', src, text)
 		end
 	end
 end

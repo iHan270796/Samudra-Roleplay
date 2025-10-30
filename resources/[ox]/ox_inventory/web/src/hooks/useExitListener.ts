@@ -2,8 +2,10 @@ import { useEffect, useRef } from 'react';
 import { noop } from '../utils/misc';
 import { fetchNui } from '../utils/fetchNui';
 import { closeTooltip } from '../store/tooltip';
+import { deleteCraftItems } from '../store/selectedCraftItems';
 import { useAppDispatch } from '../store';
 import { closeContextMenu } from '../store/contextMenu';
+import { kosonginPlayerlist } from "../store/playerlist";
 
 type FrameVisibleSetter = (bool: boolean) => void;
 
@@ -23,7 +25,9 @@ export const useExitListener = (visibleSetter: FrameVisibleSetter) => {
       if (LISTENED_KEYS.includes(e.code)) {
         setterRef.current(false);
         dispatch(closeTooltip());
+        dispatch(kosonginPlayerlist());
         dispatch(closeContextMenu());
+        dispatch(deleteCraftItems());
         fetchNui('exit');
       }
     };

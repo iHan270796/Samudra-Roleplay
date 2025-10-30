@@ -10,6 +10,10 @@ Config.SellItems = {
         {name = "kulit_kayu", label = "Tree bark", price = 1500},
         {name = "ayam_packing", label = "Ayam Packing", price = 3000},
         {name = "baju", label = "Baju", price = 2500},
+        {name = "celana", label = "Celana", price = 2500},
+        {name = "kaoskaki", label = "Kaos Kaki", price = 2500},
+        {name = "masker", label = "Masker", price = 2500},
+        {name = "t-shirt", label = "T-Shirt", price = 2500},
     },
     drugs = {
         {name = "joint", label = "Joint", price = 35000},

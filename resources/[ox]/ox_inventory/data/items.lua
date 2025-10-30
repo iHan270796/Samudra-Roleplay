@@ -178,35 +178,22 @@ return {
     },
 
 	['armour'] = {
-		label = 'Armor Biasa',
-		weight = 1500,
-		stack = true,
-		close = true,
+		label = 'Rompi Anti Pluru',
+		weight = 3000,
+		stack = false,
+		rarity = 'epic',
 		client = {
-			anim = { dict = 'clothingshirt', clip = 'try_shirt_positive_d' },
-			usetime = 3500
+			image = "armourr.png"
 		}
 	},
-	['armourr'] = {
-		label = 'Armor Standar',
+	['armour_plate'] = {
+		label = "Besi Rompi",
 		weight = 1500,
 		stack = true,
-		close = true,
+		rarity = 'rare',
 		client = {
-			anim = { dict = 'clothingshirt', clip = 'try_shirt_positive_d' },
-			usetime = 3500
+			image = "armor_plate.png",
 		}
-	},
-	['heavy_armour'] = {
-		label = 'Armor Super',
-		weight = 2000,
-		stack = true,
-		close = true,
-		client = {
-			anim = { dict = 'clothingshirt', clip = 'try_shirt_positive_d' },
-			usetime = 3500,
-		},
-		decay = true
 	},
 
 	['clothing'] = {
@@ -234,6 +221,7 @@ return {
         weight = 1500,
         stack = false,
         consume = 0,
+		rarity = 'epic',
         client = {
             export = "yseries.UsePhoneItem",
             remove = function()
@@ -251,6 +239,7 @@ return {
         weight = 1500,
         stack = false,
         consume = 0,
+		rarity = 'epic',
         client = {
             export = "yseries.UsePhoneItem",
             remove = function()
@@ -266,6 +255,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -281,6 +271,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -296,6 +287,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -313,6 +305,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -328,6 +321,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -343,6 +337,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -358,6 +353,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -375,6 +371,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -390,6 +387,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -405,6 +403,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -420,6 +419,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -435,6 +435,7 @@ return {
     weight = 1500,
     stack = false,
     consume = 0,
+	rarity = 'epic',
     client = {
         export = "yseries.UsePhoneItem",
         remove = function()
@@ -450,6 +451,7 @@ return {
         weight = 1500,
         stack = false,
         consume = 0,
+		rarity = 'epic',
         client = {
             export = "yseries.UsePhoneItem",
             remove = function()
@@ -1046,17 +1048,6 @@ return {
 		description = "",
 		client = {
 			image = "blackvest.png",
-		}
-	},
-
-	["backpack"] = {
-		label = "Backpack",
-		weight = 0,
-		stack = false,
-		close = true,
-		description = "No have",
-		client = {
-			image = "bag.png",
 		}
 	},
 
@@ -5788,4 +5779,78 @@ return {
         label = 'Baju',
         weight = 50,
     },
+	['celana'] = {
+        label = 'Celana',
+        weight = 50,
+    },
+	['kaoskaki'] = {
+        label = 'Kaos Kaki',
+        weight = 50,
+    },
+	['masker'] = {
+        label = 'Masker',
+        weight = 50,
+    },
+	['t-shirt'] = {
+        label = 'T-Shirt',
+        weight = 50,
+    },
+
+    --backpack
+    ['backpack'] = {
+		label = 'Small Backpack',
+		weight = 220,
+		bp_weight = 40, -- 40kg capacity
+		bp_slot = 20,   -- 20 slots
+		backpack = true, -- Identifies as backpack
+		stack = false,
+		close = true,
+		rarity = 'uncommon',
+		description = 'A small backpack for carrying basic items.',
+		client = {
+			image = 'backpack.png',
+		}
+	},
+	['backpack_medium'] = {
+		label = 'Medium Backpack',
+		weight = 350,
+		bp_weight = 60, -- 60kg capacity
+		bp_slot = 30,   -- 30 slots
+		backpack = true,
+		stack = false,
+		close = true,
+		rarity = 'uncommon',
+		description = 'A medium-sized backpack with more storage space.',
+		client = {
+			image = 'backpack.png',
+		}
+	},
+	['backpack_large'] = {
+		label = 'Large Backpack',
+		weight = 500,
+		bp_weight = 80, -- 80kg capacity
+		bp_slot = 40,   -- 40 slots
+		backpack = true, -- Simple boolean to identify as backpack
+		stack = false,
+		close = true,
+		rarity = 'rare',
+		description = 'A large backpack for extended trips and heavy loads.',
+		client = {
+			image = 'backpack.png',
+		}
+	},
+	['tactical_backpack'] = {
+		label = 'Tactical Backpack',
+		weight = 650,
+		bp_weight = 100, -- 100kg capacity
+		bp_slot = 50,    -- 50 slots
+		backpack = true, -- Identifies as backpack
+		stack = false,
+		close = true,
+		rarity = 'epic',
+		description = 'A military-grade tactical backpack with maximum storage capacity.',
+		client = {
+			image = 'backpack.png',
+		}
+	},
 }

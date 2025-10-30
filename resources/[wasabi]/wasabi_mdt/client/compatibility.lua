@@ -143,27 +143,27 @@ end
 
 -- Emergency Services - Priority 1
 function InjuriedPerson()
-  CreateDispatchAlert("civ_down", "Injured Person reported", nil, 1)
+  CreateDispatchAlert("civ_down", "Laporan Warga Pingsan", nil, 1)
 end
 
 function DeceasedPerson()
-  CreateDispatchAlert("civ_dead", "Deceased Person reported", nil, 1)
+  CreateDispatchAlert("civ_dead", "Laporan Warga Tidak Sadarkan Diri", nil, 1)
 end
 
 function OfficerDown()
-  CreateDispatchAlert("officer_down", "Officer Down reported", nil, 1)
+  CreateDispatchAlert("officer_down", "Laporan Petugas Terluka", nil, 1)
 end
 
 function OfficerBackup()
-  CreateDispatchAlert("officer_backup", "Officer Backup reported", nil, 1)
+  CreateDispatchAlert("officer_backup", "Laporan Petugas Minta Bantuan", nil, 1)
 end
 
 function OfficerInDistress()
-  CreateDispatchAlert("officer_distress", "Officer In Distress reported", nil, 1)
+  CreateDispatchAlert("officer_distress", "Laporan Petugas Dalam Bahaya", nil, 1)
 end
 
 function EmsDown()
-  CreateDispatchAlert("ems_down", "EMS Down reported", nil, 1)
+  CreateDispatchAlert("ems_down", "Laporan EMS Terluka", nil, 1)
 end
 
 -- ============================================

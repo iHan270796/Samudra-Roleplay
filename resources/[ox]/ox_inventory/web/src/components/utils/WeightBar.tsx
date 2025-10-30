@@ -36,15 +36,17 @@ const WeightBar: React.FC<{ percent: number; durability?: boolean }> = ({ percen
   return (
     <div className={durability ? 'durability-bar' : 'weight-bar'}>
       <div
+        className="weight-bar-fill" // Changed from bg-primary to custom class
         style={{
           visibility: percent > 0 ? 'visible' : 'hidden',
           height: '100%',
           width: `${percent}%`,
-          backgroundColor: color,
-          transition: `background ${0.3}s ease, width ${0.3}s ease`,
+          background: durability ? 'var(--color-text)' : 'var(--color-primary)', // Use theme color
+          transition: `background 0.3s ease, width 0.3s ease`,
         }}
-      ></div>
+      />
     </div>
   );
 };
+
 export default WeightBar;

@@ -15,16 +15,19 @@ export const swapSlotsReducer: CaseReducer<
   const { sourceInventory, targetInventory } = getTargetInventory(state, fromType, toType);
   const curTime = Math.floor(Date.now() / 1000);
 
-  [sourceInventory.items[fromSlot.slot - 1], targetInventory.items[toSlot.slot - 1]] = [
-    {
-      ...targetInventory.items[toSlot.slot - 1],
-      slot: fromSlot.slot,
-      durability: itemDurability(toSlot.metadata, curTime),
-    },
-    {
-      ...sourceInventory.items[fromSlot.slot - 1],
-      slot: toSlot.slot,
-      durability: itemDurability(fromSlot.metadata, curTime),
-    },
-  ];
+  // Create new objects instead of mutating existing ones
+  const newFromItem = {
+    ...targetInventory.items[toSlot.slot - 1],
+    slot: fromSlot.slot,
+    durability: itemDurability(toSlot.metadata, curTime),
+  };
+
+  const newToItem = {
+    ...sourceInventory.items[fromSlot.slot - 1],
+    slot: toSlot.slot,
+    durability: itemDurability(fromSlot.metadata, curTime),
+  };
+
+  sourceInventory.items[fromSlot.slot - 1] = newFromItem;
+  targetInventory.items[toSlot.slot - 1] = newToItem;
 };

@@ -7,7 +7,7 @@ cfg = {
     locationInterval = 150,
     minimapScale = 1000,
 
-    useMinimapBorder = true,
+    useMinimapBorder = false,
     useMusicPlayer = true,
     showLocation = true,
     showCompass = false,

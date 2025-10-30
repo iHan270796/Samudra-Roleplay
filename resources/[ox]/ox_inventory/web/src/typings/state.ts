@@ -1,9 +1,10 @@
 import { Inventory } from './inventory';
+import { Slot } from './slot';
 
 export type State = {
   leftInventory: Inventory;
   rightInventory: Inventory;
-  otherInventory: Inventory;
+  leftInventoryBottom: Inventory;
   itemAmount: number;
   shiftPressed: boolean;
   isBusy: boolean;
@@ -11,6 +12,6 @@ export type State = {
   history?: {
     leftInventory: Inventory;
     rightInventory: Inventory;
-    otherInventory: Inventory;
+    leftInventoryBottom: Inventory;
   };
 };

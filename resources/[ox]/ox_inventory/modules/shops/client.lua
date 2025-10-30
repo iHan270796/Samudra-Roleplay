@@ -10,7 +10,7 @@ for shopType, shopData in pairs(lib.load('data.shops') or {} --[[@as table<strin
 		groups = shopData.groups or shopData.jobs,
 		blip = shopData.blip,
 		label = shopData.label,
-		icon = shopData.icon
+        icon = shopData.icon
 	}
 
 	if shared.target then
@@ -46,16 +46,16 @@ local function onEnterShop(point)
 		SetBlockingOfNonTemporaryEvents(entity, true)
 
 		exports.ox_target:addLocalEntity(entity, {
-			{
-				icon = point.icon or 'fas fa-shopping-basket',
-				label = point.label,
-				groups = point.groups,
-				onSelect = function()
-					client.openInventory('shop', { id = point.invId, type = point.type })
-				end,
-				iconColor = point.iconColor,
-				distance = point.shopDistance or 2.0
-			}
+            {
+                icon = point.icon or 'fas fa-shopping-basket',
+                label = point.label,
+                groups = point.groups,
+                onSelect = function()
+                    client.openInventory('shop', { id = point.invId, type = point.type })
+                end,
+                iconColor = point.iconColor,
+                distance = point.shopDistance or 2.0
+            }
 		})
 
 		point.entity = entity
@@ -84,8 +84,8 @@ local function wipeShops()
 		local shop = shops[i]
 
 		if shop.zoneId then
-			exports.ox_target:removeZone(shop.zoneId)
-			shop.zoneId = nil
+            exports.ox_target:removeZone(shop.zoneId)
+            shop.zoneId = nil
 		end
 
 		if shop.remove then
@@ -102,6 +102,8 @@ local function wipeShops()
 	table.wipe(shops)
 end
 
+local markerColour = { 30, 150, 30 }
+
 local function refreshShops()
 	wipeShops()
 
@@ -117,15 +119,15 @@ local function refreshShops()
 
 				exports.ox_target:removeModel(shop.model, shop.name)
 				exports.ox_target:addModel(shop.model, {
-					{
-						name = shop.name,
-						icon = shop.icon or 'fas fa-shopping-basket',
-						label = label,
-						onSelect = function()
-							client.openInventory('shop', { type = type })
-						end,
-						distance = 2
-					},
+                    {
+                        name = shop.name,
+                        icon = shop.icon or 'fas fa-shopping-basket',
+                        label = label,
+                        onSelect = function()
+                            client.openInventory('shop', { type = type })
+                        end,
+                        distance = 2
+                    },
 				})
 			elseif shop.targets then
 				for i = 1, #shop.targets do
@@ -160,18 +162,18 @@ local function refreshShops()
 
 						shops[id] = {
 							zoneId = Utils.CreateBoxZone(target, {
-								{
-									name = shopid,
-									icon = shop.icon or 'fas fa-shopping-basket',
-									label = label,
-									groups = shop.groups,
-									onSelect = function()
-										client.openInventory('shop', { id = i, type = type })
-									end,
-									iconColor = target.iconColor,
-									distance = target.distance
-								}
-							}),
+                                {
+                                    name = shopid,
+                                    icon = shop.icon or 'fas fa-shopping-basket',
+                                    label = label,
+                                    groups = shop.groups,
+                                    onSelect = function()
+                                        client.openInventory('shop', { id = i, type = type })
+                                    end,
+                                    iconColor = target.iconColor,
+                                    distance = target.distance
+                                }
+                            }),
 							blip = blip and createBlip(blip, target.coords)
 						}
 					end
@@ -181,24 +183,30 @@ local function refreshShops()
 			end
 		elseif shop.locations then
 			if not hasShopAccess(shop) then goto skipLoop end
-			local shopPrompt = { icon = 'fas fa-shopping-basket' }
+            local shopPrompt = { icon = 'fas fa-shopping-basket' }
 
 			for i = 1, #shop.locations do
 				local coords = shop.locations[i]
 				id += 1
 
+				local newMsgSKK = ""
+				if Config["SK-UI"] then
+					newMsgSKK = ('%s %s'):format("\\key E\\endkey", label)
+				else
+					newMsgSKK = ('%s %s'):format("[E]", label)
+				end
+				
 				shops[id] = lib.points.new(coords, 16, {
 					coords = coords,
 					distance = 16,
 					inv = 'shop',
 					invId = i,
 					type = type,
-					marker = client.shopmarker,
-					prompt = {
-						options = shop.icon and { icon = shop.icon } or shopPrompt,
-						message = ('**%s**  \n%s'):format(label,
-							locale('interact_prompt', GetControlInstructionalButton(0, 38, true):sub(3)))
-					},
+                    marker = markerColour,
+                    prompt = {
+                        options = shop.icon and { icon = shop.icon } or shopPrompt,
+                        message = newMsgSKK
+                    },
 					nearby = Utils.nearbyMarker,
 					blip = blip and createBlip(blip, coords)
 				})
@@ -208,13 +216,6 @@ local function refreshShops()
 		::skipLoop::
 	end
 end
-
-RegisterNUICallback('payCart', function(data, cb)
-	local method = data.method
-	local items = data.items or {}
-
-	cb(lib.callback.await('ox_inventory:server:payCart', false, method, items))
-end)
 
 return {
 	refreshShops = refreshShops,

@@ -8,16 +8,28 @@ Config.ItemBenang = 'benang'
 Config.ItemKain = 'kain'
 Config.ItemBaju = 'baju'
 
+Config.ItemHasil = {
+    ["Baju"] = "baju",
+    ["Celana"] = "celana",
+    ["Kaos Kaki"] = "kaoskaki",
+    ["Masker"] = "masker",
+    ["T-Shirt"] = "t-shirt"
+}
+
+-- jumlah item hasil acak
+Config.HasilMin = 55
+Config.HasilMax = 65
+
 -- jumlah task per stage
 Config.TasksForKapas = 10   -- 10 lokasi pengambilan kapas
 Config.TasksForBenang = 3
 Config.TasksForKain = 2
-Config.TasksForBaju = 8
+Config.TasksForBaju = 1
 Config.TaskDuration = 4000 -- 4 detik per task
 Config.KapasGiveAmount = 1
 Config.BenangGiveAmount = 1
 Config.KainGiveAmount = 1
-Config.BajuGiveAmount = 50 -- hasil akhir 50 baju
+-- Config.BajuGiveAmount = 50 -- hasil akhir 50 baju
 Config.BenangRequired = 1 -- butuh 1 kapas untuk bikin benang
 Config.KainRequired = 1   -- butuh 1 benang untuk bikin kain
 Config.BajuRequired = 1   -- butuh 1 kain untuk bikin baju
@@ -26,6 +38,7 @@ Config.Coords = {
     JobStart = vector4(714.26, -976.57, 24.13, 178.08),
     VehicleSpawn = vector4(721.87, -982.02, 24.1, 271.31),
     VehicleStore = vector3(721.87, -982.02, 24.1),
+    PilihBaju = vector3(710.49, -969.52, 30.06),
 
     KapasStations = {
         vector3(1595.02, -2598.8, 52.58), vector3(1620.75, -2571.9, 61.89),

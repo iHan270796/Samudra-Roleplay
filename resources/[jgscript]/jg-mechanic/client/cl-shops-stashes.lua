@@ -76,7 +76,6 @@ local function openShop(mechanicId, shopIndex)
   local shop = mechanicConfig.shops[shopIndex]
   local requiredGrade = shop.grade or 0
 
-  -- 🔒 Cek grade
   if grade < requiredGrade then
     Framework.Client.Notify(("You need at least grade %d to access this shop."):format(requiredGrade), "error")
     return

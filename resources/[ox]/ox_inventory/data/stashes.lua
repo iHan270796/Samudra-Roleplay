@@ -100,5 +100,34 @@ return {
         slots = 500,
         weight = 4000000,
 		groups = {['police'] = 0}
-    }
+    },
+	--gudang
+	{
+        name = 'Gudang_Samudra1',
+        label = 'Gudang Samudra 1',
+        slots = 100,
+        weight = 550000,
+		owner = true,
+    },
+	{
+        name = 'Gudang_Samudra1',
+        label = 'Gudang Samudra 1',
+        slots = 100,
+        weight = 550000,
+		owner = true,
+    },
+	{
+        name = 'Gudang_Samudra2',
+        label = 'Gudang Samudra 2',
+        slots = 100,
+        weight = 550000,
+		owner = true,
+    },
+	{
+        name = 'Gudang_samudra3',
+        label = 'Gudang Samudra 3',
+        slots = 100,
+        weight = 550000,
+		owner = true,
+    },
 }

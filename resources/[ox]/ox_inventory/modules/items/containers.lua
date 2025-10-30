@@ -63,19 +63,4 @@ setContainerProperties('pizzabox', {
 	whitelist = { 'pizza' }
 })
 
-setContainerProperties('bag', {
-	slots = 15,
-	maxWeight = 100000,
-})
-
-setContainerProperties('bag2', {
-	slots = 25,
-	maxWeight = 150000,
-})
-
-setContainerProperties('paramedicbag', {
-	slots = 25,
-	maxWeight = 150000,
-})
-
 return containers

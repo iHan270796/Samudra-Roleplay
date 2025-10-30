@@ -3,12 +3,18 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import inventoryReducer from './inventory';
 import tooltipReducer from './tooltip';
 import contextMenuReducer from './contextMenu';
+import playerlistReducer from './playerlist';
+import settingsReducer from './settings';
+import craftItemsReducer from './selectedCraftItems';
 
 export const store = configureStore({
   reducer: {
     inventory: inventoryReducer,
     tooltip: tooltipReducer,
     contextMenu: contextMenuReducer,
+    playerlist: playerlistReducer,
+    settings: settingsReducer,
+    craftItems: craftItemsReducer,
   },
 });
 

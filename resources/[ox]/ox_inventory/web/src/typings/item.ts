@@ -6,7 +6,7 @@ export type ItemData = {
   close: boolean;
   count: number;
   description?: string;
-  buttons?: { label: string; action: string }[];
+  buttons?: string[];
   ammoName?: string;
   image?: string;
 };

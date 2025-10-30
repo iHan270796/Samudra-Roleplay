@@ -40,7 +40,7 @@ RegisterNetEvent('tailorjob:server:stopJob', function()
 end)
 
 -- server-validated complete task (remove/add via ox_inventory exports)
-RegisterNetEvent('tailorjob:server:completeTask', function(stage)
+RegisterNetEvent('tailorjob:server:completeTask', function(stage, clothType)
     local src = source
     local info = activeWorkers[src]
     if not info then
@@ -55,46 +55,56 @@ RegisterNetEvent('tailorjob:server:completeTask', function(stage)
     t.done = t.done + 1
     TriggerClientEvent('QBCore:Notify', src, ('Progres %s: %d/%d'):format(stage, t.done, t.required), 'primary')
 
-    -- baru kasih item kalau semua selesai
-    if t.done >= t.required then
-        if stage == 'kapas' then
-            exports.ox_inventory:AddItem(src, Config.ItemKapas, Config.KapasGiveAmount)
-            info.stage = 'benang'
-            TriggerClientEvent('QBCore:Notify', src, 'Selesai kumpul Kapas! Lanjut ke Benang.', 'success')
+    -- kalau belum selesai, kirim update aja
+    if t.done < t.required then
+        TriggerClientEvent('tailorjob:client:updateProgress', src, info)
+        return
+    end
 
-        elseif stage == 'benang' then
-            local removed = exports.ox_inventory:RemoveItem(src, Config.ItemKapas, Config.BenangRequired)
-            if not removed then
-                TriggerClientEvent('QBCore:Notify', src, 'Butuh Kapas dulu untuk bikin Benang', 'error')
-                t.done = t.done - 1
-                return
-            end
-            exports.ox_inventory:AddItem(src, Config.ItemBenang, Config.BenangGiveAmount)
-            info.stage = 'kain'
-            TriggerClientEvent('QBCore:Notify', src, 'Selesai bikin Benang! Lanjut ke Kain.', 'success')
+    -- semua selesai
+    if stage == 'kapas' then
+        exports.ox_inventory:AddItem(src, Config.ItemKapas, Config.KapasGiveAmount)
+        info.stage = 'benang'
+        TriggerClientEvent('QBCore:Notify', src, 'Selesai kumpul Kapas! Lanjut ke Benang.', 'success')
 
-        elseif stage == 'kain' then
-            local removed = exports.ox_inventory:RemoveItem(src, Config.ItemBenang, Config.KainRequired)
-            if not removed then
-                TriggerClientEvent('QBCore:Notify', src, 'Butuh Benang dulu untuk bikin Kain', 'error')
-                t.done = t.done - 1
-                return
-            end
-            exports.ox_inventory:AddItem(src, Config.ItemKain, Config.KainGiveAmount)
-            info.stage = 'baju'
-            TriggerClientEvent('QBCore:Notify', src, 'Selesai bikin Kain! Lanjut ke Baju.', 'success')
-
-        elseif stage == 'baju' then
-            local removed = exports.ox_inventory:RemoveItem(src, Config.ItemKain, Config.BajuRequired)
-            if not removed then
-                TriggerClientEvent('QBCore:Notify', src, 'Butuh Kain dulu untuk bikin Baju', 'error')
-                t.done = t.done - 1
-                return
-            end
-            exports.ox_inventory:AddItem(src, Config.ItemBaju, Config.BajuGiveAmount)
-            info.stage = 'finished'
-            TriggerClientEvent('QBCore:Notify', src, 'Pekerjaan Selesai! Ambil hasil baju kamu!', 'success')
+    elseif stage == 'benang' then
+        local removed = exports.ox_inventory:RemoveItem(src, Config.ItemKapas, Config.BenangRequired)
+        if not removed then
+            TriggerClientEvent('QBCore:Notify', src, 'Butuh Kapas dulu untuk bikin Benang', 'error')
+            t.done = t.done - 1
+            return
         end
+        exports.ox_inventory:AddItem(src, Config.ItemBenang, Config.BenangGiveAmount)
+        info.stage = 'kain'
+        TriggerClientEvent('QBCore:Notify', src, 'Selesai bikin Benang! Lanjut ke Kain.', 'success')
+
+    elseif stage == 'kain' then
+        local removed = exports.ox_inventory:RemoveItem(src, Config.ItemBenang, Config.KainRequired)
+        if not removed then
+            TriggerClientEvent('QBCore:Notify', src, 'Butuh Benang dulu untuk bikin Kain', 'error')
+            t.done = t.done - 1
+            return
+        end
+        exports.ox_inventory:AddItem(src, Config.ItemKain, Config.KainGiveAmount)
+        info.stage = 'baju'
+        TriggerClientEvent('QBCore:Notify', src, 'Selesai bikin Kain! Lanjut ke Baju.', 'success')
+
+    elseif stage == 'baju' then
+        local removed = exports.ox_inventory:RemoveItem(src, Config.ItemKain, Config.BajuRequired)
+        if not removed then
+            TriggerClientEvent('QBCore:Notify', src, 'Butuh Kain dulu untuk bikin Pakaian', 'error')
+            t.done = t.done - 1
+            return
+        end
+
+        -- ambil nama item hasil dari Config.ItemHasil
+        local hasil = Config.ItemHasil[clothType or "Baju"] or Config.ItemBaju
+        local jumlah = math.random(Config.HasilMin, Config.HasilMax)
+
+        exports.ox_inventory:AddItem(src, hasil, jumlah)
+        info.stage = 'finished'
+
+        TriggerClientEvent('QBCore:Notify', src, ('Selesai menjahit %s! Kamu mendapat %d item.'):format(clothType or "Baju", jumlah), 'success')
     end
 
     TriggerClientEvent('tailorjob:client:updateProgress', src, info)

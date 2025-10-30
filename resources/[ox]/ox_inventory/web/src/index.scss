@@ -1,20 +1,77 @@
-$mainColor: #22232c;
-$textColor: #c1c2c5;
-$mainFont: Roboto;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+    
+    // Default theme colors (fallback)
+    --color-primary: #87da21;
+    --color-primary-rgb: 135, 218, 33;
+    --color-secondary: #2b2b2b;
+    --color-background: #000000;
+    --color-surface: #1a1a1a;
+    --color-text: #ffffff;
+    --color-text-secondary: #c1c2c5;
+    --color-border: rgba(255, 255, 255, 0.25);
+    --color-success: #4ade80;
+    --color-warning: #fbbf24;
+    --color-error: #ef4444;
+    --color-common: rgba(255, 255, 255, 0.25);
+    --color-uncommon: #23db0b;
+    --color-rare: #0796c2;
+    --color-epic: #9c32e4;
+    --color-mythic: #e1e432;
+    
+    // Legacy variable support
+    --primary-color: var(--color-primary);
+    --primary-rgb: var(--color-primary-rgb);
+    --secondary-color: var(--color-secondary);
+    --background-color: var(--color-background);
+    --surface-color: var(--color-surface);
+    --text-color: var(--color-text);
+    --text-secondary-color: var(--color-text-secondary);
+    --border-color: var(--color-border);
+    --rarity-common: var(--color-common);
+    --rarity-uncommon: var(--color-uncommon);
+    --rarity-rare: var(--color-rare);
+    --rarity-epic: var(--color-epic);
+    --rarity-mythic: var(--color-mythic);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+// Use CSS custom properties instead of hardcoded colors
+$mainColor: var(--color-surface);
+$textColor: var(--color-text-secondary);
+$mainFont: Geist;
 
 $secondaryColor: rgba(12, 12, 12, 0.4);
-$secondaryColorHighlight: #33343f;
+$secondaryColorHighlight: #33343F;
 $secondaryColorLight: rgba(0, 0, 0, 0.5);
 $secondaryColorDark: rgba(12, 12, 12, 0.8);
 
-$gridCols: 5;
+$gridCols: 4;
 $gridRows: 3;
-$gridSize: 10vh;
-$gridGap: 4px;
+$gridSize: 10.5vh;
+$gridGap: 14px;
 $containerSize: calc(#{$gridRows} * #{$gridSize + 0.22vh} + #{$gridRows} * #{$gridGap});
 
-$accentColor: #0f7ed8;
-$accentShade: #0f7dd885;
+@font-face {
+  font-family: 'Geist';
+  src: url('/fonts/Geist-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
   margin: 0;
@@ -26,6 +83,12 @@ body {
   background: none !important;
   overflow: hidden !important;
   user-select: none;
+  color: var(--color-text);
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0.25vh;
 }
 
 #root {
@@ -36,7 +99,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-::-webkit-scrollbar {
+.item-notification-container::-webkit-scrollbar {
   display: none;
 }
 
@@ -44,6 +107,31 @@ p {
   margin: 0;
   padding: 0;
   font-family: $mainFont;
+  color: var(--color-text);
+}
+
+.accent-border {
+  position: relative;
+}
+
+.accent-border:before {
+    position: absolute;
+    top: calc(var(--accentWidth));
+    left: calc(var(--accentWidth) + 0.3px);
+    width: calc(100% - var(--accentWidth));
+    height: calc(100% - 0.1px);
+    border: var(--accentWidthBorder) solid var(--accentColor);
+    border-radius: inherit;
+    content: "";
+    clip-path: polygon(0 0, var(--accent) 0, var(--accent) var(--accent), calc(100% - var(--accent)) var(--accent), 100% var(--accent), 100% 0, calc(100% - var(--accent)) 0, calc(100% - var(--accent)) calc(100% - var(--accent)), var(--accent) calc(100% - var(--accent)), var(--accent) 101%, 0 100%, 0 calc(100% - var(--accent)), var(--accent) calc(100% - var(--accent)), 100% calc(100% - var(--accent)), 100% 100%, calc(100% - var(--accent)) 100%, calc(100% - var(--accent)) calc(100% - var(--accent)), calc(100% - var(--accent)) var(--accent), 50% var(--accent), 0 var(--accent))
+}
+
+.givePlayerListContainer {
+  --accent: 1.5rem;
+  --accentWidth: 0px;
+  --accentWidthBorder: 2px;
+  --accentColor: var(--color-primary);
+  border-radius: 4px;
 }
 
 input[type='number']::-webkit-inner-spin-button,
@@ -56,25 +144,47 @@ input[type='number']::-webkit-outer-spin-button {
 .app-wrapper {
   height: 100%;
   width: 100%;
-  color: white;
+  color: var(--color-text);
 }
 
 .context-menu-list {
-  min-width: 200px;
-  background-color: $mainColor;
-  color: $textColor;
-  padding: 4px;
-  border-color: rgba(0, 0, 0, 0.2);
-  border-style: inset;
-  border-width: 1px;
-  border-radius: 4px;
+  min-width: 125px;
+  background: linear-gradient(to left, #0a0a0a, #1d1d1d);
+  color: var(--color-text);
+  padding: 6px;
+  border-radius: 7px;
+  border: 1px solid #101010;
+  box-shadow: 0 0 0 .5px rgba(0, 0, 0, 0.488), 
+              0 0 15px 0.5px rgba(0, 0, 0, 0.288) inset, 
+              0 0 20px 10px rgba(0, 0, 0, 0) inset;
   outline: none;
   display: flex;
   flex-direction: column;
 }
 
-.context-menu-item {
-  padding: 8px;
+.roundandbordernoright {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-top: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.noroundbordertopandbottom {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.roundandbordernoleft {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.context-menu-item  {
+  padding: 4px;
   border-radius: 4px;
   background-color: transparent;
   outline: none;
@@ -87,7 +197,8 @@ input[type='number']::-webkit-outer-spin-button {
     transform: none;
   }
   &:hover {
-    background-color: $secondaryColorHighlight;
+    background-color: var(--primary-color);
+    color: var(--color-text);
     cursor: pointer;
   }
 }
@@ -100,7 +211,7 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
-button:active {
+.addToQueue:active {
   transform: translateY(3px);
 }
 
@@ -124,22 +235,14 @@ button:active {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-
+  padding-left: 5vh;
+  padding-right: 5vh;
+  background: none !important;
   gap: 20px;
-  padding: 20px 100px;
-
-  // backdrop-filter: blur(5px);
-  // background-color: rgba(255, 255, 255, 0.1);
 }
 
 .inventory-control {
   display: flex;
-
-  padding: 10px 30px;
-  background-color: #494646a1;
-  border-radius: 10px;
-  border: 2px solid $accentColor;
-  box-shadow: 0 0 10px $accentShade;
 
   .inventory-control-wrapper {
     display: flex;
@@ -151,59 +254,53 @@ button:active {
 
   .inventory-control-input {
     transition: 200ms;
-    padding: 16px 2px;
+    padding: 16px 8px;
+    border-radius: 2.5%;
     font-family: $mainFont;
-    font-size: 12px;
+    font-size: 16px;
     text-align: center;
     outline: none;
     border: none;
-    color: #fff;
+    color: var(--color-text);
     background-color: $secondaryColor;
-    border-radius: 10px;
     &:focus-within {
       background-color: $secondaryColorDark;
     }
   }
 
   .inventory-control-button {
-    font-size: 12px;
-    color: #fff;
+    font-size: 14px;
+    color: var(--color-text);
     background-color: $secondaryColor;
     transition: 200ms;
-    padding: 12px 2px;
+    padding: 12px 8px;
+    border-radius: 2.5%;
     border: none;
     text-transform: uppercase;
     font-family: $mainFont;
     width: 100%;
     font-weight: 500;
-    border-radius: 10px;
-    transition: transform 200ms;
-    cursor: pointer;
-
     &:hover {
       background-color: $secondaryColorDark;
-      transform: scale(1.1);
     }
   }
 }
 
 .useful-controls-dialog {
-  background-color: $mainColor;
+  background-color: rgba(var(--color-surface), 0.9);
+  border: 1px solid var(--color-border);
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   color: $textColor;
-  width: 450px;
+  width: 370px;
   display: flex;
   flex-direction: column;
   padding: 16px;
-  border-radius: 4px;
   gap: 16px;
+  outline: none;
 }
 
 .useful-controls-dialog-overlay {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.0);
 }
 
 .useful-controls-dialog-title {
@@ -238,7 +335,11 @@ button:active {
 .divider {
   width: 100%;
   height: 1px;
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: var(--color-border);
+}
+
+.inf-icon {
+  margin-right: 0.1rem;
 }
 
 .useful-controls-button {
@@ -247,13 +348,13 @@ button:active {
   right: 25px;
   transition: 200ms !important;
   border: none;
-  color: white;
+  color: var(--color-text);
   width: 52px;
   height: 52px;
   display: flex;
   justify-content: center;
   align-items: center;
-  fill: white;
+  fill: var(--color-text);
   border-radius: 5% !important;
   background-color: $secondaryColor !important;
   &:hover {
@@ -270,49 +371,28 @@ button:active {
   color: grey !important;
 }
 
-// Dialog is used fro useful controls window
-
 // inventory grids
 .inventory-grid-wrapper {
   display: flex;
   flex-direction: column;
-  gap: calc($gridGap * 2);
-  width: calc($gridCols * $gridSize + ($gridCols - 1) * $gridGap);
-
-  padding: 10px;
-  border-radius: 10px;
-  border: 2px solid $accentColor;
-  box-shadow: 0 0 10px $accentShade;
-
-  background: linear-gradient(90deg, rgba(49, 48, 48, 0.7725490196), #21222177);
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: perspective(800px) rotateY(0deg) rotateX(0deg) scale(1.1);
-  }
-}
-
-.grid-perspective-left {
-  transform: perspective(1200px) rotateX(2deg) rotateY(15deg) rotate(0) scale(1);
-  transform-origin: center center;
-}
-
-.grid-perspective-right {
-  transform: perspective(1300px) rotateX(2deg) rotateY(-15deg) rotate(0) scale(1);
-  transform-origin: center center;
-}
-
-.grid-perspective-normal {
-  transform: perspective(1200px) rotateX(0deg) rotateY(0deg) rotate(0) scale(1);
-  transform-origin: center center;
+  gap: calc($gridGap);
 }
 
 .inventory-grid-header-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  p {
-    font-size: 16px;
+  width: 100%;
+}
+
+.inventory-grid-container2 {
+  display: grid;
+  grid-template-columns: repeat($gridCols, $gridSize);
+  grid-auto-rows: $gridSize + 2.5vh;
+  overflow-y: scroll;
+  padding-right: 9px;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -323,67 +403,43 @@ button:active {
   grid-auto-rows: $gridSize + 0.22vh;
   gap: $gridGap;
   overflow-y: scroll;
+  padding-right: .75rem;
+
+  &::-webkit-scrollbar {
+    width: .25rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #101010;
+    border-radius: .25rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: .5rem;
+  }
 }
 
-// inventory slots
-.inventory-slot {
-  background-color: $secondaryColor;
-  background-repeat: no-repeat;
-  background-position: center;
+@keyframes brightness {
+  0% {
+    filter: brightness(1);
+  }
+  100% {
+    filter: brightness(0.4);
+  }
+}
+
+.inventory-slot.fade-out {
+  animation: brightness 0.4s ease-out forwards;
+}
+
+.inventory-slot.dragging {
+  pointer-events: none;
+}
+
+.img-rendering {
   image-rendering: -webkit-optimize-contrast;
-  position: relative;
-  background-size: 7vh;
-  color: $textColor;
-  max-width: $gridSize;
-
-  border-right: $accentColor 1px solid;
-  border-left: #ffffff 1px solid;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(to right, #ffffff, transparent);
-    pointer-events: none;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(to right, #ffffff, transparent);
-    pointer-events: none;
-  }
-
-  box-shadow: 0 0 10px $accentShade;
-
-  background: radial-gradient(circle farthest-corner at center center, #e7e7e700 0%, #2929299f 80%);
-  background: -webkit-radial-gradient(circle farthest-corner at center center, #e7e7e700 0%, #2929299f 80%);
-  background: -moz-radial-gradient(circle farthest-corner at center center, #e7e7e700 0%, #2929299f 80%);
-}
-
-.inventory-slot img {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 2.5%;
-}
-
-.inventory-slot svg {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 2.5%;
+  margin-left: -0.2rem;
 }
 
 .inventory-slot-label-box {
@@ -399,18 +455,25 @@ button:active {
 
 .inventory-slot-label-text {
   text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 2px 3px;
-  font-weight: 400;
+  padding: 5px 3px;
+  font-weight: 600;
+  color: var(--color-text);
   font-family: $mainFont;
-  font-size: 12px;
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.slot-label {
+  position: absolute;
+  font-family: $mainFont;
+  font-weight: 600;
+  top: -2rem;
+  margin-left: 0.25rem; 
 }
 
 .inventory-slot-number {
-  background-color: white;
-  color: black;
+  background-color: var(--color-text);
+  color: var(--color-background);
   height: 12px;
   border-top-left-radius: 0.25vh;
   border-bottom-right-radius: 0.25vh;
@@ -424,9 +487,6 @@ button:active {
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  p {
-    font-size: 12px;
-  }
 }
 
 .item-slot-header-wrapper {
@@ -444,11 +504,6 @@ button:active {
   display: flex;
   flex-direction: row;
   align-self: flex-end;
-  padding: 3px;
-  gap: 3px;
-  p {
-    font-size: 12px;
-  }
 }
 
 .item-slot-currency-wrapper {
@@ -458,7 +513,6 @@ button:active {
   align-items: center;
   padding-right: 3px;
   p {
-    font-size: 14px;
     text-shadow: 0.1vh 0.1vh 0 rgba(0, 0, 0, 0.7);
   }
 }
@@ -469,7 +523,6 @@ button:active {
   justify-content: flex-end;
   padding-right: 3px;
   p {
-    font-size: 14px;
     text-shadow: 0.1vh 0.1vh 0 rgba(0, 0, 0, 0.7);
   }
 }
@@ -477,32 +530,28 @@ button:active {
 .tooltip-wrapper {
   pointer-events: none;
   display: flex;
-  background-color: $mainColor;
-  width: 200px;
-  padding: 8px;
+  width: auto;
   flex-direction: column;
-  min-width: 200px;
+}
+
+.box-tooltip {
+  background: linear-gradient(99deg, #161616e6, #000000c2);
   color: $textColor;
   font-family: $mainFont;
-  border-radius: 4px;
-  border-color: rgba(0, 0, 0, 0.2);
-  border-style: inset;
-  border-width: 1px;
-  p {
-    font-size: 12px;
-    font-weight: 400;
-  }
+  border-radius: 5px;
+  border: 1px solid var(--color-border);
 }
 
 .tooltip-header-wrapper {
+  color: var(--color-text);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  p {
-    font-size: 15px;
-    font-weight: 400;
-  }
+  align-items: center; 
+}
+
+.box-tooltip span {
+  color: #868686;
 }
 
 .tooltip-crafting-duration {
@@ -527,8 +576,8 @@ button:active {
   flex-direction: row;
   align-items: center;
   img {
-    width: 28px;
-    height: 28px;
+    width: 25px;
+    height: 25px;
     padding-right: 5px;
   }
 }
@@ -537,15 +586,14 @@ button:active {
 .hotbar-container {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 20px;
   justify-content: center;
   width: 100%;
   position: absolute;
-  bottom: 2vh;
+  bottom: 5vh;
 }
 
 .hotbar-item-slot {
-  @extend .inventory-slot;
   width: $gridSize;
   height: $gridSize;
 }
@@ -557,12 +605,11 @@ button:active {
 }
 
 // item notifications
-
 .item-notification-container {
   display: flex;
   overflow-x: scroll;
   flex-wrap: nowrap;
-  gap: 2px;
+  gap: 12px;
   position: absolute;
   bottom: 20vh;
   left: 50%;
@@ -588,18 +635,22 @@ button:active {
 }
 
 .item-notification-item-box {
-  @extend .inventory-slot;
   height: $gridSize;
   width: $gridSize;
 }
 
-.item-notification-item-box img {
-  width: 50px;
-  height: 50px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.weight-bar {
+  background: #101010;
+  border: 1px solid var(--color-border);
+  height: 0.8vh;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 3px;
+}
+
+.weight-bar-fill {
+  background: var(--color-primary) !important;
+  transition: background 0.3s ease, width 0.3s ease;
 }
 
 .durability-bar {
@@ -608,12 +659,8 @@ button:active {
   overflow: hidden;
 }
 
-.weight-bar {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px inset rgba(0, 0, 0, 0.1);
-  height: 0.8vh;
-  border-radius: 5%;
-  overflow: hidden;
+.durability-bar .weight-bar-fill {
+  background: var(--color-text) !important;
 }
 
 .transition-fade-enter {
@@ -634,8 +681,30 @@ button:active {
   transition: opacity 200ms;
 }
 
+.transition-fadezoom-enter {
+  opacity: 0;
+  scale: 0;
+}
+
+.transition-fadezoom-enter-active {
+  opacity: 1;
+  scale: 1;
+  transition: opacity 200ms, scale 200ms;
+}
+
+.transition-fadezoom-exit {
+  opacity: 1;
+  scale: 1;
+}
+
+.transition-fadezoom-exit-active {
+  opacity: 0;
+  scale: 0;
+  transition: opacity 200ms, scale 200ms;
+}
+
 .transition-slide-up-enter {
-  transform: translateY(200px);
+  transform: translateY(200px)
 }
 
 .transition-slide-up-enter-active {
@@ -650,4 +719,462 @@ button:active {
 .transition-slide-up-exit-active {
   transform: translateY(200px);
   transition: all 200ms;
+}
+
+.miring::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  box-sizing: border-box;
+  pointer-events: none;
+  background: none;
+}
+
+.text-berjarak {
+  letter-spacing: 2.5px;
+  font-optical-sizing: auto;
+}
+
+.dragShopItemText {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
+  font-size: 17px;
+  margin-bottom: .2rem;
+}
+
+.shop-item-added {
+  animation: itemAddedToCart 0.6s ease-out;
+  transform: scale(1.1);
+}
+
+@keyframes itemAddedToCart {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(var(--color-primary-rgb), 0.7);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px 5px rgba(var(--color-primary-rgb), 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(var(--color-primary-rgb), 0);
+  }
+}
+
+// Shop item cursor styling
+.inventory-slot.shop-item {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.inventory-slot.shop-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inventory-slot.shop-item:active {
+  transform: translateY(0);
+  transition: all 0.1s ease;
+}
+
+.inventory-slot.shop-item::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background: rgba(var(--color-primary-rgb), 0.8);
+  border-radius: 50%;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.inventory-slot.shop-item:hover::before {
+  opacity: 1;
+}
+
+.alternativeShopText {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 200;
+  font-size: 11px;
+}
+
+.iconText {
+  font-size: 10px;
+  border-radius: 2px;
+}
+
+.iconText:hover {
+  background-color: rgba(122, 122, 122, 0.507);
+  border: 1px solid rgba(122, 122, 122, 0.918);
+}
+
+.no-scrollbar{
+  padding-right: 4.5px;
+  &::-webkit-scrollbar {
+    width: .25rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #101010;
+    border-radius: .25rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: .5rem;
+  }
+}
+
+.kasimatiscroll::-webkit-scrollbar {
+  display: none;
+}
+
+.box-cart {
+  background-color: #8a8a8a17;
+  border-radius: 6px;
+  position: relative;
+  border: 1px solid #8a8a8a54;
+}
+
+.playerSelectionContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.trashCanIco {
+  position: relative;
+  left: .75rem;
+  font-size: 20px;
+}
+
+.trashCanIco:hover {
+  color: var(--color-error);
+}
+
+// rarity colors using CSS custom properties
+.rarity-common {
+  color: var(--color-common);
+  font-size: 10px;
+}
+
+.rarity-uncommon {
+  color: var(--color-uncommon);
+  font-size: 10px;
+}
+
+.rarity-rare {
+  color: var(--color-rare);
+  font-size: 10px;
+}
+
+.rarity-epic {
+  color: var(--color-epic);
+  font-size: 10px;
+}
+
+.rarity-mythic {
+  color: var(--color-mythic);
+  font-size: 10px;
+}
+
+.quantText {
+  position: relative;
+  padding: 0;
+  top: 1.25rem;
+}
+
+.selectItemFirst {
+  align-self: center;
+  margin-top: 4.5rem;
+}
+
+.someCircleShitToSayThis {
+  background-color: #292929;
+}
+
+// inventory slots with theme support
+.common {
+  background-color: $secondaryColor;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2.5%;
+  image-rendering: -webkit-optimize-contrast;
+  position: relative;
+  background-size: 7vh;
+  color: $textColor;
+  transition: box-shadow 200ms ease-in-out;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2.5%;
+    background: linear-gradient(to top left, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 15%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2.5%;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 0 0 .5px rgba(255, 255, 255, 0.25), 
+                0 0 15px 0.5px rgba(255, 255, 255, 0.188) inset, 
+                0 0 20px 10px rgba(255, 255, 255, 0) inset;
+    background: linear-gradient(to top left, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 15%);
+    -webkit-mask: linear-gradient(to top left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 1) 15%);
+    mask: linear-gradient(to top left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 1) 15%);
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 .5px rgba(255, 255, 255, 0.25), 
+                0 0 30px 0.5px rgba(255, 255, 255, 0.188) inset, 
+                0 0 25px 10px rgba(255, 255, 255, 0) inset;
+  }
+}
+
+.uncommon {
+  background-color: $secondaryColor;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2.5%;
+  image-rendering: -webkit-optimize-contrast;
+  position: relative;
+  background-size: 7vh;
+  color: $textColor;
+  transition: box-shadow 200ms ease-in-out;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2.5%;
+    background: linear-gradient(to top left, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 15%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2.5%;
+    border: 1px solid var(--color-uncommon);
+    box-shadow: 0 0 0 .5px var(--color-uncommon), 
+                0 0 15px 0.5px var(--color-uncommon) inset, 
+                0 0 20px 10px transparent inset;
+    background: linear-gradient(to top left, var(--color-uncommon), transparent 15%);
+    opacity: 0.3;
+    -webkit-mask: linear-gradient(to top left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 1) 15%);
+    mask: linear-gradient(to top left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 1) 15%);
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 .5px var(--color-uncommon), 
+                0 0 30px 0.5px var(--color-uncommon) inset, 
+                0 0 25px 10px transparent inset;
+  }
+}
+
+.ingredient {
+  background-color: $secondaryColor;
+  background-repeat: no-repeat;
+  background-position: center;
+  image-rendering: -webkit-optimize-contrast;
+  position: relative;
+  background-size: 4.5vh;
+}
+
+.rare {
+  background-color: $secondaryColor;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2.5%;
+  image-rendering: -webkit-optimize-contrast;
+  position: relative;
+  background-size: 7vh;
+  color: $textColor;
+  transition: box-shadow 200ms ease-in-out;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2.5%;
+    background: linear-gradient(to top left, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 15%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2.5%;
+    border: 1px solid var(--color-rare);
+    box-shadow: 0 0 0 .5px var(--color-rare), 
+                0 0 15px 0.5px var(--color-rare) inset, 
+                0 0 20px 10px transparent inset;
+    background: linear-gradient(to top left, var(--color-rare), transparent 15%);
+    opacity: 0.3;
+    -webkit-mask: linear-gradient(to top left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 1) 15%);
+    mask: linear-gradient(to top left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 1) 15%);
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 .5px var(--color-rare), 
+                0 0 30px 0.5px var(--color-rare) inset, 
+                0 0 25px 10px transparent inset;
+  }
+}
+
+.epic {
+  background-color: $secondaryColor;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2.5%;
+  image-rendering: -webkit-optimize-contrast;
+  position: relative;
+  background-size: 7vh;
+  color: $textColor;
+  transition: box-shadow 200ms ease-in-out;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2.5%;
+    background: linear-gradient(to top left, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 15%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2.5%;
+    border: 1px solid var(--color-epic);
+    box-shadow: 0 0 0 .5px var(--color-epic), 
+                0 0 15px 0.5px var(--color-epic) inset, 
+                0 0 20px 10px transparent inset;
+    background: linear-gradient(to top left, var(--color-epic), transparent 15%);
+    opacity: 0.3;
+    -webkit-mask: linear-gradient(to top left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 1) 15%);
+    mask: linear-gradient(to top left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 1) 15%);
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 .5px var(--color-epic), 
+                0 0 30px 0.5px var(--color-epic) inset, 
+                0 0 25px 10px transparent inset;
+  }
+}
+
+.mythic {
+  background-color: $secondaryColor;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 2.5%;
+  image-rendering: -webkit-optimize-contrast;
+  position: relative;
+  background-size: 7vh;
+  color: $textColor;
+  transition: box-shadow 200ms ease-in-out;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2.5%;
+    background: linear-gradient(to top left, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0) 15%);
+    pointer-events: none;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2.5%;
+    border: 1px solid var(--color-mythic);
+    box-shadow: 0 0 0 .5px var(--color-mythic), 
+                0 0 15px 0.5px var(--color-mythic) inset, 
+                0 0 20px 10px transparent inset;
+    background: linear-gradient(to top left, var(--color-mythic), transparent 15%);
+    opacity: 0.3;
+    -webkit-mask: linear-gradient(to top left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 1) 15%);
+    mask: linear-gradient(to top left, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 1) 15%);
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: 0 0 0 .5px var(--color-mythic), 
+                0 0 30px 0.5px var(--color-mythic) inset, 
+                0 0 25px 10px transparent inset;
+  }
+}
+
+.inputRange{
+  -webkit-appearance: none;
+  width: 95%;
+  height: 5px;
+  border-radius: 5px;
+  background: var(--secondary-color);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.inputRange::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+}
+
+.geistFont {
+  font-family: $mainFont;
 }

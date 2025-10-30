@@ -12,29 +12,29 @@ EmsNotified = false
 CanLeaveBed = true
 OnPainKillers = false
 
-local sentDeathAlert = false
+-- local sentDeathAlert = false
 
-CreateThread(function()
-    while true do
-        local ped = PlayerPedId()
-        local health = GetEntityHealth(ped)
+-- CreateThread(function()
+--     while true do
+--         local ped = PlayerPedId()
+--         local health = GetEntityHealth(ped)
 
-        if health <= 0 and not sentDeathAlert then
-            local coords = GetEntityCoords(ped)
-            exports.yseries:SendCompanyMessage(
-                'ambulance',
-                'A citizen is in need of medical assistance',
-                { x = coords.x, y = coords.y },
-                false
-            )
-            sentDeathAlert = true
-        elseif health > 0 then
-            sentDeathAlert = false
-        end
+--         if health <= 0 and not sentDeathAlert then
+--             local coords = GetEntityCoords(ped)
+--             exports.yseries:SendCompanyMessage(
+--                 'ambulance',
+--                 'A citizen is in need of medical assistance',
+--                 { x = coords.x, y = coords.y },
+--                 false
+--             )
+--             sentDeathAlert = true
+--         elseif health > 0 then
+--             sentDeathAlert = false
+--         end
 
-        Wait(500) -- periksa setiap 0.5 detik
-    end
-end)
+--         Wait(500) -- periksa setiap 0.5 detik
+--     end
+-- end)
 
 ---Notifies EMS of a injury at a location
 ---@param coords vector3
@@ -74,6 +74,17 @@ RegisterNetEvent('hospital:client:ambulanceAlert', function(coords, text)
             return
         end
     end
+end)
+
+RegisterNetEvent('hospital:client:requestEmsDispatch', function(text)
+    if GetInvokingResource() then return end
+    local coords = GetEntityCoords(PlayerPedId())
+    local streets = qbx.getStreetName(coords)
+    exports['wasabi_mdt']:SendPremadeDispatch('civ_down', {
+        location = streets.main .. (streets.cross and ' | ' .. streets.cross or 'Unknown'),
+        coords = { x = coords.x, y = coords.y, z = coords.z },
+        description = text or 'Laporan Warga Pingsan!'
+    })
 end)
 
 ---Revives player, healing all injuries

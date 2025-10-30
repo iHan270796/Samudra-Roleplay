@@ -1,65 +1,72 @@
-# ox_inventory
+# 📦 Adding Rarity and Armor Items
 
-A complete inventory system for FiveM, implementing items, weapons, shops, and more without any strict framework dependency.
+This guide explains how to add rarity tiers and create armor items for your inventory system.
 
-![](https://img.shields.io/github/downloads/overextended/ox_inventory/total?logo=github)
-![](https://img.shields.io/github/downloads/overextended/ox_inventory/latest/total?logo=github)
-![](https://img.shields.io/github/contributors/overextended/ox_inventory?logo=github)
-![](https://img.shields.io/github/v/release/overextended/ox_inventory?logo=github)
+---
 
-## 📚 Documentation
+## 🏷️ Rarity System
 
-https://overextended.dev/ox_inventory
+Items can have an optional `rarity` field to visually differentiate their tier or value in-game.
 
-## 💾 Download
+### 🔹 Available Rarity Types
 
-https://github.com/overextended/ox_inventory/releases/latest/download/ox_inventory.zip
+- `common`
+- `uncommon`
+- `rare`
+- `epic`
+- `mythic`
 
-## Supported frameworks
+### ✅ Example: Creating an Item with Rarity
 
-We do not guarantee compatibility or support for third-party resources.
+```lua
+['armour'] = {
+    label = 'Bulletproof Vest',
+    weight = 3000,
+    stack = false,
+    rarity = 'epic', -- Rarity tier
+    value = 100,
+    client = {
+        anim = { dict = 'clothingshirt', clip = 'try_shirt_positive_d' },
+        usetime = 3500
+    }
+}
+```
 
-- [ox_core](https://github.com/overextended/ox_core)
-- [esx](https://github.com/esx-framework/esx_core)
-- [qbox](https://github.com/Qbox-project/qbx_core)
-- [nd_core](https://github.com/ND-Framework/ND_Core)
+## 🛡️ Armor Items
 
-## ✨ Features
+Armor plates are now used, Spawn in "armor_plate" and "armour" put "armour" in your armor slot and then right click and add or remove plates to your liking as long as in inventory
 
-- Server-side security ensures interactions with items, shops, and stashes are all validated.
-- Logging for important events, such as purchases, item movement, and item creation or removal.
-- Supports player-owned vehicles, licenses, and group systems implemented by frameworks.
-- Fully synchronised, allowing multiple players to [access the same inventory](https://user-images.githubusercontent.com/65407488/230926091-c0033732-d293-48c9-9d62-6f6ae0a8a488.mp4).
 
-### Items
+## Define Custom Shop For Blackmarket Or Use Black Money.
 
-- Inventory items are stored per-slot, with customisable metadata to support item uniqueness.
-- Overrides default weapon-system with weapons as items.
-- Weapon attachments and ammo system, including special ammo types.
-- Durability, allowing items to be depleted or removed overtime.
-- Internal item system provides secure and easy handling for item use effects.
-- Compatibility with 3rd party framework item registration.
+Define item first:
 
-### Shops
+```lua
+['black_money'] = {
+    label = 'Dirty Money',
+    weight = 0,
+    stack = true,
+    rarity = 'rare',
+}
+```
 
-- Restricted access based on groups and licenses.
-- Support different currency for items (black money, poker chips, etc).
+Then define shop in custom script using currency argument:
 
-### Stashes
+```lua
+exports.ox_inventory:RegisterShop('TestShop', {
+    name = 'Test shop',
+    inventory = {
+        { name = 'burger', price = 10, currency = "black_money" },
+        { name = 'water', price = 10,  currency = "black_money" },
+        { name = 'cola', price = 10,  currency = "black_money" },
+    },
+    locations = {
+        vec3(223.832962, -792.619751, 30.695190),
+    },
+    groups = {
+        police = 0
+    },
+})
+```
 
-- Personal stashes, linking a stash with a specific identifier or creating per-player instances.
-- Restricted access based on groups.
-- Registration of new stashes from any resource.
-- Containers allow access to stashes when using an item, like a paperbag or backpack.
-- Access gloveboxes and trunks for any vehicle.
-- Random item generation inside dumpsters and unowned vehicles.
-
-## Copyright
-
-Copyright © 2024 Overextended <https://github.com/overextended>
-
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+This make shop display "Pay dirty money" instead of pay bank and pay cash.

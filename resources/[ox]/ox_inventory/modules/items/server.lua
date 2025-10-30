@@ -183,6 +183,13 @@ function Items.Metadata(inv, item, metadata, count)
 			local registered = type(metadata.registered) == 'string' and metadata.registered or inv?.player?.name
 			metadata.registered = registered
 			metadata.serial = GenerateSerial(metadata.serial)
+			metadata.type = 'weapon'
+			if item.rarity then
+				metadata.rarity = item.rarity
+			end
+			if not metadata.rarity then
+				metadata.rarity = 'common'
+			end
 		end
 
 		if item.hash == `WEAPON_PETROLCAN` or item.hash == `WEAPON_HAZARDCAN` or item.hash == `WEAPON_FERTILIZERCAN` or item.hash == `WEAPON_FIREEXTINGUISHER` then
@@ -210,6 +217,22 @@ function Items.Metadata(inv, item, metadata, count)
 			end
 		end
 
+		if item.backpack then
+			metadata.id = GenerateSerial(metadata.id)
+		end
+
+		if item.name == 'armour' then
+		   metadata.plates = metadata.plates
+		   metadata.id = GenerateSerial(metadata.id)
+		end
+
+		for k, v in pairs(Config["Items"]["CustomMetadata"]) do
+			if item.name ~= v then
+				if not metadata.rarity then
+					metadata.rarity = item.rarity or 'common'
+				end
+			end
+		end
 		if not metadata.durability then
 			metadata = setItemDurability(ItemList[item.name], metadata)
 		end

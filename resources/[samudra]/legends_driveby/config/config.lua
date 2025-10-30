@@ -48,6 +48,10 @@ Config.Vehicles = { -- Settings for specific vehicle (right wheeled vehicles, ca
     }
 }
 
+Config.ForceFPS = true -- Force first person view when in driveby mode -> false for third person
+Config.ForceFPSInVehicle = false -- Force first person view when shooting from vehicles (even when not in driveby mode)
+Config.DisableVehicleShooting = false -- Disable shooting from inside of vehicles when not in driveby mode
+
 Config.GlobalSettings = true -- If true, driveby would be able to be used in all vehicles, if false only whitelisted vehicles would be able to use driveby
 Config.WhitelistMode = true -- True will only allow whitelisted vehicles to use driveby, false will allow all vehicles except blacklisted vehicles to use driveby
 Config.WhitelistedVehicles = {

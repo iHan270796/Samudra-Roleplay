@@ -372,7 +372,7 @@ end)
 ---- ** Create Threads ** ----
 CreateThread(function()
   exports.ox_target:addBoxZone({
-    coords = vec3(37.26, -344.17, 39.14),
+    coords = vec3(459.2964, -1008.1379, 28.2595),
     size = vec3(1.5, 1.6, 3.2),
     rotation = 102.0,
     debug = false,

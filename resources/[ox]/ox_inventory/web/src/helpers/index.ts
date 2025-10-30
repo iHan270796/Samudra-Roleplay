@@ -4,6 +4,7 @@ import { store } from '../store';
 import { Items } from '../store/items';
 import { imagepath } from '../store/imagepath';
 import { fetchNui } from '../utils/fetchNui';
+import { json } from 'stream/consumers';
 
 export const canPurchaseItem = (item: Slot, inventory: { type: Inventory['type']; groups: Inventory['groups'] }) => {
   if (inventory.type !== 'shop' || !isSlotWithItem(item)) return true;
@@ -61,21 +62,100 @@ export const canCraftItem = (item: Slot, inventoryType: string) => {
     if (count >= 1) {
       if (globalItem && globalItem.count >= count) return false;
     }
-
     const hasItem = leftInventory.items.find((playerItem) => {
       if (isSlotWithItem(playerItem) && playerItem.name === item) {
         if (count < 1) {
           if (playerItem.metadata?.durability >= count * 100) return true;
-
           return false;
         }
       }
     });
-
     return !hasItem;
   });
-
   return remainingItems.length === 0;
+};
+export const getCraftableAmount = (item: Slot, inventoryType: string) => {
+  if (!isSlotWithItem(item) || inventoryType !== 'crafting') return 0;
+  if (!item.ingredients) return Infinity; // Jika tidak ada bahan, bisa dibuat tanpa batas
+
+  const leftInventory = store.getState().inventory.leftInventory;
+  const ingredientItems = Object.entries(item.ingredients);
+
+  let maxCraftable = Infinity;
+
+  ingredientItems.forEach(([ingredientName, requiredCount]) => {
+    const globalItem = Items[ingredientName];
+    let availableCount = 0;
+
+    if (globalItem) {
+      availableCount += globalItem.count;
+    }
+
+    leftInventory.items.forEach((playerItem) => {
+      if (isSlotWithItem(playerItem) && playerItem.name === ingredientName) {
+        if (requiredCount < 1) {
+          availableCount += Math.floor((playerItem.metadata?.durability ?? 0) / 100);
+        } else {
+          availableCount += playerItem.count;
+        }
+      }
+    });
+
+    maxCraftable = Math.min(maxCraftable, Math.floor(availableCount / requiredCount));
+  });
+
+  return maxCraftable;
+};
+export const calculateCanCraftItem = (item: Slot, inventoryType: string) => {
+  if (!isSlotWithItem(item) || inventoryType !== 'crafting') return 0;
+  if (!item.ingredients) return Infinity; // Jika tidak ada bahan, bisa dibuat tanpa batas
+
+  const leftInventory = store.getState().inventory.leftInventory;
+  const ingredientItems = Object.entries(item.ingredients);
+
+  let maxCraftable = Infinity;
+
+  ingredientItems.forEach(([ingredientName, requiredCount]) => {
+    const globalItem = Items[ingredientName];
+    let availableCount = 0;
+
+    if (globalItem) {
+      availableCount += globalItem.count;
+    }
+
+    leftInventory.items.forEach((playerItem) => {
+      if (isSlotWithItem(playerItem) && playerItem.name === ingredientName) {
+        if (requiredCount < 1) {
+          availableCount += Math.floor((playerItem.metadata?.durability ?? 0) / 100);
+        } else {
+          availableCount += playerItem.count;
+        }
+      }
+    });
+
+    maxCraftable = Math.min(maxCraftable, Math.floor(availableCount / requiredCount));
+  });
+  return maxCraftable;
+}
+
+export const findAvailableMainSlot = (items: Slot[], invtype: string) => {
+  if (invtype === 'player') {
+    // For player inventory, only return slots 10+ (main inventory, not utility slots)
+    return items.slice(9).find((target) => target.name === undefined);
+  } else {
+    // For other inventory types, use all slots
+    return items.find((target) => target.name === undefined);
+  };
+};
+
+
+export const findAvailableSlot2 = (item: Slot, data: ItemData, items: Slot[], targetInventoryType?: string) => {
+  // Only skip first 9 slots for player inventory (left inventory)
+  if (targetInventoryType === 'player') {
+    return items.slice(9).find((target) => target.name === undefined);
+  }
+  // For all other inventories (right inventory), use all slots
+  return items.find((target) => target.name === undefined);
 };
 
 export const isSlotWithItem = (slot: Slot, strict: boolean = false): slot is SlotWithItem =>
@@ -85,29 +165,59 @@ export const isSlotWithItem = (slot: Slot, strict: boolean = false): slot is Slo
 export const canStack = (sourceSlot: Slot, targetSlot: Slot) =>
   sourceSlot.name === targetSlot.name && isEqual(sourceSlot.metadata, targetSlot.metadata);
 
-export const findAvailableSlot = (item: Slot, data: ItemData, items: Slot[]) => {
-  if (!data.stack) return items.find((target) => target.name === undefined);
+export const findAvailableSlot = (item: Slot, data: ItemData, items: Slot[], invtype: string) => {
+  if (invtype === 'player') {
+    // Skip utility slots (1-9) for player inventory
+    const mainInventoryItems = items.slice(9); // This gets slots 10+
+    
+    if (!data.stack) return mainInventoryItems.find((target) => target.name === undefined);
 
-  const stackableSlot = items.find((target) => target.name === item.name && isEqual(target.metadata, item.metadata));
+    const stackableSlot = mainInventoryItems.find((target) => 
+      target.name === item.name && 
+      isEqual(target.metadata, item.metadata)
+    );
 
-  return stackableSlot || items.find((target) => target.name === undefined);
+    return stackableSlot || mainInventoryItems.find((target) => target.name === undefined);
+  } else {
+    if (!data.stack) return items.find((target) => target.name === undefined);
+
+    const stackableSlot = items.find((target) => 
+      target.name === item.name && 
+      isEqual(target.metadata, item.metadata)
+    );
+
+    return stackableSlot || items.find((target) => target.name === undefined);
+  }
 };
 
 export const getTargetInventory = (
   state: State,
   sourceType: Inventory['type'],
   targetType?: Inventory['type']
-): { sourceInventory: Inventory; targetInventory: Inventory } => {
-  const getInv = (type: Inventory['type'] | undefined) => {
-    if (type === InventoryType.PLAYER) return state.leftInventory;
-    if (type === InventoryType.CONTAINER) return state.otherInventory;
-    return state.rightInventory;
-  };
-  return {
-    sourceInventory: getInv(sourceType),
-    targetInventory: getInv(targetType),
-  };
-};
+): { sourceInventory: Inventory; targetInventory: Inventory } => ({
+  sourceInventory: sourceType === InventoryType.PLAYER ? state.leftInventory : sourceType === InventoryType.BACKPACK ? state.leftInventoryBottom : state.rightInventory,
+  targetInventory: targetType
+    ? targetType === InventoryType.PLAYER ? state.leftInventory 
+      : targetType === InventoryType.BACKPACK ? state.leftInventoryBottom 
+      : state.rightInventory
+    : sourceType === InventoryType.PLAYER ? state.rightInventory 
+      : sourceType === InventoryType.BACKPACK ? state.leftInventoryBottom 
+      : state.leftInventory,
+});
+// export const getTargetInventory = (
+//   state: State,
+//   sourceType: Inventory['type'],
+//   targetType?: Inventory['type']
+// ): { sourceInventory: Inventory; targetInventory: Inventory } => ({
+//   sourceInventory: sourceType === InventoryType.PLAYER ? state.leftInventory : state.rightInventory,
+//   targetInventory: targetType
+//     ? targetType === InventoryType.PLAYER
+//       ? state.leftInventory
+//       : state.rightInventory
+//     : sourceType === InventoryType.PLAYER
+//     ? state.rightInventory
+//     : state.leftInventory,
+// });
 
 export const itemDurability = (metadata: any, curTime: number) => {
   // sorry dunak

@@ -18,6 +18,7 @@ export const moveSlotsReducer: CaseReducer<
   const curTime = Math.floor(Date.now() / 1000);
   const fromItem = sourceInventory.items[fromSlot.slot - 1];
 
+  // Create new object instead of mutating the existing one
   targetInventory.items[toSlot.slot - 1] = {
     ...fromItem,
     count: count,

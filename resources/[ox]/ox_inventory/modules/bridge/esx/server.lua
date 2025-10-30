@@ -13,15 +13,14 @@ end)
 local ESX
 
 SetTimeout(500, function()
-	lib.checkDependency('es_extended', '1.6.0', true)
+    lib.checkDependency('es_extended', '1.6.0', true)
 
 	ESX = exports.es_extended:getSharedObject()
-	local customInventory = ESX.GetConfig().CustomInventory
+    local customInventory = ESX.GetConfig().CustomInventory
 
 	if customInventory ~= nil and customInventory ~= "ox" then
-		error(
-			'es_extended has not been configured to enable support for ox_inventory!\nEnsure Config.CustomInventory has been set to "ox" in your es_extended resource config.')
-	end
+        error('es_extended has not been configured to enable support for ox_inventory!\nEnsure Config.CustomInventory has been set to "ox" in your es_extended resource config.')
+    end
 
 	server.UseItem = ESX.UseItem
 	server.GetPlayerFromId = ESX.GetPlayerFromId
@@ -52,10 +51,10 @@ end
 function server.syncInventory(inv)
 	local accounts = Inventory.GetAccountItemCounts(inv)
 
-	if accounts then
-		local player = server.GetPlayerFromId(inv.id)
-		player.syncInventory(inv.weight, inv.maxWeight, inv.items, accounts)
-	end
+    if accounts then
+        local player = server.GetPlayerFromId(inv.id)
+        player.syncInventory(inv.weight, inv.maxWeight, inv.items, accounts)
+    end
 end
 
 ---@diagnostic disable-next-line: duplicate-set-field
@@ -106,21 +105,10 @@ function server.convertInventory(playerId, items)
 
 			if item and count > 0 then
 				local metadata = Items.Metadata(playerId, item, false, count)
-				local weight = Inventory.SlotWeight(item, { count = count, metadata = metadata })
+				local weight = Inventory.SlotWeight(item, {count=count, metadata=metadata})
 				totalWeight = totalWeight + weight
 				slot += 1
-				returnData[slot] = {
-					name = item.name,
-					label = item.label,
-					weight = weight,
-					slot = slot,
-					count = count,
-					description =
-						item.description,
-					metadata = metadata,
-					stack = item.stack,
-					close = item.close
-				}
+				returnData[slot] = {name = item.name, label = item.label, weight = weight, slot = slot, count = count, description = item.description, metadata = metadata, stack = item.stack, close = item.close}
 			end
 		end
 
@@ -136,31 +124,5 @@ function server.isPlayerBoss(playerId)
 end
 
 MySQL.ready(function()
-	MySQL.insert('INSERT IGNORE INTO `licenses` (`type`, `label`) VALUES (?, ?)', { 'weapon', 'Weapon License' })
+	MySQL.insert('INSERT IGNORE INTO `licenses` (`type`, `label`) VALUES (?, ?)', { 'weapon', 'Weapon License'})
 end)
-
----@diagnostic disable-next-line: duplicate-set-field
-function server.getAccountMoney(playerId, typeAccount)
-	if typeAccount == 'cash' then
-		typeAccount = 'money'
-	end
-	local xPlayer = ESX.GetPlayerFromId(playerId)
-
-	if xPlayer then
-		return xPlayer.getAccount(typeAccount).money
-	end
-
-	return nil
-end
-
----@diagnostic disable-next-line: duplicate-set-field
-function server.removeAccountMoney(playerId, typeAccount, amount)
-	if typeAccount == 'cash' then
-		typeAccount = 'money'
-	end
-	local xPlayer = ESX.GetPlayerFromId(playerId)
-
-	if xPlayer then
-		xPlayer.removeAccountMoney(typeAccount, amount)
-	end
-end

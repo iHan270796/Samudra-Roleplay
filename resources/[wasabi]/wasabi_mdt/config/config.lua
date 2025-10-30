@@ -33,9 +33,9 @@ Config.OpenMDT = {
         name = 'mdt_tablet', -- Name of the item to use to open the panel
     },
     command = {
-        enabled = true,  -- Enable/disable both command & keybind
+        enabled = false,  -- Enable/disable both command & keybind
         cmd = 'mdt',     -- /mdt | Open the MDT panel
-        keybind = false, -- F4 | Open the MDT panel | Remove or set to false to disable
+        keybind = 'f4', -- F4 | Open the MDT panel | Remove or set to false to disable
     },
 }
 
@@ -146,9 +146,9 @@ Config.Cameras = {
 
 Config.IgnoredJobs = { -- Jobs that will not be shown in the MDT
     "taxi",
-    "bloods",
-    "ballas",
-    "vagos",
+    -- "bloods",
+    -- "ballas",
+    -- "vagos",
 }
 
 Config.DispatchTypes = {
@@ -161,7 +161,8 @@ Config.DispatchTypes = {
     ['robbery'] = { label = 'Robbery', icon = 'dollar' },
     ['shooting'] = { label = 'Shots Fired', icon = 'exclamation-triangle' },
     ['officer_down'] = { label = 'Officer Down', icon = 'shield' },
-    ['panic'] = { label = 'Panic Button', icon = 'exclamation-circle' }
+    ['panic'] = { label = 'Panic Button', icon = 'exclamation-circle' },
+    ['civ_down'] = { label = 'Warga Pingsan', icon = 'user-injured' }
 }
 
 Config.PremadeDispatches = {
@@ -249,6 +250,13 @@ Config.PremadeDispatches = {
         title = 'Explosion Reported',
         description = 'An explosion has occurred, requesting immediate assistance',
         priority = 5,
+        location = 'Building',
+    },
+    ['civ_down'] = {
+        type = 'civ_down',
+        title = 'Warga Pingsan',
+        description = 'Ada warga pingsan membutuhkan bantuan medis!',
+        priority = 1,
         location = 'Building',
     }
 }

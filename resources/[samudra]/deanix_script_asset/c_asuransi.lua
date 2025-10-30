@@ -70,7 +70,10 @@ Config.IgnoreVehicles = {
 
     --job kuli bangunan
     `17mov_BuilderCar`,
-    `17mov_Mixer`
+    `17mov_Mixer`,
+
+    --job tukangjahit
+    `bison`
 }
 
 Config.SafeZones = {

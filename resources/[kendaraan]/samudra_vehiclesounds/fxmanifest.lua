@@ -43,6 +43,7 @@ data_file 'AUDIO_GAMEDATA'  'audioconfig/gtaspanov10_game.dat'
 data_file 'AUDIO_GAMEDATA'  'audioconfig/shonen_game.dat'
 data_file 'AUDIO_GAMEDATA'  'audioconfig/veyronsound_game.dat'
 data_file 'AUDIO_GAMEDATA'  'audioconfig/sestov10_game.dat'
+data_file 'AUDIO_GAMEDATA'  'audioconfig/sfxmosquito_game.dat'
 
 --------------------------------------------------------------- Audio Sound Data
 
@@ -73,6 +74,7 @@ data_file 'AUDIO_SOUNDDATA' 'audioconfig/sestov10_sounds.dat'
 data_file 'AUDIO_SOUNDDATA' 'audioconfig/gtaspanov10_sounds.dat'
 data_file 'AUDIO_SOUNDDATA' 'audioconfig/shonen_sounds.dat'
 data_file 'AUDIO_SOUNDDATA' 'audioconfig/veyronsound_sounds.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/sfxmosquito_sounds.dat'
 
 --------------------------------------------------------------- Audio Synthersizer Data
 
@@ -109,3 +111,4 @@ data_file 'AUDIO_WAVEPACK' 'sfx/dlc_veyronsound'
 data_file 'AUDIO_WAVEPACK' 'sfx/dlc_shonen'
 data_file 'AUDIO_WAVEPACK' 'sfx/dlc_sestov10'
 data_file 'AUDIO_WAVEPACK' 'sfx/dlc_gtaspanov10'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_mosquito'
