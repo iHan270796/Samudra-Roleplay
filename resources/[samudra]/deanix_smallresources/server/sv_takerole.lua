@@ -2,6 +2,7 @@ local allowedRoles = {
     "1420785589552287884", -- admin
     "1033975598177079337", -- helper
     "1033972404868878438", -- high admin
+    "1033974634724466779", -- warga
 }
 
 local function GetLicense(src)

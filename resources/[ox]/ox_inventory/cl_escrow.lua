@@ -5,13 +5,25 @@ local QBCore = nil
 local cachedTheme = nil
 local previousArmor = GetPedArmour(PlayerPedId())
 
--- Detecteer framework
 CreateThread(function()
     Wait(5000)
     if GetResourceState("qb-core") == "started" then
         QBCore = exports["qb-core"]:GetCoreObject()
     elseif GetResourceState("es_extended") == "started" then
         ESX = exports["es_extended"]:getSharedObject()
+    end
+end)
+
+CreateThread(function()
+    local lastArmor = GetPedArmour(PlayerPedId())
+    while true do
+        Wait(1500)
+        local ped = PlayerPedId()
+        local currentArmor = GetPedArmour(ped)
+        if currentArmor ~= lastArmor then
+            lastArmor = currentArmor
+            TriggerServerEvent('armor:maybeRemovePlate', currentArmor)
+        end
     end
 end)
 
@@ -98,6 +110,52 @@ function ClientFuncs.CheckParachuteItem(item, removed)
         GiveWeaponToPed(ped, `GADGET_PARACHUTE`, 1, false, true)
     end
 end
+
+function ClientFuncs.SendGiveUI(data)
+    if not data or not data.playerlist then return end
+
+    local nearby = {}
+
+    for _, player in ipairs(data.playerlist) do
+        local id
+        if type(player) == "table" then
+            id = player.id or player.source or player.serverId
+        else
+            id = tonumber(player)
+        end
+
+        if id then
+            table.insert(nearby, { label = ('[%s] Warga'):format(id), value = tostring(id) })
+        end
+    end
+
+    if #nearby == 1 then
+        local targetId = tonumber(nearby[1].value)
+        local input = lib.inputDialog('Give Item', {
+            { type = 'number', label = 'Jumlah', default = data.count or 1, min = 1 }
+        })
+
+        if not input or not input[1] then return end
+        local count = tonumber(input[1])
+        if count and count > 0 then
+            exports['ox_inventory']:giveItemToTarget(targetId, data.slot, count)
+        end
+        return
+    end
+
+    local dialog = lib.inputDialog('Give Item', {
+        { type = 'select', label = 'Pilih Warga di Sekitar', options = nearby },
+        { type = 'number', label = 'Jumlah', default = data.count or 1, min = 1 }
+    })
+
+    if not dialog then return end
+    local targetId = tonumber(dialog[1])
+    local count = tonumber(dialog[2])
+
+    if not targetId or not count or count < 1 then return end
+    exports['ox_inventory']:giveItemToTarget(targetId, data.slot, count)
+end
+
 
 -- Inventory instellingen
 function ClientFuncs.SetupInventorySettings()

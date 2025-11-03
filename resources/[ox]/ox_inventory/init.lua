@@ -46,14 +46,18 @@ if IsDuplicityVersion() then
         randomloot = GetConvarInt('inventory:randomloot', 1) == 1,
         evidencegrade = GetConvarInt('inventory:evidencegrade', 2),
         trimplate = GetConvarInt('inventory:trimplate', 1) == 1,
+        vehicleloot = json.decode(GetConvar('inventory:vehicleloot', [[
+			[
+			]
+		]])),
         dumpsterloot = json.decode(GetConvar('inventory:dumpsterloot', [[
 			[
-				["aluminum", 1, 4],
-	            ["metalscrap", 1, 4],
-	            ["steel", 1, 4],
-	            ["plastic", 1, 4],
-                ["glass", 1, 4],
-                ["rubber", 1, 4]
+				["aluminum", 1, 3],
+	            ["metalscrap", 1, 3],
+	            ["steel", 1, 3],
+	            ["plastic", 1, 3],
+                ["glass", 1, 3],
+                ["rubber", 1, 3]
 			]
 		]])),
     }

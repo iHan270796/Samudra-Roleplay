@@ -151,6 +151,17 @@ RegisterNetEvent('hospital:client:RevivePlayer', function()
     end
 end)
 
+RegisterNetEvent('hospital:client:HealInjuries', function()
+    local ped = cache.ped
+    local maxHealth = GetEntityMaxHealth(ped)
+
+    SetEntityHealth(ped, maxHealth)
+
+    ClearPedBloodDamage(ped)
+    ResetPedMovementClipset(ped, 0.0)
+    SetPlayerSprint(cache.playerId, true)
+end)
+
 ---Use bandage on nearest player to treat their wounds.
 ---Intended to be invoked by client or server.
 RegisterNetEvent('hospital:client:TreatWounds', function()

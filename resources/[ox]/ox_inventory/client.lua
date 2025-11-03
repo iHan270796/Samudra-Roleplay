@@ -190,6 +190,7 @@ end
 ---@param data any?
 ---@return boolean?
 function client.openInventory(inv, data)
+	exports['samudra_playerhud']:HideHUD()
 	local usebackpack = ClientFuncs.CheckForBackpack()
 	if invOpen then
 		if not inv and currentInventory.type == 'newdrop' then
@@ -999,6 +1000,7 @@ local function registerCommands()
 end
 
 function client.closeInventory(server)
+	exports['samudra_playerhud']:ShowHUD()
 	-- because somehow people are triggering this when the inventory isn't loaded
 	-- and they're incapable of debugging, and I can't repro on a fresh install
 	if not client.interval then return end

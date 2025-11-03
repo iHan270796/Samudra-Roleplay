@@ -1,7 +1,8 @@
 local config = require 'config.client'
 local painkillerAmount = 0
 
-lib.callback.register('hospital:client:UseIfaks', function()
+-- lib.callback.register('hospital:client:UseIfaks', function()
+RegisterNetEvent('hospital:client:UseIfaks', function()
     if lib.progressBar({
         duration = 3000,
         position = 'bottom',
@@ -20,7 +21,10 @@ lib.callback.register('hospital:client:UseIfaks', function()
         },
     })
     then
-        TriggerServerEvent('hud:server:RelieveStress', math.random(12, 24))
+        local used = lib.callback.await('hapusitem:server:usedItem', false, 'ifaks')
+        if not used then return end
+        
+        TriggerServerEvent('hud:server:RelieveStress', math.random(20, 35))
         SetEntityHealth(cache.ped, GetEntityHealth(cache.ped) + 10)
         OnPainKillers = true
         exports.qbx_medical:DisableDamageEffects()
@@ -36,6 +40,7 @@ lib.callback.register('hospital:client:UseIfaks', function()
         return false
     end
 end)
+
 
 lib.callback.register('hospital:client:UseBandage', function()
     if lib.progressBar({

@@ -120,6 +120,10 @@ exports.qbx_core:CreateUseableItem('crack_baggy', function(source)
     TriggerClientEvent('consumables:client:Crackbaggy', source)
 end)
 
+exports.qbx_core:CreateUseableItem('coke_brick', function(source)
+    TriggerClientEvent('consumables:client:CokeBrick', source)
+end)
+
 exports.qbx_core:CreateUseableItem('xtcbaggy', function(source)
     TriggerClientEvent('consumables:client:EcstasyBaggy', source)
 end)
@@ -130,6 +134,10 @@ end)
 
 exports.qbx_core:CreateUseableItem('meth', function(source)
     TriggerClientEvent('consumables:client:meth', source)
+end)
+
+exports.qbx_core:CreateUseableItem('heroin', function(source)
+    TriggerClientEvent('consumables:client:heroin', source)
 end)
 
 exports.qbx_core:CreateUseableItem('lockpick', function(source)

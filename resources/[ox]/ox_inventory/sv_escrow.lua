@@ -89,19 +89,28 @@ end
 lib.callback.register('raihan-inventory:GetBackpackItem', function(_, src)
     local state = Player(src).state
     if not state.backpack then return false end
-    local inv = Inventory(src)
+
+    local inv = exports.ox_inventory:GetInventory(src)
     if not inv or not inv.items then return false end
+
     local item = inv.items[1]
     if not item or not IsBackpackItem(item.name) then return false end
+
     local slots, weight = GetBackpackSlotWeight(item.name)
-    return {hasBackpack=true, slots=slots, maxWeight=weight, id=state.backpack.id, itemName=item.name}
+    return {
+        hasBackpack = true,
+        slots = slots,
+        maxWeight = weight,
+        id = state.backpack.id,
+        itemName = item.name
+    }
 end)
 
 local function GetCurrentTheme()
     local key = Config.Themes.current or 'default'
     local theme = Config.Themes.themes[key]
     if not theme then
-        print(('^3[WARNING]^7 Theme %s not found, using default'):format(key))
+        -- print(('^3[WARNING]^7 Theme %s not found, using default'):format(key))
         theme = Config.Themes.themes.default
     end
     return {name=key, displayName=theme.name, colors=theme.colors}
@@ -166,38 +175,70 @@ local function ArmorValueFromPlates(plates)
     return math.min(plates * Config.ArmorPlates.ArmorPerPlate, 100)
 end
 
+-- local function PlatesFromArmorValue(armor)
+--     if armor >= 100 then return 5 end
+--     if armor > 80 then return 4 end
+--     if armor > 60 then return 3 end
+--     if armor > 40 then return 2 end
+--     if armor > 20 then return 1 end
+--     return 0
+-- end
+
 local function PlatesFromArmorValue(armor)
-    if armor >= 100 then return 5 end
-    if armor > 80 then return 4 end
-    if armor > 60 then return 3 end
-    if armor > 40 then return 2 end
-    if armor > 20 then return 1 end
-    return 0
+    local armorPerPlate = Config.ArmorPlates.ArmorPerPlate
+    local maxPlates = Config.ArmorPlates.MaxPlates
+
+    -- hitung jumlah plate yang masih aktif
+    local plates = math.ceil(armor / armorPerPlate)
+
+    if plates > maxPlates then plates = maxPlates end
+    if plates < 0 then plates = 0 end
+
+    return plates
 end
 
 RegisterNetEvent('armor:insertPlate', function()
     local src = source
+    local ped = GetPlayerPed(src)
     local vest = exports.ox_inventory:GetSlot(src, 2)
     if not vest then
-        TriggerClientEvent('ox_lib:notify', src, {type='error', description='No Vest In Armor Slot'})
+        TriggerClientEvent('ox_lib:notify', src, { type = 'error', description = 'Tidak Ada Armor Di Slot Armor' })
         return
     end
-    local plates = vest.metadata.plates or 0
-    if plates >= Config.ArmorPlates.MaxPlates then
-        TriggerClientEvent('ox_lib:notify', src, {type='error', description='Vest is full'})
+
+    local meta = vest.metadata or {}
+    local plates = meta.plates or 0
+    local armorValue = meta.armorValue or GetPedArmour(ped)
+    local armorPerPlate = Config.ArmorPlates.ArmorPerPlate
+    local maxPlates = Config.ArmorPlates.MaxPlates
+
+    if plates >= maxPlates then
+        TriggerClientEvent('ox_lib:notify', src, { type = 'error', description = 'Vest is full' })
         return
     end
+
     if exports.ox_inventory:RemoveItem(src, Config.ArmorPlates.PlateItem, 1) then
         plates += 1
-        exports.ox_inventory:SetMetadata(src, vest.slot, {plates=plates, rarity=vest.metadata.rarity})
-        local id = ServerFuncs.getIdentifier(src)
-        GlobalState['ihan-inv-'..id] = {plates=plates, hasPlates=true}
-        -- SetResourceKvp('raihan-inventory-armor-plates-'..id, json.encode(GlobalState['ihan-inv-'..id]))
-        SetPedArmour(GetPlayerPed(src), ArmorValueFromPlates(plates))
+        local newArmor = armorValue + armorPerPlate
+        local maxArmor = ArmorValueFromPlates(plates)
+        if newArmor > maxArmor then
+            newArmor = maxArmor
+        end
+
+        local newMeta = {
+            plates = plates,
+            rarity = meta.rarity,
+            armorValue = newArmor
+        }
+
+        exports.ox_inventory:SetMetadata(src, vest.slot, newMeta)
+        GlobalState['ihan-inv-'..ServerFuncs.getIdentifier(src)] = { plates = plates, hasPlates = true }
+        SetPedArmour(ped, newArmor)
         TriggerClientEvent('armor:syncArmor', src)
-        TriggerClientEvent('ox_lib:notify', src, {type='success', description='Plate inserted'})
+
+        TriggerClientEvent('ox_lib:notify', src, { type = 'success', description = ('Plate inserted (+%d%%)'):format(armorPerPlate) })
     else
-        TriggerClientEvent('ox_lib:notify', src, {type='error', description='No armor plates!'})
+        TriggerClientEvent('ox_lib:notify', src, { type = 'error', description = 'No armor plates!' })
     end
 end)
 
@@ -218,18 +259,38 @@ RegisterNetEvent('armor:removePlates', function()
     TriggerClientEvent('ox_lib:notify', src, {type='success', description='Removed '..plates..' plates'})
 end)
 
+
 RegisterNetEvent('armor:maybeRemovePlate', function(targetArmor)
     local src = source
     local id = ServerFuncs.getIdentifier(src)
     if not id then return end
+
     local vest = exports.ox_inventory:GetSlot(src, 2)
-    if not vest or not vest.metadata or vest.metadata.plates == nil then return end
+    if not vest or not vest.metadata then return end
+
     local expected = PlatesFromArmorValue(targetArmor)
-    if expected ~= vest.metadata.plates then
-        GlobalState['ihan-inv-'..id] = GlobalState['ihan-inv-'..id] or {}
-        GlobalState['ihan-inv-'..id].plates = expected
-        -- SetResourceKvp('raihan-inventory-armor-plates-'..id, json.encode(GlobalState['ihan-inv-'..id]))
-        exports.ox_inventory:SetMetadata(src, vest.slot, {plates=expected, rarity=vest.metadata.rarity})
+    local rarity = vest.metadata.rarity or 'common'
+
+    if targetArmor <= 0 then
+        exports.ox_inventory:RemoveItem(src, vest.name, 1, nil, vest.slot)
+        GlobalState['ihan-inv-'..id] = {}
+        TriggerClientEvent('ox_lib:notify', src, {
+            type = 'error',
+            description = ('%s has been destroyed!'):format(vest.label or 'Armor Vest')
+        })
+        -- print(('[Armor Destroyed] %s | Vest %s removed'):format(id, vest.name))
+        return
+    end
+    local newMeta = {
+        plates = expected,
+        armorValue = targetArmor,
+        rarity = rarity
+    }
+
+    if (vest.metadata.armorValue or 0) ~= targetArmor or (vest.metadata.plates or 0) ~= expected then
+        exports.ox_inventory:SetMetadata(src, vest.slot, newMeta)
+        GlobalState['ihan-inv-'..id] = { plates = expected, hasPlates = expected > 0 }
+        -- print(('[Armor Sync] %s | Armor %.1f%% | Plates %d'):format(id, targetArmor, expected))
     end
 end)
 
@@ -237,12 +298,18 @@ RegisterServerEvent('raihan-inventory:Server:ReApplyPlates', function()
     local src = source
     Wait(250)
     local vest = exports.ox_inventory:GetSlot(src, 2)
-    if vest then
-        local plates = vest.metadata.plates or 0
-        local armor = ArmorValueFromPlates(plates)
-        TriggerClientEvent('raihan-inventory:setArmor', src, armor)
-    end
+    if not vest then return end
+
+    local meta = vest.metadata or {}
+    local plates = meta.plates or 0
+    local armor = meta.armorValue or ArmorValueFromPlates(plates)
+
+    local maxArmor = ArmorValueFromPlates(plates)
+    if armor > maxArmor then armor = maxArmor end
+
+    TriggerClientEvent('raihan-inventory:setArmor', src, armor)
 end)
+
 
 lib.addCommand('setinvtheme', {
     help='Change inventory theme',

@@ -139,7 +139,7 @@ return {
 	},
 
 	['money'] = {
-		label = 'Money',
+		label = 'Uang Cash',
 	},
 
 	['mustard'] = {
@@ -974,14 +974,25 @@ return {
 		},
 	},
 
+	-- ['ifaks'] = {
+	-- 	label = 'ifaks',
+	-- 	weight = 200,
+	-- 	client = {
+	-- 		anim = { dict = 'mp_suicide', clip = 'pill', flag = 49 },
+	-- 		disable = { move = false, car = true, combat = true },
+	-- 		usetime = 2500,
+	-- 	}
+	-- },
+
 	["ifaks"] = {
 		label = "ifaks",
 		weight = 200,
 		stack = true,
 		close = true,
+		consume = 1,
 		description = "ifaks for healing and a complete stress remover.",
 		client = {
-			image = "ifaks.png",
+			event = "hospital:client:UseIfaks",
 		}
 	},
 
@@ -2421,17 +2432,28 @@ return {
 		}
 	},
 
-	['coke_brick'] = {
-		label = 'Coke Brick',
-		weight = 500,
+	["coke_brick"] = {
+		label = "Coke Brick",
+		weight = 0,
+		stack = true,
+		close = true,
+		description = "To get happy faster",
 		client = {
-			anim = { dict = 'impexp_int-0', clip = 'mp_m_waremech_01_dual-0' },
-			prop = { model = `prop_weed_block_01`, pos = vec3(0.01, 0.01, 0.05), rot = vec3(0.0, -90.0, 90.0) },
-			usetime = 5000,
-			cancel = true,
-			notification = 'A Coke Brick works every time'
+			image = "crack_baggy.png",
 		}
 	},
+
+	-- ['coke_brick'] = {
+	-- 	label = 'Coke Brick',
+	-- 	weight = 500,
+	-- 	client = {
+	-- 		anim = { dict = 'impexp_int-0', clip = 'mp_m_waremech_01_dual-0' },
+	-- 		prop = { model = `prop_weed_block_01`, pos = vec3(0.01, 0.01, 0.05), rot = vec3(0.0, -90.0, 90.0) },
+	-- 		usetime = 5000,
+	-- 		cancel = true,
+	-- 		notification = 'A Coke Brick works every time'
+	-- 	}
+	-- },
 
 	["glasses"] = {
 		label = "Glasses",
@@ -2958,14 +2980,24 @@ return {
 		}
 	},
 
-	["painkillers"] = {
-		label = "Painkillers",
-		weight = 0,
-		stack = true,
-		close = true,
-		description = "For pain you can't stand anymore, take this pill that'd make you feel great again",
+	-- ["painkillers"] = {
+	-- 	label = "Painkillers",
+	-- 	weight = 0,
+	-- 	stack = true,
+	-- 	close = true,
+	-- 	description = "For pain you can't stand anymore, take this pill that'd make you feel great again",
+	-- 	client = {
+	-- 		image = "painkillers.png",
+	-- 	}
+	-- },
+
+	['painkillers'] = {
+		label = 'Painkillers',
+		weight = 200,
 		client = {
-			image = "painkillers.png",
+			anim = { dict = 'mp_suicide', clip = 'pill', flag = 49 },
+			disable = { move = false, car = true, combat = true },
+			usetime = 2500,
 		}
 	},
 

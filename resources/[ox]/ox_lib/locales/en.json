@@ -1,10 +1,9 @@
 {
-  "language": "English",
-  "settings": "Settings",
+  "language": "Indonesian",
   "ui": {
-    "cancel": "Cancel",
-    "close": "Close",
-    "confirm": "Confirm",
+    "cancel": "Batal",
+    "close": "Tutup",
+    "confirm": "Konfirmasi",
     "more": "More...",
     "settings": {
       "locale": "Change locale",

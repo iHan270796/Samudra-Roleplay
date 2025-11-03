@@ -82,9 +82,15 @@ exports.qbx_core:CreateUseableItem('moneybag', function(source, item)
 end)
 
 -- Callbacks
+-- lib.callback.register('police:server:isPlayerDead', function(_, playerId)
+--     local player = exports.qbx_core:GetPlayer(playerId)
+--     return player.PlayerData.metadata.isdead
+-- end)
+
 lib.callback.register('police:server:isPlayerDead', function(_, playerId)
-    local player = exports.qbx_core:GetPlayer(playerId)
-    return player.PlayerData.metadata.isdead
+    local playerState = Player(playerId)?.state
+    if not playerState then return false end
+    return playerState.isDead == true
 end)
 
 lib.callback.register('police:GetPlayerStatus', function(_, targetSrc)

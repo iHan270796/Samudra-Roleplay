@@ -51,15 +51,34 @@ end)
 
 ---@param playerId number
 RegisterNetEvent('hospital:server:TreatWounds', function(playerId)
-	if GetInvokingResource() then return end
-	local src = source
-	local player = exports.qbx_core:GetPlayer(src)
-	local patient = exports.qbx_core:GetPlayer(playerId)
-	if player.PlayerData.job.type ~= 'ems' or not patient then return end
+    if GetInvokingResource() then return end
+    local src = source
+    local healer = exports.qbx_core:GetPlayer(src)
+    local patient = exports.qbx_core:GetPlayer(playerId)
+    if not healer or healer.PlayerData.job.type ~= 'ems' or not patient then return end
 
-	exports.ox_inventory:RemoveItem(src, 'bandage', 1)
-	TriggerClientEvent('hospital:client:HealInjuries', patient.PlayerData.source, 'full')
+    local removed = exports.ox_inventory:RemoveItem(src, 'bandage', 1)
+    if not removed then
+        exports.qbx_core:Notify(src, 'Kamu tidak punya perban.', 'error')
+        return
+    end
+
+    exports.qbx_medical:Heal(playerId)
+    TriggerClientEvent('hospital:client:HealInjuries', patient.PlayerData.source)
+
+    exports.qbx_core:Notify(src, 'Pasien berhasil dirawat.', 'success')
 end)
+
+-- RegisterNetEvent('hospital:server:TreatWounds', function(playerId)
+-- 	if GetInvokingResource() then return end
+-- 	local src = source
+-- 	local player = exports.qbx_core:GetPlayer(src)
+-- 	local patient = exports.qbx_core:GetPlayer(playerId)
+-- 	if player.PlayerData.job.type ~= 'ems' or not patient then return end
+
+-- 	exports.ox_inventory:RemoveItem(src, 'bandage', 1)
+-- 	TriggerClientEvent('hospital:client:HealInjuries', patient.PlayerData.source, 'full')
+-- end)
 
 ---@param playerId number
 -- RegisterNetEvent('hospital:server:RevivePlayer', function(playerId)
@@ -167,8 +186,11 @@ local function triggerItemEventOnPlayer(src, item, event)
 	exports.ox_inventory:RemoveItem(src, item.name, 1)
 end
 
-exports.qbx_core:CreateUseableItem('ifaks', function(source, item)
-	triggerItemEventOnPlayer(source, item, 'hospital:client:UseIfaks')
+-- exports.qbx_core:CreateUseableItem('ifaks', function(source, item)
+-- 	triggerItemEventOnPlayer(source, item, 'hospital:client:UseIfaks')
+-- end)
+exports.qbx_core:CreateUseableItem('ifaks', function(source)
+	TriggerClientEvent('hospital:client:UseIfaks', source)
 end)
 
 exports.qbx_core:CreateUseableItem('bandage', function(source, item)
@@ -187,6 +209,13 @@ RegisterNetEvent('qbx_medical:server:playerDied', function()
 	if GetInvokingResource() then return end
 	local src = source
 	alertAmbulance(src, locale('info.civ_died'))
+end)
+
+lib.callback.register('hapusitem:server:usedItem', function(source, item)
+    local player = exports.qbx_core:GetPlayer(source)
+    if not player then return end
+
+    return exports.ox_inventory:RemoveItem(source, item, 1)
 end)
 
 AddEventHandler('onResourceStart', function(resource)

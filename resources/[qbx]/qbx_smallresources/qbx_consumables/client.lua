@@ -49,6 +49,24 @@ local function methBagEffect()
 end
 exports('MethBagEffect', methBagEffect)
 
+local function heroinEffect()
+    local startStamina = 8
+    trevorEffect()
+    SetRunSprintMultiplierForPlayer(cache.playerId, 1.49)
+    while startStamina > 0 do
+        Wait(1000)
+        if math.random(5, 100) < 10 then
+            RestorePlayerStamina(cache.playerId, 1.0)
+        end
+        startStamina -= 1
+        if math.random(5, 100) < 51 then
+            trevorEffect()
+        end
+    end
+    SetRunSprintMultiplierForPlayer(cache.playerId, 1.0)
+end
+exports('heroinEffect', heroinEffect)
+
 local function ecstasyEffect()
     local startStamina = 30
     SetFlash(0, 0, 500, 7000, 500)
@@ -102,6 +120,30 @@ local function crackBaggyEffect()
     SetRunSprintMultiplierForPlayer(cache.playerId, 1.0)
 end
 exports('CrackBaggyEffect', crackBaggyEffect)
+
+local function cokeBrickEffect()
+    local startStamina = 8
+    alienEffect()
+    SetRunSprintMultiplierForPlayer(cache.playerId, 1.3)
+    while startStamina > 0 do
+        Wait(1000)
+        if math.random(1, 100) < 10 then
+            RestorePlayerStamina(cache.playerId, 1.0)
+        end
+        startStamina -= 1
+        if math.random(1, 100) < 60 and IsPedRunning(cache.ped) then
+            SetPedToRagdoll(cache.ped, math.random(1000, 2000), math.random(1000, 2000), 3, false, false, false)
+        end
+        if math.random(1, 100) < 51 then
+            alienEffect()
+        end
+    end
+    if IsPedRunning(cache.ped) then
+        SetPedToRagdoll(cache.ped, math.random(1000, 3000), math.random(1000, 3000), 3, false, false, false)
+    end
+    SetRunSprintMultiplierForPlayer(cache.playerId, 1.0)
+end
+exports('cokeBrickEffect', cokeBrickEffect)
 
 local function cokeBaggyEffect()
     local startStamina = 20
@@ -307,6 +349,34 @@ RegisterNetEvent('consumables:client:Crackbaggy', function()
     end
 end)
 
+RegisterNetEvent('consumables:client:CokeBrick', function()
+    if lib.progressBar({
+        duration = math.random(7000, 10000),
+        label = 'Sedang Menggunakan Coke',
+        useWhileDead = false,
+        canCancel = true,
+        disable = {
+            move = false,
+            car = false,
+            mouse = false,
+            combat = true
+        },
+        anim = {
+            dict = 'switch@trevor@trev_smoking_meth',
+            clip = 'trev_smoking_meth_loop',
+            flag = 49
+        }
+    }) then -- if completed
+        local used = lib.callback.await('consumables:server:usedItem', false, 'coke_brick')
+        if not used then return end
+
+        TriggerEvent('evidence:client:SetStatus', 'widepupils', 300)
+        cokeBrickEffect()
+    else -- if canceled
+        exports.qbx_core:Notify(locale('error.canceled'), 'error')
+    end
+end)
+
 RegisterNetEvent('consumables:client:EcstasyBaggy', function()
     if lib.progressBar({
         duration = 3000,
@@ -391,10 +461,39 @@ RegisterNetEvent('consumables:client:meth', function()
     end
 end)
 
+RegisterNetEvent('consumables:client:heroin', function()
+    if lib.progressBar({
+        duration = 1500,
+        label = 'Sedang Menggunakan Heroin',
+        useWhileDead = false,
+        canCancel = true,
+        disable = {
+            move = false,
+            car = false,
+            mouse = false,
+            combat = true
+        },
+        anim = {
+            dict = 'switch@trevor@trev_smoking_meth',
+            clip = 'trev_smoking_meth_loop',
+            flag = 49
+        }
+    }) then -- if completed
+        local used = lib.callback.await('consumables:server:usedItem', false, 'heroin')
+        if not used then return end
+
+        TriggerEvent('evidence:client:SetStatus', 'widepupils', 300)
+        TriggerEvent('evidence:client:SetStatus', 'agitated', 300)
+        heroinEffect()
+    else -- if canceled
+        exports.qbx_core:Notify(locale('error.canceled'), 'error')
+    end
+end)
+
 RegisterNetEvent('consumables:client:UseJoint', function()
     if lib.progressBar({
         duration = 1500,
-        label = locale('progress.lighting_joint'),
+        label = 'Sedang Menggunakan Joint',
         useWhileDead = false,
         canCancel = true,
         disable = {

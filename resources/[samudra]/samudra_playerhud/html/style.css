@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+}
+
+#hud {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    user-select: none;
+    align-items: flex-end;
+}
+
+.top-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-direction: row-reverse;
+}
+
+.datetime {
+    text-align: right;
+}
+
+.time {
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.date {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+}
+
+.server-name .title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #0d82ff;
+}
+
+.server-name .subtitle {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.mid-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    margin-top: 5px;
+}
+
+.money {
+    display: flex;
+    gap: 8px;
+    flex-direction: row-reverse;
+}
+
+.money span {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.cash {
+    color: #76ff03;
+}
+
+.bank {
+    color: #00e5ff;
+}
+
+.job-info {
+    display: flex;
+    gap: 8px;
+    flex-direction: row-reverse;
+}
+
+.job-info span {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.gang {
+    color: #ff4081;
+}
+
+.job {
+    color: #ffd54f;
+}
+
+.id {
+    color: #ffffff;
+    opacity: 0.9;
+}
