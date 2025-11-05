@@ -21,10 +21,6 @@ Config.AllowedPeds = {
     ["license2:325791c26beab14d92cbf62fd295c594930b9373"] = {  --DNX | chryseis
         { label = "Chryseis Ped", model = "sagaraladies" }
     },
-    -- halper
-    ["license2:ec1e7516c545dc5414ef251b48803f960d082bdf"] = {  --DNX | VHANO
-        { label = "VHANO Ped", model = "g085" }
-    },
     ["license2:b49465e4eb9a1f85e4fc047478c64aa604538c5a"] = {  --DNX | yatno
         { label = "Yatno Ped", model = "yoshiza_test" }
     }

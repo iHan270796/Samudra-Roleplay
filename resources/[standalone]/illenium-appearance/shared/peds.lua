@@ -1062,7 +1062,6 @@ Config.Peds = {
                 "ls_pije",
                 "sagaraladies",
                 "wilstore_bil",
-                "g085",
                 "manz01",
                 "kenz",
             },

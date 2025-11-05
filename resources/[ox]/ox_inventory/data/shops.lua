@@ -116,9 +116,9 @@ return {
 			{ name = 'fish_bait', price = 750 },
 			{ name = 'fishingrod', price = 25000 }
 		}, locations = {
-			vec3(-1845.03, -1195.46, 19.18)
+			vec3(-1906.69, -1313.36, 2.81)
 		}, targets = {
-			{ loc = vec3(-1845.03, -1195.46, 19.18), length = 0.6, width = 3.0, heading = 145.57, minZ = 17.0, maxZ = 21.8, distance = 3.5 }
+			{ loc = vec3(-1906.69, -1313.36, 2.81), length = 0.6, width = 3.0, heading = 145.57, minZ = 1.0, maxZ = 3.0, distance = 3.5 }
 		}
 	},
 

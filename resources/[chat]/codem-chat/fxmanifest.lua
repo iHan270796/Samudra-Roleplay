@@ -4,8 +4,7 @@ author 'Lucid#3604'
 files {
     'style.css',
     'script.js',
-   
-
+    'images/*.*',
 }
 
 
