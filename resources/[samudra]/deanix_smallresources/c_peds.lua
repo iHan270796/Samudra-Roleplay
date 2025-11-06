@@ -23,6 +23,9 @@ Config.AllowedPeds = {
     },
     ["license2:b49465e4eb9a1f85e4fc047478c64aa604538c5a"] = {  --DNX | yatno
         { label = "Yatno Ped", model = "yoshiza_test" }
+    },
+    ["license2:1438b13c4b28954b2a8b7a7ba090ac50a917a463"] = {  --DNX | Bill
+        { label = "Bill Ped", model = "wilstore_unclesong" }
     }
 }
 

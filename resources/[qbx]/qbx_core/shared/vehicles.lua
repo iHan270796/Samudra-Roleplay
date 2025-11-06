@@ -8457,14 +8457,14 @@ return {
         type = 'automobile',
         hash = `a458it`,
     },
-    nissanr34 = {
-        name = 'Nissan R34',
+    r34mellocust = {
+        name = 'R34 Mello Cust',
         brand = 'NISSAN',
-        model = 'nissanr34',
+        model = 'r34mellocust',
         price = 27000000,
         category = 'super',
         type = 'automobile',
-        hash = `nissanr34`,
+        hash = `r34mellocust`,
     },
     weevilf6 = {
         name = 'Weevil F9',

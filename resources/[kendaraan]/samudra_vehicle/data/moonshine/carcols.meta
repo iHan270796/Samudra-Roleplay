@@ -388,6 +388,66 @@
           <disableDriveby value="false"/>
         </Item>
         <Item>
+          <modelName>moonshine_steer_1</modelName>
+          <modShopLabel>moonshine_steer_1</modShopLabel>
+          <linkedModels/>
+          <turnOffBones>
+          <Item>steeringwheel</Item>
+          </turnOffBones>
+          <type>VMT_STEERING</type>
+          <bone>steeringwheel</bone>
+          <collisionBone>steeringwheel</collisionBone>
+          <cameraPos>VMCP_DEFAULT</cameraPos>
+          <audioApply value="1.00000000"/>
+          <weight value="20"/>
+          <turnOffExtra value="false"/>
+          <disableBonnetCamera value="false"/>
+          <allowBonnetSlide value="true"/>
+          <weaponSlot value="0"/>
+          <disableProjectileDriveby value="false"/>
+          <disableDriveby value="false"/>
+        </Item>
+        <Item>
+          <modelName>moonshine_steer_2</modelName>
+          <modShopLabel>moonshine_steer_2</modShopLabel>
+          <linkedModels/>
+          <turnOffBones>
+          <Item>steeringwheel</Item>
+          </turnOffBones>
+          <type>VMT_STEERING</type>
+          <bone>steeringwheel</bone>
+          <collisionBone>steeringwheel</collisionBone>
+          <cameraPos>VMCP_DEFAULT</cameraPos>
+          <audioApply value="1.00000000"/>
+          <weight value="20"/>
+          <turnOffExtra value="false"/>
+          <disableBonnetCamera value="false"/>
+          <allowBonnetSlide value="true"/>
+          <weaponSlot value="0"/>
+          <disableProjectileDriveby value="false"/>
+          <disableDriveby value="false"/>
+        </Item>
+        <Item>
+          <modelName>moonshine_steer_3</modelName>
+          <modShopLabel>moonshine_steer_3</modShopLabel>
+          <linkedModels/>
+          <turnOffBones>
+          <Item>steeringwheel</Item>
+          </turnOffBones>
+          <type>VMT_STEERING</type>
+          <bone>steeringwheel</bone>
+          <collisionBone>steeringwheel</collisionBone>
+          <cameraPos>VMCP_DEFAULT</cameraPos>
+          <audioApply value="1.00000000"/>
+          <weight value="20"/>
+          <turnOffExtra value="false"/>
+          <disableBonnetCamera value="false"/>
+          <allowBonnetSlide value="true"/>
+          <weaponSlot value="0"/>
+          <disableProjectileDriveby value="false"/>
+          <disableDriveby value="false"/>
+        </Item>
+        <Item>
           <modelName>moonshine_hood_1</modelName>
           <modShopLabel>moonshine_hood_1</modShopLabel>
           <linkedModels/>

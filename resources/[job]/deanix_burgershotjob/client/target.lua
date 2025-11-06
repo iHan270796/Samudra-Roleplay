@@ -12,8 +12,8 @@ end)
 
 Citizen.CreateThread(function()
         exports.ox_target:addBoxZone({
-        coords = vec3(-1197.5, -902.78, 13.0), -- titik tengah Z
-        size = vec3(1.5, 1.5, 4.0), -- panjang X, Y, tinggi Z
+        coords = vec3(-1197.5, -902.78, 13.0),
+        size = vec3(1.5, 1.5, 4.0),
         rotation = 0.0,
         debug = false,
         name = 'burgershot_washhands',
@@ -21,7 +21,7 @@ Citizen.CreateThread(function()
             {
                 label = 'Wash Hands',
                 icon = 'fas fa-hand-sparkles',
-                groups = 'bahamas', -- sama fungsi dengan job di qb-target
+                groups = 'bahamas',
                 onSelect = function()
                     local playerPed = PlayerPedId()
                     TaskStartScenarioInPlace(playerPed, "PROP_HUMAN_BUM_BIN", 0, true)
@@ -43,99 +43,37 @@ Citizen.CreateThread(function()
             }
         }
     })
+    -- exports.ox_target:addBoxZone({
+    --     coords = vec3(-1389.1, -608.38, 30.4),
+    --     size = vec3(1.5, 1.5, 4.0),
+    --     rotation = 0.0,
+    --     debug = false,
+    --     name = 'burgershot_crafting_minuman',
+    --     options = {
+    --         {
+    --             label = 'Buat Minuman',
+    --             icon = 'fas fa-kitchen-set',
+    --             groups = {
+	-- 		        ['bahamas'] = 2
+	-- 	        },
+    --             onSelect = function()
+    --                 local player = QBCore.Functions.GetPlayerData()
+
+    --                 if player.job.name ~= "bahamas" or not player.job.onduty then
+    --                     lib.notify({
+    --                         title = 'Bahamas',
+    --                         description = 'You must be On Duty to Cook!',
+    --                         type = 'error'
+    --                     })
+    --                     return
+    --                 end
+    --                 TriggerEvent("deanix_crafting:client:burgershot2")
+    --             end
+    --         }
+    --     }
+    -- })
     exports.ox_target:addBoxZone({
-        coords = vec3(-1386.11, -608.2, 30.32),
-        size = vec3(1.5, 1.5, 4.0),
-        rotation = 35.0,
-        debug = false,
-        name = 'burgershot_bahan_zone',
-        options = {
-            {
-                label = 'Access Food Ingredients',
-                icon = 'fas fa-box-open',
-                groups = 'bahamas',
-                onSelect = function()
-                    local player = QBCore.Functions.GetPlayerData()
-
-                    if player.job.name ~= "bahamas" or not player.job.onduty then
-                        lib.notify({
-                            title = 'Bahamas',
-                            description = 'You must be On Duty to access!',
-                            type = 'error'
-                        })
-                        return
-                    end
-
-                    if player.job.grade.level < 2 then
-                        lib.notify({
-                            title = 'Bahamas',
-                            description = 'You must be at least in the Senior Chef job to use this!',
-                            type = 'error'
-                        })
-                        return
-                    end
-
-                    -- if not hasWashedHands then
-                    --     lib.notify({
-                    --         title = 'Bahamas',
-                    --         description = 'Wash your hands first!',
-                    --         type = 'error'
-                    --     })
-                    --     return
-                    -- end
-
-                    TriggerEvent("deanix_burgershot:openBahanUI")
-                end
-            }
-        }
-   })
-    exports.ox_target:addBoxZone({
-        coords = vec3(-1389.1, -608.38, 30.4),
-        size = vec3(1.5, 1.5, 4.0),
-        rotation = 0.0,
-        debug = false,
-        name = 'burgershot_crafting_minuman',
-        options = {
-            {
-                label = 'Buat Minuman',
-                icon = 'fas fa-kitchen-set',
-                groups = 'bahamas',
-                onSelect = function()
-                    local player = QBCore.Functions.GetPlayerData()
-
-                    if player.job.name ~= "bahamas" or not player.job.onduty then
-                        lib.notify({
-                            title = 'Bahamas',
-                            description = 'You must be On Duty to Cook!',
-                            type = 'error'
-                        })
-                        return
-                    end
-
-                    if player.job.grade.level < 2 then
-                        lib.notify({
-                            title = 'Bahamas',
-                            description = 'You must be at least in the Senior Chef job to use this!',
-                            type = 'error'
-                        })
-                        return
-                    end
-
-                    -- if not hasWashedHands then
-                    --     lib.notify({
-                    --         title = 'Bahamas',
-                    --         description = 'Wash your hands first!',
-                    --         type = 'error'
-                    --     })
-                    --     return
-                    -- end
-                    TriggerEvent("deanix_crafting:client:burgershot2")
-                end
-            }
-        }
-    })
-    exports.ox_target:addBoxZone({
-        coords = vec3(-1391.08, -608.76, 30.46),
+        coords = vec3(-1924.03, -1317.09, 2.97),
         size = vec3(1.5, 1.5, 4.0),
         rotation = 0.0,
         debug = false,
@@ -144,7 +82,9 @@ Citizen.CreateThread(function()
             {
                 label = 'Buat Makanan',
                 icon = 'fas fa-kitchen-set',
-                groups = 'bahamas',
+                groups = {
+			        ['bahamas'] = 2
+		        },
                 onSelect = function()
                     local player = QBCore.Functions.GetPlayerData()
 
@@ -156,32 +96,34 @@ Citizen.CreateThread(function()
                         })
                         return
                     end
+                    TriggerEvent("deanix_crafting:client:openJobCrafting")
+                end
+            },
+            {
+                label = 'Buat Minuman',
+                icon = 'fas fa-kitchen-set',
+                groups = {
+			        ['bahamas'] = 2
+		        },
+                onSelect = function()
+                    local player = QBCore.Functions.GetPlayerData()
 
-                    if player.job.grade.level < 2 then
+                    if player.job.name ~= "bahamas" or not player.job.onduty then
                         lib.notify({
                             title = 'Bahamas',
-                            description = 'You must be at least in the Senior Chef job to use this!',
+                            description = 'You must be On Duty to Cook!',
                             type = 'error'
                         })
                         return
                     end
-
-                    -- if not hasWashedHands then
-                    --     lib.notify({
-                    --         title = 'Bahamas',
-                    --         description = 'Wash your hands first!',
-                    --         type = 'error'
-                    --     })
-                    --     return
-                    -- end
-                    TriggerEvent("deanix_crafting:client:openJobCrafting")
+                    TriggerEvent("deanix_crafting:client:burgershot2")
                 end
             }
         }
     })
 
     exports.ox_target:addBoxZone({
-        coords = vec3(-1384.45, -590.51, 30.3),
+        coords = vec3(-1906.69, -1313.36, 2.81),
         size = vec3(1.5, 1.5, 4.0),
         rotation = 0.0,
         debug = false,
@@ -230,7 +172,7 @@ Citizen.CreateThread(function()
         }
     })
     exports.ox_target:addBoxZone({
-        coords = vec3(-1383.8, -595.85, 30.32),
+        coords = vec3(-1920.85, -1316.21, 2.05),
         size = vec3(1.5, 1.5, 4.0), -- minZ 11.0, maxZ 15.0
         rotation = 0.0,
         debug = false,
@@ -246,13 +188,22 @@ Citizen.CreateThread(function()
                         lib.notify({description = "You have to be on duty to open the safe!", type = "error"})
                         return
                     end
-
-                    -- if not hasWashedHands then
-                    --     lib.notify({description = "Wash your hands first!", type = "error"})
-                    --     return
-                    -- end
-
                     TriggerEvent("deanix_burgershot:stash")
+                end
+            },
+            {
+                label = 'Access Food Ingredients',
+                icon = 'fas fa-box-open',
+                groups = {
+			        ['bahamas'] = 2
+		        },
+                onSelect = function()
+                    local player = QBCore.Functions.GetPlayerData()
+                    if player.job.name ~= "bahamas" or not player.job.onduty then
+                        lib.notify({description = "You have to be on duty to access the food ingredients!", type = "error"})
+                        return
+                    end
+                    TriggerEvent("deanix_burgershot:openBahanUI")
                 end
             }
         }
@@ -274,12 +225,6 @@ Citizen.CreateThread(function()
                         lib.notify({description = "You have to be on duty to open the safe!", type = "error"})
                         return
                     end
-
-                    -- if not hasWashedHands then
-                    --     lib.notify({description = "Wash your hands first!", type = "error"})
-                    --      return
-                    -- end
-
                     TriggerEvent("illenium-appearance:client:OpenClothingRoom")
                 end
             }
@@ -304,12 +249,6 @@ Citizen.CreateThread(function()
                         lib.notify({description = "You have to be on duty to open the safe!", type = "error"})
                         return
                     end
-
-                    -- if not hasWashedHands then
-                    --     lib.notify({description = "Wash your hands first!", type = "error"})
-                    --      return
-                    -- end
-
                     TriggerEvent("wasabi_boombox:interactStatic", "bahamas_dj", vec3(-1380.22, -629.07, 30.49))
                 end
             }

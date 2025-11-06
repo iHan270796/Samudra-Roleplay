@@ -116,9 +116,9 @@ return {
 			{ name = 'fish_bait', price = 750 },
 			{ name = 'fishingrod', price = 25000 }
 		}, locations = {
-			vec3(-1906.69, -1313.36, 2.81)
+			vec3(-1597.55, -973.11, 12.93)
 		}, targets = {
-			{ loc = vec3(-1906.69, -1313.36, 2.81), length = 0.6, width = 3.0, heading = 145.57, minZ = 1.0, maxZ = 3.0, distance = 3.5 }
+			{ loc = vec3(-1597.55, -973.11, 12.93), length = 0.6, width = 3.0, heading = 145.57, minZ = 1.0, maxZ = 3.0, distance = 3.5 }
 		}
 	},
 
@@ -209,7 +209,7 @@ return {
 		}
 	},
 	bahamas = {
-		name = 'Kulkas',
+		name = 'Ambil Minuman',
 		groups = {
 			['bahamas'] = 1
 		},
@@ -221,10 +221,9 @@ return {
 			{ name = 'whiskey', price = 15000, },
 			{ name = 'ecola', price = 5000, },
 		}, locations = {
-			vec3(-1392.25, -607.63, 30.1)
+			vec3(-1919.51, -1317.43, 2.95)
 		}, targets = {
-			{ loc = vec3(-1392.25, -607.63, 30.1), length = 0.5, width = 3.0, heading = 190.0, minZ = 28.5, maxZ = 32.0, distance = 6 },
-			{ loc = vec3(-1387.97, -613.59, 30.22), length = 0.5, width = 3.0, heading = 190.0, minZ = 28.5, maxZ = 32.0, distance = 6 }
+			{ loc = vec3(-1919.51, -1317.43, 2.95), length = 0.5, width = 3.0, heading = 190.0, minZ = 1.5, maxZ = 5.0, distance = 6 }
 		}
 	},
 	pemerintah = {

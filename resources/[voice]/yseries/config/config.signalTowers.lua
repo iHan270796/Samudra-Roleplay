@@ -114,6 +114,13 @@ Config.SignalTowers.Towers = {
     vector3(4624.74, -4407.31, 6.01),
     vector3(5034.79, -4970.73, 29.23),
     vector3(5103.65, -5744.39, 1.01),
+    vector3(-1951.52, -1390.82, 3.16),
+    vector3(-1888.03, -1290.93, 3.04),
+    vector3(-2066.49, 5049.86, 8.12),
+    vector3(-1989.54, 5109.97, 6.95),
+    vector3(-1922.4, 5173.46, 6.93),
+    vector3(-1763.84, 5249.31, 6.96),
+    vector3(-1580.95, 5078.09, 30.53),
 }
 
 exports("GetSignalTowers", function() return Config.SignalTowers.Towers end)

@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'Legends Scripts'
 description 'Advanced driveby system for fivem'
-version '1.3.0'
+version '1.3.1'
 
 lua54 'yes'
 
@@ -20,6 +20,9 @@ client_scripts {
 server_scripts {
   'server/*.lua'
 }
+
+export 'IsInDrivebyMode'
+export 'EjectFromDriveby'
 
 escrow_ignore {
   'config/*.lua',

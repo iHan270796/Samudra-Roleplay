@@ -44,6 +44,7 @@ data_file 'AUDIO_GAMEDATA'  'audioconfig/shonen_game.dat'
 data_file 'AUDIO_GAMEDATA'  'audioconfig/veyronsound_game.dat'
 data_file 'AUDIO_GAMEDATA'  'audioconfig/sestov10_game.dat'
 data_file 'AUDIO_GAMEDATA'  'audioconfig/sfxmosquito_game.dat'
+data_file 'AUDIO_GAMEDATA'  'audioconfig/kc46nisr34ztune_game.dat'
 
 --------------------------------------------------------------- Audio Sound Data
 
@@ -75,6 +76,7 @@ data_file 'AUDIO_SOUNDDATA' 'audioconfig/gtaspanov10_sounds.dat'
 data_file 'AUDIO_SOUNDDATA' 'audioconfig/shonen_sounds.dat'
 data_file 'AUDIO_SOUNDDATA' 'audioconfig/veyronsound_sounds.dat'
 data_file 'AUDIO_SOUNDDATA' 'audioconfig/sfxmosquito_sounds.dat'
+data_file 'AUDIO_SOUNDDATA' 'audioconfig/kc46nisr34ztune_sounds.dat'
 
 --------------------------------------------------------------- Audio Synthersizer Data
 
@@ -82,6 +84,7 @@ data_file 'AUDIO_SYNTHDATA' 'audioconfig/gt3flat6_amp.dat'
 data_file 'AUDIO_SYNTHDATA' 'audioconfig/k20a_amp.dat'
 data_file 'AUDIO_SYNTHDATA' 'audioconfig/m158huayra_amp.dat'
 data_file 'AUDIO_SYNTHDATA' 'audioconfig/m297zonda_amp.dat'
+data_file 'AUDIO_SYNTHDATA' 'audioconfig/kc46nisr34ztune_amp.dat'
 
 ---------------------------------------------------------------  Audio Wavepacks
 data_file 'AUDIO_WAVEPACK' 'sfx/dlc_488sound'
@@ -112,3 +115,4 @@ data_file 'AUDIO_WAVEPACK' 'sfx/dlc_shonen'
 data_file 'AUDIO_WAVEPACK' 'sfx/dlc_sestov10'
 data_file 'AUDIO_WAVEPACK' 'sfx/dlc_gtaspanov10'
 data_file 'AUDIO_WAVEPACK' 'sfx/dlc_mosquito'
+data_file 'AUDIO_WAVEPACK' 'sfx/dlc_kc46nisr34ztune'

@@ -34,7 +34,7 @@ Citizen.CreateThread(function()
         {title="Peleburan", colour=5, id=285, x=1085.18, y=-2002.48, z=31.39},
         {title="Tukang Kayu", colour=5, id=256, x=-565.51, y=5325.56, z=73.59},
         {title="Kantor Pemerintah", colour=29, id=176, x=1779.44, y=3645.47, z=34.63},
-        {title="Bahamas", colour=5, id=93, x=-1390.15, y=-584.38, z= 30.22},
+        -- {title="Bahamas", colour=5, id=93, x=-1390.15, y=-584.38, z= 30.22},
         {title="Jual Ikan", colour=3, id=68, x=-3411.66, y=960.62, z=8.35},
         {title="Sewa Gudang", colour=3, id=557, x=900.64, y=3580.18, z=32.39},
 
@@ -57,11 +57,11 @@ Citizen.CreateThread(function()
     end
     local fishingZones = {
         {
-            title = "Fishing Zone",
-            coords = vector3(-1849.22, -1251.38, 8.62),
-            blipId = 68,
+            title = "Karnaval",
+            coords = vector3(-1882.84, -1284.47, 3.07),
+            blipId = 681,
             colour = 3,
-            radius = 150.0
+            radius = 300.0
         }
     }
 
