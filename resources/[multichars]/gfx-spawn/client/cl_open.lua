@@ -5,31 +5,6 @@ RegisterNetEvent("qb-spawn:client:openUI", function(value)
     print("qb-spawn:client:openUI")
 end)
 
--- RegisterNetEvent('qb-spawn:client:setupSpawns', function(cData, new, apps)
---     APARTMENTS = {}
---     local cid = cData.citizenid
---     GetOwnedHouses(cid)
-
---     if apps and type(apps) == "table" then
---         for k, v in pairs(apps) do
---             local coords = v.enter or v.coords?.enter
---             local heading = (v.enter and v.enter.w) or (v.coords and v.coords.enter and v.coords.enter.w) or 0.0
---             local id = v.name or k
---             local name = v.label or v.name or k
-
---             if coords then
---                 APARTMENTS[#APARTMENTS+1] = {
---                     id = id,
---                     name = name,
---                     coords = vector3(coords.x, coords.y, coords.z),
---                     heading = heading
---                 }
---             else
---                 print("^1[ERROR]^7 Failed to load coords for apartment: "..tostring(k))
---             end
---         end
---     end
--- end)
 RegisterNetEvent('qb-spawn:client:setupSpawns', function(cData, new, apps)
     APARTMENTS = {}
     local cid = cData.citizenid
@@ -89,33 +64,6 @@ RegisterNetEvent('gfx-spawn:client:setupSpawns', function(cData, new, apps)
     end
 end)
 
--- RegisterNetEvent('gfx-spawn:client:setupSpawns', function(cData, new, apps)
---     APARTMENTS = {}
---     local cid = cData.citizenid
---     GetOwnedHouses(cid)
-
---     if apps and type(apps) == "table" then
---         for k, v in pairs(apps) do
---             local coords = v.enter or v.coords?.enter
---             local heading = (v.enter and v.enter.w) or (v.coords and v.coords.enter and v.coords.enter.w) or 0.0
---             local id = v.name or k
---             local name = v.label or v.name or k
-
---             if coords then
---                 APARTMENTS[#APARTMENTS+1] = {
---                     id = id,
---                     name = name,
---                     coords = vector3(coords.x, coords.y, coords.z),
---                     heading = heading
---                 }
---             else
---                 print("^1[ERROR]^7 Failed to load coords for apartment: "..tostring(k))
---             end
---         end
---     end
--- end)
-
-
 function DisableWeatherSync()
     TriggerEvent('qb-weathersync:client:DisableSync')
 end
@@ -135,12 +83,62 @@ end
 --         @field coords vector3
 --         @field heading number
 
+--sn_multicharacter
+function SpawnPlayerAtLocation(location, isApartment)
+    local ped = PlayerPedId()
+    local coords = location.coords
+    local heading = location.heading or 0.0
+
+    DoScreenFadeOut(500)
+    Wait(500)
+    FreezeEntityPosition(ped, true)
+    SetEntityVisible(ped, false, false)
+    RequestCollisionAtCoord(coords.x, coords.y, coords.z)
+    RequestAdditionalCollisionAtCoord(coords.x, coords.y, coords.z)
+    NewLoadSceneStartSphere(coords.x, coords.y, coords.z, 150.0, 0)
+
+    local timeout = GetGameTimer() + 8000
+    while not IsNewLoadSceneLoaded() and GetGameTimer() < timeout do
+        Wait(0)
+    end
+
+    NewLoadSceneStop()
+    SetFocusArea(coords.x, coords.y, coords.z, 0.0, 0.0, 0.0)
+    SetHdArea(coords.x, coords.y, coords.z, 100.0)
+
+    if isApartment then
+        TriggerServerEvent("ps-housing:server:createNewApartment", location.id)
+        Wait(500)
+    end
+
+    SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false)
+    SetEntityHeading(ped, heading)
+
+    local t = GetGameTimer()
+    while not HasCollisionLoadedAroundEntity(ped) and (GetGameTimer() - t) < 5000 do
+        RequestCollisionAtCoord(coords.x, coords.y, coords.z)
+        Wait(50)
+    end
+
+    EnableWeatherSync()
+    TriggerServerEvent('QBCore:Server:OnPlayerLoaded')
+    TriggerEvent('QBCore:Client:OnPlayerLoaded')
+
+    FreezeEntityPosition(ped, false)
+    SetEntityVisible(ped, true, false)
+    DoScreenFadeIn(1000)
+    Wait(500)
+    ClearFocus()
+    exports["deanix_hud"]:ToggleHud(true)
+end
+
+--um multicharacter
 -- function SpawnPlayerAtLocation(location, isApartment)
 --     local ped = PlayerPedId()
 
 --     if isApartment then
 --         DoScreenFadeOut(500)
---         TriggerServerEvent("apartments:server:CreateApartment", location.id, location.name, true)
+--         TriggerServerEvent("ps-housing:server:createNewApartment", location.id)
 --         local coords = location.coords
 --         RequestCollisionAtCoord(coords.x, coords.y, coords.z)
 --         SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false)
@@ -179,13 +177,8 @@ end
 --     local PlayerData = QBCore.Functions.GetPlayerData()
 --     local insideMeta = PlayerData.metadata["inside"]
 
---     if insideMeta and insideMeta.house then
---         TriggerEvent('qb-houses:client:LastLocationHouse', insideMeta.house)
---     elseif insideMeta and insideMeta.apartment and (insideMeta.apartment.apartmentType or insideMeta.apartment.apartmentId) then
---         TriggerEvent('qb-apartments:client:LastLocationHouse',
---             insideMeta.apartment.apartmentType,
---             insideMeta.apartment.apartmentId
---         )
+--     if insideMeta and insideMeta.property_id then
+--         TriggerServerEvent('ps-housing:server:enterProperty', tostring(insideMeta.property_id))
 --     end
 
 --     TriggerServerEvent('QBCore:Server:OnPlayerLoaded')
@@ -196,63 +189,6 @@ end
 --     DoScreenFadeIn(500)
 --     EnableWeatherSync()
 -- end
-
-function SpawnPlayerAtLocation(location, isApartment)
-    local ped = PlayerPedId()
-
-    if isApartment then
-        DoScreenFadeOut(500)
-        TriggerServerEvent("ps-housing:server:createNewApartment", location.id)
-        local coords = location.coords
-        RequestCollisionAtCoord(coords.x, coords.y, coords.z)
-        SetEntityCoordsNoOffset(ped, coords.x, coords.y, coords.z, false, false, false)
-        SetEntityHeading(ped, location.heading)
-
-        local timeout = 0
-        while not HasCollisionLoadedAroundEntity(ped) and timeout < 2000 do
-            Wait(50)
-            timeout = timeout + 50
-        end
-
-        FreezeEntityPosition(ped, false)
-        SetEntityVisible(ped, true)
-        TriggerServerEvent('QBCore:Server:OnPlayerLoaded')
-        TriggerEvent('QBCore:Client:OnPlayerLoaded')
-        DoScreenFadeIn(500)
-        return
-    end
-
-    FreezeEntityPosition(ped, true)
-    SetEntityVisible(ped, false)
-
-    SetEntityCoords(ped, location.coords.x, location.coords.y, location.coords.z)
-    SetEntityHeading(ped, location.heading)
-    DoScreenFadeOut(0)
-
-    RequestCollisionAtCoord(location.coords.x, location.coords.y, location.coords.z)
-    local timeout = 0
-    while not HasCollisionLoadedAroundEntity(ped) and timeout < 2000 do
-        Wait(50)
-        timeout = timeout + 50
-    end
-
-    Wait(250)
-
-    local PlayerData = QBCore.Functions.GetPlayerData()
-    local insideMeta = PlayerData.metadata["inside"]
-
-    if insideMeta and insideMeta.property_id then
-        TriggerServerEvent('ps-housing:server:enterProperty', tostring(insideMeta.property_id))
-    end
-
-    TriggerServerEvent('QBCore:Server:OnPlayerLoaded')
-    TriggerEvent('QBCore:Client:OnPlayerLoaded')
-
-    FreezeEntityPosition(ped, false)
-    SetEntityVisible(ped, true)
-    DoScreenFadeIn(500)
-    EnableWeatherSync()
-end
 
 function ApplyCharacterSkin()
     local p = promise:new()

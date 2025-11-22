@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 379
+Title: Bug
+Reporter:  S U Z I
+Status: open
+Priority: medium
+Created: 1761432410000.0
+Deleted by: BRIAN
+Deleted at: 2025-11-16 10:20:53 UTC
+
+=== DESCRIPTION ===
+Gbsa kluar kendaraan
+
+=== MESSAGES ===
+No messages found.

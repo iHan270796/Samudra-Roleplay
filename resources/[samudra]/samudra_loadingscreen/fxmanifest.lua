@@ -1,9 +1,26 @@
 fx_version 'cerulean'
-games { 'gta5' }
+game 'gta5'
+lua54 'yes'
 
-loadscreen 'ui/dist/index.html'
-loadscreen_manual_shutdown 'yes'
+description 'Wasabi Loading Screen'
+author 'Wasabi Scripts'
+version '1.0.3'
+
+shared_script 'config.lua'
+server_script 'server.lua'
 
 files {
-    "ui/dist/**/*",
+  '**',
+  'web/assets/**',
+  'web/assets/images/**',
 }
+
+loadscreen 'web/index.html'
+loadscreen_cursor 'yes'
+loadscreen_manual_shutdown 'yes'
+
+escrow_ignore {
+  'config.lua'
+}
+
+dependency '/assetpacks'

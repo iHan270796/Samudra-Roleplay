@@ -352,5 +352,7 @@ end, {typeFilter={player=true}})
 
 CreateThread(function()
     Wait(1000)
-    print('^2[LOADED]^7 - ^1PRODIGY INVENTORY V2^7 - CREATED BY ^I han^7')
+    print('^2[LOADED]^7 - ^1PRODIGY INVENTORY V2^7 - CREATED BY ^Raihan Maulana^7')
 end)
+
+_G.ServerFuncs = ServerFuncs

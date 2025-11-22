@@ -8905,5 +8905,13 @@ return {
         type = 'automobile',
         hash = `ems_gs1200`,
     },
-
+    pboxstergts = {
+        name = 'Pbox Stregts',
+        brand = 'pbx',
+        model = 'pboxstergts',
+        price = 71053,
+        category = 'emergency',
+        type = 'automobile',
+        hash = `pboxstergts`,
+    },
 }

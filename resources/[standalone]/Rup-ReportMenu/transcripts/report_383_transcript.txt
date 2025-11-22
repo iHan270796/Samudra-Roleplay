@@ -1,0 +1,15 @@
+=== REPORT TRANSCRIPT ===
+Report ID: 383
+Title: minta gaji polisi bripda
+Reporter: POL - BRYEN
+Status: open
+Priority: medium
+Created: 1762351885000.0
+Deleted by: BRIAN
+Deleted at: 2025-11-16 10:20:42 UTC
+
+=== DESCRIPTION ===
+minta gaji pollisi
+
+=== MESSAGES ===
+No messages found.

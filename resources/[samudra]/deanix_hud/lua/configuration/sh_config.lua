@@ -31,11 +31,11 @@ Config.Settings = {
             Driving = true,
         },
         ScreenShake = {
-            MinStressForShake = 40,
+            MinStressForShake = 50,
         },
         ShootingStressChance = 0.1, -- Percentage
         UnbuckledSpeed = 100, -- Going over this speed cause stress
-        MinimumSpeed = 100, -- Going over this speed cause stress
+        MinimumSpeed = 150, -- Going over this speed cause stress
         JobWhitelist = {
             police = true,
             ambulance = true
