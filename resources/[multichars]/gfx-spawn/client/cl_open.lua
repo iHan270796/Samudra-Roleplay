@@ -129,7 +129,7 @@ function SpawnPlayerAtLocation(location, isApartment)
     DoScreenFadeIn(1000)
     Wait(500)
     ClearFocus()
-    exports["deanix_hud"]:ToggleHud(true)
+    -- exports["deanix_hud"]:ToggleHud(true)
 end
 
 --um multicharacter

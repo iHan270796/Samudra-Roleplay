@@ -42,7 +42,7 @@ Config.CustomHud = function(bool)
         -- Example: exports['myhud']:SetDisplay(false)
         -- exports['minimal-hud']:toggleHud(false)
 		-- exports['minimal-hud']:toggleMap(false)
-		exports["deanix_hud"]:ToggleHud(false)
+		-- exports["deanix_hud"]:ToggleHud(false)
         --Debug('Hud is hidden', 'debug')
     else
         -- Example: exports['myhud']:SetDisplay(true)

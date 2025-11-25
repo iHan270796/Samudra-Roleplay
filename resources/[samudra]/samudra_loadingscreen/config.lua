@@ -15,13 +15,13 @@ Config.Platform = 'youtube'  -- youtube or streamable (only used if UseLocalVide
 
 Config.VideoID = 'tJmkCz7UYm8' -- Only used if UseLocalVideo is set to false (if you are using a youtube video get the video code from the URL after the v= & if you are using streamable get the video code from the URL after the /)
 
-Config.AddBlurToBackground = true               -- Add blur to the background image/video
+Config.AddBlurToBackground = false               -- Add blur to the background image/video
 
 Config.MainColor = '#3bf5c8'                    -- Main color used for the whole UI
 
 Config.DelayOnStaffSlides = 5                   -- Delay on staff slides in seconds
 
-Config.TebexLink = 'https://wasabiscripts.com/' -- Link to your Tebex store
+Config.TebexLink = 'https://samudraroleplay.com/' -- Link to your Tebex store
 
 Config.RandomizeMusics = true                   -- Randomize the music playlist order
 
@@ -40,7 +40,7 @@ Config.Translations = {                         -- You can change the UI text to
     team = 'Team',
     rules = 'Rules',
     keyboard = 'Keyboard',
-    tebexlink = 'wasabiscripts.com',
+    tebexlink = 'samudraroleplay.com',
     loading = 'The city is now loading...',
 }
 
